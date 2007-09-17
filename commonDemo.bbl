@@ -1,0 +1,19 @@
+%
+% This bibliography was produced by using jurabib.bst
+%
+\begin{thebibliography}{}
+
+\bibitem[{Ducasse\jbdy {2005}}%
+         {}%
+         {{0}{}{book}{2005}{}{}{}{}%
+          {APress\bibbdsep {} 2005}}%
+         {{Squeak: Learn Programming with Robots}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{Duca05j}
+ \jbbibargs {\bibnf {Ducasse} {St\'ephane} {S.} {} {}} {St\'ephane Ducasse}
+  {au} {\bibtfont {Squeak: Learn Programming with Robots}\bibatsep\  \apyformat
+  {APress\bibbdsep {} 2005} \jbnote {1} {ISBN: 1-59059-491-6} } {\bibhowcited}
+  \jbendnote {ISBN: 1-59059-491-6} \jbdoitem {{Ducasse}{St\'ephane}{S.}{}{}} {}
+  {} \bibAnnote {book}
+
+\end{thebibliography}

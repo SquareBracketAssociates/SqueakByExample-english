@@ -1,0 +1,67 @@
+-----------------------------------------------------------------------------
+		$Id$
+-----------------------------------------------------------------------------
+			This is the TODO list for "Squeak By Example",
+		listing pending actions and current status of chapters.
+-----------------------------------------------------------------------------
+TO DO
+-----
+*** Fix cover: "Smalltalk by Example" -> "Squeak by Example"
+* NB: Send a copy of each edition to:
+Schweizerische Nationalbibliothek, Erwerbungsdienst, Hallwylstr. 15, 3003 Bern
+- Pollet: read the book, help on basic class chapter
+- Stef: want to write something on block, Exceptions....
+- Oscar: ? Add mechanism to test that certain expressions raise an ERROR?
+	1 / 0 --> ERROR
+- Oscar: Add means to define classes in tests (e.g., Model chapter)?
+-----------------------------------------------------------------------------
+STATUS OF CHAPTERS
+------------------
+Preface -- DONE
+- add a few short words about history?
+- Also add a reference to Dan Ingalls OOPSLA paper
+
+[GETTING STARTED]
+A Quick Tour of Squeak -- DONE
+A First Application -- DONE
+Syntax in a Nutshell -- DONE
+Understanding Message Syntax -- DONE
+
+[DEVELOPING IN SQUEAK]
+The Smalltalk Object Model -- DONE
+The Squeak Programming Environment -- DONE (mostly)
+	- add more exercises
+	- Write more about Monticello -> Cassou?
+	* redo all screendumps with white background!
+SUnit -- DONE
+Basic Classes -- Stef is working on it
+	* Need a chapter on Control Flow and Iterators?
+	[Iterators are discussed in the Collections chapter]
+Collections -- DONE
+Streams -- DONE
+Morphic -- DONE
+
+[ADVANCED SQUEAK]
+Classes and Metaclasses -- DONE
+	* Needs more details and examples for responsibilities of Class,
+	  Behavior and Metaclass
+FAQ -- First rough draft
+-----------------------------------------------------------------------------
+*** NB: All the chapters above are planned for the first release.
+This is needed for the Smalltalk course starting Sept 2007.
+Chapters below are planned for later releases.
+
+[FUTURE CHAPTERS]
+Metaprogramming -- Translated from French columns being translated; to be reviewed -> ???
+Profiling -- Short draft. To be rewritten. -> Andrew
+Inheritance/Idioms -- To do. -> Andrew
+Exceptions -- To do. -> Stef
+Concurrency -- To do. -> Oscar
+Dependency Mechanisms -- To do. -> Stef?
+Common Errors -- To do. -> ???
+RegEx and SmaCC -- To Do
+
+[ETC]
+Leftover Stuff -- ... -> ???
+OmniBrowser (have a look at Alex Bergel et al's article)
+-----------------------------------------------------------------------------

@@ -1,0 +1,705 @@
+% $Author$
+% $Date$
+% $Revision$
+%=================================================================
+\ifx\wholebook\relax\else
+% --------------------------------------------
+% Lulu:
+	\documentclass[a4paper,10pt,twoside]{book}
+	\usepackage[
+		papersize={6in,9in},
+		hmargin={.75in,.75in},
+		vmargin={.75in,1in},
+		ignoreheadfoot
+	]{geometry}
+	\input{../common.tex}
+	\pagestyle{headings}
+	\setboolean{lulu}{true}
+% --------------------------------------------
+% A4:
+%	\documentclass[a4paper,11pt,twoside]{book}
+%	\input{../common.tex}
+%	\usepackage{a4wide}
+% --------------------------------------------
+    \graphicspath{{figures/} {../figures/}}
+	\begin{document}
+	\renewcommand{\nnbb}[2]{} % Disable editorial comments
+	\sloppy
+\fi
+%=================================================================
+\chapter{Morphic}
+
+%\sd{We should first give a conceptual overview.
+%Then we need a cookbook of how to do simple things in Morphic.
+%The observer pattern and its implementation with changed:  and update: messages could go here.  Or in ``Idiomatic design patterns'' later.}
+
+\indmain{Morphic} is the basic component of the graphical interface in \sq.
+It is written in \st so it is fully portable between operating systems.
+The main particularity of Morphic is that the user can assemble and disassemble graphical interface elements on the fly.\footnote{We thank Hilaire Fernandes for permission to translate this chapter from his original article in French.}
+
+\on{I have commented out the LabelstickerMorph and PyramidMorph examples, as they do not really add much over the other examples we have already. The source code is now available in the example subdirectory, in case someone would like to try and use them after all.}
+
+%=================================================================
+\section{The History of Morphic}
+
+Morphic was developed in the 80's for the \ind{Self} language, which was largely inspired by \st; Morphic was then ported to \sq.
+The basic idea in Morphic is that each object should be directly represented and manipulated as a graphical shape: the morph.
+For instance, if you bring up the world menu, you can then detach a menu item to keep it as a button:
+blue-click once on the world menu to bring up its morphic halo, then blue-click again on the menu item you want to detach to bring up its halo, and move elsewhere it by grabbing it by the black handle.
+\index{Morphic!halo}
+\index{blue button}
+
+\begin{figure}[ht]
+	\ifluluelse
+		{\centerline{\includegraphics[width=0.6\textwidth]{detachingMenu}}}
+		{\centerline{\includegraphics[width=0.4\textwidth]{detachingMenu}}}
+	\caption{Detaching a morph, here the \menu{new morph} menu item, to make it an independent button.
+		\label{fig:detachingMenu}}
+\end{figure}
+
+\dothis{Let's take another example; to transform an object into a morph, execute the following code in a workspace:}
+\begin{code}{}
+'Morph' asMorph openInWorld
+\end{code}
+\cmindex{Morph}{openInWorld}
+
+You can also try this:
+\begin{code}{}
+'Morph' asMorph openViewerForArgument
+\end{code}
+
+You should obtain a graphical element that you can manipulate.
+Of course it is possible to define morphs that are better graphical representations.
+The method \mthind{Object}{asMorph} has a default implementation in the \ct{Object} class that just creates a string-like morph.
+For instance, \ct{Color tan asMorph} returns a string-like morph labeled with the result of \clsind{Color} {tan printString}; it would be more interesting if we got a colored rectangle morph instead.
+This is easy:
+
+\dothis{Open the \ct{Color} class and add the following method to it:}
+\begin{method}{Getting a morph for an instance of \ct{Color}}
+Color>>>asMorph
+   ^ Morph new color: self
+\end{method}
+\noindent
+Now execute \ct{Color orange asMorph} \mthind{Morph}{openInWorld} in a workspace. Instead of the string-like morph, you get a nice orange rectangle!
+
+
+%=================================================================
+\section{Manipulating morphs}
+
+Morphs are objects, so we can manipulate them like any other object in \st: changing their properties, creating new morph classes, \etc
+
+As a graphical object, a morph has a position and a size\,---\,those of its bounding box actually.
+The \mthind{Morph}{position} method returns the coordinates of the morph's upper left corner, as a point.
+The origin of the coordinates is the screen's upper left corner.
+The \ct{extent} method also returns a point, but this one specifies the width and height of the morph rather than a location.
+
+\dothis{Type and execute the following code:}
+\begin{code}{}
+joe := Morph new color: Color blue.
+joe openInWorld.
+bill := Morph new color: Color red .
+bill openInWorld.
+\end{code}
+\noindent
+Then type \ct{joe position} and \emph{print it}.
+To move joe, execute \ct{joe position: (joe position + (10@3))} repeatedly.
+
+It is possible to do the same with the size: \ct{joe} \mthind{Morph}{extent} returns the morph's size, and to have it grow, execute \ct{joe extent: (joe extent * 1.1)}.
+To change the color of a morph, send it the \mthind{Morph}{color:} message with the desired color as argument. For instance, \ct{joe color: Color orange} or, to add transparency, \ct{joe color: (Color orange alpha: 0.5)}.
+
+To make bill follow joe, you can repeatedly execute this code:
+\begin{code}{}
+bill position: (joe position + (100@0))
+\end{code}
+\noindent
+You can move joe using the mouse then execute this code; bill will move to 100 pixels to the right of joe.
+
+%=================================================================
+\section{Composing Morphs}
+
+To create new morphs, there are two main techniques that you can combine:
+\begin{enumerate}
+	\item by composing morphs one into another,
+	\item by subclassing \ct{Morph} and overriding \mthind{Morph}{drawOn:} to draw original morph shapes.
+\end{enumerate}
+\index{Morph!composing}
+\index{Morph!subclassing}
+
+Morphs can contain other morphs. You can add a morph to another one by sending the \mthind{Morph}{addMorph:} to the container morph.
+
+\dothis{Try adding a morph to another one:}
+\begin{code}{}
+star := StarMorph new color: Color yellow.
+joe addMorph: star.
+star position: joe position.
+\end{code}
+\noindent
+The last line positions the star at the same coordinates as joe.
+The coordinates of the contained morph are still absolute: they are relative to the screen, not to the containing morph (this is a limitation of Morphic).
+To position a morph, there are plenty of methods available; browse the \protind{geometry} protocol of the \ct{Morph} class to see for yourself.
+To place the star in the middle of joe, execute \ct{star} \mthind{Morph}{center:} \ct{joe center}.
+
+\begin{figure}[ht]
+	\centerline{\includegraphics{joeStar}}
+	\caption{The star is contained inside joe, the transparent blue morph.
+		\label{fig:joeStar}}
+\end{figure}
+
+Now if you grab the star with the mouse, you actually grab joe, and the two morphs move simultaneously: the star is anchored inside joe.
+It is indeed possible to add more morphs to joe; to remove a sub-morph, do \ct{joe} \mthind{Morph}{removeMorph:} \ct{star} or \ct{star} \mthind{Morph}{delete}.
+
+
+%=================================================================
+\section{Creating and Drawing Your Own Morphs}
+
+While it is possible to obtain interesting representations by composing morphs, sometimes you will really need something completely different.
+To do this you need to define a subclass of \ct{Morph} and to override the \mthind{Morph}{drawOn:} method.
+The parameter to this method is an instance of \clsind{Canvas} on which the morph will draw itself.
+Let's draw a cross-shaped morph.
+\index{Morph!subclassing}
+
+\dothis{From the class browser, define a new class \clsind{CrossMorph} inheriting from \ct{Morph}:}
+\begin{classdef}{Defining \ct{CrossMorph}}
+Morph subclass: #CrossMorph
+   instanceVariableNames: ''
+   classVariableNames: ''
+   poolDictionaries: ''
+   category: 'sqByExample-Morphs'
+\end{classdef}
+
+We will the define the \ct{drawOn:} method like this:
+\begin{method}{How to draw \ct{CrossMorph}s}
+drawOn: aCanvas
+   | aBounds crossHeight crossWidth |
+   crossHeight := (self height / 3) asFloat.
+   crossWidth := (self width / 3) asFloat.
+   aBounds := self bounds top: self top + crossHeight.
+   aBounds := aBounds bottom: self bottom - crossHeight.
+   aCanvas fillRectangle: aBounds color: self color.
+   aBounds := self bounds left: self left + crossWidth.
+   aBounds := aBounds right: self right - crossWidth.
+   aCanvas fillRectangle: aBounds color: self color
+\end{method}
+
+The \mthind{Morph}{bound} method returns the bounding box of a morph. This is an instance of \clsind{Rectangle} defined by two points: the upper left and the lower right corner of the morph.
+
+\dothis{To test our new morph, execute \ct{CrossMorph new} \mthind{Morph}{openInWorld}.}
+The result should look something like \figref{cross}.
+
+\begin{figure}[ht]
+	\ifluluelse
+		{\centerline{\includegraphics[width=0.4\textwidth]{cross}}}
+		{\centerline{\includegraphics{cross}}}
+	\caption{The cross-shaped morph; you can resize it as you wish.
+		\label{fig:cross}}
+\end{figure}
+
+Note however that the sensitive zone\,---\,where you can click to grab the morph\,---\,is still the bounding box.
+
+\dothis{To limit the sensitive zone of the morph to the cross shape, you need to redefine the \ct{containsPoint:} method:}
+
+\needlines{4}
+\begin{method}{Shaping the sensitive zone of the \ct{CrossMorph}}
+containsPoint: aPoint
+   | aBounds1 aBounds2 crossHeight crossWidth |
+   crossHeight := (self height / 3) asFloat.
+   crossWidth := (self width / 3) asFloat.
+   aBounds1 := self bounds top: self top + crossHeight.
+   aBounds1 := aBounds1 bottom: self bottom - crossHeight.
+   aBounds2 := self bounds left: self left + crossWidth.
+   aBounds2 := aBounds2 right: self right - crossWidth.
+   ^ (aBounds1 containsPoint: aPoint)
+      | (aBounds2 containsPoint: aPoint)
+\end{method}
+
+This leverages the \mthind{Rectangle}{containsPoint:} method from class \ct{Rectangle}.
+There is duplicated code in the \ct{drawOn:} and \ct{containsPoint:} methods.
+This code should be factored out into a third method; we leave this as an exercise for the reader.
+
+%=================================================================
+%\section{Composing Morphs}
+
+%\on{The source code is in the examples directory.
+%For the moment I prefer to leave out the examples, as they do not add much.}
+
+%Below, we present a few morphs that were designed for a course project.
+
+%\paragraph{An adhesive Label} The \ct{LabelStickerMorph} is a metaphor for an adhesive label with a colored border and three lines of text (\figref{labeler}, \egref{labeler}).
+
+%\begin{figure}[ht]
+%	\centerline{\includegraphics[width=0.25\textwidth]{labeler}}
+%	\caption{The sticker label morph.
+%		\label{fig:labeler}}
+%\end{figure}
+
+%\begin{example}[labeler]{Creating a sticker label}{}
+%label := LabelstickerMorph new openInWorld.
+%label text1: 'Confiture sans sucre';
+%   text2: 'Fraises du jardin';
+%   text3: '9 mai 2006'.
+%label lineColor: Color blue
+%\end{example}
+
+%\paragraph{A Number Pyramid}
+%The previous morph is designed by overriding the \ct{drawOn:} method.
+%We built \ct{PyramidMorph} by composing morphs: we used \ct{TextMorph}s to make the blocks and added them to a base morph (\figref{pyramid}, \egref{pyramid}). \damien{figure does not match text... no numbers? Where is the code?}
+%\begin{figure}[ht]
+%	\centerline{\includegraphics{pyramid}}
+%	\caption{The number pyramid morph.
+%		\label{fig:pyramid}}
+%\end{figure}
+
+%\begin{example}[pyramid]{Manipulating the number pyramid}{}
+%pyramid := (PyramidMorph base: 4) openInWorld.
+%pyramid block: 8 value: 2
+%\end{example}
+
+
+%=================================================================
+\section{Mouse and Keyboard Interaction}
+
+\paragraph{Mouse Events}
+Besides the graphical aspect of morphs, we also need to interact with them through mouse or the keyboard.
+To handle mouse events, a morph must answer \ct{true} to the \mthind{Morph}{handlesMouseDown:} event: when a mouse button is pressed, Morphic queries each morph under the mouse pointer using this message. If a morph answers \ct{true}, then Morphic immediately sends it the \mthind{Morph}{mouseDown:} message, and the \mthind{Morph}{mouseUp:} message once the user releases the mouse button.
+If all morphs answer \ct{false}, then Morphic initiates a drag-and-drop operation, which is the default behavior to grab morphs.
+As we will show below, the \ct{mouseDown:} and \ct{mouseUp} methods each take an instance of \clsind{MorphicEvent} as argument.
+
+We will now extend \ct{CrossMorph} to handle mouse events.
+
+\dothis{First, \ct{CrossMorph} should accept mouse events, so add this method to the class:}
+\begin{method}{Declaring that \ct{CrossMorph} will react to mouse clicks}
+CrossMorph>>>handlesMouseDown: anEvent
+   ^true
+\end{method}
+
+Now when the left mouse button\,---\,red in the \st terminology\,---\,is clicked, we want to change the color of the cross to red; when the middle button\,---\,yellow in \st\,---\,is clicked we will change the color to yellow:
+\begin{method}{Reacting to mouse clicks by changing the morph's color}
+CrossMorph>>>mouseDown: anEvent
+   anEvent redButtonPressed
+      ifTrue: [self color: Color red].
+   anEvent yellowButtonPressed
+      ifTrue: [self color: Color yellow].
+   self changed
+\end{method}
+
+Once the morph handles \ind{mouse events}, it you cannot grab it with the mouse and move it anymore. Instead you have to use the halos: right click on the morph to make the halos appear and grab either the brown or the black handle at the top of the morph.
+
+The \ct{anEvent} argument of \ct{mouseDown:} is an instance of \mbox{\clsind{MouseEvent},} which is a subclass of \lct{Mor\-phic\-Event}. \ct{MouseEvent} defines the \mthind{MouseEvent}{redButtonPressed} and \mthind{MouseEvent}{yellowButtonPressed} methods. Browse this class to see what methods it provides to handle mouse events.
+
+\paragraph{Keyboard Events}
+
+To catch \ind{keyboard events}, there are several steps:
+\begin{enumerate}
+	\item give the keyboard focus to a specific morph: for instance we can give focus to our morph when the mouse is over it;
+	\item handle the keyboard event itself with the \mthind{Morph}{handleKeystroke:} method: this message is sent to our morph when the user presses a key and if our morph currently has the focus;
+	\item release the keyboard focus when the mouse is not over our morph anymore.
+\end{enumerate}
+
+\dothis{We will extend \ct{CrossMorph} so that it reacts to keystrokes.
+For a morph to be notified when the mouse pointer is over it, it should answer true to the \mthind{Morph}{handlesMouseOver:} message:}
+\begin{method}{Declaring that \ct{CrossMorph} will react when it is under the mouse pointer}
+CrossMorph>>>handlesMouseOver: anEvent
+   ^true
+\end{method}
+
+This message is the equivalent of \mthind{Morph}{handlesMouseDown:} for the mouse position.
+When the mouse pointer enters or leaves the morph area, the \mthind{Morph}{mouseEnter:} and \mthind{Morph}{mouseLeave:} messages are sent to the morph, respectively.
+
+\dothis{Define two corresponding methods so that \ct{CrossMorph} catches and releases the keyboard focus, as well as the method to actually handle the keystrokes:}
+\begin{method}{Getting the keyboard focus when the mouse pointer enters the morph's area}
+CrossMorph>>>mouseEnter: anEvent
+   anEvent hand newKeyboardFocus: self
+\end{method}
+
+\begin{method}{Handing back the focus when the pointer goes away}
+CrossMorph>>>mouseLeave: anEvent
+   anEvent hand newKeyboardFocus: nil
+\end{method}
+
+\begin{method}{Receiving and handling keyboard events}
+CrossMorph>>>handleKeystroke: anEvent
+   | keyValue |
+   keyValue := anEvent keyValue.
+   keyValue = 30    "up arrow"
+      ifTrue: [self position: self position - (0 @ 1)].
+   keyValue = 31    "down arrow"
+      ifTrue: [self position: self position + (0 @ 1)].
+   keyValue = 29    "right arrow"
+      ifTrue: [self position: self position + (1 @ 0)].
+   keyValue = 28    "left arrow"
+      ifTrue: [self position: self position - (1 @ 0)]
+\end{method}
+
+We have written the method so that we can move the morph using the arrow keys.
+Note that when the mouse is not over the morph anymore, the \mthind{Morph}{handleKeystroke:} message is not sent anymore, so the morph stops responding to keyboard commands.
+To know the key values, you can open a Transcript window and add \glbind{Transcript} \ct{show: anEvent keyValue.} in the method above.
+The \ct{anEvent} argument of \ct{handleKeystroke:} is an instance of \clsind{KeyboardEvent}, another subclass of \clsind{MorphicEvent}. Browse this class to learn more about keyboard event handling methods.
+
+\paragraph{Morph Animations}
+
+Morphic provides a simple animation system made of two methods: \mthind{Morphic}{step} is called at regular intervals of time, and \mthind{Morphic}{stepTime} specifies the periodicity in milliseconds at which \ct{step} is to be called.
+\index{Morphic!animation}
+
+\dothis{To make \ct{CrossMorph} blink, we can define these methods as follows:}
+\begin{method}{Defining the animation time interval}
+CrossMorph>>>stepTime
+   ^ 100
+\end{method}
+\begin{method}{Making a step in the animation}
+CrossMorph>>>step
+   (self color diff: Color black) < 0.1
+      ifTrue: [self color: Color red]
+      ifFalse: [self color: self color darker]
+\end{method}
+\noindent
+NB: You may need to pick up and move the \ct{CrossMorph} to trigger the animation.
+
+% \on{You can also \menu{debug \go inspect morph} and evaluate: \ct{self currentWorld startStepping: self}.}
+
+%=================================================================
+\section{Interactors}
+
+To prompt the user for input, the \clsind{FillInTheBlank} class provides a few ready-to-use dialog boxes.
+For instance the \mthind{FillInTheBlank}{request:initialAnswer:} method returns the string entered by the user (\figref{dialogName}).
+
+\begin{figure}[htb]
+\begin{minipage}{0.48\textwidth}
+	\ifluluelse
+		{\centerline{\includegraphics[width=\textwidth]{dialog}}}
+		{\centerline{\includegraphics[width=5cm]{dialog}}}
+	\caption{Dialog displayed by \ct{FillInTheBlank request: 'What''s your name?' initialAnswer: 'no name'}.
+		\label{fig:dialogName}}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+	\ifluluelse
+		{\centerline{\includegraphics [width=0.6\textwidth]{popup}}}
+		{\centerline{\includegraphics[width=3cm]{popup}}}
+	\caption{PopUp displayed by \ct{PopUpMenu>>>startUpWithCaption:}.}
+\end{minipage}
+\end{figure}
+
+%\begin{figure}[ht]
+%	\centerline{\includegraphics[width=5cm]{dialog}}
+%	\caption{Dialog displayed by \ct{FillInTheBlank request: 'What''s your name?' initialAnswer: 'no name'}.
+%		\label{fig:dialogName}}
+%\end{figure}
+
+To display a pop-up menu, use the \clsind{PopupMenu} class:
+\begin{code}{}
+menu := PopUpMenu
+   labelArray: #('circle' 'oval' 'square' 'rectangle' 'triangle')
+   lines: #(2 4).
+menu startUpWithCaption: 'Choose a shape'
+\end{code}
+
+%\begin{figure}[ht]
+%	\centerline{\includegraphics[width=3cm]{popup}}
+%	\caption{PopUp displayed by \ct{PopUpMenu>>>startUpWithCaption:}.}
+%\end{figure}
+
+%=================================================================
+\section{Drag-and-drop}
+
+Morphic also supports drag-and-drop. Let's examine a simple example with two morphs, a receiver morph and a dropped morph. The former will accept a morph only if the dropped morph matches a given condition: here the morph should be blue. If it is rejected, the dropped morph decides what it should do.
+
+\dothis{Let's first define the receiver morph:}
+\begin{classdef}{Defining a morph on which we can drop other morphs}
+Morph subclass: #ReceiverMorph
+   instanceVariableNames: ''
+   classVariableNames: ''
+   poolDictionaries: ''
+   category: 'sqByExample-Morphs'
+\end{classdef}
+
+Now define the initialization method as usual:
+\begin{method}{Initializing \ct{ReceiverMorph}}
+ReceiverMorph>>>initialize
+   super initialize.
+   color := Color red.
+   bounds := 0 @ 0 extent: 200 @ 200
+\end{method}
+
+The following methods decide if the receiver morph accepts the dropped morph or not; \mthind{Morph}{repelsMorph:event:} defines the basic, first-hand policy, and in most cases will ensure agreement of both the receiver and the dropped morph, via \mthind{Morph}{wantsDroppedMorph:event:} and its counterpart \mthind{Morph}{wantsToBeDroppedInto:}.
+% \damien{I wrote that after quickly looking at the very clear code of Morphic, please check or simplify. I don't think at this point the reader cares about \#repelsMorph:event:}
+\begin{method}{Changing the rejection policy for dropped morphs}
+ReceiverMorph>>>repelsMorph: aMorph event: ev
+   ^ (self wantsDroppedMorph: aMorph event: ev) not
+\end{method}
+\begin{method}{Accepting dropped morphs based on their color}
+ReceiverMorph>>>wantsDroppedMorph: aMorph event: anEvent
+   ^ aMorph color = Color blue
+\end{method}
+
+That's all we need as far as the receiver is concerned.
+
+\dothis{Create instances of \clsind{ReceiverMorph} and \clsind{RectangleMorph} in a workspace:}
+\begin{code}{}
+ReceiverMorph new openInWorld.
+RectangleMorph new openInWorld.
+\end{code}
+\noindent
+Try to drag-and-drop the blue \ct{RectangleMorph} onto the receiver. It will be rejected and sent back to its initial position.
+
+\dothis{To change this behavior, we create a specific subclass of \ct{Morph}, named \ct{DroppedMorph}:}
+\begin{classdef}{Defining a morph we can drag-and-drop onto \ct{ReceiverMorph}}
+Morph subclass: #DroppedMorph
+   instanceVariableNames: ''
+   classVariableNames: ''
+   poolDictionaries: ''
+   category: 'sqByExample-Morphs'
+\end{classdef}
+
+\begin{method}{Initializing \ct{DroppedMorph}}
+DroppedMorph>>>initialize
+   super initialize.
+   color := Color blue.
+   self position: 250@100
+\end{method}
+
+Now we can specify what the dropped morph should do when it is rejected by the receiver; here it will stay attached to the mouse pointer:
+\begin{method}{Reacting when the morph was dropped but rejected}
+DroppedMorph>>>rejectDropMorphEvent: anEvent
+   | h |
+   h := anEvent hand.
+   WorldState
+      addDeferredUIMessage: [h grabMorph: self].
+   anEvent wasHandled: true
+\end{method}
+
+The \mthind{MorphicEvent}{hand} method of events returns an instance of \ct{HandMorph} which represents the mouse pointer and whatever it holds.
+We tell the \ct{World} that the mouse pointer should grab \ct{self}, the rejected morph.
+
+\dothis{Create two instances of \ct{DroppedMorph}, and then drag-and-drop them onto the receiver.}
+\begin{code}{}
+ReceiverMorph new openInWorld.
+(DroppedMorph new color: Color blue) openInWorld.
+(DroppedMorph new color: Color green) openInWorld.
+\end{code}
+\noindent
+The green morph is rejected and therefore stays attached to the mouse pointer.
+
+%=================================================================
+\section{A Complete Example}
+
+We will design a morph to roll a die\footnote{NB: One die, two dice.}. Clicking on it will display the values of all sides of the die in a quick loop, and another click will stop the animation.
+
+\begin{figure}[ht]
+	\centerline{\includegraphics{die}}
+	\caption{The die in Morphic.
+		\label{fig:dialogDie}}
+\end{figure}
+
+\dothis{We define the die as a subclass of \clsind{BorderedMorph} instead of \ct{Morph}, because we will use some border attributes of the former:}
+
+\needlines{4}
+\begin{classdef}{Defining the die morph}
+BorderedMorph subclass: #DieMorph
+   instanceVariableNames: 'faces dieValue isStopped'
+   classVariableNames: ''
+   poolDictionaries: ''
+   category: 'sqByExample-Morphs'
+\end{classdef}
+
+The instance variables \ct{faces}, \ct{dieValue}, and \ct{isStopped} define respectively the number of faces the currently displayed face, and whether the die animation is running.
+To create a die instance, we define the \ct{faces:} method on the \emph{class} side of \clsind{DieMorph}:
+\begin{method}{Creating a new die with the number of faces we like}
+DieMorph class>>>faces: aNumber
+   ^ self new faces: aNumber
+\end{method}
+
+The \ct{initialize} method, which \ct{new} calls, is defined on the instance side:
+\begin{method}{Initializing instances of \ct{DieMorph}}
+DieMorph>>>initialize
+   super initialize.
+   self extent: 50 @ 50.
+   self useGradientFill; borderWidth: 2; useRoundedCorners.
+   self setBorderStyle: #complexRaised.
+   self fillStyle direction: self extent.
+   self color: Color green.
+   dieValue := 1.
+   faces := 6.
+   isStopped := false
+\end{method}
+
+We use a few methods of \ct{BorderedMorph} to give a nice appearance to the die: a thick border with a raised effect, rounded corners, and a color gradient on the visible face.
+We define the \ct{faces:} instance method as follows:
+\begin{method}{Setting the number of faces of the die}
+DieMorph>>>faces: aNumber
+   "Set the number of faces"
+   (aNumber isInteger
+         and: [aNumber > 0]
+         and: [aNumber <= 9])
+      ifTrue: [faces := aNumber]
+\end{method}
+\on{Why not make this a pre-condition, \ie an assertion?}
+
+Our die can have up to nine faces!
+Be sure to understand the order in which the methods are called when a die is created, for instance with \ct{DieMorph faces: 9}:
+\begin{enumerate}
+	\item the class method \ct{DieMorph class>>>faces:} calls \ct{DieMorph class>>>new};
+	\item \ct{new} calls the \ct{DieMorph>>>initialize} instance method, which sets \ct{faces} to an initial value of six;
+	\item \ct{DieMorph class>>>new} returns in the class method \ct{DieMorph class>>>faces:}, which calls the instance method of the same name, \ct{DieMorph>>>faces:}, setting the \ct{faces} instance variable to nine.
+\end{enumerate}
+
+Before defining \ct{drawOn:}, we need a few methods to place the dots on the displayed face:
+\begin{methods}{Methods for placing points on each face}
+DieMorph>>>face1
+   ^{0.5@0.5}
+DieMorph>>>face2
+   ^{0.25@0.25 . 0.75@0.75}
+DieMorph>>>face3
+   ^{0.25@0.25 . 0.75@0.75 . 0.5@0.5}
+DieMorph>>>face4
+   ^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75}
+DieMorph>>>face5
+   ^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75 . 0.5@0.5}
+DieMorph>>>face6
+   ^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75 . 0.25@0.5 . 0.75@0.5}
+DieMorph>>>face7
+   ^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75 . 0.25@0.5 . 0.75@0.5 . 0.5@0.5}
+DieMorph >>>face8
+   ^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75 . 0.25@0.5 . 0.75@0.5 . 0.5@0.5 . 0.5@0.25}
+DieMorph >>>face9
+   ^{0.25@0.25 . 0.75@0.25 . 0.75@0.75 . 0.25@0.75 . 0.25@0.5 . 0.75@0.5 . 0.5@0.5 . 0.5@0.25 . 0.5@0.75}
+\end{methods}
+\on{kind of ugly boilerplate code -- should be a nice way to map these more elegantly to coordinates.}
+
+These methods define collections of the coordinates of dots for each face. The coordinates are in a square of size $1\times1$; we will simply need to scale them to place the actual dots.
+
+The \ct{drawOn:} method does two things: it draws the die background with the call to \ct{super}, then it draws the dots:
+\begin{method}{Drawing the die morph}
+DieMorph>>>drawOn: aCanvas
+   super drawOn: aCanvas.
+   (self perform: ('face' , dieValue asString) asSymbol)
+      do: [:aPoint | self drawDotOn: aCanvas at: aPoint]
+\end{method}
+
+The second part of this method uses the reflective capacities of \st.
+Drawing the dots of a face is a simple matter of iterating over the collection given by the \ct{faceX} method for that face, sending the \ct{drawDotOn:at:} message for each coordinate. To call the correct \ct{faceX} method, we use the \mthind{Object}{perform:} method which sends a message built from a string, here \ct{('face', dieValue asString) asSymbol}. You will encounter this use of \ct{perform:} quite regularly.
+\index{reflection}
+\begin{method}{Drawing a single dot within a face}
+DieMorph>>>drawDotOn: aCanvas at: aPoint
+   aCanvas
+      fillOval: (Rectangle
+         center: self position + (self extent * aPoint)
+         extent: self extent / 6)
+      color: Color black
+\end{method}
+
+Since the coordinates are normalized to the $[0{:}1]$ interval, we scale them to the dimensions of our die: \ct{self extent * aPoint}.
+
+\dothis{We can already create a die instance from a workspace:}
+\begin{code}{}
+(DieMorph faces: 6) openInWorld.
+\end{code}
+
+To change the displayed face, we create an accessor that we can use as \ct{myDie dieValue: 4}:
+\begin{method}{Setting the current value of the die}
+DieMorph>>>dieValue: aNumber
+   (aNumber isInteger
+         and: [aNumber > 0]
+         and: [aNumber <= faces])
+      ifTrue:
+         [dieValue := aNumber.
+         self changed]
+\end{method}
+
+Now we will use the animation system to show quickly all the faces:
+\index{Morphic!animation}
+\begin{methods}{Animating the die}
+DieMorph>>>stepTime
+   ^ 100
+
+DieMorph>>>step
+   isStopped ifFalse: [self dieValue: (1 to: faces) atRandom]
+\end{methods}
+Now the die is rolling!
+
+To start or stop the animation by clicking, we will reuse what we saw previously about mouse events; first, activate the reception of mouse events:
+\begin{methods}{Handling mouse clicks to start and stop the animation}
+DieMorph>>>handlesMouseDown: anEvent
+   ^ true
+
+DieMorph>>>mouseDown: anEvent
+   anEvent redButtonPressed
+      ifTrue: [isStopped := isStopped not]
+\end{methods}
+Now the die will roll or stop rolling when we click on it!
+
+% That's all for the essentials of Morphic!
+
+% Most of the work on \ct{DieMorph} was done with an instance of it living in the environment; this is quite nice when to tweak programs.
+
+%=================================================================
+\section{More About the Canvas}
+
+The \ct{drawOn:} method has an instance of \clsindmain{Canvas} as its sole argument;
+the canvas is the area on which the morph draws itself.
+By using the graphics methods of the canvas you are free to give the appearance you want to the morph.
+While browsing the hierarchy of the \ct{Canvas} class, you will see that it has several variants.
+The default variant of \ct{Canvas} is \clsind{FormCanvas}; you will find the key graphics methods in these two classes.
+These methods can draw points, lines, polygons, rectangles, ellipses, text, and images with rotation and scaling.
+It is possible to use other canvases, to get transparent morphs, more graphics methods, antialiasing, \etc
+For this you should use \clsind{AlphaBlendingCanvas} or \clsind{BalloonCanvas}, but how to use them since \ct{drawOn:} receives an instance of \ct{FormCanvas}?
+In fact you can transform one canvas type into another.
+
+\dothis{To use a canvas with a 0.5 alpha-transparency in \ct{DieMorph}, redefine \ct{drawOn:} like this:}
+\begin{method}{Drawing a transparent die}
+DieMorph>>>drawOn: aCanvas
+   | theCanvas |
+   theCanvas := aCanvas asAlphaBlendingCanvas: 0.5.
+   super drawOn: theCanvas.
+   (self perform: ('face' , dieValue asString) asSymbol)
+      do: [:aPoint | self drawDotOn: theCanvas at: aPoint]
+\end{method}
+\noindent
+That's all you need to do!
+
+If you're curious, have a look at the \mthind{Canvas}{asAlphaBlendingCanvas:} method.
+You can also get antialiasing by using \clsind{BalloonCanvas} and transforming the die drawing methods as shown in \mthsref{aadie}.
+
+\begin{figure}[ht]
+	\centerline{\includegraphics{multiMorphs}}
+	\caption{The die displayed with alpha-transparency.
+		\label{fig:multiMorphs}}
+\end{figure}
+
+\begin{methods}[aadie]{Drawing antialiased die}
+DieMorph>>>drawOn: aCanvas
+   | theCanvas |
+   theCanvas := aCanvas asBalloonCanvas aaLevel: 3.
+   super drawOn: aCanvas.
+   (self perform: ('face' , dieValue asString) asSymbol)
+      do: [:aPoint | self drawDotOn: theCanvas at: aPoint]
+
+DieMorph>>>drawDotOn: aCanvas at: aPoint
+   aCanvas
+      drawOval: (Rectangle
+         center: self position + (self extent * aPoint)
+         extent: self extent / 6)
+      color: Color black
+      borderWidth: 0
+      borderColor: Color transparent
+\end{methods}
+
+%=================================================================
+\section{Chapter Summary}
+
+Morphic is a graphical framework in which graphical interface elements can be dynamically composed.
+
+\begin{itemize}
+  \item You can convert an object into a morph by sending the messages \ct{asMorph openInWorld} to it.
+  \item You can manipulate a morph by right-clicking on it and using the handles that appear. (Handles have tooltip popups that explain what they are for.)
+  \item You can compose morphs by dragging and dropping one onto another.
+  Alternatively you can subclass an existing morph class and redefining key methods, like \ct{drawOn:}.
+  \item You can control how a morph reacts to mouse and keyboard events by redefining the methods \ct{handlesMouseOver:}, \etc
+  \item You can animate a morph by defining the methods \ct{step} (what to do) and \ct{stepTime} (the number of milliseconds between steps).
+  \item Various pre-defined morphs, like \ct{PopUpMenu} and \ct{FillInTheBlank}, are available to interact with users.
+\end{itemize}
+
+%=================================================================
+\ifx\wholebook\relax\else\end{document}\fi
+%=================================================================
+
+%-----------------------------------------------------------------
