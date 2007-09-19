@@ -55,7 +55,7 @@ class Chapter
         @title.gsub!(/\\sq/, "Squeak") # Expand macros
         @title.gsub!(/\\st/, "Smalltalk")
       # look for the code listing environments
-      when line =~ /^\\begin\{(code|example|script|classdef|\w*method[s])\}/
+      when line =~ /^\\begin\{(code|example|script|classdef|methods?|numMethod)\}/
         @code << get_code(file)
       end
     end
