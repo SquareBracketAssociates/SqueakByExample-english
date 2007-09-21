@@ -307,13 +307,15 @@ You just sent the message \ct{show: 'hello world'} to the \ct{Transcript} object
 The \ct{Transcript} then decided what to do with this message, that is, it looked up its \emph{methods} for handling \ct{show:} and \ct{cr} messages and reacted appropriately.
 
 If you talk to Smalltalkers for a while, you will quickly notice that they generally do not use expressions like ``call an operation'' or ``invoke a method'', but instead they will say ``send a message''.
-This reflects the idea that objects are responsible for their own actions, so you should never tell an object what to do\,---\,instead you ask it politely by sending it a message. The object selects the method for responding to your message, not you!
+This reflects the idea that objects are responsible for their own actions. 
+You never \emph{tell} an object what to do\,---\,instead you politely \emph{ask} it to do something by sending it a message. 
+The object, not you, selects the appropriate method for responding to your message.
 
 
 %=================================================================
 \section{Keyboard shortcuts}
 
-If you want  to evaluate an expression, you do not always have to bring up the yellow-button menu. Instead, you can directly use \ind{keyboard shortcuts}. These are the parenthesized expressions in the menu.  Depending on your platform, you may have to press one of the modifier keys (control, ALT, command, or meta).
+If you want  to evaluate an expression, you do not always have to bring up the yellow-button menu. Instead, you can use \ind{keyboard shortcuts}. These are the parenthesized expressions in the menu.  Depending on your platform, you may have to press one of the modifier keys (control, alt, command, or meta).
 (We will indicate these generically as \short{\emph{key}}.)
 
 \dothis{Evaluate the expression in the workspace again, but using the keyboard shortcut: \short{d}.}
@@ -347,7 +349,7 @@ We use the notation \ct{-->} as a convention in this book to indicate that a par
 Now you should see a new window, called an \emphind{inspector}, with the heading \ct{SmallInteger: 7} (\figref{inspectit}).
 The inspector is an extremely useful tool that will allow you to browse and interact with any object in the system.
 The title tells us that \ct{7} is an instance of the class \clsind{SmallInteger}.
-The left panel allows us to browse the instance variables of an object, which are shown in the right panel.
+The left panel allows us to browse the instance variables of an object, the values of which are shown in the right panel.
 The bottom panel can be used to write expressions to send messages to the object.
 
 \begin{figure}[htb]
@@ -363,7 +365,7 @@ The bottom panel can be used to write expressions to send messages to the object
 \index{explorer}
 
 This time you should see a window labelled \clsind{Object} containing the text
-$\triangleright$ \ct{root: Object}.
+\mbox{$\triangleright$ \ct{root: Object}}.
 Click on the triangle to open it up (\figref{exploreit}).
 
 \begin{figure}[htb]
@@ -412,7 +414,7 @@ The bottom-left pane in the \sqmap package loader provides various ways to filte
 \section{The System Browser}
 
 The \ind{system browser} is one of the key tools used for programming.
-As we shall see, there are several interesting class browsers available for \sq, but this is the basic one you will find in any image.
+As we shall see, there are several interesting browsers available for \sq, but this is the basic one you will find in any image.
 \seeindex{class browser}{system browser}
 \seeindex{browser}{system browser}
 
@@ -427,7 +429,7 @@ As we shall see, there are several interesting class browsers available for \sq,
 \end{figure}
 
 We can see a system browser in \figref{classBrowser}.
-The title indicates that we are browsing the class \clsind{Object}.
+The title bar indicates that we are browsing the class \clsind{Object}.
 
 When the browser first opens, all panes are empty but the leftmost one.
 This first pane lists all known \emph{system categories}, which are groups of related classes.
@@ -461,8 +463,9 @@ A second way is to send the \ct{browse} message to the class, asking it to open 
 
 \dothis{Type \ct{Boolean browse} into a workspace and \menu{do it}.}
 A browser will open on the Boolean class (\figref{browseBoolean}).
-There is also a \ind{keyboard shortcut} \short{b} (browse) that you can use in any tool where you find a class name.
+There is also a \ind{keyboard shortcut} \short{b} (browse) that you can use in any tool where you find a class name;
 \index{keyboard shortcut!browse it}
+select the name and type \short{b}.
 
 \dothis{Use the keyboard shortcut to browse the class \ct{Boolean}.}
 
@@ -476,11 +479,11 @@ There is also a \ind{keyboard shortcut} \short{b} (browse) that you can use in a
 
 Notice that when the \ct{Boolean} class is selected but no protocol or method is selected, two panes rather than one appear below the four panes at the top
 (\figref{browseBoolean}).
-The middle pane is the \emph{class definition}.
+The upper one contains the \emph{class definition}.
 This is nothing more than an ordinary \st message that is sent to the parent class, asking it to create a subclass.
 Here we see that the class \ct{Object} is being asked to create a subclass named \ct{Boolean} with no instance variables, class variables or ``pool dictionaries'', and to put the class \ct{Boolean} in the \scatind{Kernel-Objects} category.
 
-The bottom pane shows the \emph{class comment} --- a piece of plain text describing the class.
+The lower pane shows the \emph{class comment} --- a piece of plain text describing the class.
 If you click on the \button{?} at the bottom of the class pane, you can see the class \subind{class}{comment} in a dedicated pane.
 
 \ab{I thought that this was supposed to be a \emph{Quick} tour!  And here we are describing a tool that I have used maybe twice in 10 years!   In any case, this description should be deferred to the \textbf{Environment} chapter}
@@ -565,7 +568,7 @@ You can also use the method finder for methods with arguments; for example, if y
 \section{Defining a new Method}
 
 The advent of \ind{Test Driven Development}\cite{Beck03a} has changed the way that we write code.  
-The idea behind Test Driven Development, also called Behavior Driven Development or just TDD, is that we write a test that defines the desired behavior of our code \emph{before} we write the code itself.
+The idea behind Test Driven Development, also called TDD or Behavior Driven Development, is that we write a test that defines the desired behavior of our code \emph{before} we write the code itself.
 Only then do we write the code that satisfies the test.
 \seeindex{Behavior Driven Development}{Test Driven Development}
 \orla{describe the technique where we write a test hat ... subsequently we write ...}
@@ -657,8 +660,8 @@ Note that often with Smalltalk you can define the missing method using the \butt
 
 Now let's define the method that will make the test succeed!
 
-\dothis{Select class \clsind{String} in the system browser, select the \menu{converting} protocol, type the text in \mthref{shout} over the method creation template, and \menu{accept} it.}
-(Note: to get a \ct{^}, type \verb|^|).
+\dothis{Select class \clsind{String} in the system browser, select the \menu{converting} protocol, type the text in \mthref{shout} over the method creation template, and \menu{accept} it.
+(Note: to get a \mbox{\ct{^}}, type \caret). }
 \begin{method}[shout]{The shout method}
 shout
 	^ self asUppercase, 'BANG'
@@ -697,10 +700,10 @@ This chapter has introduced you to the \sq environment and shown you how to use 
   \item A running \sq system consists of a \emph{virtual machine}, a \emph{sources} file, and \emph{image} and \emph{changes} files. Only these last two change, as they record a snapshot of the running system.
   \item When you restore a \sq image, you will find yourself in exactly the same state\,---\,with the same running objects\,---\,that you had when you last saved that image.
   \item \sq is designed to work with a three-button mouse. The buttons are known as the \emph{red}, the \emph{yellow} and the \emph{blue} buttons. If you don't have a three-button mouse, you can use modifier keys to obtain the same effect.
-  \item Use the \ind{red button} on the \sq background to bring up the \emph{World menu} and launch various tools. You can also launch tools from the \toolsflapind at the right of the \sq screen.
+  \item You use the \ind{red button} on the \sq background to bring up the \emph{World menu} and launch various tools. You can also launch tools from the \toolsflapind at the right of the \sq screen.
   \item A \emph{workspace} is a tool for writing and evaluating snippets of code. You can also use it to store arbitrary text.
   \item You can use \ind{keyboard shortcuts} on text in the workspace, or any other tool, to evaluate code. The most important of these are \menu{do it} (\short{d}), \menu{print it} (\short{p}), \menu{inspect it} (\short{i}) and \menu{explore it} (\short{I}).
-  \item \sqmap is a tool for loading useful packages from the internet.
+  \item \sqmap is a tool for loading useful packages from the Internet.
   \item The \emph{system browser} is the main tool for browsing \sq code, and for developing new code.
   \item The \emph{test runner} is a tool for running unit tests. It also supports Test Driven Development.
 \end{itemize}
