@@ -37,7 +37,7 @@ complete : book index
 
 examples :
 	time ./examples.rb $C > ../$@.txt
-	# Gnu Smalltalk version:
+	# Requires Gnu Smalltalk 2.95c with scripting support:
 	# time ./examples.st $C > $@.txt
 
 # --------------------------------------------------------------------------------

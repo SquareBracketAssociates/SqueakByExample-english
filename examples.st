@@ -30,7 +30,7 @@ http://www.squeaksource.com/SBEtesting.html
 '.
 
 Object subclass: Chapter [
-	| name title code |
+	| name title code titleRegex codeRegex |
 	setName: aName [
 		<category: 'initialization'> 
 		name := aName.
@@ -42,14 +42,16 @@ Object subclass: Chapter [
 		title := title replacingAllRegex: '\\sq' with: 'Squeak'.
 		title := title replacingAllRegex: '\\st' with: 'Smalltalk'.
 	]
+	initRegexes [
+		titleRegex := '\\chapter\{([^}]*)\}' asRegex.
+		codeRegex := '^\\begin\{(code|example|script|classdef|methods?|numMethod)\}' asRegex.
+	]
 	init [
-		| fileName file codeStream titleRegex codeRegex |
+		| fileName file codeStream |
 		<category: 'initialization'>
 		title := '<unknown>'.	"default value"
 		codeStream := WriteStream on: String new.
 		fileName := name, '/', name, '.tex'.
-		titleRegex := '\\chapter\{([^}]*)\}' asRegex.
-		codeRegex := '^\\begin\{(code|example|script|classdef|methods?|numMethod)\}' asRegex.
 		file := FileStream open: fileName mode: FileStream read.
 		[ file atEnd ] whileFalse: [ | line |
 			line := file nextLine.

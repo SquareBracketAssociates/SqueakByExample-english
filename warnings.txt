@@ -190,8 +190,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active [10]
 <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf>
 <use figures/squeak-logo.pdf>
 <QuickTour/figures/PrintIt.png, id=1018, 278.03876pt x 143.53625pt>
-<use QuickTour/figures/PrintIt.png> <use figures/squeak-logo.pdf> [13]
-<QuickTour/figures/InspectIt.png, id=1028, 380.42125pt x 201.75375pt>
+<use QuickTour/figures/PrintIt.png> [13] <use figures/squeak-logo.pdf>
+<QuickTour/figures/InspectIt.png, id=1026, 380.42125pt x 201.75375pt>
 <use QuickTour/figures/InspectIt.png> <use figures/squeak-logo.pdf> [14 <./Quic
 kTour/figures/PrintIt.png> <./QuickTour/figures/InspectIt.png (PNG copy)>]
 <use figures/squeak-logo.pdf>
@@ -234,48 +234,48 @@ ingTest-newMethodTemplate.png (PNG copy)>]
 <QuickTour/figures/Predebugger.png, id=1135, 452.69125pt x 157.58875pt>
 <use QuickTour/figures/Predebugger.png> [24 <./QuickTour/figures/testShoutConfi
 rm.png> <./QuickTour/figures/testRunnerOnStringTest.png (PNG copy)>]
-<use figures/squeak-logo.pdf>
-(/usr/local/texlive/2007/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-<use figures/squeak-logo.pdf> [25 <./QuickTour/figures/Predebugger.png>]
-<QuickTour/figures/String-Shout.png, id=1154, 607.26875pt x 255.95625pt>
-<use QuickTour/figures/String-Shout.png> [26 <./QuickTour/figures/String-Shout.
-png (PNG copy)>]) (./FirstApp/FirstApp.tex [27] [28]
+<use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf>
+<QuickTour/figures/String-Shout.png, id=1144, 607.26875pt x 255.95625pt>
+<use QuickTour/figures/String-Shout.png> [25 <./QuickTour/figures/Predebugger.p
+ng>] [26 <./QuickTour/figures/String-Shout.png (PNG copy)>])
+(./FirstApp/FirstApp.tex [27] [28]
 Chapter 2.
-<FirstApp/figures/GameBoard.png, id=1168, 166.6225pt x 166.6225pt>
+<FirstApp/figures/GameBoard.png, id=1167, 166.6225pt x 166.6225pt>
 <use FirstApp/figures/GameBoard.png> [29 <./FirstApp/figures/GameBoard.png (PNG
  copy)>] <use figures/squeak-logo.pdf>
-<FirstApp/figures/AddCategory.png, id=1177, 218.8175pt x 238.8925pt>
+<FirstApp/figures/AddCategory.png, id=1176, 218.8175pt x 238.8925pt>
 <use FirstApp/figures/AddCategory.png>
-<FirstApp/figures/ClassTemplate.png, id=1178, 227.85126pt x 302.12875pt>
+<FirstApp/figures/ClassTemplate.png, id=1177, 227.85126pt x 302.12875pt>
 <use FirstApp/figures/ClassTemplate.png> [30 <./FirstApp/figures/AddCategory.pn
 g (PNG copy)> <./FirstApp/figures/ClassTemplate.png (PNG copy)>]
 <use figures/squeak-logo.pdf>
-<FirstApp/figures/AcceptClassDef.png, id=1188, 422.57875pt x 160.6pt>
+<FirstApp/figures/AcceptClassDef.png, id=1187, 422.57875pt x 160.6pt>
 <use FirstApp/figures/AcceptClassDef.png> <use figures/squeak-logo.pdf>
 [31] <use figures/squeak-logo.pdf>
-<FirstApp/figures/SBECell.png, id=1202, 529.98pt x 348.30125pt>
+<FirstApp/figures/SBECell.png, id=1201, 529.98pt x 348.30125pt>
 <use FirstApp/figures/SBECell.png> <use figures/squeak-logo.pdf> [32 <./FirstAp
 p/figures/AcceptClassDef.png (PNG copy)>] <use figures/squeak-logo.pdf>
 [33 <./FirstApp/figures/SBECell.png>] <use figures/squeak-logo.pdf>
-<FirstApp/figures/SBECellInspector.png, id=1224, 251.94125pt x 201.75375pt>
+<FirstApp/figures/SBECellInspector.png, id=1223, 251.94125pt x 201.75375pt>
 <use FirstApp/figures/SBECellInspector.png> <use figures/squeak-logo.pdf>
 [34] <use figures/squeak-logo.pdf>
-<FirstApp/figures/SBECellResize.png, id=1229, 454.69875pt x 223.83624pt>
+<FirstApp/figures/SBECellResize.png, id=1228, 454.69875pt x 223.83624pt>
 <use FirstApp/figures/SBECellResize.png> <use figures/squeak-logo.pdf> [35 <./F
 irstApp/figures/SBECellInspector.png> <./FirstApp/figures/SBECellResize.png>]
 <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf>
-<FirstApp/figures/UnknownSelector.png, id=1238, 169.63374pt x 183.68625pt>
+<FirstApp/figures/UnknownSelector.png, id=1237, 169.63374pt x 183.68625pt>
 <use FirstApp/figures/UnknownSelector.png>
-<FirstApp/figures/DeclareInstanceVar.png, id=1239, 307.1475pt x 87.32625pt>
+<FirstApp/figures/DeclareInstanceVar.png, id=1238, 307.1475pt x 87.32625pt>
 <use FirstApp/figures/DeclareInstanceVar.png> [36]
 <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf> [37 <./FirstApp/fig
 ures/UnknownSelector.png (PNG copy)> <./FirstApp/figures/DeclareInstanceVar.png
  (PNG copy)>]
 Underfull \vbox (badness 10000) has occurred while \output is active [38]
-<FirstApp/figures/Categorize.png, id=1271, 268.00125pt x 217.81375pt>
+<FirstApp/figures/Categorize.png, id=1270, 268.00125pt x 217.81375pt>
 <use FirstApp/figures/Categorize.png> <use figures/squeak-logo.pdf> [39 <./Firs
-tApp/figures/Categorize.png (PNG copy)>] <use figures/squeak-logo.pdf> [40]
-<use figures/squeak-logo.pdf>
+tApp/figures/Categorize.png (PNG copy)>]
+(/usr/local/texlive/2007/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+<use figures/squeak-logo.pdf> [40] <use figures/squeak-logo.pdf>
 <FirstApp/figures/DragMethod.png, id=1299, 590.205pt x 186.6975pt>
 <use FirstApp/figures/DragMethod.png> [41 <./FirstApp/figures/DragMethod.png (P
 NG copy)>] <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf>
@@ -719,5 +719,5 @@ pe1/urw/palatino/uplb8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw
 /palatino/uplbi8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palat
 ino/uplr8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palatino/upl
 ri8a.pfb>
-Output written on SBE.pdf (300 pages, 3634015 bytes).
+Output written on SBE.pdf (300 pages, 3634497 bytes).
 Transcript written on SBE.log.
