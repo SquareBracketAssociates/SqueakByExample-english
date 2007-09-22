@@ -34,6 +34,7 @@ Object subclass: Chapter [
 	setName: aName [
 		<category: 'initialization'> 
 		name := aName.
+		self initRegexes.
 		self init.
 	]
 	setTitle: aString [

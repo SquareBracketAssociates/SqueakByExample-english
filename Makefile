@@ -36,9 +36,13 @@ complete : book index
 	time ${PDFLATEX} ${BOOK}
 
 examples :
-	time ./examples.rb $C > ../$@.txt
+	./examples.rb $C > ../$@.txt
+
+fun :
+	time ./examples.rb $C > $@1.txt
 	# Requires Gnu Smalltalk 2.95c with scripting support:
-	# time ./examples.st $C > $@.txt
+	time ./examples.st $C > $@2.txt
+	# -diff $@1.txt $@2.txt
 
 # --------------------------------------------------------------------------------
 # MAINTENANCE
