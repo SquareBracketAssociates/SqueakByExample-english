@@ -2,8 +2,6 @@
 #
 # examples --- extract code examples from Squeak by Example LaTeX source
 #
-# Why Ruby and not Squeak?  Why not?  Anyway, it's easier to call from make.
-#
 # $Id$
 # ============================================================
 Header = <<eof
@@ -26,7 +24,6 @@ Many of these actually serve as test cases for the book. For more details
 about testing, see the Wiki link under:
 
 http://www.squeaksource.com/SBEtesting.html
-
 eof
 # ============================================================
 def main
@@ -74,6 +71,7 @@ class Chapter
       line.gsub!(/UNDERSCORE/, '_') # not needed ?
       # compact extra space around comments
       line.gsub!(/" +/, '"')
+      line.gsub!(/""/, '')
       line.gsub!(/ +"/, ' "')
       code << line
       line = file.readline
