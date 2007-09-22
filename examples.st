@@ -44,13 +44,14 @@ Object subclass: Chapter [
 		title := title replacingAllRegex: '\\st' with: 'Smalltalk'.
 	]
 	initRegexes [
+		<category: 'initialization'> 
 		titleRegex := '\\chapter\{([^}]*)\}' asRegex.
 		codeRegex := '^\\begin\{(code|example|script|classdef|methods?|numMethod)\}' asRegex.
 		endRegex := '^\\end\{' asRegex.
 	]
 	init [
-		| fileName file codeStream |
 		<category: 'initialization'>
+		| fileName file codeStream |
 		title := '<unknown>'.	"default value"
 		codeStream := WriteStream on: String new.
 		fileName := name, '/', name, '.tex'.
@@ -99,8 +100,8 @@ Object subclass: Chapter [
 
 Chapter class extend [
 	named: aName [
-		| ch |
 		<category: 'instance creation'>
+		| ch |
 		ch := super new.
 		ch setName: aName.
 		^ ch
