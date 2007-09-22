@@ -30,7 +30,7 @@ http://www.squeaksource.com/SBEtesting.html
 '.
 
 Object subclass: Chapter [
-	| name title code titleRegex codeRegex |
+	| name title code titleRegex codeRegex endRegex |
 	setName: aName [
 		<category: 'initialization'> 
 		name := aName.
@@ -46,6 +46,7 @@ Object subclass: Chapter [
 	initRegexes [
 		titleRegex := '\\chapter\{([^}]*)\}' asRegex.
 		codeRegex := '^\\begin\{(code|example|script|classdef|methods?|numMethod)\}' asRegex.
+		endRegex := '^\\end\{' asRegex.
 	]
 	init [
 		| fileName file codeStream |
@@ -69,8 +70,7 @@ Object subclass: Chapter [
 	]
 	getCode: file to: codeStream [
 		<category: 'private'>
-		| line endRegex |
-		endRegex := '^\\end\{' asRegex.
+		| line |
 		line := file nextLine.
 		[ line ~ endRegex ] whileFalse: [
 			"comment out --> incantation"
@@ -88,24 +88,12 @@ Object subclass: Chapter [
 		].
 		codeStream nextPutAll: '-----'; nl.
 	]
-	name [
-		<category: 'accessing'> 
-		^ name
-	]
-	title [
-		<category: 'accessing'> 
-		^ title
-	]
-	code [
-		<category: 'accessing'> 
-		^ code
-	]
 	printOn: stream [ 
 		<category: 'printing'> 
 		stream
-			nextPutAll: '===== CHAPTER: '; nextPutAll: self title;
+			nextPutAll: '===== CHAPTER: '; nextPutAll: title;
 			nextPutAll: ' =========='; nl; nl;
-			nextPutAll: '-----'; nl; nextPutAll: self code.
+			nextPutAll: '-----'; nl; nextPutAll: code.
 	]
 ]
 
