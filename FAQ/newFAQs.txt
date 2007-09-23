@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------
+NEW FAQS
+---------------------------------------------------------------------------
+Q. I have a Class PoolQueue which has instvars 'member' and 'processor'. I find that an instance of PoolQueue when placed in an OrderedCollection can no longer be considered equal. I suppose I have to reimplement #= and #hash to allow PoolQueue instances to be compared. 
+My problem: how do I implement #hash? Or stated another way, what does #hash accomplish?
+A. #hash should be reimplemented to make sure that objects considered to be equal will end up in the same hash bucket.
+The usual trick is to take a bitXor of the hashes of the instance variables:
+PoolQueue>>hash
+	^ member hash bitXor: processor hash
+(See page ...)
+---------------------------------------------------------------------------
