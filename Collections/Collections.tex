@@ -27,7 +27,8 @@
 	\sloppy
 \fi
 %=================================================================
-\chapter{Collections}\label{cha:collections}
+\chapter{Collections}
+\label{cha:collections}
 
 % \ab{ The material here is based on a section that Andrew wrote for the \st Collections refactoring paper. It's not necessarily all appropriate for the book, but much of it is, I think, useful.}
 %\on{recycled some material from \url{https://www.iam.unibe.ch/scg/svn_repos/Lectures/ST-H07/03StandardClasses.ppt}}
@@ -73,7 +74,7 @@ Streams will be discussed separately in \charef{streams}.
 \end{figure}
 
 %=========================================================
-\section{The Varieties of Collection}
+\section{The varieties of collections}
 \label{sec:varieties}
 
 To make good use of the collection classes, the reader needs at least a superficial knowledge of the wide variety of collections that they implement, and their commonalities and differences.
@@ -182,7 +183,7 @@ Let us briefly survey some of the key differences:
 %  How is the order established? Sorted collections use a supplied total ordering function, intervals are implicitly ordered, while arrays and ordered collections are ordered explicitly when elements are inserted.
 
 %=========================================================
-\section{Implementations of Collections}
+\section{Implementations of collections}
 \label{sec:implementation}
 
 \begin{figure*}
@@ -214,7 +215,7 @@ The \sq virtual machine is aware of these classes and handles them specially.
 Readers interested in learning more about the \st collections are referred to LaLonde and Pugh's excellent book \cite{LaLo90a}.
 
 %=========================================================
-\section{Examples of Key Classes}
+\section{Examples of key classes}
 We present now the most common or important collection classes using simple code examples. 
 The main protocols of collections are: \mthind{Collection}{at:}, \mthind{Collection}{at:put:} --- to access an element, \mthind{Collection}{add:}, \mthind{Collection}{remove:} --- to add or remove an element, \mthind{Collection}{size}, \mthind{Collection}{isEmpty}, \mthind{Collection}{include:} --- to get some information about the collection, \mthind{Collection}{do:}, \mthind{Collection}{collect:}, \mthind{Collection}{select:} --- to iterate over the collection. 
 Each collection may implement or not such protocols and when they do interpret them to fit with their semantics. We suggest you to browse the classes themselves to identify specific and more advanced protocols.
@@ -701,7 +702,7 @@ A symbol is similar to a string but is guaranteed to be globally unique.  For th
 See also \charef{basic} for more about \clsind{String} and \clsind{Symbol}.
 
 %=========================================================
-\section{Collection Iterators}
+\section{Collection iterators}
 \label{sec:iterators}
 
 In \st loops and conditionals are simply messages sent to collections or other objects such as integers or block (see also \charef{syntax}). In addition to low-level messages such as \ct{to:do:} which evaluates a block with an argument ranging from an initial to a final number, the \st collection hierarchy offers various high-level iterators. Using such iterators will make your code more robust and compact. 
@@ -816,7 +817,7 @@ Actually \ct{collect:} is not guaranteed to return a collection of exactly the s
 \end{code}
 
 %---------------------------------------------------------
-\subsection{Selecting and Rejecting Elements}
+\subsection{Selecting and rejecting elements}
 % (\ct{select:}, \ct{reject:}, \ct{detect:})}
 
 \mthind{Collection}{select:} returns the elements of the receiver that satisfy a particular condition:
@@ -886,7 +887,7 @@ colors includes: Color blue. --> true
 colors anySatisfy: [:c | c red > 0.5] --> true
 \end{code}
 %=========================================================
-\section{Some Hints for using Collections}
+\section{Some hints for using collections}
 
 \paragraph{A common mistake with \mthind{OrderedCollection}{add:}} The following error is one of the most frequent \st mistakes.
 \index{Collection!common errors}
@@ -948,7 +949,7 @@ Another nasty problem that can arise is to use mutable objects, \ie that may cha
 Don't do this unless you love debugging!
 
 %=========================================================
-\section{Chapter Summary}
+\section{Chapter summary}
 
 The \st collection hierarchy provides a common vocabulary for uniformly manipulating a variety of different kinds of collections.
 

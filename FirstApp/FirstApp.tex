@@ -27,7 +27,7 @@
 	\sloppy
 \fi
 %=================================================================
-\chapter{A First Application}
+\chapter{A first application}
 \label{cha:firstApp}
 
 In this chapter, we will develop a simple game: \ind{Quinto}. 
@@ -36,7 +36,7 @@ Development in Smalltalk is efficient: you will find that you spend far more tim
 This is partly because the Smalltalk language is very simple, and partly because the tools that make up the programming environment are very well integrated with the language.
 
 %=================================================================
-\section{The Quinto Game}
+\section{The Quinto game}
 
 % DON'T USE WRAPFIGURE CLOSE TOO A PAGE BREAK!!! (ON)
 %\begin{wrapfigure}[13]{r}{0.35\linewidth}%
@@ -92,7 +92,7 @@ Type the name of the new category (we will use \scat{SBE-Quinto}) in the dialog 
 If you selected an existing category first, then the new category will be positioned immediately ahead of the selected one.
 
 %=================================================================
-\section{Defining the Class SBECell}
+\section{Defining the class SBECell}
 
 As yet there are  of course no classes in the new category. However, the main editing pane displays a template to make it easy to create a new class (see \figref{classTemplate}).
 
@@ -157,7 +157,7 @@ Smalltalkers put a very high value on the readability of their code, and detaile
 \end{figure}
 
 %=================================================================
-\section{Adding Methods to a Class}
+\section{Adding methods to a class}
 
 Now let's add some methods to our class.
 
@@ -228,7 +228,7 @@ Part of the art of writing good \st code is to pick good method names so that \s
 You should be able to imagine the object talking to itself and saying ``\ct{Self use square corners!}'', ``\ct{Self turn off!}''.
 
 %=================================================================
-\section{Inspecting an Object}
+\section{Inspecting an object}
 
 You can test the effect of the code you have written by creating a new \ct{SBECell} object and inspecting it.
 
@@ -264,7 +264,7 @@ Notice how the bounds reported by the inspector also change.
 
 
 %=================================================================
-\section{Defining the Class SBEGame}
+\section{Defining the class SBEGame}
 
 Now let's create the other class that we need for the game, which we will call \clsind{SBEGame}.
 
@@ -375,7 +375,7 @@ Alternatively, you can set up the browser to use the pretty-printer automaticall
 If you find yourself using \menu{more\,\ldots} a lot, it's useful to know that you can hold down the {\sc shift} key when you click to directly bring up the \menu{more \ldots} menu.
 
 %=================================================================
-\section{Organizing Methods into Protocols}
+\section{Organizing methods into protocols}
 
 Before we define any more methods, let's take a quick look at the third pane at the top of the browser.
 In the same way that the first pane of the browser lets us categorize classes so we are not overwhelmed by a very long list of class names in the second pane, so the third pane lets us categorize methods so that we are not overwhelmed by a very long list of method names in the fourth pane.   
@@ -506,7 +506,7 @@ Recall that in \ct{SBEGame>>>newCellAt: i at: j} we assigned the following code 
 Sending the \ct{value} message causes this code fragment to be evaluated, and consequently the state of the cells will toggle.
 
 %=================================================================
-\section{Let's Try Our Code}
+\section{Let's try our code}
 
 That's it: the Quinto game is complete!
 
@@ -597,7 +597,7 @@ Now the game should work properly.
 %\on{I think that is too much for this chapter. It will come soon enough.}
 
 %=================================================================
-\section{Saving and Sharing Smalltalk Code}
+\section{Saving and sharing Smalltalk code}
 \label{sec:Monticello}
 
 Now that you have the Quinto game working, you probably want to save it somewhere so that you can share it with your friends. Of course, you can save your whole \squeak image, and show off your first program by running it, but your friends probably have their own code in their images, and don't want to give that up to use your image.
@@ -629,7 +629,7 @@ Verify that the game now works in the new image.}
 \label{fig:filein}}
 \end{figure}
 
-\subsection{Monticello Packages}
+\subsection{Monticello packages}
 Although fileouts are a convenient way of making a snapshot of the code you have written, they are decidedly ``old school''.
 Just as most open-source projects find it much more convenient to maintain their code in a repository using \ind{CVS}\footnote{\url{www.nongnu.org/cvs}} or \ind{Subversion}\footnote{\url{subversion.tigris.org}},
 so \squeak programmers find it more convenient to manage their code using \ind{Monticello} packages. 
@@ -662,7 +662,7 @@ In the right-hand pane of the browser (see \figref{monticello1}) is a list of Mo
 At the top of the list in the Monticello browser is a repository in a local directory called the \emphind{package cache}, which caches copies of the packages that you have loaded or published over the network. This local cache is really handy because it lets you keep your own local history; it also allows you to work in places where you do not have internet access, or where access is slow enough that you do not want to save to a remote repository very frequently.
 
 
-\subsection{Saving and Loading Code with Monticello.}
+\subsection{Saving and loading code with Monticello.}
 On the left-hand side of the Monticello browser is a list of packages that have a version loaded into the image; packages that have been modified since they were loaded are marked with an asterisk.  (These are sometimes referred to as \subind{package}{dirty} packages.)  If you select a package, the list of repositories is restricted to just those repositories that contain a copy of the selected package.
 \seeindex{*}{package, dirty}
 \seeindex{dirty package}{package, dirty}
@@ -728,7 +728,7 @@ Monticello has many more capabilities, which will be discussed in depth in \char
 You can also look at the on-line documentation for Monticello at \url{http://www.wiresong.ca/Monticello/}.
 
 %=================================================================
-\section{Chapter Summary}
+\section{Chapter summary}
 In this chapter you have seen how to create categories, classes and methods.  You have see how to use the system browser, the inspector, the debugger and the Monticello browser.
 
 \begin{itemize}

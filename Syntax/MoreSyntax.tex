@@ -28,7 +28,7 @@
 	\sloppy
 \fi
 %=================================================================
-\chapter{Unused Syntax stuff}
+\chapter{Unused syntax stuff}
 
 \on{Most of this stuff does not really add anything useful.
 Perhaps some can be recycled in other chapters.}
@@ -37,7 +37,7 @@ Perhaps some can be recycled in other chapters.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Class Definition}
+\section{Class definition}
 
 \on{this should go to the object model, I think}
 
@@ -126,7 +126,7 @@ to know more.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Comments and Identifiers}
+\section{Comments and identifiers}
 \paragraph{Comments.}
 
 \on{Mostly covered already.}
@@ -157,7 +157,7 @@ to look like \st code.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Literals (Constant Expressions)}
+\section{Literals (constant expressions)}
 
 \on{Much of this is already covered, more compactly.
 Maybe some examples can move to the Basic Classes chapter.}
@@ -194,7 +194,7 @@ The base for the exponent part is the same as the radix. So:
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Characters (Instances of class Character)}
+\subsection{Characters (instances of class Character)}
 Printable characters starts by the sign % \$.
 To obtain a unprintable character
 such as tab, cr, or space, send a message to the class \lct{Character}.
@@ -210,7 +210,7 @@ Character tab
 \end{script}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Constant Arrays (Instances of class Array)}
+\subsection{Constant arrays (instances of class Array)}
 The \ct{#()} construct defines compile-time \index{array}\index{compile-time array} arrays; 
 \ct{#()} arrays are also called \textit{constant arrays}. 
 % Since they are created at compile-time, the elements must be compile-time constants.
@@ -276,7 +276,7 @@ blop := 100 factorial.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Strings (Instances of class String)}
+\subsection{Strings (instances of class String)}
 A \index{string} string is a sequence of characters enclosed within \index{single quote} \lct{'}single quotes\lct{'}. 
 If you need to include a single quote in the string, you use two quotes.
 A string is really an array containing characters, so that you can index a string, which will answer the character at the corresponding position, starting with 1. 
@@ -306,7 +306,7 @@ String with: \$a
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Symbols (Instances of class Symbol)}
+\subsection{Symbols (instances of class Symbol)}
 \index{symbol}Symbols are \textit{unique} strings. Symbols start with the sign \index{#}\ct{#}. 
 
 \begin{itemize}
@@ -334,7 +334,7 @@ However, it is a peculiarity of \st's syntax that \ct{#$--$} is not a symbol (or
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Temporary Variable Definition and Assignment}
+\section{Temporary variable definition and assignment}
 
 \on{all covered}
 
@@ -367,7 +367,7 @@ identifier :=  expression
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Control Structures}
+\section{Control structures}
 \label{sec:control}
 
 \on{check if this is already in basic classes}
@@ -377,7 +377,7 @@ conditional, or exceptions. Keywords-based messages with blocks-closures are eno
 to express them. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Conditional Control Structures (Receiver is a boolean)}
+\subsection{Conditional control structures (receiver is a boolean)}
 \label{sec:conditional}
 There are four methods defined on the classes \lct{Boolean}, \lct{True}, and \lct{False} that define conditional execution: \index{ifTrue:ifFalse:}\lct{ifTrue:ifFalse:}, \index{ifFalse:ifTrue:}\lct{ifFalse:ifTrue:}, \index{ifTrue:}\lct{ifTrue:}, and \index{ifFalse:}\lct{ifFalse:}. 
 
@@ -413,7 +413,7 @@ Boolean classes also defines methods to compose boolean expressions:
 and \index{xor}\lct{xor: aBlock}\index{exclusive or}(exclusive or) (see \charef{boolean}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Iterative Conditional Structures (receiver is aBlockContext)}
+\subsection{Iterative conditional structures (receiver is aBlockContext)}
 \label{sec:loopCondition}
 Besides conditional expressions, the class \lct{BlockContext} defines the following methods that implement  iterative conditional control structures: \index{whileTrue}  \index{whileTrue:} \index{whileFalse} \index{whileFalse:} \lct{whileTrue},  \lct{whileTrue:}, \lct{whileFalse}, and  \lct{whileFalse:}.
 
@@ -446,7 +446,7 @@ BlockClosure>>whileTrue
 \end{method}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Enumeration Control Structures (Receiver is anInteger)}
+\subsection{Enumeration control structures (receiver is anInteger)}
 \label{sec:loopInteger}
 The class \lct{Integer} defines the following  unconditional loops \index{timesRepeat:}\lct{timesRepeat:}, 
 \index{to:do:} \lct{to:do:}, and \index{to:by:do:} \lct{to:by:do:} that have the following 
@@ -474,7 +474,7 @@ tmp
 \end{script}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Enumeration Control Structures (Receiver is Collection)}
+\subsection{Enumeration control structures (receiver is Collection)}
 \label{sec:loopCollection}
 \st also defines extremely powerful methods for iterating over collections that have copied 
 in other languages, namely \index{do:} \index{collect:}
@@ -551,7 +551,7 @@ acc
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Method Definition}
+\section{Method definition}
 \on{already done}
 Methods are defined by writing the method signature followed by the method body in the browsers and compiling them using the accept menu item. The class in which the method is defined is not explicitly mentioned as shown by \mthref{lineCount}. 
 The browsers compile a method in the class in which the method is defined. Note that there exist a couple of messages to explicitly ask the class to compile a method but these messages are used by the compiler or the environment such as the browser or the file list to create methods. A normal programmer does not need to know them. 
@@ -587,7 +587,7 @@ openBrowser
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Two Graphical Examples}
+\subsection{Two graphical examples}
 
 \on{Don't know where this fits. Not here.}
 

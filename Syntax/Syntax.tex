@@ -28,7 +28,7 @@
 	\sloppy
 \fi
 %=================================================================
-\chapter{Syntax in a Nutshell}
+\chapter{Syntax in a nutshell}
 \label{cha:syntax}
 
 \sd{We should add pragmas.}
@@ -54,7 +54,7 @@ For instance, instead of an if-then-else control structure, \st sends messages l
 New \mbox{(sub-)classes} are created by sending a message to their superclass.
 
 %=================================================================
-\section{Syntactic Elements}
+\section{Syntactic elements}
 
 Expressions are composed of the following building blocks:
 (i) six reserved keywords, or \emph{pseudo-variables}:
@@ -233,7 +233,7 @@ In other words, it represents the currently executing \clsind{MethodContext} or 
 \ct{thisContext} is normally not of interest to most programmers, but it is essential for implementing development tools like the debugger and it is also used to implement exception handling and continuations.
 
 %=================================================================
-\section{Message Sends}
+\section{Message sends}
 
 There are three kinds of messages in \sq.
 \begin{enumerate}
@@ -302,7 +302,7 @@ Transcript cr;
 This has precisely the same effect as the previous example.
 
 %=================================================================
-\section{Method Syntax}
+\section{Method syntax}
 
 Whereas expressions may be evaluated anywhere in \sq (for example, in a workspace, in a debugger, or in a browser), methods are normally defined in a browser window, or in the debugger.
 (Methods can also be filed in from an external medium, but this is not the usual way to program in \sq.)
@@ -343,7 +343,7 @@ Names starting with upper-case letters are assumed to be global variables.
 Class names, like \ct{Character}, for example, are simply global variables referring to the object representing that class.
 
 %=================================================================
-\section{Block Syntax}
+\section{Block syntax}
 
 Blocks provide a mechanism to defer the evaluation of expressions.
 A \ind{block} is essentially an anonymous function. A block is evaluated by sending it the message \mthind{BlockClosure}{value}.
@@ -413,7 +413,7 @@ If you encounter this problem, have a look at the senders of the method \mthind{
 
 
 %=================================================================
-\section{Conditionals and Loops in a Nutshell}
+\section{Conditionals and loops in a nutshell}
 
 \st offers no special syntax for control constructs.
 Instead, these are typically expressed by sending messages to booleans, numbers and collections, with blocks as arguments.
@@ -518,7 +518,7 @@ This is equivalent to \ct{0+1+2+3+4+5+6+7+8+9+10}.
 More about collections and streams can be found in  \charef{collections} and \charef{streams}.
 
 %=================================================================
-\section{Primitives and Pragmas}
+\section{Primitives and pragmas}
 
 In \st everything is an object, and everything happens by sending messages.
 Nevertheless, at certain points we hit rock bottom.
@@ -566,7 +566,7 @@ Since \sq 3.9, the angle bracket syntax is also used for method annotations call
 \sd{we should give an example}\ab{Please do!  Is don't know about these.}
 
 %=================================================================
-\section{Chapter Summary}
+\section{Chapter summary}
 
 \begin{itemize}
 

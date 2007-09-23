@@ -27,7 +27,7 @@
 	\sloppy
 \fi
 %=================================================================
-\chapter{Classes and Metaclasses}
+\chapter{Classes and metaclasses}
 \label{cha:metaclasses}
 
 \on{The section on responsibilities of Class, Behavior and Metaclass are weak, and need to be fleshed out with convincing examples. Marcus, can you help?}
@@ -39,7 +39,7 @@ However, the implications of this uniformity may confuse newcomers. The goal of 
 By following these rules you can always understand why the situation is the way that it is.
 
 %=================================================================
-\section{Rules for Classes and Metaclasses}
+\section{Rules for classes and metaclasses}
 
 The Smalltalk object model is based on a limited number of concepts applied uniformly. 
 Smalltalk's designers applied Occam's razor: any consideration leading to a model more complex than necessary was discarded.
@@ -101,7 +101,7 @@ We will first briefly revisit the 5 rules from \charef{model} with a small examp
 Then we will take a closer look at the new rules, using the same example.
 
 %=================================================================
-\section{Revisiting the Smalltalk Object Model}
+\section{Revisiting the Smalltalk object model}
 
 Since everything is an object, the color blue in \st is also an object.
 \begin{code}{@TEST}
@@ -169,7 +169,7 @@ translucentBlue isKindOf: Object                  --> true
 \end{code}
 
 %=================================================================
-\section{Every Class is an Instance of a Metaclass}
+\section{Every class is an instance of a metaclass}
 
 % \ruleref{metaclass}
 
@@ -216,7 +216,7 @@ TranslucentColor selectors             --> an IdentitySet(#alpha: #asNontransluc
 \cmindex{Behavior}{selectors}
 
 %=================================================================
-\section{The Metaclass Hierarchy Parallels the Class Hierarchy}
+\section{The metaclass hierarchy parallels the class hierarchy}
 % \ruleref{parallelhierarchy}
 
 \ref{rule:parallelhierarchy} says that the superclass of a metaclass cannot be an arbitrary class: it is constrained to be the metaclass of the superclass of the metaclass's unique instance.
@@ -293,7 +293,7 @@ The inspector on \ct{Color} allows you to see the superclass, instance variables
 \end{center}
 
 %=================================================================
-\section{Every Metaclass Inherits from \lct{Class} and \lct{Behavior}}
+\section{Every metaclass Inherits from \lct{Class} and \lct{Behavior}}
 % \ruleref{behavior}
 
 Every \ind{metaclass} \emphind{is-a} class, hence inherits from \clsind{Class}.
@@ -394,7 +394,7 @@ and class information (inheritance links, instance variables, \etc).
 \ab{This is too cryptic for me.}
 
 %=================================================================
-\section{The Metaclass of \lct{Metaclass} is an Instance of \lct{Metaclass}}
+\section{The metaclass of \lct{Metaclass} is an Instance of \lct{Metaclass}}
 % \ruleref{metaclassmetaclass}
 
 The final question to be answered is: what is the class of \clsind{Metaclass class}?
@@ -443,7 +443,7 @@ Metaclass superclass --> ClassDescription
 \end{example}
 
 %=================================================================
-\section{Chapter Summary}
+\section{Chapter summary}
 Now you should understand better how classes are organized and the impact of a uniform object model. If you get lost or confused, you should always remember that message passing is the key: you look for the method in the class of the receiver. 
 This works on \emph{any} receiver. 
 If the method is not found in the class of the receiver, it is looked up in its superclasses.

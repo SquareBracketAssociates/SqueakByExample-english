@@ -38,7 +38,7 @@ Streams can easily be converted to collections, and vice versa.
 \lr{"Streams can easily be converted into collections." I wouldn't say it like this, because it is not true for all streams (infinite streams). According to Kent Beck we should only talk about conversion when the same protocol is supported. Collections and Streams do not support the same protocol. (p. 249)}
 
 %=============================================================
-\section{Two Sequences of Elements}
+\section{Two sequences of elements}
 A good metaphor to understand a stream is the following: A stream
 can be represented as two sequences of elements: a past element sequence
 and a future element sequence. The stream is positioned between the two
@@ -74,7 +74,7 @@ Writing an element means replacing the first element of the future sequence by t
 \end{figure}
 
 %=============================================================
-\section{Streams vs. Collections}
+\section{Streams vs. collections}
 
 The collection protocol supports the storage, removal and enumeration
 of the elements of a collection, but does not allow these operations
@@ -139,7 +139,7 @@ StandardFileStream
 The following sections present the protocols in more depth.
 
 %=============================================================
-\section{Streaming over Collections}
+\section{Streaming over collections}
 
 Streams are really useful when dealing with collections of
 elements. They can be used for reading and writing elements in
@@ -147,7 +147,7 @@ collections. We will now explore the stream features for the
 collections.
 
 %-----------------------------------------------------------------
-\subsection{Reading Collections}
+\subsection{Reading collections}
 
 This section presents features used for reading collections. Using a
 stream to read a collection essentially provides you a pointer into the collection. That pointer will move forward on reading and you can place it wherever you want. The class \clsindmain{ReadStream} should be used to read elements from collections.
@@ -278,7 +278,7 @@ result. -->   an OrderedCollection(1 1 2 3 4 4 5 9 10 11 12 13 13 14 15)
 \end{code}
 
 %-----------------------------------------------------------------
-\subsection{Writing to Collections}
+\subsection{Writing to collections}
 
 We have already seen how to read a collection by iterating over its
 elements using a \ct{ReadStream}. We'll now learn how to create
@@ -519,7 +519,7 @@ History new
 \end{code}
 
 %=============================================================
-\section{Using Streams for File Access}
+\section{Using streams for file access}
 
 You have already seen how to stream over collections of elements. It's
 also possible to stream over files on your hard disk.
@@ -530,7 +530,7 @@ The main difference appears in the creation of the stream.
 There are several different ways to create file streams, as we shall now see.
 
 %-----------------------------------------------------------------
-\subsection{Creating File Streams}
+\subsection{Creating file streams}
 \label{sec:creat-file-stre}
 
 To create file streams, you will have to use one of the following
@@ -621,7 +621,7 @@ expression in the block. This is used in the previous example to get
 the content of the file and put it in the variable \ct{string}.
 
 %-----------------------------------------------------------------
-\subsection{Binary Streams}
+\subsection{Binary streams}
 \label{sec:binary-streams}
 
 By default, created streams are text-based which means you will read
@@ -682,7 +682,7 @@ This creates a 4x4 checkerboard as shown in \figref{checkerboard4x4}.
 \end{figure}
 
 %=============================================================
-\section{Chapter Summary}
+\section{Chapter summary}
 
 Streams offer a better way than collections to incrementally read and write a sequence of elements. There are easy ways to convert back and forth between streams and collections.
 

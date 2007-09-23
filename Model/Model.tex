@@ -27,14 +27,14 @@
 	\sloppy
 \fi
 %=================================================================
-\chapter{The \st Object Model}
+\chapter{The \st object model}
 \label{cha:SqueakModel}\label{cha:model}
 
 \st's programming model is simple and uniform: everything is an object, and objects communicate only by sending each other messages.
 However, this simplicity and uniformity can be a source of difficulty for programmers used to other languages. In this chapter we present the core concepts of the \st object model; in particular we discuss the consequences of representing classes as objects.
 
 %=========================================================
-\section{The Rules of the Model}
+\section{The rules of the model}
 \label{sec:rules}
 
 The \st object model is based on a set of simple 
@@ -167,7 +167,7 @@ Some \st developers prefer to access instance variables only through accessors.
 This practice has some value, but it also clutters the interface of your classes, and worse, exposes private state to the world.
 
 %---------------------------------------------------------
-\subsection{The Instance Side and the Class Side}
+\subsection{The instance side and the class side}
 
 Since classes are objects, they can have their own instance variables and their own methods.
 We call these \emph{class instance variables} and \emph{class methods}, but they are really no different from ordinary instance variables and methods:
@@ -215,7 +215,7 @@ Once a class has been created, clicking the \button{instance} button lets you ed
 In contrast, the \button{class} button lets you browse and edit the metaclass (in this case \ct{Color class}).
 
 %---------------------------------------------------------
-\subsection{Class Methods} 
+\subsection{Class methods} 
 
 Class methods can be quite useful; browse \ct{Color class} for some good examples.
 You will see that there are two kinds of \subind{class}{method} defined on a class: those that create instances of the class, like \cmind{Color class}{blue} and those that perform a utility function, like 
@@ -232,7 +232,7 @@ For those familiar with \ind{Java} and \ind{C++},  class methods may seem simila
 However, the uniformity of \st means that they are somewhat different: whereas Java static methods are really just statically-resolved procedures, \st class methods are dynamically-dispatched methods.  This means that inheritance, overriding and super-sends work for class methods in \st, whereas they don't work for static methods in Java.  
 
 %---------------------------------------------------------
-\subsection{Class Instance Variables}
+\subsection{Class instance variables}
 With ordinary instance variables, all the instances of a class have the same set of variable names, and the instances of its subclasses inherit those names; however, each instance has its own private set of values.
 The story is exactly the same with class \subind{class}{instance variable}{}s: each class has its own private class instance variables.
 A subclass will inherit those class instance variables, \emph{but it has its own private copies of those variables}.
@@ -385,7 +385,7 @@ Although \squeak does not provide multiple inheritance, since version 3.9 it has
 Traits are collections of methods that can be reused by multiple classes that are not related by inheritance. Using traits allows one to share code between different classes without duplicating code.
 
 %---------------------------------------------------------
-\subsection{Abstract Methods and Abstract Classes} 
+\subsection{Abstract methods and abstract classes}
 
 An \subind{class}{abstract} class is a class that exists to be subclassed, rather than to be instantiated.
 An abstract class is usually incomplete, in the sense that it does not define all of the methods that it uses.
@@ -500,7 +500,7 @@ Here we see that the method \ct{basicAddTraitSelector:withMethod:} defined in th
 Support for traits is currently being added to the browsers.
 
 %=========================================================
-\section{Everything Happens by Message Sending}
+\section{Everything happens by message sending}
 
 %\ruleref{message}
 
@@ -663,7 +663,7 @@ This is a common idiom in \st, which Kent Beck refers to as ``Interesting return
 \important{Return a value only when you intend for the sender to use the value.}
 
 %---------------------------------------------------------
-\subsection{Overriding and Extension}
+\subsection{Overriding and extension}
 
 If we look again at the \ct{EllipseMorph} class hierarchy in \figref{openInWorldLookup}, we see that the classes \ct{Morph} and \mbox{\ct{EllipseMorph}} both implement \ct{defaultColor}.
 In fact, if we open a new morph (\ct{Morph new openInWorld}) we see that we get a blue morph, whereas an ellipse will be yellow by default.
@@ -763,7 +763,7 @@ If you think carefully about \super send and \figref{initStringLookup}, you will
 By contrast, the meaning of \self is dynamic: it always represents the receiver of the currently executing message. This means that  \emph{all}  messages sent to \self are looked-up by starting in the receiver's class.
 
 %---------------------------------------------------------
-\subsection{Message not Understood}
+\subsection{Message not understood}
 
 What happens if the method we are looking for is not found?
 \index{message!not understood}
@@ -794,7 +794,7 @@ In fact, this can be an easy way to implement automatic delegation of messages f
 A \ct{Delegator} object could simply delegate all messages it does not understand to another object whose responsibility it is to handle them, or raise an error itself!
 
 %=========================================================
-\section{Shared Variables}
+\section{Shared variables}
 
 Now we will look at an aspect of \st that is not so easily covered by our five rules: \subind{variable}{shared} variables.
 
@@ -804,7 +804,7 @@ Now we will look at an aspect of \st that is not so easily covered by our five r
 \index{variable!pool}
 
 %---------------------------------------------------------
-\subsection{Global Variables.}
+\subsection{Global variables}
 In \squeak, all global variables are stored in a namespace called \glbind{Smalltalk}, which is implemented as an instance of the class \clsind{SystemDictionary}.
 Global variables are accessible everywhere. 
 Every class is named by a global variable; in addition, a few globals are used to name special or commonly useful objects.
@@ -822,7 +822,7 @@ Before you \menu{do it}, open a transcript by dragging one from the \emph{Tools}
 \hint{Writing to the Transcript is slow, especially when the transcript window is open. 
 So, if you experience some sluggishness and are writing to the Transcript, think about collapsing it.}
 
-\subsubsection{Other useful Global variables.}
+\subsubsection{Other useful global variables}
 
 \begin{itemize}
 \item
@@ -873,7 +873,7 @@ The usual way to define a global is just to \menu{do it} on an assignment to a c
 \glbindex{Smalltalk}
 
 %---------------------------------------------------------
-\subsection{Class Variables}
+\subsection{Class variables}
 \label{sec:classVars}
 
 Sometimes we need to share some data amongst all the instances of a 
@@ -952,7 +952,7 @@ If you adopt this solution, you need to remember to invoke the \ct{initialize} m
 Although \subind{system browser}{class side} \ct{initialize} methods are executed automatically when code is loaded into memory, they are \emph{not} executed automatically when they are first typed into the browser and compiled, or when they are edited and re-compiled.
 
 %---------------------------------------------------------
-\subsection{Pool Variables}
+\subsection{Pool variables}
 Pool variables are variables that are shared between several classes that may not be related by inheritance.
 Pool variables were originally stored in pool dictionaries; now they should be defined as class variables of dedicated classes (subclasses of SharedPool). Our advice is to avoid them; you will need them only in rare and specific circumstances.
 Our goal here is therefore to explain \subind{variable}{pool} variables just enough so that you can understand them when you are reading code. 
@@ -982,7 +982,7 @@ Text>>>testCR
 Once again,  we recommend that you avoid the use of pool variables and pool dictionaries. 
 
 %=========================================================
-\section{Chapter Summary}
+\section{Chapter summary}
 
 The object model of \squeak is both simple and uniform.
 Everything is an object, and pretty much everything happens by message sends.

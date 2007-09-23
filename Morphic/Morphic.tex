@@ -40,7 +40,7 @@ The main particularity of Morphic is that the user can assemble and disassemble 
 \on{I have commented out the LabelstickerMorph and PyramidMorph examples, as they do not really add much over the other examples we have already. The source code is now available in the example subdirectory, in case someone would like to try and use them after all.}
 
 %=================================================================
-\section{The History of Morphic}
+\section{The history of Morphic}
 
 Morphic was developed in the 80's for the \ind{Self} language, which was largely inspired by \st; Morphic was then ported to \sq.
 The basic idea in Morphic is that each object should be directly represented and manipulated as a graphical shape: the morph.
@@ -115,7 +115,7 @@ bill position: (joe position + (100@0))
 You can move joe using the mouse then execute this code; bill will move to 100 pixels to the right of joe.
 
 %=================================================================
-\section{Composing Morphs}
+\section{Composing morphs}
 
 To create new morphs, there are two main techniques that you can combine:
 \begin{enumerate}
@@ -150,7 +150,7 @@ It is indeed possible to add more morphs to joe; to remove a sub-morph, do \ct{j
 
 
 %=================================================================
-\section{Creating and Drawing Your Own Morphs}
+\section{Creating and drawing your own morphs}
 
 While it is possible to obtain interesting representations by composing morphs, sometimes you will really need something completely different.
 To do this you need to define a subclass of \ct{Morph} and to override the \mthind{Morph}{drawOn:} method.
@@ -256,7 +256,7 @@ This code should be factored out into a third method; we leave this as an exerci
 
 
 %=================================================================
-\section{Mouse and Keyboard Interaction}
+\section{Mouse and keyboard interaction}
 
 \paragraph{Mouse Events}
 Besides the graphical aspect of morphs, we also need to interact with them through mouse or the keyboard.
@@ -480,7 +480,7 @@ ReceiverMorph new openInWorld.
 The green morph is rejected and therefore stays attached to the mouse pointer.
 
 %=================================================================
-\section{A Complete Example}
+\section{A complete example}
 
 We will design a morph to roll a die\footnote{NB: One die, two dice.}. Clicking on it will display the values of all sides of the die in a quick loop, and another click will stop the animation.
 
@@ -632,7 +632,7 @@ Now the die will roll or stop rolling when we click on it!
 % Most of the work on \ct{DieMorph} was done with an instance of it living in the environment; this is quite nice when to tweak programs.
 
 %=================================================================
-\section{More About the Canvas}
+\section{More about the canvas}
 
 The \ct{drawOn:} method has an instance of \clsindmain{Canvas} as its sole argument;
 the canvas is the area on which the morph draws itself.
@@ -684,7 +684,7 @@ DieMorph>>>drawDotOn: aCanvas at: aPoint
 \end{methods}
 
 %=================================================================
-\section{Chapter Summary}
+\section{Chapter summary}
 
 Morphic is a graphical framework in which graphical interface elements can be dynamically composed.
 

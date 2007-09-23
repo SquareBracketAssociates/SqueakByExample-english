@@ -29,7 +29,7 @@
 %=================================================================
 \newcommand{\debugHandle}{\raisebox{-0.4ex}{\includegraphics[width=1em]{debugHandle}}}
 %=================================================================
-\chapter{The Squeak Programming Environment}
+\chapter{The Squeak programming environment}
 \label{cha:env}
 
 The goal of this chapter is to show you how to develop programs in the \Squeak programming environment.
@@ -195,13 +195,13 @@ The process of creating a new method is similar.  First select the class in whic
 \end{figure}
 
 %---------------------------------------------------------
-\subsection{The Button Bar}
+\subsection{The button bar}
 \label{sec:ButtonBar}
 
 The system browser provides several tools for exploring and analysing code. Those tools are most simply accessed from the horizontal \subind{system browser}{button bar} in the middle of the browser window.  The buttons are labeled \button{browse}, \button{senders}, \button{implementors}\ldots{}\ %
 \figref{SystemBrowserMethodTemplate} shows the complete set.
 
-\subsubsection{Browsing Code}
+\subsubsection{Browsing code}
 \label{sec:browsing}
 
 The \button{browse} button opens a new system browser on the class or method that is currently selected. It's often useful to have multiple browsers open at the same time.
@@ -212,7 +212,7 @@ You can also open a browser on a class named by any selected text using the \sho
 
 \dothis{Try this: in a workspace window, type the name of a class (for instance \ct{ScaleMorph}), select it, and then press \short{b}. This trick is often useful; it works in any text window.}
 
-\subsubsection{Senders and Implementors of a Message}
+\subsubsection{Senders and implementors of a message}
 \label{sec:sendersImplementors}
 
 \index{system browser!senders button}
@@ -256,7 +256,7 @@ The \button{senders} button is nevertheless extremely useful when you need to un
 Since all of the methods with the same selector ought to be used in the same way, all of the uses of a given message ought to be similar.
 \index{system browser!senders button}
 
-\subsubsection{Versions of a Method}
+\subsubsection{Versions of a method}
 \label{sec:versions}
 
 When you save a new \subind{method}{version} of a method, the old one is not lost.  \sq keeps all of the old versions, and allows you to compare different versions and to go back (``revert'') to an old version.
@@ -281,7 +281,7 @@ Smalltalkers rate code readability extremely highly.
 \hint{What if you delete a method entirely, and then decide that you want it back?  You can find the deletion in a change set, where you can ask to see versions with the \ind{yellow button} menu.
 The change set browser is described in \secref{env:changeSet}}
 
-\subsubsection{Method Overridings}
+\subsubsection{Method overridings}
 \label{sec:overriding}
 
 The \button{inheritance} button opens a specialized browser that displays all the methods overridden by the displayed method. 
@@ -344,7 +344,7 @@ In \figref{hierarchyBrowser}, the hierarchy browser reveals that the direct supe
 	\label{fig:hierarchyBrowser}
 \end{figure}
 
-\subsubsection{Finding Variable References}
+\subsubsection{Finding variable references}
 \label{sec:variables}
 
 \index{system browser!inst vars button}
@@ -379,7 +379,7 @@ The same refactoring engine is also available in several other ways, for example
 Refactoring was formerly available only in a special browser called the refactoring browser, but it can now be accessed from any browser.
 
 %---------------------------------------------------------
-\subsection{The Browser Menus}
+\subsection{The browser menus}
 
 Many additional functions are available from the browser's yellow button menu.  
 Since yellow button menus are context-sensitive,  each pane in the browser has its own menu.  
@@ -405,7 +405,7 @@ There are many other options available in the menus.  It pays to spend a few min
 \dothis{Compare the result of \menu{Browse Protocol}, \menu{Browse Hierarchy},  and \menu{Show Hierarchy} in the class pane menu.}
 
 %---------------------------------------------------------
-\subsection{Other Class Browsers}
+\subsection{Other class browsers}
 \label{sec:otherBrowsers}
 
 At the beginning of this section we mentioned another class browser: the \emphind{package pane browser}. 
@@ -434,7 +434,7 @@ By this definition, the two things are different.  I happen to think that the de
 \on{So, what should we say? As it stands, without comment it is confusing. Everyone will ask: uh ... is this different from an abstract method?}
 
 %---------------------------------------------------------
-\subsection{Browsing Programatically}
+\subsection{Browsing programatically}
 
 The class \glbind{SystemNavigation} provides a number of utility method that are useful for navigating around the system.
 Many of the functions offered by the classic browser are implemented by \ct{SystemNavigation}.
@@ -478,7 +478,7 @@ However, Monticello has many more features than were discussed there.
 Because Monticello manages \emph{Packages}, before telling you more about Monticello, it's important that we first explain exactly what a \ind{package} is.
 
 %---------------------------------------------------------
-\subsection{Packages: Declarative Categorization of Squeak Code}
+\subsection{Packages: declarative categorization of Squeak code}
 
 The package system is a simple, lightweight way of organizing Smalltalk source code.
 It leverages the long-used naming convention mentioned above (\secref{package-names}), but adds to it in an important way.
@@ -699,11 +699,11 @@ Monticello provides some quite sophisticated features for managing versions.
 
 \subsubsection{Differences}
 
-\subsubsection{Adopting a new Ancestor}
+\subsubsection{Adopting a new ancestor}
 
-\subsubsection{Setting Dependencies}
+\subsubsection{Setting dependencies}
 
-\subsubsection{Nested Packages}
+\subsubsection{Nested packages}
 
 One of the most important functions for a version management tool is to let the user build a package out of a number of smaller packages.
 For example, a complex package like refactoring support might be made up of the refactoring engine itself, a GUI, and the services interface that makes it accessible to other tools.  
@@ -713,7 +713,7 @@ How is this accomplished using Monticello?  \ab{How indeed?  I hope that someone
 \end{comment}
 
 %=========================================================
-\section{The Inspector and Explorer}
+\section{The Inspector and the Explorer}
 \label{sec:inspector} % (fold)
 
 One of the things that makes \st so different from many other programming environments is that it is provides you with a window onto a world of live objects, not a world of static code.
@@ -1084,7 +1084,7 @@ The process browser is not equipped with mini-inspectors for \self and \lct{this
 \on{I guess we will come back to this when we get around to writing the chapter on concurrency!}
 
 %=========================================================
-\section{Finding Methods}
+\section{Finding methods}
 \label{sec:methodFinder} 
 
 There are two tools in \sq to help you find messages; both can be dragged out of the \toolsflapind.
@@ -1114,7 +1114,7 @@ As with the class browser, the message names browser has a button bar that can b
 % section methodFinder (end)
 
 %=========================================================
-\section{Change Sets and the Change Sorter}
+\section{Change sets and the Change Sorter}
 \label{sec:env:changeSet} % (fold)
 
 Whenever you are working in \sq, any changes that you make to methods and classes are recorded in a \ct{change set}.
@@ -1240,7 +1240,7 @@ It will show the the methods in each class, and (as shown in \figref{fileContent
 Yellow-button menu items in each of the top four panes will also let you file in the whole of the change set, or the corresponding class, protocol or method. 
 
 %=========================================================
-\section{In Smalltalk, You Can't Lose Code}
+\section{In Smalltalk, you can't lose code}
 \label{sec:cantLoseCode} % (fold)
 
 It is quite possible to crash \sq: as an experimental system, \sq lets you change anything, including things that are vital to make \sq work! 
@@ -1295,7 +1295,7 @@ When I am finished with the recover, I like to file out my new change set, quit 
 % section cantLoseCode (end)
 
 %=========================================================
-\section{Chapter Summary}
+\section{Chapter summary}
 
 In order to develop effectively with Squeak, it is important to invest some effort into learning the tools available in the environment.
 

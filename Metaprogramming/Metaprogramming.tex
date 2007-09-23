@@ -27,7 +27,7 @@
 	\sloppy
 \fi
 %=================================================================
-\chapter{Introspecting and Metaprogramming}\label{cha:metaprog}
+\chapter{Introspecting and metaprogramming}\label{cha:metaprog}
 
 Like all Smalltalk dialects, \sq is a reflective programming language.
 For a programming language, being reflective means that it allows both \emph{introspection} and \emph{intercession}.
@@ -39,7 +39,7 @@ Note that while the Java language defines a ``reflective'' interface, it's not f
 In this chapter, you will read about uses of introspection that are useful for day-to-day programming.
 
 
-\section{Under the Hood: Instances} % (fold)
+\section{Under the hood: instances} % (fold)
 
 Using the inspector, you can look at an object, change the values of its instance variables, and even send messages to it. Execute the following code in a workspace:
 \begin{script}[inspectobject]{Inspecting an object}
@@ -133,7 +133,7 @@ Indeed, using the type of an object to drive execution of a method or another of
 % section under_the_hood_instances (end)
 
 
-\section{Browsing the Code} % (fold)
+\section{Browsing the code} % (fold)
 
 In \st, classes are normal objects, and they provide interesting features to navigate live objects.
 As we saw previously, you can obtain an instance of a given class by sending it the \ct!#someInstance! message.
@@ -189,9 +189,9 @@ Though this actually works, it is quite slow, and for actual use the virtual mac
 % section browsing_the_code (end)
 
 
-\section{Practical Uses for Introspection} % (fold)
+\section{Practical uses for introspection} % (fold)
 
-\subsection{Code Metrics}
+\subsection{Code metrics}
 
 Let's see how we can use \st's introspection features to quickly define code metrics.
 A code metric is a measure of program code like depth in the inheritance hierarchy, the number of direct or indeirect subclasses, the number of methods or of instance variables in each class, or the number of locally defined methods or instance variables.
@@ -232,7 +232,7 @@ You can see that the \st bytecode itself is viewed as an object that we can quer
 We could even imagine methods that transform this bytecode.
 
 
-\subsection{Detecting Possible Errors}
+\subsection{Detecting possible errors}
 
 Sending a message to \ct!super! is a bad idea when that message is different from the one the current method implements.
 This practice often causes bugs when adding subclasses, so good developers avoids that pattern of code.
@@ -283,7 +283,7 @@ SystemNavigator default allCallsOn: #printNameOn:
 So we should also refactor classes \clsind{RunArray}, \clsind{BitMap}, \clsind{Text}, and \clsind{CompiledMethod} that are sending message \ct!#printNameOn:!.
 
 
-\subsection{Intelligent Breakpoints}
+\subsection{Intelligent breakpoints}
 
 In the 3.8 version of \sq introduced a new kind of breakpoints.
 Those are quite useful and are implemented by the \ct!Object>>>haltIf:! method.
@@ -324,7 +324,7 @@ Via \ct!thisContext!, the Seaside web framework also accesses the execution stac
 % section practical_uses_for_introspection (end)
 
 
-\section{Conclusion}
+\section{Chapter summary}
 
 It is natural to use the reflective features in Smalltalk.
 Indeed, the whole development environment and its code browsers are built using the introspective interfaces of objects and classes.

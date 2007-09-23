@@ -27,7 +27,7 @@
 	\sloppy
 \fi
 %=================================================================
-\chapter{Understanding Message Syntax}
+\chapter{Understanding message syntax}
 \label{cha:understanding}
 
 Although \st's message syntax is extremely simple, it is unconventional and can take some getting used to.
@@ -38,7 +38,7 @@ If you already feel comfortable with the syntax, you may choose the skip this ch
 I would like to get feedback from students.}
 
 %=============================================================
-\section{Identifying Messages}
+\section{Identifying messages}
 
 In \st, except for the syntactic elements listed in \charef{syntax} (\ct+:= ^ . ; # () {} [ : | ]+), everything is a message send. 
 As in \ind{C++}, you can define operators like \ct{+} for your own classes, but all operators have the same precedence.
@@ -136,7 +136,7 @@ A receiver can be an expression which returns an object. In \ct{Pen new go: 100}
 % ON: An enumerated list here is overkill!
 
 %=============================================================
-\section{Three Kinds of Messages}
+\section{Three kinds of messages}
 
 \st defines a few simple rules to determine the order in which the messages are sent. These rules are based on the distinction between 3 different kinds of messages: 
 \begin{itemize}
@@ -147,7 +147,7 @@ For example in \ct{anArray at: 1 put: 10}, the keyword \ct{at:} takes the argume
 \end{itemize}
 
 %-------------------------------------------------------------
-\subsection{Unary Messages}
+\subsection{Unary messages}
 Unary messages are messages that do not require any argument. They follow the syntactic template: \ct{receiver messageName}. The selector is simply made up of a succession of characters not containing \ct{:} (\eg \ct{factorial}, \ct{open}, \ct{class}).
 \needlines{4}
 \begin{code}{@TEST}
@@ -164,7 +164,7 @@ Object class --> Object class  "The class of Object is Object class (BANG)"
 They follow the syntactic template: \lct{receiver \textbf{selector}}}
 
 %-------------------------------------------------------------
-\subsection{Binary Messages} 
+\subsection{Binary messages} 
 Binary messages are messages that require exactly one argument \emph{and} whose selector consists of a sequence of one or more characters from the set: \ct{+}, \ct{-}, \ct{*}, \ct{/}, \ct{&}, \ct{=}, \ct{>}, \ct{|}, \ct{<}, \ct{~}, and \ct{@}. Note that \ct{--} is not allowed for parsing reasons.
 
 \begin{code}{@TEST}
@@ -205,7 +205,7 @@ nums --> #(6 2 3 4 5)
 \lct{receiver \textbf{selectorWordOne:} argumentOne \textbf{wordTwo:} argumentTwo}}
 
 %=============================================================
-\section{Message Composition}
+\section{Message composition}
 The three kinds of messages each have different precedence, which allows them to be composed in an elegant way. 
 
 \begin{enumerate}
@@ -341,7 +341,7 @@ In the message \ct{aPen color: Color yellow}, there is one \emph{unary} message 
 %\end{figure}
 
 %-------------------------------------------------------------
-\subsection{Parentheses First}
+\subsection{Parentheses first}
 
 \important{\textbf{Rule Two.} Parenthesised messages are sent prior to other messages.\\
 \centerline{\ct{(Msg) > Unary > Binary > Keyword}}}
@@ -384,7 +384,7 @@ Evaluating the message without parentheses would lead to an error because the ob
       --> 132@375
 \end{example}
 
-\subsection{From Left to Right}
+\subsection{From left to right}
 Now we know how messages of different kinds or priorities are handled. The final question to be addressed is how messages with the same priority are sent. They are sent from the left to the right. Note that you already saw this behavior in \egref{decExtent} where the two point creation messages (\ct{@}) were sent first.
 
 \important{{\textbf{Rule Three.} When the messages are of the same kind, the order of evaluation is from left to right.}}
@@ -403,7 +403,7 @@ Now we know how messages of different kinds or priorities are handled. The final
 \end{figure}
 
 %-------------------------------------------------------------
-\subsection{Arithmetic Inconsistencies}
+\subsection{Arithmetic inconsistencies}
 The message composition rules are simple but they result in inconsistency for the evaluation of arithmetic expressions expresed in terms of binary messages. Here we see the common situations where extra parentheses are needed. 
 
 \begin{code}{@TEST}
@@ -488,7 +488,7 @@ Note that the first rule stating that unary messages are sent prior to binary an
 \end{figure}
 
 %=============================================================
-\section{Hints for Identifying Keyword Messages}
+\section{Hints for identifying keyword messages}
 Often beginners have problems understanding when they need to add parentheses. Let's see how keywords messages are recognized by the compiler. 
 
 %-------------------------------------------------------------
@@ -550,7 +550,7 @@ No object is created, so in \lct{(\emph{expression})}, the \lct{\emph{expression
 \end{code}
 
 %=============================================================
-\section{Expression Sequences}
+\section{Expression sequences}
 Expressions (\ie messages sends, assignments ...) separated by periods are evaluated in sequence.
 Note that there is no period between a variable definition and the following expression.
 The value of a sequence is the value of the last expression. The values returned by all the 
@@ -563,7 +563,7 @@ box containsPoint: 40@50 --> true
 \end{code}
 
 %=============================================================
-\section{Cascaded Messages}
+\section{Cascaded messages}
 \st offers a way to send multiple messages to the same receiver using a semicolon (\ct{;}). This is called the \emphind{cascade} in \st jargon.
 
 \important{Expression Msg1 ; Msg2}
@@ -593,7 +593,7 @@ Point new setX: 25 setY: 35; isZero --> false
 \end{code}
 
 %=============================================================
-\section{Chapter Summary}
+\section{Chapter summary}
 
 \begin{itemize}
 \item A message is always sent to an object named the \emph{receiver} which may be the result of other message sends.

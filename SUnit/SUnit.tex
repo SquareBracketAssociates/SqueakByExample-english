@@ -99,7 +99,7 @@ Finally, we look at the implementation of \sunit, so that you can understand how
 \st uses the power of \ind{reflection} in supporting its tools. 
 
 %=================================================================
-\section{Why Testing is Important}
+\section{Why testing is important}
 \label{sec:why}
 
 Unfortunately, many developers believe that tests are a waste of their time.  
@@ -147,7 +147,7 @@ If you find that this has happened, take advantage of it!
 As soon as you uncover the bug, write a test that exposes it, run the test, and watch it fail.
 Now you can start to fix the bug: the test will tell you when you are done.
 %=================================================================
-\section{What makes a Good Test?}
+\section{What makes a good test?}
 
 Writing good tests is a skill that can be learned most easily by
 practicing.  Let us look at the properties that tests should have to
@@ -210,13 +210,13 @@ Moreover, test-first development gives us the courage to go fast, because we are
 
 % Now let's write our first test, and show you the benefits of using \SUnit.
 %=================================================================
-\section{\sunit by Example}
+\section{\sunit by example}
 
 Before going into the details of \SUnit, we will show a step by step
 example.  We use an example that tests the class \ct{Set}.  Try
 entering the code as we go along.
 %---------------------------------------------------------
-\subsection{Step 1: Create the test class}
+\subsection{Step 1: create the test class}
 
 \dothis{First you should create a new subclass of \clsind{TestCase} called
 \ct{ExampleSetTest}.   Add two instance variables so that your new
@@ -239,7 +239,7 @@ that we will use to represent a full and an empty set.
 The name of the class is not critical, but by convention it should end in \ct{Test}.
 If you define a class called \ct{Pattern} and call the corresponding test class \ct{PatternTest}, the two classes will be alphabetized together in the browser (assuming that they are in the same category).  It \emph{is} critical that your class be a subclass of \ct{TestCase}.
 %---------------------------------------------------------
-\subsection{Step 2: Initialize the test context}
+\subsection{Step 2: initialize the test context}
 
 The method \mthind{TestCase}{setUp} defines the context in which the tests will run, a bit like an initialize method.
 \ct{setUp} is invoked before the execution of each test
@@ -263,7 +263,7 @@ test.
 \seeindex{fixture}{SUnit, fixture}
 
 %---------------------------------------------------------
-\subsection{Step 3: Write some test methods}
+\subsection{Step 3: write some test methods}
 
 Let's create some tests by defining some methods in the class
 \ct{ExampleSetTest}.  
@@ -312,7 +312,7 @@ ExampleSetTest>>>testRemove
 Note the use of the method \mthind{TestCase}{deny:} to assert something that should not be true.
 \ct{aTest deny: anExpression} is equivalent to \ct{aTest assert: anExpression not}, but is much more readable.
 %---------------------------------------------------------
-\subsection{Step 4: Run the tests}
+\subsection{Step 4: run the tests}
 
 The easiest way to execute the tests is with the \sunit \emphind{Test Runner}, 
 which you can open from the \menu{World \go open\,\ldots} menu, or by dragging the \menu{TestRunner} from the \toolsflap.
@@ -361,7 +361,7 @@ ExampleSetTest debug: #testRemove
 \end{code}
 
 %---------------------------------------------------------
-\subsection{Step 5: Interpret the Results}
+\subsection{Step 5: interpret the results}
 
 The method \mthind{TestCase}{assert:}\,, which is defined in the class
 \ct{TestCase}, expects a boolean argument, usually the value of a tested expression.  When the argument is
@@ -382,7 +382,7 @@ In the {test runner}, failing tests cause the bar at the top to turn yellow, and
 \dothis{Modify your tests to provoke both errors and failures.}
 
 %=================================================================
-\section{The \SUnit Cook Book}
+\section{The \SUnit cook book}
 This section will give you more details on how to use \SUnit.  If you
 have used another testing framework such as \JUnit\footnote{\url{junit.org}},
 much of this will be familiar, since all these frameworks have their roots in \SUnit.
@@ -425,7 +425,7 @@ ExampleSetTest>>>testIllegal
 \dothis{Give it a try.}
 
 %---------------------------------------------------------
-\subsection{Running a Single Test}
+\subsection{Running a single test}
 Normally, you will run your tests using the Test Runner.
 If you don't want to launch the Test Runner from the \menu{open\,\ldots} menu or from the \toolsflap, you can execute
 \ct{TestRunner open} as a \menu{print it}.
@@ -438,7 +438,7 @@ ExampleSetTest run: #testRemove --> 1 run, 1 passed, 0 failed, 0 errors
 \end{code}
 
 %---------------------------------------------------------
-\subsection{Running all the Tests in a Test Class}
+\subsection{Running all the tests in a test class}
 
 Any subclass of \ct{TestCase} responds to the message \ct{suite}, which will build a test suite that contains all the
 methods in the class whose names start with the string ``\ct{test}''.
@@ -450,7 +450,7 @@ ExampleSetTest suite run --> 5 run, 5 passed, 0 failed, 0 errors
 \end{code}
 
 %---------------------------------------------------------
-\subsection{Must I Subclass TestCase?}
+\subsection{Must I subclass TestCase?}
 
 In \JUnit{} you can build a \clsind{TestSuite} from an arbitrary class
 containing \ct{test*} methods.  In \st you can do the same
@@ -458,7 +458,7 @@ but you will then then have to create a suite by hand and your class will
 have to implement all the essential \ct{TestCase} methods like \ct{assert:}.
 We recommend that you not try to do this.  The framework is there: use it.
 %=================================================================
-\section{The SUnit Framework}
+\section{The SUnit framework}
 
 \sunit consists of four main classes: \clsind{TestCase},
 \clsind{TestSuite}, \clsind{TestResult}, and \clsind{TestResource}, as shown in \figref{sunit-classes}.
@@ -577,12 +577,12 @@ MyTestCase class>>>resources
 % \on{Do we really need the empty setUp and tearDown methods here?}
 
 %=================================================================
-\section{Advanced Features of SUnit}
+\section{Advanced features of SUnit}
 In addition to \ct{TestResource}, the current version of \sunit contains assertion
 description strings, logging support, and resumable test failures.
 
 %---------------------------------------------------------
-\subsection{Assertion Description Strings}
+\subsection{Assertion description strings}
 \label{sec:descriptionStrings}
 
 The \ct{TestCase} assertion protocol includes a
@@ -609,7 +609,7 @@ The relevant methods in \ct{TestCase} are:
 \cmindex{TestCase}{shouldnt:description:}
 
 %---------------------------------------------------------
-\subsection{Logging Support}
+\subsection{Logging support}
 The description strings described above may also be logged to a
 \ct{Stream} such as the \ct{Transcript}, or a file stream.
 You can choose whether to log by overriding
@@ -617,7 +617,7 @@ You can choose whether to log by overriding
 to log by overriding \cmind{TestCase}{failureLog} to answer an appropriate stream.
 
 %---------------------------------------------------------
-\subsection{Continuing after a Failure}
+\subsection{Continuing after a failure}
 \sunit also allows us to specify whether or not a test should continue after a failure.  This is a really
 powerful feature that uses the exception mechanisms offered
 by \st.  To see what this can be used for, let's look at an
@@ -646,13 +646,13 @@ All the other assertion methods that we have seen are not resumable;
 \ct{assert: p description: s} is equivalent to \ct{assert: p description: s resumable: false}.
 \cmindex{Collection}{do:}
 %=================================================================
-\section{The Implementation of SUnit}
+\section{The implementation of SUnit}
 
 The implementation of \sunit makes an interesting case study of a \st framework.
 Let's look at some key aspects of the implementation by following the
 execution of a test.
 %---------------------------------------------------------
-\subsection{Running One Test}
+\subsection{Running one test}
 
 To execute one test, we evaluate the expression
 \ct{(aTestClass selector: aSymbol) run.}
@@ -801,7 +801,7 @@ TestResource>>>initialize
 	self setUp
 \end{method}
 %=================================================================
-\section{Some Advice on Testing}
+\section{Some advice on testing}
 
 While the mechanics of testing are easy, writing good tests is not.
 Here is some advice on how to design tests.
@@ -1218,7 +1218,7 @@ Never get yourself into a situation where you don't want to run your unit test s
 %%		 show: 'MyTestResource>>>tearDown has run.';
 %%		 cr
 %=================================================================
-\section{Chapter Summary}
+\section{Chapter summary}
 
 This chapter explained why tests are an important investment in 
 the future of your code.  
