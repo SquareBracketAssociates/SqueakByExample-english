@@ -638,10 +638,8 @@ These packages are represented as files with names ending in \ct{.mcz}; they are
 Using the Monticello package browser, you can save packages to repositories on various types of server, including FTP and HTTP servers; you can also just write the packages to a repository in a local file system directory.
 A copy of your package is also always cached on your local hard-disk in the \emph{package-cache} folder. 
 Monticello lets you save multiple versions of your program, merge versions, go back to an old version, and browse the differences between versions. 
-In fact, it supports the same sort of operations that you are used to if you share your work using CVS or Subversion.
+In fact, Monticello is a distributed revision control system; this means it allows developers to save their work on different places, not on a single repository as it is the case with CVS or Subversion.\damien{Mercurial, Git are examples of distributed revision control system; not sure it's worth mentioning them.}
 \seeindex{package browser}{Monticello}
-
-A good trick is to always develop in the same folder. This way you get a copy of all the code that you publish on squeaksource on your local machine. You can then backup and browse at will.
 
 You can also send a \ct{.mcz} file by email. 
 The recipient will have to place it in her \emph{package-cache} folder; she will then be able to use Monticello to browse and load it. 
@@ -669,18 +667,18 @@ On the left-hand side of the Monticello browser is a list of packages that have 
 
 What is a package?  For now, you can think of a package as a group of  class and method categories that share the same prefix.  Since we put all of the code for the Quinto game into the class category called \scat{SBE-Quinto}, we can refer to it as the \ct{SBE-Quinto} package.
 
-\dothis{Add the \ct{SBE-Quinto} package to your Monticello browser using the \button{+Package} button.}
+\dothis{Add the \ct{SBE-Quinto} package to your Monticello browser using the \button{+Package} button and type \ct{SBE-Quinto}.}
 
 \subsection{\ind{SqueakSource}: a \ind{SourceForge} for \squeak.} 
-We think that the best way to save your code and share it is to create an account for your project on a SqueakSource\footnote{\url{www.squeaksource.com}} server. 
-SqueakSource is like SourceForge\footnote{\url{sourceforge.net}}: it is a web front-end to a HTTP Monticello server that lets you manage your projects.
+We think that the best way to save your code and share it is to create an account for your project on a SqueakSource server. 
+SqueakSource is like SourceForge\footnote{\url{www.sourceforge.net}}: it is a web front-end to a HTTP Monticello server that lets you manage your projects.
 %In addition, SqueakSource includes a wiki, remote code browsing, RSS feed, admin right and access right management,   
 % A number of {SqueakSource servers} around the Internet provide Monticello repositories and other facilities for development projects, including as a Wiki for documentation, remote code browsing, an RSS feed for update notification, and automatic publishing on SqueakMap.
 \lr{- Automatic publishing on SqueakMap does not work reliable anymore (the SqueakMap API changed several times), so better remove this part (p. 53)}
-There is a public SqueakSource server at \url{http://www.squeaksource.com}, and a copy of the code related to this book is stored there at \url{http://www.squeaksource.com/SqueakByExample.html}. You can look at this project with a web browser, but it's a lot more productive to do so from inside \squeak, using a special-purpose tool called the Monticello browser, which lets you manage your packages.
+There is a public SqueakSource server at \url{http://www.squeaksource.com}, and a copy of the code related to this book is stored there at \url{http://www.squeaksource.com/SqueakByExample.html}. You can look at this project with a web browser, but it's a lot more productive to do so from inside \squeak, using the Monticello browser, which lets you manage your packages.
 
 \dothis{Open a web browser to \url{www.squeaksource.com}.
-Create an account for yourself and then create (\ie ``register'') a project.}
+Create an account for yourself and then create (\ie ``register'') a project for the Quinto game.}
 SqueakSource will show you the information that you should use when adding a repository using the Monticello browser. 
 
 Once your project has been created on SqueakSource, you have to tell your \squeak system to use it. 
@@ -702,7 +700,7 @@ If you provide empty initials and password strings, you can still load the proje
 \needlines{5}
 \begin{code}{}
 MCHttpRepository 
-    location: 'http://www.squeaksource.com/SqueakByExample'
+    location: 'http://www.squeaksource.com/!\emph{YourProject}!'
     user: '' 
     password: ''
 \end{code}   
@@ -720,7 +718,7 @@ Once you have accepted this template, your new repository should be listed on th
 
 \dothis{Click on the \button{Save} button to save a first version of your Quinto game on SqueakSource.}
 
-To load a package into your image, you must first select a particular version.  You can do this in the repository browser, which you can open with using the \button{Open} button or the yellow-button menu.  Once you have selected a version, you can load it onto your image.
+To load a package into your image, you must first select a particular version.  You can do this in the repository browser, which you can open using the \button{Open} button or the yellow-button menu.  Once you have selected a version, you can load it onto your image.
 
 \dothis{Open the \ct{SBE-Quinto} repository you have just saved.}
 
