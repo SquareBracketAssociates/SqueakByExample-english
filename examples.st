@@ -3,6 +3,7 @@
 examples --- extract code examples from Squeak by Example LaTeX source
 
 Assumes you have Gnu Smalltalk with scripting syntax installed (at least v2.95c).
+(Applied Paolo Bonzini's patch eliminating need to send #asRegex to strings.)
 
 $Id$
 "
@@ -30,38 +31,22 @@ http://www.squeaksource.com/SBEtesting.html
 '.
 
 Object subclass: Chapter [
-	| name title code titleRegex codeRegex endRegex |
-	setName: aName [
+	| title code |
+	initWithName: aName [
 		<category: 'initialization'> 
+		| name fileName file codeStream line |
 		name := aName.
-		self initRegexes.
-		self init.
-	]
-	setTitle: aString [
-		<category: 'initialization'> 
-		title := aString.
-		title := title replacingAllRegex: '\\sq' with: 'Squeak'.
-		title := title replacingAllRegex: '\\st' with: 'Smalltalk'.
-	]
-	initRegexes [
-		<category: 'initialization'> 
-		titleRegex := '\\chapter\{([^}]*)\}' asRegex.
-		codeRegex := '^\\begin\{(code|example|script|classdef|methods?|numMethod)\}' asRegex.
-		endRegex := '^\\end\{' asRegex.
-	]
-	init [
-		<category: 'initialization'>
-		| fileName file codeStream |
 		title := '<unknown>'.	"default value"
 		codeStream := WriteStream on: String new.
 		fileName := name, '/', name, '.tex'.
 		file := FileStream open: fileName mode: FileStream read.
-		[ file atEnd ] whileFalse: [ | line |
+		[ file atEnd ] whileFalse: [
 			line := file nextLine.
-			line =~ titleRegex ifMatched: [ :result |
+			line =~ '\\chapter\{([^}]*)\}' ifMatched: [ :result |
 				self setTitle: (result at: 1)
 			] ifNotMatched: [
-				line =~ codeRegex ifMatched: [ :result |
+				line =~ '^\\begin\{(code|example|script|classdef|methods?|numMethod)\}'
+				ifMatched: [ :result |
 					self getCode: file to: codeStream
 				] ifNotMatched: [ ]
 			]
@@ -69,11 +54,17 @@ Object subclass: Chapter [
 		code := codeStream contents.
 		file close.
 	]
+	setTitle: aString [
+		<category: 'initialization'> 
+		title := aString.
+		title := title replacingAllRegex: '\\sq' with: 'Squeak'.
+		title := title replacingAllRegex: '\\st' with: 'Smalltalk'.
+	]
 	getCode: file to: codeStream [
 		<category: 'private'>
 		| line |
 		line := file nextLine.
-		[ line ~ endRegex ] whileFalse: [
+		[ line ~ '^\\end\{' ] whileFalse: [
 			"comment out --> incantation"
 			line := line replacingAllRegex: '\s*(-->[^"\r\n]*)' with: ' "%1" '.
 			"translate listings macros"
@@ -103,7 +94,7 @@ Chapter class extend [
 		<category: 'instance creation'>
 		| ch |
 		ch := super new.
-		ch setName: aName.
+		ch initWithName: aName.
 		^ ch
 	]
 ]
