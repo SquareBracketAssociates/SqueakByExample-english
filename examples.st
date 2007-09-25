@@ -3,7 +3,6 @@
 examples --- extract code examples from Squeak by Example LaTeX source
 
 Assumes you have Gnu Smalltalk with scripting syntax installed (at least v2.95c).
-(Applied Paolo Bonzini's patch eliminating need to send #asRegex to strings.)
 
 $Id$
 "
