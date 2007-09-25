@@ -799,7 +799,8 @@ The explorer is really useful when you need to explore a complex hierarchic stru
 
 The workspace pane of the object explorer works slightly differently to that of the inspector.
 \ct{self} is not bound to the root object, but rather to the object that is currently selected; the instance variables of the selected object are also in scope.
-\r{Maybe explain what "self" refers too in the inspector (always the object) and explorer (the selected item) (p. 154)}
+% ON: Fixed. Inadvertently left off the "l" in \lr
+\lr{Maybe explain what "self" refers too in the inspector (always the object) and explorer (the selected item) (p. 154)}
 
 To see the value of the explorer, let's use it to explore a deeply-nested structure of objects.
 
@@ -885,7 +886,7 @@ The inspector on the left shows the current object, that is, the object named \s
 As you select different stack frames, the identity of \self may change, and so will the contents of the 
 \self{}-inspector.
 If you click on \self in the bottom-left pane, you will see that \self is the interval \ct{(10 to: 1 by -1)}, which is what we expect.
-The workspace panes are not needed in the debugger's mini-inspectors because all of the variables are also in scope in the method pane; you should fell free to type or select expressions in this pane and evaluate them.  
+The workspace panes are not needed in the debugger's mini-inspectors because all of the variables are also in scope in the method pane; you should feel free to type or select expressions in this pane and evaluate them.  
 You can always \menu{cancel (l)} your changes using the menu or \short{\textit{l}}. 
 % apb: that lower-case-L is in italics so that it doesn't look like a 1 or a |
 \index{keyboard shortcut!cancel}
