@@ -1,0 +1,13 @@
+---------------------------------------------------------------------------
+ERRATA
+---------------------------------------------------------------------------
+2007-09-24 from Nick Ager
+My version is of 2007-09-13, I came across the following
+p 135 2nd para delete "Maybe explain what "self" ......item)
+p 138 3rd para "you should fell free" -> "you should feel free"
+p 196 Given the way the table is formated I found it difficult to  
+identify the various protocols.
+p 236 Last para "Once the morph handles mouse events, it you cannot  
+grab it" should read "Once the morph handles mouse events, you  
+cannot grab it"
+---------------------------------------------------------------------------
