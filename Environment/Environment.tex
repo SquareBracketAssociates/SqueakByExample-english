@@ -811,7 +811,7 @@ The workspace pane of the object explorer works slightly differently to that of 
 To see the value of the explorer, let's use it to explore a deeply-nested structure of objects.
 
 \dothis{Open a browser, and blue-click twice on the method pane to bring-up the Morphic halo on the \ct{PluggableListMorph} that is used to represent the list of messages. 
-Red-click on the \emph{debug} handle \debugHandle and select \menu{explore morph}
+Red-click on the \emph{debug} handle \debugHandle{} and select \menu{explore morph}
 from the menu that appears.  This will open an Explorer on the \clsind{PluggableListMorph} object that represents the method list on the screen.  
 Open the root object (by clicking in its triangle), open its \ct{submorphs}, and continue exploring the structure of the objects that underlie this Morph, as shown in \figref{explorePluggableListMorph}.}
 \index{red button}
@@ -1315,7 +1315,7 @@ In order to develop effectively with Squeak, it is important to invest some effo
   \item \emph{Monticello} is a tool for exporting, importing, versioning and sharing packages of classes and methods.
   A Monticello package consists of a system category, subcategories, and related methods protocols in other categories.
   \item The \emph{inspector} and the \emph{explorer} are two tools that are useful for exploring and interacting with live objects in your image.
-  You can even inspect tools by blue-clicking to bring up their morphic halo and selecting the debug handle (\debugHandle).
+  You can even inspect tools by blue-clicking to bring up their morphic halo and selecting the debug handle \debugHandle.
   \item The \emph{debugger} is a tool that not only lets you inspect the run-time stack of your program when an error is raised, but it also enables you to interact with all of the objects of your application, including the source code. In many cases you can modify your source code from the debugger and continue executing. The debugger is especially effective as a tool to support test-first development in tandem with SUnit (\charef{SUnit}).
   \item The \emph{process browser} lets you monitor, query and interact with the processes current running in your image.
   \item The \emph{method finder} and the \emph{message names browser} are two tools for locating methods. The first is more useful when you are not sure of the name, but you know the expected behavior. The second offers a more advanced browsing interface when you know at least a fragment of the name.
