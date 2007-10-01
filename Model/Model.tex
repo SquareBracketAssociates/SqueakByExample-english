@@ -110,7 +110,7 @@ Since \emph{classes are objects}, and \emph{every object is an instance of a cla
 A class whose instances are classes is called a \emphind{metaclass}.
 Whenever you create a class, the system automatically creates a metaclass for you.
 The metaclass defines the structure and behavior of the class that is its instance.
-99\% of the time you will not need to think about metaclasses, and may happily ignore them.
+99\% \damien{Did any of you verify it is 99\%? Maybe 'Most' would have been better than '99\%'} of the time you will not need to think about metaclasses, and may happily ignore them.
 (We will have a closer look at metaclasses in \charef{metaclasses}.)
 
 %---------------------------------------------------------
@@ -189,9 +189,9 @@ However, this is largely irrelevant to you as a programmer: you are concerned wi
 \end{center}
 \end{figure}
 
-For this reason, the browser \index{system browser} helps you to browse both class and metaclass as if they were a single thing with two ``sides'': the ``\index{system browser!instance side}'' and the ``\index{system browser!class side}'', as shown in \figref{Buttons}. Clicking 
+For this reason, the browser \index{system browser} helps you to browse both class and metaclass as if they were a single thing with two ``sides'': the ``\index{system browser!instance side}'' and the ``\index{system browser!class side}''\damien{something wrong here. The text between quotes is not generated}, as shown in \figref{Buttons}. Clicking 
 on the \button{instance} button browses the class \ct{Color}, \ie you browse the methods that are executed when messages
-are sent to an instance of \ct{Color}, like the color blue. Pressing the \button{class} button browses the class \ct{Color class}, \ie you see
+are sent to an instance of \ct{Color}, like the blue color. Pressing the \button{class} button browses the class \ct{Color class}, \ie you see
 the methods that will be executed when messages are sent to the class \ct{Color} itself.
 For example, \ct{Color blue} sends the message \ct{blue} to the class \clsind{Color}.
 You will therefore find the method \ct{blue} defined on the class side of \ct{Color}, not on the instance side.
@@ -239,7 +239,7 @@ A subclass will inherit those class instance variables, \emph{but it has its own
 Just as objects don't share instance variables, neither do classes and their subclasses share class instance variables.
 
 You could use a class instance variable called \ct{count} to keep track of how many instances you create of a given class.
-However, any subclass would have its own \ct{count} variable, so subclass instances would would be counted separately.
+However, any subclass would have its own \ct{count} variable, so subclass instances would be counted separately.
 
 \paragraph{Example: class instance variables are not shared with subclasses.}
 Suppose we define classes \ct{Dog} and \ct{Hyena}, where \ct{Hyena} inherits the class instance variable \ct{count} from \ct{Dog}.

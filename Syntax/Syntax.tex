@@ -46,7 +46,7 @@ The \ind{syntax} is designed so that program text can be read aloud as though it
 
 \noindent
 \sq's syntax is minimal.
-Essentially there is syntax only for \emph{sending messages} (\ie expressions) and \emph{declaring methods}.
+Essentially there is syntax only for \emph{sending messages} (\ie expressions) \damien{I don't think there is a syntax for declaring methods; in my opinion, this is just a feature of our browsers. That's why I'm commenting: and \emph{declaring methods}}.
 Expressions are built up from a very small number of  primitive elements.
 There are only 6 keywords, and there is no syntax for control structures or declaring new classes.
 Instead, nearly everything is achieved by sending messages to objects.
@@ -161,7 +161,7 @@ We can see examples of the various syntactic elements in \tabref{syntax}.
 
 \item[Assignment.]	\ct{:=} assigns an object to a variable.
 		Sometimes you will see $\leftarrow$ used instead.
-		Unfortunately, since this is not an \textsc{ascii} character, it will appears as an underscore unless
+		Unfortunately, since this is not an \textsc{ascii} character, it will appear as an underscore unless
 		you are using a special font.
 		So, \ct{x := 1} is the same as \ct{x _ 1} or \ct{x UNDERSCORE 1}. You should use \ct{:=} since the other representations have been deprecated since Squeak 3.9.
 		\index{assignment}
@@ -187,7 +187,7 @@ We can see examples of the various syntactic elements in \tabref{syntax}.
 	\index{message!binary}
 	\seeindex{binary message}{message, binary}
 
-\item[Keyword messages] consist of multiple keywords (like \ct{raisedTo: modulo:}), each ending with a colon and taking a single argument. 
+\item[Keyword messages] consist of multiple keywords (like \ct{raisedTo:modulo:}), each ending with a colon and taking a single argument. 
 In the expression \ct{2 raisedTo: 6 modulo: 10}, the \emphind{message selector} \ct{raisedTo:modulo:} takes the two arguments \ct{6} and \ct{10}, one following each colon.  We send the message to the receiver \ct{2}.
 	\index{message!keyword}
 	\seeindex{keyword message}{message, keyword}
@@ -200,7 +200,7 @@ In the expression \ct{2 raisedTo: 6 modulo: 10}, the \emphind{message selector} 
 	\seeindex{period}{statement separator}
 	\seeindex{\ct{.}}{statement separator}
 
-\item[Cascades.] Semicolons can be used to send a \emphind{cascade} of messages to a single receiver.  In \ct{Transcript show: 'hello'; cr} we first send the keyword message \ct{show: 'hello'} to the receiver \ct{Transcript}, and then we send the same receiver the unary message \ct{cr}.
+\item[Cascades.] Semicolons can be used to send a \emphind{cascade} of messages to a single receiver.  In \ct{Transcript show: 'hello'; cr} we first send the keyword message \ct{show: 'hello'} to the receiver \ct{Transcript}, and then we send the unary message \ct{cr} to the same receiver.
 	\seeindex{;}{cascade}
 
 \end{description}
@@ -226,7 +226,7 @@ For further details see \charef{model}.
 
 \ct{nil} is the undefined object.
 It is the unique instance of the class \clsind{UndefinedObject}. 
-Instance variables (and Class variables) are initialized to \ct{nil}.
+Instance variables, class variables and local variables are initialized to \ct{nil}.
 
 \ct{thisContext} is a pseudo-variable that represents the top frame of the run-time stack.
 In other words, it represents the currently executing \clsind{MethodContext} or \clsind{BlockContext}.
@@ -258,7 +258,6 @@ Binary message selectors consist of one or more characters from the following se
 % [\~\!\@\%\&\*\-\+\=\\\|\?\/\>\<\,]
 \on{It seems that 3 or more chars work fine, but it is not possible to have more than one ``-'' in a binary selector. Perhaps due to a conflict with parsing negative numbers?}
 \ab{That's right; $-$ is weird.}
-
 Keyword message selectors consist of a series of alphanumeric keywords, where each keyword starts with a lower-case letter and ends with a colon.
 \index{message!keyword}
 
@@ -291,7 +290,7 @@ Transcript cr
 \noindent
 This will send \ct{cr} to the \glbind{Transcript} object, then send it \ct{show: 'hello world'}, and finally send it another \ct{cr}.
 
-When a series of messages is being sent to the \emph{same} receiver, then this can expressed more succinctly as a \emphind{cascade}.
+When a series of messages is being sent to the \emph{same} receiver, then this can be expressed more succinctly as a \emphind{cascade}.
 The receiver is specified just once, and the sequence of messages is separated by semi-colons:
 
 \begin{code}{}
@@ -320,7 +319,7 @@ String>>>lineCount
    where every cr adds one line."
    | cr count |
    cr := Character cr.
-   count := 1  min: self size.
+   count := 1 min: self size.
    self do:
       [:c | c == cr ifTrue: [count := count + 1]].
    ^ count
@@ -367,7 +366,7 @@ A two-parameter block must be sent \mthind{BlockClosure}{value:value:}, and so o
 If you have a block with more than four parameters, you must use \mthind{BlockClosure}{valueWithArguments:} and pass the arguments in an array.
 (A block with a large number of parameters is often a sign of a design problem.)
 
-Blocks may also declare local variables, which are surround by vertical bars, just like local variable declarations in a method.
+Blocks may also declare local variables, which are surrounded by vertical bars, just like local variable declarations in a method.
 Locals are declared after any arguments:
 \index{variable!declaration}
 
@@ -461,15 +460,22 @@ n := 1.
 n --> 1024
 \end{code}
 
-We can also send the message \mthind{Number}{to:do:} to an number which then acts as the initial value of a loop counter.
+We can also send the message \mthind{Number}{to:do:} to a number which then acts as the initial value of a loop counter.
 The two arguments are the upper bound, and a block that takes the current value of the loop counter as its argument:
 
 \needlines{4}
-\begin{code}{@TEST | n |}
-n := 0.
-1 to: 10 do: [ :counter | n := n + counter ].
-n --> 55
+\begin{code}{@TEST | result |}
+result := String new.
+1 to: 10 do: [:n | result := result, n printString, ' '].
+result --> '1 2 3 4 5 6 7 8 9 10 '
 \end{code}
+
+\damien{I think the previous example that I've just added is clearer than the one which is commented here.}
+% \begin{code}{@TEST | n |}
+% n := 0.
+% 1 to: 10 do: [ :counter | n := n + counter ].
+% n --> 55
+% \end{code}
 
 \paragraph{High-Order Iterators.}
 Collections comprise a large number of different classes, many of which support the same protocol.
@@ -482,11 +488,18 @@ An \clsind{Interval} is a collection that lets one iterate over a sequence of nu
 Since it is a collection, we can send the message \ct{do:} to it.
 The argument is a block that is evaluated for each element of the collection.
 
-\begin{code}{@TEST | n |}
-n := 0.
-(1 to: 10) do: [ :element | n := n + element ].
-n --> 55
+\begin{code}{@TEST | result |}
+result := String new.
+(1 to: 10) do: [:n | result := result, n printString, ' '].
+result --> '1 2 3 4 5 6 7 8 9 10 '
 \end{code}
+
+\damien{Again, I think the previous example is clearer than the one which is commented here.}
+% \begin{code}{@TEST | n |}
+% n := 0.
+% (1 to: 10) do: [ :element | n := n + element ].
+% n --> 55
+% \end{code}
 
 \ct{collect:} builds a new collection of the same size, transforming each element.
 \begin{code}{@TEST}
@@ -515,7 +528,7 @@ Sums and products are typical examples.
 \noindent
 This is equivalent to \ct{0+1+2+3+4+5+6+7+8+9+10}.
 
-More about collections and streams can be found in  \charef{collections} and \charef{streams}.
+More about collections can be found in  \charef{collections}.
 
 %=================================================================
 \section{Primitives and pragmas}
@@ -563,7 +576,7 @@ If the primitive fails, the expression \ct{super + aNumber} will be evaluated an
 
 
 Since \sq 3.9, the angle bracket syntax is also used for method annotations called pragmas.
-\sd{we should give an example}\ab{Please do!  Is don't know about these.}
+\sd{we should give an example}\ab{Please do!  Is don't know about these.}\damien{it's the third time we talk about pragmas without saying what they are and how to use them.}
 
 %=================================================================
 \section{Chapter summary}

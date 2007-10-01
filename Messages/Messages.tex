@@ -30,7 +30,7 @@
 \chapter{Understanding message syntax}
 \label{cha:understanding}
 
-Although \st's message syntax is extremely simple, it is unconventional and can take some getting used to.
+Although \st's message syntax is extremely simple, it is unconventional and can take some time getting used to.
 This chapter offers some guidance to help you get acclimatized to this special syntax for sending messages.
 If you already feel comfortable with the syntax, you may choose the skip this chapter, or come back to it later.
 
@@ -191,8 +191,8 @@ Each keyword takes an argument. Hence \ct{r:g:b:} is a method with three argumen
  would be written \ct{Color.rgb(1,0,0)}.}
 
 \begin{code}{@TEST | nums |}
-1 to: 10                        --> (1 to: 10)  "create an interval"
-Color r: 1 g: 0 b: 0       --> Color red  "create a new color"
+1 to: 10                        --> (1 to: 10)  "creates an interval"
+Color r: 1 g: 0 b: 0       --> Color red  "creates a new color"
 12 between: 8 and: 15 --> true
 
 nums := Array newFrom: (1 to: 5).
@@ -215,7 +215,7 @@ The three kinds of messages each have different precedence, which allows them to
 \end{enumerate}
 \index{message!evaluation order}
 
-These rules lead to a very natural reading order. Now if you want to be sure that your messages are sent in the order that you want you can always put more parentheses as shown in \figref{uKeyUn}. In this  figure, the message \ct{yellow} is an unary message and the message \ct{color:} a keyword message, therefore the expression \ct{Color yellow} is sent first. However as expressions in parentheses are sent first putting (unnecessary) parentheses around \ct{Color yellow} just emphasizes that it will be sent first. The rest of the section illustrates each of these points.
+These rules lead to a very natural reading order. Now if you want to be sure that your messages are sent in the order that you want you can always put more parentheses as shown in \figref{uKeyUn}. In this  figure, the message \ct{yellow} is an unary message and the message \ct{color:} a keyword message, therefore the expression \ct{Color yellow} is sent first. However as expressions in parentheses are sent first, putting (unnecessary) parentheses around \ct{Color yellow} just emphasizes that it will be sent first. The rest of the section illustrates each of these points.
 
 \begin{figure}[ht]
 \ifluluelse
@@ -250,7 +250,7 @@ The following example, which is a bit more complex (!), offers a nice illustrati
 [:aClass | aClass methodDict keys select: [:aMethod | (aClass>>aMethod) isAbstract ]] value: Boolean --> an IdentitySet(#or: #| #and: #& #ifTrue: #ifTrue:ifFalse: #ifFalse: #not #ifFalse:ifTrue:)
 \end{code}
 \noindent
-Here we want to know which methods of the \ct{Boolean} class are abstract.
+Here we want to know which methods of the \ct{Boolean} class are abstract\footnote{In fact, we could also have written the equivalent but simpler expression: \ct{Boolean methodDict select: #isAbstract thenCollect: #selector}}\damien{I've added this footnote, just remove it if you don't like it :-)}.
 We ask some argument class, \ct{aClass}, for the keys of its method dictionary, and select those methods of that class that are abstract.
 Then we bind the argument \ct{aClass} to the concrete value \ct{Boolean}.
 We need parentheses only to send the binary message \ct{>>}, which selects a method from a class, before sending the unary message \mbox{\ct{isAbstract}} to that method. The result shows us which methods must be implemented by \ct{Boolean}'s concrete subclasses \ct{True} and \ct{False}.
@@ -404,7 +404,7 @@ Now we know how messages of different kinds or priorities are handled. The final
 
 %-------------------------------------------------------------
 \subsection{Arithmetic inconsistencies}
-The message composition rules are simple but they result in inconsistency for the evaluation of arithmetic expressions expresed in terms of binary messages. Here we see the common situations where extra parentheses are needed. 
+The message composition rules are simple but they result in inconsistency for the evaluation of arithmetic expressions expressed in terms of binary messages. Here we see the common situations where extra parentheses are needed. 
 
 \begin{code}{@TEST}
 3 + 4 * 5      --> 35    "(not 23)  Binary messages sent from left to right"
@@ -493,9 +493,9 @@ Often beginners have problems understanding when they need to add parentheses. L
 
 %-------------------------------------------------------------
 \subsection{Parentheses or not?}
-The characters \ct{[}, \ct{]}, and \ct{(}, \ct{)} 
+The characters \ct{[}, \ct{]}, \ct{(} and \ct{)} 
 delimit distinct areas. Within such an area, a keyword message is the longest sequence of words terminated  by \ct{:} that is not cut by the characters \ct{.},  or \ct{;}. 
-When the characters \ct{[}, \ct{]}, and \ct{(}, \ct{)} surround some words with colons, these words participate in the keyword message \emph{local} to the area defined.
+When the characters \ct{[}, \ct{]}, \ct{(} and \ct{)} surround some words with colons, these words participate in the keyword message \emph{local} to the area defined.
 
 In this example, there are two distinct keyword messages:  \ct{rotatedBy:magnify:smoothing:} and \ct{at:put:}.
 
@@ -509,9 +509,9 @@ aDict
 \end{code}
 
 \important{
-The characters \ct{[}, \ct{]}, and \ct{(}, \ct{)} delimit distinct areas. Within such an area, 
+The characters \ct{[}, \ct{]}, \ct{(} and \ct{)} delimit distinct areas. Within such an area, 
 a keyword message is the longest sequence  of words terminated by \ct{:} that is not cut by the characters \ct{.},  or \ct{;}. 
-When the characters \ct{[}, \ct{]}, and \ct{(}, \ct{)} surround some words with colons, these words participate in the keyword message local to the area defined.}
+When the characters \ct{[}, \ct{]}, \ct{(} and \ct{)} surround some words with colons, these words participate in the keyword message local to the area defined.}
 
 \on{Sounds terribly complicated.}
 
@@ -541,7 +541,7 @@ The basic principle is that you should use \ct{[ ]} when you do not know how man
 Hence the conditional branches of \ct{ifTrue:} or \ct{ifTrue:ifFalse:} require blocks. Following the same principle both the receiver and the argument of a \ct{whileTrue:} message require the use of square brackets since we do not know how many times either the receiver or the argument should be evaluated.
 
 Parentheses, on the other hand, only affect the order of sending messages.
-No object is created, so in \lct{(\emph{expression})}, the \lct{\emph{expression}} will \emph{always} be evaluated exactly once (assuming the sounding code is evaluated once).
+No object is created, so in \lct{(\emph{expression})}, the \lct{\emph{expression}} will \emph{always} be evaluated exactly once (assuming the sounding\damien{don't you mean surrounding??} code is evaluated once).
 
 \begin{code}{}
 [ x isReady ] whileTrue: [ y doSomething ]   "both the receiver and the argument must be blocks"
@@ -551,7 +551,7 @@ No object is created, so in \lct{(\emph{expression})}, the \lct{\emph{expression
 
 %=============================================================
 \section{Expression sequences}
-Expressions (\ie messages sends, assignments ...) separated by periods are evaluated in sequence.
+Expressions (\ie messages sends, assignments\dots) separated by periods are evaluated in sequence.
 Note that there is no period between a variable definition and the following expression.
 The value of a sequence is the value of the last expression. The values returned by all the 
 expressions except the last one are ignored. Note that the period is a \subind{statement}{separator} and not a terminator. Therefore a final period is optional.
@@ -601,7 +601,7 @@ Point new setX: 25 setY: 35; isZero --> false
 \item Unary messages are messages that do not require any argument.\\
 They are of the form of \lct{receiver \textbf{selector}}.
 
-\item Binary messages are messages that involve two objects, the receiver and another object \emph{and} whose selector is composed of  one or two characters from the following list: \ct{+}, \ct{-}, \ct{*}, \ct{/}, \ct{|}, \texttt{\&}, \ct{=}, \ct{>}, \ct{<}, \texttt{\~}, and \ct{@}.
+\item Binary messages are messages that involve two objects, the receiver and another object \emph{and} whose selector is composed of  one or more characters from the following list: \ct{+}, \ct{-}, \ct{*}, \ct{/}, \ct{|}, \texttt{\&}, \ct{=}, \ct{>}, \ct{<}, \texttt{\~}, and \ct{@}.
 They are of the form: \lct{receiver \textbf{selector} argument}
 \item Keyword messages are messages that involve more than one object and that contain at least one colon character (\ct{:}). \\
 They are of the form:
@@ -619,5 +619,14 @@ They are of the form:
 %=================================================================
 \ifx\wholebook\relax\else\end{document}\fi
 %=================================================================
+
+%=================================================================
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-PDF-mode: t
+%%% ispell-local-dictionary: "english"
+%%% End:
 
 %---------------------------------------------------------
