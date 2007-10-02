@@ -201,7 +201,7 @@ nums --> #(6 2 3 4 5)
 \end{code}
 % ON: Changed to real examples that we can test
 
-\important{Keyword based  messages are messages that require one or more arguments. Their selector consists of one or more keywords each ending in a colon (\ct{:}). They follow the syntactic template: \\
+\important{Keyword based  messages are messages that require one or more arguments. Their selector consists of one or more keywords each ending in a colon (\lct{:}). They follow the syntactic template: \\
 \lct{receiver \textbf{selectorWordOne:} argumentOne \textbf{wordTwo:} argumentTwo}}
 
 %=============================================================
@@ -509,15 +509,15 @@ aDict
 \end{code}
 
 \important{
-The characters \ct{[}, \ct{]}, \ct{(} and \ct{)} delimit distinct areas. Within such an area, 
-a keyword message is the longest sequence  of words terminated by \ct{:} that is not cut by the characters \ct{.},  or \ct{;}. 
-When the characters \ct{[}, \ct{]}, \ct{(} and \ct{)} surround some words with colons, these words participate in the keyword message local to the area defined.}
+The characters \lct{[}, \lct{]}, \lct{(} and \lct{)} delimit distinct areas. Within such an area, 
+a keyword message is the longest sequence  of words terminated by \lct{:} that is not cut by the characters \lct{.},  or \lct{;}. 
+When the characters \lct{[}, \lct{]}, \lct{(} and \lct{)} surround some words with colons, these words participate in the keyword message local to the area defined.}
 
 \on{Sounds terribly complicated.}
 
 \paragraph{Hints.} If you have problems with these precedence rules, you may start simply by putting parentheses whenever you want to distinguish two messages having the same precedence.
 
-The following expression does not require parentheses because the expression  \ct{x isNil} is unary hence is sent prior to the keyword message \lct{ifTrue:}.
+The following expression does not require parentheses because the expression  \ct{x isNil} is unary hence is sent prior to the keyword message \ct{ifTrue:}.
 \begin{code}{}
 (x isNil)
    ifTrue:[...]
