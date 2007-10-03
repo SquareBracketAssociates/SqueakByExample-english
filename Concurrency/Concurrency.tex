@@ -1,0 +1,113 @@
+% $Author: oscar $
+% $Date: 2007-09-06 21:36:20 +0200 (Thu, 06 Sep 2007) $
+% $Revision: 11637 $
+%=================================================================
+\ifx\wholebook\relax\else
+% --------------------------------------------
+% Lulu:
+	\documentclass[a4paper,10pt,twoside]{book}
+	\usepackage[
+		papersize={6in,9in},
+		hmargin={.75in,.75in},
+		vmargin={.75in,1in},
+		ignoreheadfoot
+	]{geometry}
+	\input{../common.tex}
+	\setboolean{lulu}{true}
+% --------------------------------------------
+% A4:
+%	\documentclass[a4paper,11pt,twoside]{book}
+%	\input{../common.tex}
+%	\usepackage{a4wide}
+% --------------------------------------------
+    \graphicspath{{figures/} {../figures/}}
+	\begin{document}
+\fi
+%=================================================================
+%\renewcommand{\nnbb}[2]{} % Disable editorial comments
+\sloppy
+%=================================================================
+\chapter{Concurrency}\label{cha:basic}
+
+Squeak as any Smalltalk is a sequential language in the sense that at one point in time there is only 
+one computation is carried on. However, Smalltalk has the ability to run programs concurrently by interleaving their 
+executions. The idea behind Smalltalk was to propose a complete OS and as such a Smalltalk run-time offers the possibility to execute different threads that are scheduled by the Smalltalk thread scheduler. 
+
+Smalltalk's concurrency is \emph{collaborative} and \emph{preemptive}. It is preemptive in the sense that a process with higher priority can interrupt the current thread running. It is collaborative in the sense that thread of same priority should collaborate, the current thread should explicit release the control to give a chance to the other processes of the same priority can get executed by the scheduler. 
+
+In this chapter we present how processes are created and their lifetime. We will show how the process scheduler manages the system. We will present one basic abstraction proposed by Squeak:  Semaphore and the critical section. 
+
+The subsection chapter will present the other abstractions offered by Squeak: Monitor, Delay...
+
+Note in the current version of Squeak, the Transcript is not thread-safe. 
+
+%=================================================================
+\section{Processes}
+
+
+\begin{figure}
+\includegraphics[width=10cm]{ProcessState}
+\end{figure}
+
+
+In Smalltalk, threads are called process, instance of the class \clsindmain{Process}.
+
+
+
+For all intents and purposes, \clsindmain{Object} is the root of the inheritance hierarchy. Actually, in Squeak the true root of the hierarchy is \clsind{ProtoObject}, which is used to define minimal entities that masquerade as objects, but we can ignore this point for the time being.
+% (more on this later in the chapter on reflection).
+
+\ct{Object} can be found in the \scatind{Kernel-Objects} category. Astonishingly, there are some 400 methods to be found here (including extensions).  In other words, every class that you define will automatically provide these 400 methods, whether you know what they do or not. Note that some of the methods should be removed and new versions of Squeak may remove some of the superfluous methods. 
+
+\sd{I do not like to quote something that can change and that people can find simply in the image but let us keep it for now.}
+The class comment for the \ct{Object} states:
+
+\ct{Object>>>printOn:} is very likely one of the methods that you will most frequently override. This method takes as its argument a \clsind{Stream} on which a \clsind{String} representation of the object will be written. The default implementation simply write the class name preceded by ``\ct{a}'' or ``\ct{an}''. \ct{Object>>>printString} returns the \ct{String} that is written:
+
+For example, the class \clsind{Browser} does not redefine the method \ct{printOn:} and sending the message printString to an instance executes the methods defined in \ct{Object}. 
+\begin{code}{@TEST}
+Browser new printString --> 'a Browser'
+\end{code}
+
+The class \ct{TTCFont} shows an example of \mthind{TTCFont}{printOn:}
+specialization. It prints the name of the class followed by the family
+name, the size and the subfamily name of the font as shown by the code
+below which prints an instance of the class.
+
+\begin{method}[zork]{printOn: redefinition.}
+TTCFont>>>printOn: aStream
+        aStream nextPutAll: 'TTCFont(';
+		nextPutAll: self familyName; space;
+		print: self pointSize; space;
+		nextPutAll: self subfamilyName;
+		nextPut: $)
+\end{method}\ignoredollar$
+
+\begin{code}{@TEST}
+TTCFont allInstances anyOne printString --> 'TTCFont(BitstreamVeraSans 6 Bold)'
+\end{code}
+
+\begin{method}{Hash must be reimplemented for complex numbers}
+Complex>>>hash
+    "Hash is reimplemented because = is implemented."
+    ^ real hash bitXor: imaginary hash.
+\end{method}
+
+
+%=============================================================
+\ifx\wholebook\relax\else
+   \bibliographystyle{jurabib}
+   \nobibliography{scg}
+   \end{document}
+\fi
+%=============================================================
+
+%-----------------------------------------------------------------
+
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-PDF-mode: t
+%%% ispell-local-dictionary: "english"
+%%% End:
