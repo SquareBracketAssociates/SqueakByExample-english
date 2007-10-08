@@ -372,7 +372,7 @@ In fact, focussing two browsers on the same method and selecting \menu{byteCodes
 \subsubsection{Refactoring}
 
 \index{system browser!refactor button}
-Did you notice the small \button{R} at the end of the button bar?\footnote{That is, you will notice this button if you first load the AST and RefactoringBrowser packages from SqueakSource.} 
+Did you notice the small \button{R} at the end of the button bar?\footnote{That is, you will notice this button if you first load the AST and RefactoringBrowser packages from SqueakSource or use the \emph{Squeak-dev} image.} 
 Although unobtrusive, this button gives access to one of the most powerful and important features of the Smalltalk environment.  
 Clicking on \button{R} gives you access to a hierarchy of menus for refactoring your code.  
 The same refactoring engine is also available in several other ways, for example, through the \ind{yellow button} menu in the class, method and code panes.
@@ -422,7 +422,7 @@ Unfortunately, the meaning of the term \ind{package} has changed since the packa
 The Squeak community is in the process of developing a whole new family of browsers based on a new, highly customizable framework called the \emphind{OmniBrowser}.  The implementation of the OmniBrowser is worth looking at as a good example of object-oriented design, \ab{and I'ld like to add a chapter on it somewhere, perhaps starting with parts of the excellent document written by Niklaus Haldimann on the classbox browser} but from the outside, most of the OmniBrowser-based tools look very similar to the ones that we have just described.  
 The main enhancement that you will notice in the Omni System Browser is the addition of \emph{virtual protocols}.
 \lr{"Virtual Protocols" are a non-default extension to OB (p. 140)}
-In addition to the traditional programmer-defined protocols, each class has a number of virtual protocols defined on it by definitional rules.  For example, the \prot{-{}-supersend-{}-} protocol includes all of the methods that send to \super, while the \prot{-{}-required-{}-} protocol lists all of the messages that are sent by the methods in the current class but not defined by it or by its superclasses.
+In addition to the traditional programmer-defined protocols, each class has a number of virtual protocols defined on it by definitional rules.  For example, the \prot{-{}-supersend-{}-} protocol includes all of the methods that send to \super, while the \prot{-{}-required-{}-} protocol lists all of the messages that are sent by the methods in the current class or its superclasses but not defined.
 \protindex{supersend}
 \protindex{required}
 
@@ -502,10 +502,10 @@ Date>>>asSQL
 \end{code}
 
 \noindent
-These methods belong in the same package as the classes in the 
+These methods belong in \damien{don't we say 'belong to'?} the same package as the classes in the 
 categories \ct{SqueakLink-Connections} and \ct{SqueakLink-Model}. 
 But clearly the whole of class \ct{Object} does not belong in your package! 
-So you need a way of putting certain \emph{methods} in a one package, even though the rest of the class is in another package.
+So you need a way of putting certain \emph{methods} in a package, even though the rest of the class is in another package.
 \index{package!extension}
 \seeindex{extension package}{package, extension}
 

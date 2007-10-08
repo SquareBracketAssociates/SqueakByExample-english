@@ -496,7 +496,7 @@ Object subclass: #Behavior
 	category: 'Kernel-Classes'
 \end{classdef}
 \noindent
-Here we see that the method \ct{basicAddTraitSelector:withMethod:} defined in the trait \ct{TPureBehavior} has been renamed to \ct{addTraitSelector:withMethod:}.
+Here we see that the method \ct{addTraitSelector:withMethod:} defined in the trait \ct{TPureBehavior} has been aliased to \ct{basicAddTraitSelector:withMethod:}.
 Support for traits is currently being added to the browsers.
 
 %=========================================================
@@ -1015,7 +1015,7 @@ Everything is an object, and pretty much everything happens by message sends.
   \item There are three kinds of shared variables.
   		Global variables are accessible everywhere in the system.
 		Class variables are shared between a class, its subclasses and its instances.
-		Pool variables are shared between a select set of classes.
+		Pool variables are shared between a selected set of classes.
 		You should avoid shared variables as much as possible.
 
 \end{itemize}
