@@ -12,7 +12,7 @@ p 138: 3rd para "you should fell free" -> "you should feel free"
 
 p 236: Last para "Once the morph handles mouse events, it you cannot grab it"
 	should read: "Once the morph handles mouse events, you cannot grab it"
-	[2007-09-24 Nick Ager; fixed -- on]
+	[2007-09-24 Nick Ager; fixed --on]
 
 p 269: Smalltalk allClasses select: [:each | each hasTraitComposition]
 	does not work as advertised
