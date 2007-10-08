@@ -1,18 +1,14 @@
 ---------------------------------------------------------------------------
 ERRATA
 ---------------------------------------------------------------------------
+2007-10-06 Luca Bettosini
+p 34 "Type the expression SBCell new and inspect it." should be "SBECell"
+[fixed --on]
+---------------------------------------------------------------------------
 2007-09-25 from Nick Ager
-Example" I tried:
-    Smalltalk allClasses select: [:each | each hasTraitComposition]
-which gave:
-an OrderedCollection(ActionSequence BalloonBezierSimulation BalloonEngine
-BalloonEngineConstants BasicRequestor Behavior BrowserProvider
-....WorldMenuProvider XMLTokenizer ZipConstants ZipFileConstants)
-However browsing to a random class say "ActionSquence", doesn't show any
-evidence of Trait composition. Is this a problem with the current browser?
-Also is there a way to browse a Trait say TPureBehavior
-= Klaus Witzel:
-You're right, (TraitComposition allInstances reject: [:each | each isEmpty]) size gives just 17 in my squeak-web image but TraitComposition allInstances size reports 325. Could you report your find on bugs.squeak.org, this should be investigated if empty TraitComposition should really populate the image. Perhaps #traitComposition was used unconditional.
+p 269
+Smalltalk allClasses select: [:each | each hasTraitComposition]
+Does not work as advertised [bug -- to be fixed]
 ---------------------------------------------------------------------------
 2007-09-24 from Nick Ager
 My version is of 2007-09-13, I came across the following
