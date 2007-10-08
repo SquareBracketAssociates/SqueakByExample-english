@@ -1,22 +1,20 @@
 ---------------------------------------------------------------------------
-ERRATA
+ERRATA to version 2007-09-13
 ---------------------------------------------------------------------------
-2007-10-06 Luca Bettosini
-p 34 "Type the expression SBCell new and inspect it." should be "SBECell"
-[fixed --on]
----------------------------------------------------------------------------
-2007-09-25 from Nick Ager
-p 269
-Smalltalk allClasses select: [:each | each hasTraitComposition]
-Does not work as advertised [bug -- to be fixed]
----------------------------------------------------------------------------
-2007-09-24 from Nick Ager
-My version is of 2007-09-13, I came across the following
-p 135 2nd para delete "Maybe explain what "self" ......item) [fixed --on]
-p 138 3rd para "you should fell free" -> "you should feel free" [fixed --on]
-p 196 Given the way the table is formated I found it difficult to  
-identify the various protocols. [*** to do ...]
-p 236 Last para "Once the morph handles mouse events, it you cannot  
-grab it" should read "Once the morph handles mouse events, you  
-cannot grab it" [fixed -- on]
+p 34: "Type the expression SBCell new and inspect it." should be "SBECell"
+	[2007-10-06 Luca Bettosini; fixed --on]
+
+p 135: 2nd para delete "Maybe explain what "self" ......item)
+	[2007-09-24 Nick Ager; fixed --on]
+
+p 138: 3rd para "you should fell free" -> "you should feel free"
+	[2007-09-24 Nick Ager; fixed --on]
+
+p 236: Last para "Once the morph handles mouse events, it you cannot grab it"
+	should read: "Once the morph handles mouse events, you cannot grab it"
+	[2007-09-24 Nick Ager; fixed -- on]
+
+p 269: Smalltalk allClasses select: [:each | each hasTraitComposition]
+	does not work as advertised
+	[2007-09-25 Nick Ager; fixed --on]
 ---------------------------------------------------------------------------

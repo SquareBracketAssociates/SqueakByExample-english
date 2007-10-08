@@ -155,8 +155,11 @@ How do I find which classes use traits?
 \end{faq}
 \answer
 \begin{code}{}
-Smalltalk allClasses select: [:each | each hasTraitComposition ]
+Smalltalk allClasses select: [:each | each hasTraitComposition and: [each traitComposition notEmpty ]]
 \end{code}
+% Should be:
+% Smalltalk allClasses select: [:each | each hasTraitComposition ]
+% But this is broken for some reason!
 
 %=================================================================
 \section{Using Monticello and SqueakSource}
