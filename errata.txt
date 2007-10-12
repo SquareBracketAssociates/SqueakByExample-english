@@ -4,6 +4,11 @@ ERRATA to version 2007-09-13
 p 34: "Type the expression SBCell new and inspect it." should be "SBECell"
 	[2007-10-06 Luca Bettosini; fixed --on]
 
+p 84: "For this reason, the browser helps you to browse both class and meta-class
+	as if they were a single thing with two "sides": the "[instance side]" and
+	the "[class side]"
+	[2007-10-11 Mike Roberts; fixed --on]
+
 p 86: "However, any subclass would have its own count variable, so subclass
 	instances would [would] be counted separately."
 	[2007-10-11 Mike Roberts; fixed --on]
