@@ -9,3 +9,7 @@ PoolQueue>>hash
 	^ member hash bitXor: processor hash
 (See page ...)
 ---------------------------------------------------------------------------
+Q How can I recover changes after a crash?
+Q How do I kill a process?
+Q How do I obtain/simulate a real block closure?
+---------------------------------------------------------------------------
