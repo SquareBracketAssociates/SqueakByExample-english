@@ -4,6 +4,10 @@ ERRATA to version 2007-09-13
 p 34: "Type the expression SBCell new and inspect it." should be "SBECell"
 	[2007-10-06 Luca Bettosini; fixed --on]
 
+p 70: Fig 4.4 caption is from figure 4.3.  It should read:
+	"Binary messages are sent before keyword messages"
+	[2007-10-13 Lea Hänsenberger; fixed --on]
+
 p 84: "For this reason, the browser helps you to browse both class and meta-class
 	as if they were a single thing with two "sides": the "[instance side]" and
 	the "[class side]"
