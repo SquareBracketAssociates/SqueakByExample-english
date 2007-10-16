@@ -29,6 +29,8 @@ Understanding Message Syntax -- DONE
 
 [DEVELOPING IN SQUEAK]
 The Smalltalk Object Model -- DONE
+	- explain more why setters and getters are bad
+	- forwrad ref to Idioms chapter?
 The Squeak Programming Environment -- DONE (mostly)
 	- add more exercises
 	- Write more about Monticello -> Cassou?

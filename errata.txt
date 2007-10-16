@@ -13,6 +13,9 @@ p 86: "However, any subclass would have its own count variable, so subclass
 	instances would [would] be counted separately."
 	[2007-10-11 Mike Roberts; fixed --on]
 
+p 94: "providing setter and getter methods for all the instance variables of an
+	object does is not good object-oriented style" [delete "does"; fixed --on]
+
 p 135: 2nd para delete "Maybe explain what "self" ......item)
 	[2007-09-24 Nick Ager; fixed --on]
 
