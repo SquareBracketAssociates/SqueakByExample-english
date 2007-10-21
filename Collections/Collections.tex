@@ -652,10 +652,10 @@ Another useful method is \ct{findString:}.
 More advanced pattern matching facilities offering the capabilities of Perl are also available, but they are not included in the standard image\footnote{We strongly recommend Vassili Bykov's \ind{regular expression package}, available at \url{www.squeaksource.com/Regex.html}.
 \index{Bykov, Vassili}}.
 
-\paragraph{Some tests on strings.} The  following examples illustrate the use of \mthind{String}{isEmpty}, \mthind{String}{includes:} and \mthind{String}{anySatisfy:} which are further messages defined not only on Strings but more generally on collections. 
+\paragraph{Some tests on strings.} The  following examples illustrate the use of \mbox{\mthind{String}{isEmpty},} \mthind{String}{includes:} and \mthind{String}{anySatisfy:} which are further messages defined not only on Strings but more generally on collections. 
 
 \begin{code}{@TEST}
-'Hello' isEmpty.
+'Hello' isEmpty --> false
 'Hello' includes: $a --> false
 'JOE' anySatisfy: [:c | c isLowercase] --> false
 'Joe' anySatisfy: [:c | c isLowercase] --> true

@@ -26,6 +26,9 @@ p 135: 2nd para delete "Maybe explain what "self" ......item)
 p 138: 3rd para "you should fell free" -> "you should feel free"
 	[2007-09-24 Nick Ager; fixed --on]
 
+p 208: First string test should read "'Hello' isEmpty --> false"
+	[2007-10-21; fixed --on]
+
 p 236: Last para "Once the morph handles mouse events, it you cannot grab it"
 	should read: "Once the morph handles mouse events, you cannot grab it"
 	[2007-09-24 Nick Ager; fixed --on]
