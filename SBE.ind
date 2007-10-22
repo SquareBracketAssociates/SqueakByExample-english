@@ -103,10 +103,10 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{isVariable}, 
 		\hyperpage{260}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{new}, 
-		\hyperpage{61}, \hyperpage{184}, \hyperpage{258}, 
+		\hyperpage{60}, \hyperpage{184}, \hyperpage{258}, 
 		\hyperpage{260}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{new:}, 
-		\hyperpage{61}, \hyperpage{260}
+		\hyperpage{60}, \hyperpage{260}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{selectors}, 
 		\hyperpage{255}, \hyperpage{260}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{subclasses}, 
@@ -148,13 +148,13 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{and:}, 
 		\hyperpage{192}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{ifFalse:}, 
-		\hyperpage{59}, \hyperpage{191}
+		\hyperpage{58}, \hyperpage{191}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{ifFalse:ifTrue}, 
 		\hyperpage{191}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{ifTrue:}, 
-		\hyperpage{59}, \hyperpage{191}
+		\hyperpage{58}, \hyperpage{191}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{ifTrue:ifFalse:}, 
-		\hyperpage{59}, \hyperpage{190}
+		\hyperpage{58}, \hyperpage{190}
   \item BorderedMorph
     \subitem (class), \hyperpage{36}, \hyperpage{241}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{fullPrintOn:}, 
@@ -276,7 +276,7 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{at:put:}, 
 		\hyperpage{199}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{collect:}, 
-		\hyperpage{60}, \hyperpage{196}, \hyperpage{199}, 
+		\hyperpage{59}, \hyperpage{196}, \hyperpage{199}, 
 		\hyperpage{211}
     \subitem comma operator, \hyperpage{25}, \hyperpage{207}, 
 		\hyperpage{223}
@@ -284,11 +284,11 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{count:}, 
 		\hyperpage{213}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{detect:}, 
-		\hyperpage{60}
+		\hyperpage{59}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{detect:ifNone:}, 
 		\hyperpage{196}, \hyperpage{212}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{do:}, 
-		\hyperpage{60}, \hyperpage{168}, \hyperpage{196}, 
+		\hyperpage{59}, \hyperpage{168}, \hyperpage{196}, 
 		\hyperpage{199}, \hyperpage{209}, \hyperpage{211}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{do:separatedBy:}, 
 		\hyperpage{210}
@@ -299,7 +299,7 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{includes:}, 
 		\hyperpage{196}, \hyperpage{205}, \hyperpage{213}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{inject:into:}, 
-		\hyperpage{60}, \hyperpage{196}, \hyperpage{212}
+		\hyperpage{59}, \hyperpage{196}, \hyperpage{212}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{intersection:}, 
 		\hyperpage{205}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{isEmpty}, 
@@ -308,11 +308,11 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{occurrencesOf:}, 
 		\hyperpage{196}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{reject:}, 
-		\hyperpage{60}, \hyperpage{196}, \hyperpage{212}
+		\hyperpage{59}, \hyperpage{196}, \hyperpage{212}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{remove:}, 
 		\hyperpage{183}, \hyperpage{199}, \hyperpage{214}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{select:}, 
-		\hyperpage{60}, \hyperpage{196}, \hyperpage{199}, 
+		\hyperpage{59}, \hyperpage{196}, \hyperpage{199}, 
 		\hyperpage{212}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{size}, 
 		\hyperpage{199}
@@ -553,11 +553,11 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{atRandom}, 
 		\hyperpage{187}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{bitAnd:}, 
-		\hyperpage{61}
+		\hyperpage{60}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{bitOr:}, 
-		\hyperpage{61}
+		\hyperpage{60}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{bitShift:}, 
-		\hyperpage{61}
+		\hyperpage{60}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{factorial}, 
 		\hyperpage{186, 187}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{gcd:}, 
@@ -569,7 +569,7 @@
   \item IntegerArray
     \subitem (class), \hyperpage{197}
   \item Interval
-    \subitem (class), \hyperpage{60}, \hyperpage{197--199}, 
+    \subitem (class), \hyperpage{59}, \hyperpage{197--199}, 
 		\hyperpage{202}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{at:}, 
 		\hyperpage{197}
@@ -796,7 +796,7 @@
 
   \item .Net, \hyperpage{155}
   \item {\lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{new}}, 
-		\see{\lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{Behavior>>>new}}{61}
+		\see{\lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{Behavior>>>new}}{60}
   \item NeXTstep, \hyperpage{111}
   \item \textsf  {nil} (pseudo variable), \hyperpage{51}, 
 		\hyperpage{54}
@@ -879,9 +879,9 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{asString}, 
 		\hyperpage{209}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{at:}, 
-		\hyperpage{61}
+		\hyperpage{60}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{at:put:}, 
-		\hyperpage{61}
+		\hyperpage{60}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{class}, 
 		\hyperpage{179}, \hyperpage{253}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{copy}, 
@@ -1188,7 +1188,7 @@
   \item SmaCCDev, \hyperpage{271}
   \item SmallInteger
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{+}, 
-		\hyperpage{61}
+		\hyperpage{60}
     \subitem (class), \hyperpage{14}, \hyperpage{181}, \hyperpage{185}, 
 		\hyperpage{187}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{maxVal}, 
@@ -1228,7 +1228,7 @@
 		\hyperpage{223}
   \item String
     \subitem (class), \hyperpage{21, 22}, \hyperpage{25}, 
-		\hyperpage{57}, \hyperpage{176}, \hyperpage{189}, 
+		\hyperpage{56}, \hyperpage{176}, \hyperpage{189}, 
 		\hyperpage{197}, \hyperpage{206}, \hyperpage{209}, 
 		\hyperpage{267}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{anySatisfy:}, 
@@ -1260,7 +1260,7 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{isEmpty}, 
 		\hyperpage{208}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{lineCount}, 
-		\hyperpage{57}
+		\hyperpage{56}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{match:}, 
 		\hyperpage{190}, \hyperpage{208}
     \subitem pattern matching, \hyperpage{208}
@@ -1296,7 +1296,7 @@
 		\hyperpage{84}, \hyperpage{110, 111}
     \subitem browse button, \hyperpage{115}
     \subitem button bar, \hyperpage{114}
-    \subitem class side, \hyperpage{84}, \hyperpage{86}, \hyperpage{88}, 
+    \subitem class side, \hyperpage{85, 86}, \hyperpage{88}, 
 		\hyperpage{105}, \hyperpage{252}, \hyperpage{256}
     \subitem class vars button, \hyperpage{120}
     \subitem defining a class, \hyperpage{31}, \hyperpage{114}

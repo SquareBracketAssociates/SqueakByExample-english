@@ -289,28 +289,27 @@ NG copy)>] <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf>
 y)>] <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf>
 <use figures/squeak-logo.pdf>
 <FirstApp/figures/FileIn.png, id=1344, 719.68875pt x 380.42125pt>
-<use FirstApp/figures/FileIn.png> [45] [46 <./FirstApp/figures/FileIn.png>]
-<use figures/squeak-logo.pdf>
-Underfull \hbox (badness 10000) in paragraph at lines 650--650
+<use FirstApp/figures/FileIn.png> [45] <use figures/squeak-logo.pdf>
+Underfull \hbox (badness 10000) in paragraph at lines 648--648
 [] \T1/ppl/m/it/10 (+20) Open the Mon-ti-cello browser by se-lect-ing
+[46 <./FirstApp/figures/FileIn.png>]
 <FirstApp/figures/MonticelloBrowser.png, id=1365, 590.205pt x 274.02374pt>
-<use FirstApp/figures/MonticelloBrowser.png> [47 <./FirstApp/figures/Monticello
-Browser.png (PNG copy)>] <use figures/squeak-logo.pdf>
+<use FirstApp/figures/MonticelloBrowser.png> <use figures/squeak-logo.pdf>
+[47 <./FirstApp/figures/MonticelloBrowser.png (PNG copy)>]
 <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf> [48]
-<FirstApp/figures/BrowseRepository.png, id=1387, 559.08875pt x 270.00874pt>
+<FirstApp/figures/BrowseRepository.png, id=1386, 559.08875pt x 270.00874pt>
 <use FirstApp/figures/BrowseRepository.png> <use figures/squeak-logo.pdf>
 <use figures/squeak-logo.pdf> [49 <./FirstApp/figures/BrowseRepository.png (PNG
  copy)>]) (./Syntax/Syntax.tex [50]
 Chapter 3.
 Overfull \hbox (14.33247pt too wide) in paragraph at lines 71--105
  [][] 
-[51] [52] [53] [54] [55] [56] [57]
-Underfull \vbox (badness 6445) has occurred while \output is active [58]
-[59] [60] [61]) (./Messages/Messages.tex [62]
+[51] [52] [53] [54] [55] [56] [57] [58] [59] [60] [61])
+(./Messages/Messages.tex [62]
 Chapter 4.
-[63] <Messages/figures/message.pdf, id=1558, 311.1625pt x 223.83624pt>
+[63] <Messages/figures/message.pdf, id=1556, 311.1625pt x 223.83624pt>
 <use Messages/figures/message.pdf>
-<Messages/figures/uKeyUnOne.pdf, id=1559, 284.06125pt x 129.48375pt>
+<Messages/figures/uKeyUnOne.pdf, id=1557, 284.06125pt x 129.48375pt>
 <use Messages/figures/uKeyUnOne.pdf>
 Underfull \hbox (badness 2012) in paragraph at lines 69--69
 []\T1/ppl/m/n/10 (+20) Figure 4.2: [][][][][][][][][][][][]
@@ -319,23 +318,23 @@ Underfull \hbox (badness 2012) in paragraph at lines 69--69
 Underfull \hbox (badness 1087) in paragraph at lines 205--205
 \T1/phv/m/n/10 (+20) receiver \T1/phv/b/n/10 se-lec-tor-Wor-dOne: \T1/phv/m/n/1
 0 (+20) ar-gu-men-tOne \T1/phv/b/n/10 wordTwo: \T1/phv/m/n/10 (+20) ar-gu-
-[67] <Messages/figures/uKeyUn.pdf, id=1640, 750.805pt x 130.4875pt>
+[67] <Messages/figures/uKeyUn.pdf, id=1638, 750.805pt x 130.4875pt>
 <use Messages/figures/uKeyUn.pdf> [68 <./Messages/figures/uKeyUn.pdf>] [69]
-<Messages/figures/uKeyBin.pdf, id=1684, 231.86626pt x 129.48375pt>
+<Messages/figures/uKeyBin.pdf, id=1681, 231.86626pt x 129.48375pt>
 <use Messages/figures/uKeyBin.pdf>
-<Messages/figures/uunKeyBin.pdf, id=1685, 263.98625pt x 130.4875pt>
+<Messages/figures/uunKeyBin.pdf, id=1682, 263.98625pt x 130.4875pt>
 <use Messages/figures/uunKeyBin.pdf> [70 <./Messages/figures/uKeyBin.pdf> <./Me
 ssages/figures/uunKeyBin.pdf>]
-<Messages/figures/ucompoUn.pdf, id=1733, 428.60126pt x 103.38625pt>
+<Messages/figures/ucompoUn.pdf, id=1731, 428.60126pt x 103.38625pt>
 <use Messages/figures/ucompoUn.pdf> [71]
-<Messages/figures/ucompoNoBracketPar.pdf, id=1758, 446.67978pt x 104.39pt>
+<Messages/figures/ucompoNoBracketPar.pdf, id=1756, 446.67978pt x 104.39pt>
 <use Messages/figures/ucompoNoBracketPar.pdf> [72 <./Messages/figures/ucompoUn.
 pdf> <./Messages/figures/ucompoNoBracketPar.pdf>]
-<Messages/figures/ucompoNumberBracket.pdf, id=1806, 446.67978pt x 108.405pt>
+<Messages/figures/ucompoNumberBracket.pdf, id=1804, 446.67978pt x 108.405pt>
 <use Messages/figures/ucompoNumberBracket.pdf>
-<Messages/figures/uKeyUnBinPar.pdf, id=1807, 1009.96321pt x 143.53523pt>
+<Messages/figures/uKeyUnBinPar.pdf, id=1805, 1009.96321pt x 143.53523pt>
 <use Messages/figures/uKeyUnBinPar.pdf>
-<Messages/figures/uunKeyBinPar.pdf, id=1808, 930.46222pt x 152.56898pt>
+<Messages/figures/uunKeyBinPar.pdf, id=1806, 930.46222pt x 152.56898pt>
 <use Messages/figures/uunKeyBinPar.pdf> [73 <./Messages/figures/ucompoNumberBra
 cket.pdf> <./Messages/figures/uKeyUnBinPar.pdf> <./Messages/figures/uunKeyBinPa
 r.pdf>]
@@ -345,7 +344,7 @@ sages:
 [74] [75] [76]) [77] [78] [79] [80] (./Model/Model.tex
 Chapter 5.
 [81] [82] [83]
-<Model/figures/Color-Buttons.pdf, id=1966, 771.88374pt x 448.67625pt>
+<Model/figures/Color-Buttons.pdf, id=1964, 771.88374pt x 448.67625pt>
 <use Model/figures/Color-Buttons.pdf> [84] [85 <./Model/figures/Color-Buttons.p
 df>] <use figures/squeak-logo.pdf>
 Underfull \hbox (badness 5726) in paragraph at lines 229--230
@@ -359,45 +358,45 @@ sage [][][]
 Underfull \hbox (badness 6332) in paragraph at lines 560--560
  |[]\T1/ppl/b/n/14.4 Method lookup fol-lows the in-her-i-tance
 [94] [95]
-<Model/figures/openInWorldLookup.pdf, id=2185, 738.76pt x 311.1625pt>
+<Model/figures/openInWorldLookup.pdf, id=2183, 738.76pt x 311.1625pt>
 <use Model/figures/openInWorldLookup.pdf> [96 <./Model/figures/openInWorldLooku
 p.pdf>] [97]
-<Model/figures/initStringLookup.pdf, id=2243, 769.87625pt x 296.10625pt>
+<Model/figures/initStringLookup.pdf, id=2241, 769.87625pt x 296.10625pt>
 <use Model/figures/initStringLookup.pdf> [98] [99 <./Model/figures/initStringLo
-okup.pdf>] <Model/figures/fooNotFound.pdf, id=2296, 789.95125pt x 360.34625pt>
+okup.pdf>] <Model/figures/fooNotFound.pdf, id=2294, 789.95125pt x 360.34625pt>
 <use Model/figures/fooNotFound.pdf> [100 <./Model/figures/fooNotFound.pdf>]
 [101] [102]
-<Model/figures/privateSharedVarColor.pdf, id=2354, 514.92375pt x 263.98625pt>
+<Model/figures/privateSharedVarColor.pdf, id=2352, 514.92375pt x 263.98625pt>
 <use Model/figures/privateSharedVarColor.pdf> [103 <./Model/figures/privateShar
 edVarColor.pdf>] [104] [105] [106]) (./Environment/Environment.tex [107]
 [108]
 Chapter 6.
 Underfull \vbox (badness 10000) has occurred while \output is active [109]
 [110]
-<Environment/figures/SystemBrowser0.png, id=2445, 604.2575pt x 387.4475pt>
+<Environment/figures/SystemBrowser0.png, id=2443, 604.2575pt x 387.4475pt>
 <use Environment/figures/SystemBrowser0.png>
-<Environment/figures/SystemBrowser1.png, id=2446, 604.2575pt x 386.44376pt>
+<Environment/figures/SystemBrowser1.png, id=2444, 604.2575pt x 386.44376pt>
 <use Environment/figures/SystemBrowser1.png> [111 <./Environment/figures/System
 Browser0.png (PNG copy)>]
-<Environment/figures/SystemBrowserMyDependents.png, id=2454, 603.25375pt x 388.
+<Environment/figures/SystemBrowserMyDependents.png, id=2452, 603.25375pt x 388.
 45125pt> <use Environment/figures/SystemBrowserMyDependents.png> [112 <./Enviro
 nment/figures/SystemBrowser1.png (PNG copy)>]
-<Environment/figures/SystemBrowserClassCreation.png, id=2461, 604.2575pt x 387.
+<Environment/figures/SystemBrowserClassCreation.png, id=2459, 604.2575pt x 387.
 4475pt> <use Environment/figures/SystemBrowserClassCreation.png>
 Underfull \vbox (badness 3029) has occurred while \output is active [113 <./Env
 ironment/figures/SystemBrowserMyDependents.png (PNG copy)>]
-<Environment/figures/SystemBrowserMethodTemplate.png, id=2469, 604.2575pt x 387
+<Environment/figures/SystemBrowserMethodTemplate.png, id=2467, 604.2575pt x 387
 .4475pt> <use Environment/figures/SystemBrowserMethodTemplate.png>
 Underfull \vbox (badness 10000) has occurred while \output is active [114 <./En
 vironment/figures/SystemBrowserClassCreation.png (PNG copy)>]
 <use figures/squeak-logo.pdf>
-<Environment/figures/SendersOfCheckEvent.png, id=2478, 605.26125pt x 388.45125p
+<Environment/figures/SendersOfCheckEvent.png, id=2476, 605.26125pt x 388.45125p
 t> <use Environment/figures/SendersOfCheckEvent.png> [115 <./Environment/figure
 s/SystemBrowserMethodTemplate.png (PNG copy)>]
-<Environment/figures/CanvasDraw.png, id=2487, 559.08875pt x 244.915pt>
+<Environment/figures/CanvasDraw.png, id=2485, 559.08875pt x 244.915pt>
 <use Environment/figures/CanvasDraw.png> [116 <./Environment/figures/SendersOfC
 heckEvent.png (PNG copy)>]
-<Environment/figures/VersionsOfMouseUp.png, id=2493, 604.2575pt x 385.44pt>
+<Environment/figures/VersionsOfMouseUp.png, id=2491, 604.2575pt x 385.44pt>
 <use Environment/figures/VersionsOfMouseUp.png> [117 <./Environment/figures/Can
 vasDraw.png (PNG copy)>]
 Underfull \vbox (badness 2310) has occurred while \output is active [118 <./Env
@@ -412,12 +411,12 @@ Underfull \hbox (badness 10000) detected at line 297
 [] \T1/ppl/m/it/10 salmon:[]
 Underfull \hbox (badness 10000) detected at line 298
 [] \T1/ppl/m/it/10 violet:[]
-<Environment/figures/inheritanceOverriding.png, id=2510, 601.24625pt x 263.9862
+<Environment/figures/inheritanceOverriding.png, id=2508, 601.24625pt x 263.9862
 5pt> <use Environment/figures/inheritanceOverriding.png>
-<Environment/figures/OBInheritanceOverriding.png, id=2512, 602.25pt x 335.2525p
+<Environment/figures/OBInheritanceOverriding.png, id=2510, 602.25pt x 335.2525p
 t> <use Environment/figures/OBInheritanceOverriding.png> [119 <./Environment/fi
 gures/inheritanceOverriding.png (PNG copy)>]
-<Environment/figures/hierarchyBrowser.png, id=2521, 605.26125pt x 403.5075pt>
+<Environment/figures/hierarchyBrowser.png, id=2519, 605.26125pt x 403.5075pt>
 <use Environment/figures/hierarchyBrowser.png> [120 <./Environment/figures/OBIn
 heritanceOverriding.png (PNG copy)>] [121 <./Environment/figures/hierarchyBrows
 er.png (PNG copy)>]
@@ -430,95 +429,95 @@ Underfull \hbox (badness 10000) in paragraph at lines 405--405
 d
 [123] <use figures/squeak-logo.pdf> [124] [125] <use figures/squeak-logo.pdf>
 <use figures/squeak-logo.pdf> [126]
-<Environment/figures/freshMonticello.png, id=2580, 592.2125pt x 382.42876pt>
+<Environment/figures/freshMonticello.png, id=2578, 592.2125pt x 382.42876pt>
 <use Environment/figures/freshMonticello.png> [127 <./Environment/figures/fresh
 Monticello.png>] <use figures/squeak-logo.pdf>
-<Environment/figures/SqueakSource-SBE.png, id=2590, 468.75125pt x 225.84375pt>
+<Environment/figures/SqueakSource-SBE.png, id=2588, 468.75125pt x 225.84375pt>
 <use Environment/figures/SqueakSource-SBE.png> [128 <./Environment/figures/Sque
 akSource-SBE.png>] <use figures/squeak-logo.pdf>
-<Environment/figures/MCnewcategory.png, id=2606, 602.25pt x 336.25626pt>
+<Environment/figures/MCnewcategory.png, id=2604, 602.25pt x 336.25626pt>
 <use Environment/figures/MCnewcategory.png>
-<Environment/figures/MCnewmethod.png, id=2607, 602.25pt x 337.26pt>
+<Environment/figures/MCnewmethod.png, id=2605, 602.25pt x 337.26pt>
 <use Environment/figures/MCnewmethod.png> [129 <./Environment/figures/MCnewcate
 gory.png (PNG copy)>]
-<Environment/figures/MC+SBE.png, id=2619, 680.5425pt x 256.96pt>
+<Environment/figures/MC+SBE.png, id=2617, 680.5425pt x 256.96pt>
 <use Environment/figures/MC+SBE.png>
-<Environment/figures/SBE-apb.png, id=2620, 396.48125pt x 169.63374pt>
+<Environment/figures/SBE-apb.png, id=2618, 396.48125pt x 169.63374pt>
 <use Environment/figures/SBE-apb.png>
-<Environment/figures/package-cache-browser.png, id=2621, 452.69125pt x 302.1287
+<Environment/figures/package-cache-browser.png, id=2619, 452.69125pt x 302.1287
 5pt> <use Environment/figures/package-cache-browser.png> [130 <./Environment/fi
 gures/MCnewmethod.png (PNG copy)> <./Environment/figures/MC+SBE.png>] [131 <./E
 nvironment/figures/SBE-apb.png (PNG copy)> <./Environment/figures/package-cache
 -browser.png (PNG copy)>]
-<Environment/figures/MCaddToPackage.png, id=2635, 681.54625pt x 333.245pt>
+<Environment/figures/MCaddToPackage.png, id=2633, 681.54625pt x 333.245pt>
 <use Environment/figures/MCaddToPackage.png> <use figures/squeak-logo.pdf>
 [132 <./Environment/figures/MCaddToPackage.png>]
-<Environment/figures/inspectTimeNow1.png, id=2641, 251.94125pt x 202.7575pt>
+<Environment/figures/inspectTimeNow1.png, id=2639, 251.94125pt x 202.7575pt>
 <use Environment/figures/inspectTimeNow1.png> [133 <./Environment/figures/inspe
 ctTimeNow1.png>]
-<Environment/figures/exploreTimeStampNow.png, id=2653, 303.1325pt x 259.97125pt
+<Environment/figures/exploreTimeStampNow.png, id=2651, 303.1325pt x 259.97125pt
 > <use Environment/figures/exploreTimeStampNow.png>
-<Environment/figures/exploreTimeStampNow2.png, id=2654, 299.1175pt x 252.945pt>
+<Environment/figures/exploreTimeStampNow2.png, id=2652, 299.1175pt x 252.945pt>
 <use Environment/figures/exploreTimeStampNow2.png>
 <use figures/squeak-logo.pdf> [134 <./Environment/figures/exploreTimeStampNow.p
 ng> <./Environment/figures/exploreTimeStampNow2.png>]
 <use figures/squeak-logo.pdf>
-<Environment/figures/debugHandle.png, id=2666, 20.075pt x 20.075pt>
+<Environment/figures/debugHandle.png, id=2664, 20.075pt x 20.075pt>
 <use Environment/figures/debugHandle.png>
-<Environment/figures/explorePluggableListMorph.png, id=2668, 297.11pt x 395.477
+<Environment/figures/explorePluggableListMorph.png, id=2666, 297.11pt x 395.477
 5pt> <use Environment/figures/explorePluggableListMorph.png>
 <use figures/squeak-logo.pdf>
-<Environment/figures/PreDebugWindow.png, id=2670, 453.695pt x 158.5925pt>
+<Environment/figures/PreDebugWindow.png, id=2668, 453.695pt x 158.5925pt>
 <use Environment/figures/PreDebugWindow.png> [135 <./Environment/figures/debugH
 andle.png>] [136 <./Environment/figures/explorePluggableListMorph.png (PNG copy
 )> <./Environment/figures/PreDebugWindow.png (PNG copy)>]
-<Environment/figures/debuggerDetectIfNone.png, id=2689, 572.1375pt x 444.66125p
+<Environment/figures/debuggerDetectIfNone.png, id=2687, 572.1375pt x 444.66125p
 t> <use Environment/figures/debuggerDetectIfNone.png>
 <use figures/squeak-logo.pdf> [137 <./Environment/figures/debuggerDetectIfNone.
 png (PNG copy)>] <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf>
-<Environment/figures/RestartDetectIfNone.png, id=2699, 598.235pt x 378.41376pt>
+<Environment/figures/RestartDetectIfNone.png, id=2697, 598.235pt x 378.41376pt>
 <use Environment/figures/RestartDetectIfNone.png> [138]
 <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf>
 <use figures/squeak-logo.pdf> [139 <./Environment/figures/RestartDetectIfNone.p
 ng (PNG copy)>]
-<Environment/figures/steppingIntoValue.png, id=2712, 599.23875pt x 378.41376pt>
+<Environment/figures/steppingIntoValue.png, id=2710, 599.23875pt x 378.41376pt>
 <use Environment/figures/steppingIntoValue.png>
-<Environment/figures/dotIsAString.png, id=2715, 599.23875pt x 377.41pt>
+<Environment/figures/dotIsAString.png, id=2713, 599.23875pt x 377.41pt>
 <use Environment/figures/dotIsAString.png>
-<Environment/figures/revertDialog.png, id=2716, 597.23125pt x 378.41376pt>
+<Environment/figures/revertDialog.png, id=2714, 597.23125pt x 378.41376pt>
 <use Environment/figures/revertDialog.png> <use figures/squeak-logo.pdf>
 [140 <./Environment/figures/steppingIntoValue.png (PNG copy)>] [141 <./Environm
 ent/figures/dotIsAString.png (PNG copy)> <./Environment/figures/revertDialog.pn
 g>] <use figures/squeak-logo.pdf>
-<Environment/figures/fixOffByOne.png, id=2732, 781.92125pt x 613.29124pt>
+<Environment/figures/fixOffByOne.png, id=2730, 781.92125pt x 613.29124pt>
 <use Environment/figures/fixOffByOne.png> [142] [143 <./Environment/figures/fix
 OffByOne.png>] <use figures/squeak-logo.pdf>
-<Environment/figures/processBrowser.png, id=2760, 616.3025pt x 399.4925pt>
+<Environment/figures/processBrowser.png, id=2758, 616.3025pt x 399.4925pt>
 <use Environment/figures/processBrowser.png> [144 <./Environment/figures/proces
 sBrowser.png (PNG copy)>]
-<Environment/figures/methodNamesRandom.png, id=2771, 603.25375pt x 402.50375pt>
+<Environment/figures/methodNamesRandom.png, id=2769, 603.25375pt x 402.50375pt>
 <use Environment/figures/methodNamesRandom.png>
-<Environment/figures/changeSetBrowser.png, id=2773, 557.08125pt x 317.185pt>
+<Environment/figures/changeSetBrowser.png, id=2771, 557.08125pt x 317.185pt>
 <use Environment/figures/changeSetBrowser.png> [145] [146 <./Environment/figure
 s/methodNamesRandom.png (PNG copy)>]
-<Environment/figures/changeSorter.png, id=2787, 754.82pt x 412.54124pt>
+<Environment/figures/changeSorter.png, id=2785, 754.82pt x 412.54124pt>
 <use Environment/figures/changeSorter.png>
 Underfull \vbox (badness 10000) has occurred while \output is active [147 <./En
 vironment/figures/changeSetBrowser.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active [148 <./En
 vironment/figures/changeSorter.png>]
-<Environment/figures/fileList.png, id=2800, 604.2575pt x 402.50375pt>
+<Environment/figures/fileList.png, id=2798, 604.2575pt x 402.50375pt>
 <use Environment/figures/fileList.png> [149 <./Environment/figures/fileList.png
  (PNG copy)>]
-<Environment/figures/fileContentsBrowser.png, id=2808, 604.2575pt x 403.5075pt>
+<Environment/figures/fileContentsBrowser.png, id=2806, 604.2575pt x 403.5075pt>
 <use Environment/figures/fileContentsBrowser.png>
 Underfull \vbox (badness 6063) has occurred while \output is active [150 <./Env
 ironment/figures/fileContentsBrowser.png (PNG copy)>]
 <use figures/squeak-logo.pdf>
-Underfull \hbox (badness 10000) in paragraph at lines 1265--1267
+Underfull \hbox (badness 10000) in paragraph at lines 1272--1274
 \T1/ppl/m/n/10 (+20) Restart Squeak from the most re-cent snap-shot, and se-lec
 t
-Underfull \hbox (badness 2617) in paragraph at lines 1265--1267
+Underfull \hbox (badness 2617) in paragraph at lines 1272--1274
 [][][][][][]\T1/ppl/m/n/10 (+20) . This will open a workspace full of
 [151] [152] <use Environment/figures/debugHandle.png>) (./SUnit/SUnit.tex
 [153] [154]
@@ -526,7 +525,7 @@ Chapter 7.
 Underfull \vbox (badness 10000) has occurred while \output is active [155]
 [156] [157] <use figures/squeak-logo.pdf> [158] <use figures/squeak-logo.pdf>
 <use figures/squeak-logo.pdf> [159]
-<SUnit/figures/test-runner.png, id=2885, 668.4975pt x 396.48125pt>
+<SUnit/figures/test-runner.png, id=2883, 668.4975pt x 396.48125pt>
 <use SUnit/figures/test-runner.png> <use figures/squeak-logo.pdf> [160]
 <use figures/squeak-logo.pdf>
 Underfull \vbox (badness 2368) has occurred while \output is active [161 <./SUn
@@ -535,83 +534,83 @@ Underfull \hbox (badness 2293) in paragraph at lines 397--402
 []\T1/ppl/m/n/10 (+20) Next, SUnit pro-vides two ad-di-tional meth-ods, [][][][
 ][] and
 [162] <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf> [163]
-<SUnit/figures/sunit-classes.pdf, id=2947, 430.60875pt x 193.72375pt>
+<SUnit/figures/sunit-classes.pdf, id=2945, 430.60875pt x 193.72375pt>
 <use SUnit/figures/sunit-classes.pdf> [164 <./SUnit/figures/sunit-classes.pdf>]
 [165] [166] [167]
-<SUnit/figures/sunit-scenario.pdf, id=3025, 316.18124pt x 291.0875pt>
+<SUnit/figures/sunit-scenario.pdf, id=3023, 316.18124pt x 291.0875pt>
 <use SUnit/figures/sunit-scenario.pdf> [168 <./SUnit/figures/sunit-scenario.pdf
 >] [169] [170] [171] [172]) (./BasicClasses/BasicClasses.tex [173] [174]
 Chapter 8.
 [175] [176] [177] [178] [179] [180] [181] [182] [183]
-<BasicClasses/figures/NumberHierarchy.pdf, id=3315, 416.55624pt x 310.15875pt>
+<BasicClasses/figures/NumberHierarchy.pdf, id=3313, 416.55624pt x 310.15875pt>
 <use BasicClasses/figures/NumberHierarchy.pdf> [184]
 Underfull \vbox (badness 1147) has occurred while \output is active [185 <./Bas
 icClasses/figures/NumberHierarchy.pdf>] <use figures/squeak-logo.pdf> [186]
 [187]
-Underfull \hbox (badness 2057) in paragraph at lines 569--570
+Underfull \hbox (badness 2057) in paragraph at lines 570--571
 []\T1/ppl/m/n/10 (+20) Various con-ve-nient \T1/ppl/m/it/10 (+20) test-ing \T1/
 ppl/m/n/10 (+20) meth-ods are built in: [][][][][],
 [188]
-<BasicClasses/figures/StringHierarchy.pdf, id=3425, 242.9075pt x 311.1625pt>
+<BasicClasses/figures/StringHierarchy.pdf, id=3423, 242.9075pt x 311.1625pt>
 <use BasicClasses/figures/StringHierarchy.pdf> [189 <./BasicClasses/figures/Str
 ingHierarchy.pdf>]
-<BasicClasses/figures/BooleanHierarchy.pdf, id=3457, 359.3425pt x 300.12125pt>
+<BasicClasses/figures/BooleanHierarchy.pdf, id=3455, 359.3425pt x 300.12125pt>
 <use BasicClasses/figures/BooleanHierarchy.pdf> [190] [191 <./BasicClasses/figu
 res/BooleanHierarchy.pdf>] <use figures/squeak-logo.pdf>)
 (./Collections/Collections.tex [192]
 Chapter 9.
-<Collections/figures/CollectionHierarchyList.pdf, id=3529, 271.30157pt x 608.51
+<Collections/figures/CollectionHierarchyList.pdf, id=3527, 271.30157pt x 608.51
 34pt> <use Collections/figures/CollectionHierarchyList.pdf>
-<Collections/figures/CollectionHierarchy.pdf, id=3532, 720.6925pt x 424.58624pt
+<Collections/figures/CollectionHierarchy.pdf, id=3530, 720.6925pt x 424.58624pt
 > <use Collections/figures/CollectionHierarchy.pdf>
 Underfull \vbox (badness 10000) has occurred while \output is active [193]
 [194 <./Collections/figures/CollectionHierarchyList.pdf>]
 (/usr/local/texlive/2007/texmf-dist/tex/latex/lm/ot1lmss.fd)
 Underfull \vbox (badness 1472) has occurred while \output is active [195 <./Col
 lections/figures/CollectionHierarchy.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
 []|\T1/phv/m/n/10 (+20) with: \T1/phv/m/sl/10 (+20) anEle-ment\T1/ppl/m/n/10 (+
 20) , \T1/phv/m/n/10 (+20) with:with:\T1/ppl/m/n/10 (+20) , \T1/phv/m/n/10 (+20
 ) with:with:with:\T1/ppl/m/n/10 (+20) ,
 [196]
-<Collections/figures/CollectionsByImpl.pdf, id=3594, 519.02164pt x 148.07831pt>
+<Collections/figures/CollectionsByImpl.pdf, id=3592, 519.02164pt x 148.07831pt>
 <use Collections/figures/CollectionsByImpl.pdf> [197] [198 <./Collections/figur
 es/CollectionsByImpl.pdf>] [199] [200] [201] [202] [203] [204]
-Underfull \hbox (badness 7722) in paragraph at lines 532--534
+Underfull \hbox (badness 7722) in paragraph at lines 533--535
 \T1/ppl/m/n/10 (+20) More usu-ally, though, one will send the con-ver-sion mes-
 sage
 [205] [206]
-Underfull \hbox (badness 3219) in paragraph at lines 614--615
+Underfull \hbox (badness 3219) in paragraph at lines 615--616
 []\T1/ppl/m/n/10 (+20) We can also mod-ify an ex-ist-ing string us-ing [][][][]
 [] or
 [207] [208]
-Underfull \hbox (badness 2689) in paragraph at lines 719--721
+Underfull \hbox (badness 2689) in paragraph at lines 720--722
 \T1/ppl/m/n/10 (+20) and [][][][][]: For the in-dexed col-lec-tions ([][][][], 
 [][][][],
 [209] [210] [211] [212] [213] [214]) (./Streams/Streams.tex [215] [216]
 Chapter 10.
-<Streams/figures/_abcdeStef.pdf, id=3990, 438.63875pt x 79.29625pt>
+<Streams/figures/_abcdeStef.pdf, id=3988, 438.63875pt x 79.29625pt>
 <use Streams/figures/_abcdeStef.pdf> [217 <./Streams/figures/_abcdeStef.pdf>]
-<Streams/figures/a_bcdeStef.pdf, id=4036, 438.63875pt x 79.29625pt>
+<Streams/figures/a_bcdeStef.pdf, id=4034, 438.63875pt x 79.29625pt>
 <use Streams/figures/a_bcdeStef.pdf>
-<Streams/figures/ax_cdeStef.pdf, id=4038, 438.63875pt x 79.29625pt>
+<Streams/figures/ax_cdeStef.pdf, id=4036, 438.63875pt x 79.29625pt>
 <use Streams/figures/ax_cdeStef.pdf> [218 <./Streams/figures/a_bcdeStef.pdf> <.
 /Streams/figures/ax_cdeStef.pdf>] [219] [220]
-<Streams/figures/ab_cdeStef.pdf, id=4173, 438.63875pt x 79.29625pt>
+<Streams/figures/ab_cdeStef.pdf, id=4171, 438.63875pt x 79.29625pt>
 <use Streams/figures/ab_cdeStef.pdf> [221 <./Streams/figures/ab_cdeStef.pdf>]
-[222] [223] <Streams/figures/emptyStef.pdf, id=4298, 260.975pt x 79.29625pt>
+[222] [223] <Streams/figures/emptyStef.pdf, id=4296, 260.975pt x 79.29625pt>
 <use Streams/figures/emptyStef.pdf>
-<Streams/figures/page1Stef.pdf, id=4299, 260.975pt x 79.29625pt>
+<Streams/figures/page1Stef.pdf, id=4297, 260.975pt x 79.29625pt>
 <use Streams/figures/page1Stef.pdf>
-<Streams/figures/page2Stef.pdf, id=4300, 260.975pt x 79.29625pt>
+<Streams/figures/page2Stef.pdf, id=4298, 260.975pt x 79.29625pt>
 <use Streams/figures/page2Stef.pdf>
-<Streams/figures/page3Stef.pdf, id=4301, 270.00874pt x 79.29625pt>
+<Streams/figures/page3Stef.pdf, id=4299, 270.00874pt x 79.29625pt>
 <use Streams/figures/page3Stef.pdf>
-<Streams/figures/page2_Stef.pdf, id=4302, 260.975pt x 79.29625pt>
+<Streams/figures/page2_Stef.pdf, id=4300, 260.975pt x 79.29625pt>
 <use Streams/figures/page2_Stef.pdf>
-<Streams/figures/page1_Stef.pdf, id=4303, 260.975pt x 79.29625pt>
+<Streams/figures/page1_Stef.pdf, id=4301, 260.975pt x 79.29625pt>
 <use Streams/figures/page1_Stef.pdf>
-<Streams/figures/page4Stef.pdf, id=4304, 260.975pt x 79.29625pt>
+<Streams/figures/page4Stef.pdf, id=4302, 260.975pt x 79.29625pt>
 <use Streams/figures/page4Stef.pdf> [224 <./Streams/figures/emptyStef.pdf> <./S
 treams/figures/page1Stef.pdf>] [225 <./Streams/figures/page2Stef.pdf> <./Stream
 s/figures/page3Stef.pdf> <./Streams/figures/page2_Stef.pdf> <./Streams/figures/
@@ -619,66 +618,66 @@ page1_Stef.pdf> <./Streams/figures/page4Stef.pdf>] [226] [227]
 Underfull \hbox (badness 2368) in paragraph at lines 598--602
 []\T1/ppl/m/n/10 (+20) You will soon no-tice that man-u-ally clos-ing the file 
 stream is
-[228] <Streams/figures/checkerboard4x4.png, id=4529, 112.42pt x 112.42pt>
+[228] <Streams/figures/checkerboard4x4.png, id=4527, 112.42pt x 112.42pt>
 <use Streams/figures/checkerboard4x4.png> [229]) (./Morphic/Morphic.tex
 [230 <./Streams/figures/checkerboard4x4.png (PNG copy)>]
 Chapter 11.
-<Morphic/figures/detachingMenu.png, id=4571, 240.9pt x 91.34125pt>
+<Morphic/figures/detachingMenu.png, id=4569, 240.9pt x 91.34125pt>
 <use Morphic/figures/detachingMenu.png> <use figures/squeak-logo.pdf> [231]
 <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf> [232 <./Morphic/fig
 ures/detachingMenu.png (PNG copy)>] <use figures/squeak-logo.pdf>
-<Morphic/figures/joeStar.png, id=4591, 106.3975pt x 106.3975pt>
+<Morphic/figures/joeStar.png, id=4589, 106.3975pt x 106.3975pt>
 <use Morphic/figures/joeStar.png> [233] <use figures/squeak-logo.pdf> [234 <./M
 orphic/figures/joeStar.png (PNG copy)>] <use figures/squeak-logo.pdf>
-<Morphic/figures/cross.png, id=4626, 132.495pt x 139.52126pt>
+<Morphic/figures/cross.png, id=4624, 132.495pt x 139.52126pt>
 <use Morphic/figures/cross.png> <use figures/squeak-logo.pdf> [235 <./Morphic/f
 igures/cross.png (PNG copy)>] <use figures/squeak-logo.pdf> [236]
 <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf> [237]
 <use figures/squeak-logo.pdf> [238]
-<Morphic/figures/dialog.png, id=4705, 263.98625pt x 136.51pt>
+<Morphic/figures/dialog.png, id=4703, 263.98625pt x 136.51pt>
 <use Morphic/figures/dialog.png>
 Underfull \hbox (badness 6173) in paragraph at lines 371--371
 []\T1/ppl/m/n/10 (+20) Figure 11.4: []Dialog dis-played
-<Morphic/figures/popup.png, id=4706, 98.3675pt x 87.32625pt>
+<Morphic/figures/popup.png, id=4704, 98.3675pt x 87.32625pt>
 <use Morphic/figures/popup.png> <use figures/squeak-logo.pdf> [239 <./Morphic/f
 igures/dialog.png (PNG copy)> <./Morphic/figures/popup.png (PNG copy)>]
 <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf> [240]
 <use figures/squeak-logo.pdf>
-<Morphic/figures/die.png, id=4748, 134.5025pt x 123.46124pt>
+<Morphic/figures/die.png, id=4746, 134.5025pt x 123.46124pt>
 <use Morphic/figures/die.png> <use figures/squeak-logo.pdf> [241] [242 <./Morph
 ic/figures/die.png (PNG copy)>] [243] <use figures/squeak-logo.pdf> [244]
 <use figures/squeak-logo.pdf> [245]
-<Morphic/figures/multiMorphs.png, id=4872, 110.4125pt x 105.39375pt>
+<Morphic/figures/multiMorphs.png, id=4870, 110.4125pt x 105.39375pt>
 <use Morphic/figures/multiMorphs.png> [246 <./Morphic/figures/multiMorphs.png (
 PNG copy)>]) [247] [248] [249] [250] (./Metaclasses/Metaclasses.tex
 Chapter 12.
 [251] [252]
-<Metaclasses/figures/TranslucentEllipse.png, id=4949, 389.455pt x 150.5625pt>
+<Metaclasses/figures/TranslucentEllipse.png, id=4947, 389.455pt x 150.5625pt>
 <use Metaclasses/figures/TranslucentEllipse.png>
-<Metaclasses/figures/TranslucentClassMessage.pdf, id=4954, 726.715pt x 282.0537
+<Metaclasses/figures/TranslucentClassMessage.pdf, id=4952, 726.715pt x 282.0537
 6pt> <use Metaclasses/figures/TranslucentClassMessage.pdf> [253 <./Metaclasses/
 figures/TranslucentEllipse.png>]
-<Metaclasses/figures/TranslucentMetaclasses.pdf, id=4970, 667.49374pt x 220.825
+<Metaclasses/figures/TranslucentMetaclasses.pdf, id=4968, 667.49374pt x 220.825
 pt> <use Metaclasses/figures/TranslucentMetaclasses.pdf> [254 <./Metaclasses/fi
 gures/TranslucentClassMessage.pdf>]
-<Metaclasses/figures/TranslucentMetaclassHierarchy.pdf, id=5015, 667.49374pt x 
+<Metaclasses/figures/TranslucentMetaclassHierarchy.pdf, id=5013, 667.49374pt x 
 220.825pt> <use Metaclasses/figures/TranslucentMetaclassHierarchy.pdf> [255 <./
 Metaclasses/figures/TranslucentMetaclasses.pdf>]
-<Metaclasses/figures/TranslucentColorBlue.pdf, id=5055, 759.83875pt x 271.0125p
+<Metaclasses/figures/TranslucentColorBlue.pdf, id=5053, 759.83875pt x 271.0125p
 t> <use Metaclasses/figures/TranslucentColorBlue.pdf> [256 <./Metaclasses/figur
 es/TranslucentMetaclassHierarchy.pdf>] <use figures/squeak-logo.pdf>
-<Metaclasses/figures/InspectingColor.png, id=5092, 600.2425pt x 313.17pt>
+<Metaclasses/figures/InspectingColor.png, id=5090, 600.2425pt x 313.17pt>
 <use Metaclasses/figures/InspectingColor.png>
-<Metaclasses/figures/TranslucentBehavior.pdf, id=5094, 703.62875pt x 374.39874p
+<Metaclasses/figures/TranslucentBehavior.pdf, id=5092, 703.62875pt x 374.39874p
 t> <use Metaclasses/figures/TranslucentBehavior.pdf> [257 <./Metaclasses/figure
 s/TranslucentColorBlue.pdf>] [258 <./Metaclasses/figures/InspectingColor.png (P
 NG copy)> <./Metaclasses/figures/TranslucentBehavior.pdf>]
-<Metaclasses/figures/TranslucentSendingNew.pdf, id=5159, 815.045pt x 396.48125p
+<Metaclasses/figures/TranslucentSendingNew.pdf, id=5157, 815.045pt x 396.48125p
 t> <use Metaclasses/figures/TranslucentSendingNew.pdf> [259 <./Metaclasses/figu
 res/TranslucentSendingNew.pdf>]
-<Metaclasses/figures/TranslucentMetaclassClass.pdf, id=5192, 804.00375pt x 375.
+<Metaclasses/figures/TranslucentMetaclassClass.pdf, id=5190, 804.00375pt x 375.
 4025pt> <use Metaclasses/figures/TranslucentMetaclassClass.pdf> [260]
-<Metaclasses/figures/TranslucentMetaclassClassClass.pdf, id=5199, 775.89874pt x
+<Metaclasses/figures/TranslucentMetaclassClassClass.pdf, id=5197, 775.89874pt x
  432.61626pt> <use Metaclasses/figures/TranslucentMetaclassClassClass.pdf>
 [261 <./Metaclasses/figures/TranslucentMetaclassClass.pdf> <./Metaclasses/figur
 es/TranslucentMetaclassClassClass.pdf>] [262]) [263] [264] [265] [266]
@@ -688,7 +687,7 @@ Underfull \hbox (badness 1400) in paragraph at lines 50--53
 [] []\T1/ppl/b/n/10 An-swer[]  [][]$\T1/phv/m/n/10 (+20) www . squeaksource . c
 om / ImageForDevelopers$[][] \T1/ppl/m/n/10 (+20) This is a specially-
 [267] [268] [269] [270]
-Underfull \hbox (badness 1796) in paragraph at lines 250--256
+Underfull \hbox (badness 1796) in paragraph at lines 253--259
 [] []\T1/ppl/b/n/10 An-swer[]  \T1/ppl/m/n/10 (+20) Use []SmaCC ---the Smalltal
 k Com-piler Com-piler. You
 ) (./SBE.bbl [271] [272]) (./SBE.ind [273] [274] [275] [276] [277] [278]
@@ -719,5 +718,5 @@ pe1/urw/palatino/uplb8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw
 /palatino/uplbi8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palat
 ino/uplr8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palatino/upl
 ri8a.pfb>
-Output written on SBE.pdf (300 pages, 3634497 bytes).
+Output written on SBE.pdf (300 pages, 3633039 bytes).
 Transcript written on SBE.log.
