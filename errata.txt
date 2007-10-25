@@ -29,6 +29,10 @@ p 135: 2nd para delete "Maybe explain what "self" ......item)
 p 138: 3rd para "you should fell free" -> "you should feel free"
 	[2007-09-24 Nick Ager; fixed --on]
 
+p 186: "All Number objects support various....
+	others which generate Duration s, such as hour..."
+	[2007-10-22 Mike Roberts; fixed --on]
+
 p 208: First string test should read "'Hello' isEmpty --> false"
 	[2007-10-21; fixed --on]
 
