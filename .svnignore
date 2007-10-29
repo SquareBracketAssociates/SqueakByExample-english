@@ -1,3 +1,10 @@
+*.aux
+*.log
+*.out
+*.url
+*.glo
+*.idx
+*.ilg
 *.image
 *.changes
 *.command
