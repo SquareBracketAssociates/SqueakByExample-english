@@ -1,0 +1,44 @@
+% $Author$
+% $Date$
+% $Revision$
+% $Id$
+%=================================================================
+\ifx\wholebook\relax\else
+% --------------------------------------------
+% Lulu:
+	\documentclass[a4paper,10pt,twoside]{book}
+	\usepackage[
+		papersize={6in,9in},
+		hmargin={.75in,.75in},
+		vmargin={.75in,1in},
+		ignoreheadfoot
+	]{geometry}
+	\input{../common.tex}
+	\pagestyle{headings}
+	\setboolean{lulu}{true}
+% --------------------------------------------
+% A4:
+%	\documentclass[a4paper,11pt,twoside]{book}
+%	\input{../common.tex}
+%	\usepackage{a4wide}
+% --------------------------------------------
+    \graphicspath{{figures/} {../figures/}}
+	\begin{document}
+	% \renewcommand{\nnbb}[2]{} % Disable editorial comments
+	\sloppy
+\fi
+%=================================================================
+\chapter{Seaside}
+\label{cha:seaside}
+
+\on{I am just collecting some notes for now.}
+
+%=================================================================
+\section{Getting started}
+
+%-----------------------------------------------------------------
+
+%=================================================================
+\ifx\wholebook\relax\else
+\end{document}\fi
+%=================================================================
