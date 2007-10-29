@@ -1,3 +1,7 @@
+*.aux
+*.log
+*.out
+*.url
 *.image
 *.changes
 *.command
