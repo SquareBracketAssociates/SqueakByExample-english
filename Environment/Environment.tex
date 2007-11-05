@@ -27,8 +27,6 @@
 	\sloppy
 \fi
 %=================================================================
-\newcommand{\debugHandle}{\raisebox{-0.4ex}{\includegraphics[width=1em]{debugHandle}}}
-%=================================================================
 \chapter{The Squeak programming environment}
 \label{cha:env}
 
@@ -589,7 +587,7 @@ MCHttpRepository
 \begin{figure}[btp]
 	\begin{center}
 	\ifluluelse
-		{\includegraphics[width=\textwidth]{SqueakSource-SBE}}
+		{\includegraphics[scale=0.65]{SqueakSource-SBE}}
 		{\includegraphics[scale=0.7]{SqueakSource-SBE}}
 	\end{center}
 	\caption{A Repository browser.}
@@ -648,7 +646,7 @@ You can of course save the new version to the repository too; once you \button{R
 \begin{figure}[tbp]
 	\begin{center}
 	\ifluluelse
-		{\includegraphics[width=\textwidth]{SBE-apb}}
+		{\includegraphics[scale=0.65]{SBE-apb}}
 		{\includegraphics[scale=0.7]{SBE-apb}}
 	\end{center}
 	\caption{Providing a log message for a new version of a package.}
@@ -658,7 +656,7 @@ You can of course save the new version to the repository too; once you \button{R
 \begin{figure}[tbp]
 	\begin{center}
 	\ifluluelse
-		{\includegraphics[width=\textwidth]{package-cache-browser}}
+		{\includegraphics[scale=0.65]{package-cache-browser}}
 		{\includegraphics[scale=0.7]{package-cache-browser}}
 	\end{center}
 	\caption{Two versions of our package are now in the package cache.}
@@ -737,7 +735,7 @@ You can also type \short{i} for \menu{\textbf{i}nspect it}.)
 
 \begin{figure}[btp]
 	\begin{center}
-		\includegraphics[scale=0.7]{inspectTimeNow1}
+		\includegraphics[scale=0.65]{inspectTimeNow1}
 	\end{center}
 	\caption{Inspecting \ct{TimeStamp now}}
 	\label{fig:inspectTimeNow1}
@@ -850,7 +848,7 @@ What a surprise!  Instead of getting the expected answer \ct{'txt'}, a \clsind{P
 \begin{figure}[btp]
 	\begin{center}
 	\ifluluelse
-		{\includegraphics[width=\textwidth]{PreDebugWindow}}
+		{\includegraphics[scale=0.65]{PreDebugWindow}}
 		{\includegraphics[scale=0.7]{PreDebugWindow}}
 	\end{center}
 	\caption{A \ct{PreDebugWindow} notifies us of a bug.}
@@ -905,8 +903,8 @@ In \figref{debuggerDetectIfNone},
 This will tell you that \ct{exceptionBlock} is \ct{[self errorNotFound: ...]}.
 So, it is not surprising that we see the corresponding error message.}
 
-Incidentally, if you want to open an full inspector window on one of the variables shown in the mini-inspectors, just double-click on the name of the variable, or select the name of the variable and choose \menu{inspect (i)} or \menu{explore (I)} from the yellow button menu.  
-This can be useful if you want to want to watch how a variable changes while you execute other code. 
+Incidentally, if you want to open an full inspector or explorer on one of the variables shown in the mini-inspectors, just double-click on the name of the variable, or select the name of the variable and choose \menu{inspect (i)} or \menu{explore (I)} from the yellow button menu.  
+This can be useful if you want to watch how a variable changes while you execute other code. 
 \index{keyboard shortcut!inspect it}
 \index{keyboard shortcut!explore it}
 
