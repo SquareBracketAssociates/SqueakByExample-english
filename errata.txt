@@ -29,6 +29,9 @@ p 135: 2nd para delete "Maybe explain what "self" ......item)
 p 138: 3rd para "you should fell free" -> "you should feel free"
 	[2007-09-24 Nick Ager; fixed --on]
 
+p 138 "want to want to" -> "want to"
+	[2007-11-05 Andrew Black; fixed --apb]
+
 p 186: "All Number objects support various....
 	others which generate Duration s, such as hour..."
 	[2007-10-22 Mike Roberts; fixed --on]
@@ -39,6 +42,12 @@ p 208: First string test should read "'Hello' isEmpty --> false"
 p 236: Last para "Once the morph handles mouse events, it you cannot grab it"
 	should read: "Once the morph handles mouse events, you cannot grab it"
 	[2007-09-24 Nick Ager; fixed --on]
+
+p 230-247: Rewordings throughout the chapter to correct typos and to make it more consistent in
+	style with the other chapters.  Provided new versions of the CrossMorph methods that
+	work correctly with translucent colors.  better explanation of the roles of the methods involved
+	in drag and drop.  Added periods after all captions (!).
+	[2007-11-05 Andrew Black; fixed --apb]
 
 p 269: Smalltalk allClasses select: [:each | each hasTraitComposition]
 	does not work as advertised
