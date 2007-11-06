@@ -606,15 +606,15 @@ ReceiverMorph>>>repelsMorph: aMorph event: ev
 
 That's all we need as far as the receiver is concerned.
 
-\dothis{Create instances of \clsind{ReceiverMorph} and \clsind{RectangleMorph} in a workspace:}
+\dothis{Create instances of \clsind{ReceiverMorph} and \clsind{EllipseMorph} in a workspace:}
 \begin{code}{}
 ReceiverMorph new openInWorld.
-RectangleMorph new openInWorld.
+EllipseMorph new openInWorld.
 \end{code}
 \noindent
-Try to drag-and-drop the blue \ct{RectangleMorph} onto the receiver. It will be rejected and sent back to its initial position.
+Try to drag-and-drop the yellow \ct{EllipseMorph} onto the receiver. It will be rejected and sent back to its initial position.
 
-\dothis{To change this behavior, change the color of the rectangle morph to \ct{Color blue} using an inspector.  Blue rectangles should be accepted by the \ct{ReceiverMorph}.}
+\dothis{To change this behavior, change the color of the ellipse morph to \ct{Color blue} using an inspector.  Blue morphs should be accepted by the \ct{ReceiverMorph}.}
 
 Let's create a specific subclass of \ct{Morph}, named \ct{DroppedMorph}, so we can experiment a bit more:
 
