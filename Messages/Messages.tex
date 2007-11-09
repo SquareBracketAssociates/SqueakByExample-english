@@ -385,7 +385,7 @@ Evaluating the message without parentheses would lead to an error because the ob
 \end{example}
 
 \subsection{From left to right}
-Now we know how messages of different kinds or priorities are handled. The final question to be addressed is how messages with the same priority are sent. They are sent from the left to the right. Note that you already saw this behavior in \egref{decExtent} where the two point creation messages (\ct{@}) were sent first.
+Now we know how messages of different kinds or priorities are handled. The final question to be addressed is how messages with the same priority are sent. They are sent from the left to the right. Note that you already saw this behaviour in \egref{decExtent} where the two point creation messages (\ct{@}) were sent first.
 
 \important{{\textbf{Rule Three.} When the messages are of the same kind, the order of evaluation is from left to right.}}
 
@@ -434,7 +434,7 @@ As shown in \egref{binaryMessages1} the result of this expression is not \ct{30}
 
 \needlines{4}
 \begin{example}[mathcorrect]{Decomposing \ct{20 + (2 * 5)}}{}
-"The messages surrounded by parentheses are evaluated first therefore * is sent prior to + which produces the correct behavior."
+"The messages surrounded by parentheses are evaluated first therefore * is sent prior to + which produces the correct behaviour."
 
     20 + (2 * 5) 
 (1)        (2 * 5) --> 10

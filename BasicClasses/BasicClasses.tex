@@ -56,11 +56,11 @@ The class comment for the \ct{Object} states:
 \needlines{4}
 \begin{quote}
 \textit{\ct{Object} is the root class for almost all of the other classes in the class hierarchy. The exceptions are \ct{ProtoObject} (the superclass of \ct{Object}) and its subclasses.
-Class \ct{Object} provides default behavior common to all normal objects, such as access, copying, comparison, error handling, message sending, and \ind{reflection}. Also utility messages that all objects should respond to are defined here.
+Class \ct{Object} provides default behaviour common to all normal objects, such as access, copying, comparison, error handling, message sending, and \ind{reflection}. Also utility messages that all objects should respond to are defined here.
 \ct{Object} has no instance variables, nor should any be added. This is due to several classes of objects that inherit from \ct{Object} that have special implementations (\ct{SmallInteger} and \ct{UndefinedObject} for example) or the VM knows about and depends on the structure and layout of certain standard classes.}
 \end{quote}
 
-If we begin to browse the method categories on the instance side of \ct{Object} we start to see some of the key behavior it provides.
+If we begin to browse the method categories on the instance side of \ct{Object} we start to see some of the key behaviour it provides.
 
 %-----------------------------------------------------------------
 \subsection{Printing}
@@ -192,7 +192,7 @@ Complex>>>hash
 
 Although you should override \ct{=} and \ct{hash} together, you should \emph{never} override \ct{==}. (The semantics of object identity is the same for all classes.)  \ct{==} is a primitive method of \clsind{ProtoObject}.
 
-Note that Squeak has some strange behavior compared to other Smalltalks: for example a symbol and a string can be equal if the string associated with the symbol is equal to the string. (We consider this behavior to be a bug, not a feature.)
+Note that Squeak has some strange behaviour compared to other Smalltalks: for example a symbol and a string can be equal. (We consider this be a bug, not a feature.)
 
 \begin{code}{@TEST}
 #'lulu' = 'lulu' --> true
@@ -412,7 +412,7 @@ Behavior>>>new
 \cmindex{Behavior}{new}
 
 This means that simply by overriding the \ct{initialize} \ind{hook method}, new instances of your class will automatically be initialized. The \ct{initialize} method should normally perform a \ct{super initialize} to establish the class \subind{class}{invariant} for any inherited instance variables.
-Note that this is \emph{not} standard behavior in other Smalltalks.
+(Note that this is \emph{not} standard the behaviour of other Smalltalks.)
 
 %=================================================================
 \section{Numbers}
@@ -536,7 +536,7 @@ When a \ct{SmallInteger} goes out of this range, it is automatically converted t
 
 Large integers are similarly converted back to small integers when appropriate.
 
-As in most programming languages, integers can be useful for specifying iterative behavior.  There is a dedicated method \mthind{Integer}{timesRepeat:} for evaluating a block repeatedly.
+As in most programming languages, integers can be useful for specifying iterative behaviour.  There is a dedicated method \mthind{Integer}{timesRepeat:} for evaluating a block repeatedly.
 We have already seen a similar example in \charef{syntax}:
 \begin{code}{@TEST | n |}
 n := 2.

@@ -63,7 +63,7 @@ A simple example of this is that you can detach a menu item and keep it as a but
 \end{figure}
 
 All of the objects that you see on the screen when you run \sq are \emph{Morphs}, that is, they are instances of subclasses of class \ct{Morph}.
-\mbox{\ct{Morph}} itself is a large class with many methods; this makes it possible for subclasses to implement interesting behavior with little code.
+\mbox{\ct{Morph}} itself is a large class with many methods; this makes it possible for subclasses to implement interesting behaviour with little code.
 You can create a morph to represent any object, although how good a representation you get depends on the object!
 
 \dothis{To create a morph to represent a string object, execute the following code in a workspace, one line at a time.}
@@ -182,7 +182,7 @@ While it is possible to make many interesting and useful graphical representatio
 \index{Morph!subclassing}
 To do this you define a subclass of \ct{Morph} and override the \mthind{Morph}{drawOn:} method to change its appearance.
 
-The morphic framework sends the message \ct{drawOn:} to a morph when it needs to redisplay the morph on the screen.  The parameter to \ct{drawOn:}  is a kind of \clsind{Canvas}; the expected behavior is that the morph will draw itself on that canvas, inside its bounds.
+The morphic framework sends the message \ct{drawOn:} to a morph when it needs to redisplay the morph on the screen.  The parameter to \ct{drawOn:}  is a kind of \clsind{Canvas}; the expected behaviour is that the morph will draw itself on that canvas, inside its bounds.
 Let's use this knowledge to create a cross-shaped morph.
 \index{Morph!subclassing}
 
@@ -614,7 +614,7 @@ EllipseMorph new openInWorld.
 \noindent
 Try to drag-and-drop the yellow \ct{EllipseMorph} onto the receiver. It will be rejected and sent back to its initial position.
 
-\dothis{To change this behavior, change the color of the ellipse morph to \ct{Color blue} using an inspector.  Blue morphs should be accepted by the \ct{ReceiverMorph}.}
+\dothis{To change this behaviour, change the color of the ellipse morph to \ct{Color blue} using an inspector.  Blue morphs should be accepted by the \ct{ReceiverMorph}.}
 
 Let's create a specific subclass of \ct{Morph}, named \ct{DroppedMorph}, so we can experiment a bit more:
 

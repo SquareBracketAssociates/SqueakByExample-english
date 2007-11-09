@@ -226,7 +226,7 @@ Each collection may implement or not such protocols and when they do interpret t
 We will focus on the most common collection classes: \clsind{OrderedCollection}, \clsind{Set}, \clsind{SortedCollection}, \clsind{Dictionary}, \clsind{Interval}, and \clsind{Array}.
 
 \paragraph{Common creation protocol.}
-There are several ways to create instances of collections. The most generic ones use the methods \mthind{Collection class}{new:} and \mthind{Collection class}{with:}. \ct{new: anInteger} creates a collection of size \ct{anInteger} whose elements will all be \ct{nil}.  \mthind{Collection class}{with:} \ct{anObject} creates a collection and adds \ct{anObject} to the created collection. Different collections will relize this behavior differently.
+There are several ways to create instances of collections. The most generic ones use the methods \mthind{Collection class}{new:} and \mthind{Collection class}{with:}. \ct{new: anInteger} creates a collection of size \ct{anInteger} whose elements will all be \ct{nil}.  \mthind{Collection class}{with:} \ct{anObject} creates a collection and adds \ct{anObject} to the created collection. Different collections will realize this behaviour differently.
 
 You can create collections with initial elements using the methods \mthind{Collection class}{with:}, \mthind{Collection class}{with:with:} \etc for up to six elements.
 
@@ -466,10 +466,10 @@ Interestingly, the literal \mbox{\ct{'foobar'}} is allocated just once, so is re
 You don't want your code to depend on behaviour like this!
 A plain \ct{Dictionary} would give the same value for any key equal to \ct{'foobar'}.
 
-Use only \ct{Symbol}s as keys for a \ct{IdentityDictionary}, and \ct{String}s (or other objects) as keys for a plain \ct{Dictionary}.
+Use only globally unique objects (like \ct{Symbol}s or \ct{SmallInteger}s) as keys for a \ct{IdentityDictionary}, and \ct{String}s (or other objects) as keys for a plain \ct{Dictionary}.
 
 
-Note that the global \glbind{Smalltalk} is an instance of \clsind{SystemDictionary}, a subclass of \ct{IdentityDictionary}, hence all its keys are \ct{Symbol}s (actually, \ct{ByteSymbol}s, which only contain 8-bit characters).
+Note that the global \glbind{Smalltalk} is an instance of \clsind{SystemDictionary}, a subclass of \ct{IdentityDictionary}, hence all its keys are \ct{Symbol}s (actually, \ct{ByteSymbol}s, which contain only 8-bit characters).
 
 \begin{code}{@TEST}
 Smalltalk keys collect: [ :each | each class ] --> a Set(ByteSymbol)
@@ -506,7 +506,7 @@ A \clsindmain{Bag} is much like a \ct{Set} except that it does allow duplicates:
 { Color black. Color white. (Color red + Color blue + Color green) } asBag size --> 3
 \end{code}
 
-The set operations \emph{union}, \emph{intersection} and \emph{membership} testing are implemented by the \ct{Collection} messages \mthind{Collection}{union:}, \mthind{Collection}{intersection:} and \mthind{Collection}{includes:}.
+The set operations \emph{union}, \emph{intersection} and \emph{membership test} are implemented by the \ct{Collection} messages \mthind{Collection}{union:}, \mthind{Collection}{intersection:} and \mthind{Collection}{includes:}.
 The receiver is first converted to a \ct{Set}, so these operations work for all kinds of collections!
 \seeindex{Set!union}{Collection, \ct{union:}}
 \seeindex{Set!intersection}{Collection, \ct{intersection:}}
@@ -518,11 +518,11 @@ The receiver is first converted to a \ct{Set}, so these operations work for all 
 #Smalltalk includes: $k     --> true
 \end{code}
 
-As we explain below set elements are accessed using iterators (see \secref{iterators}).
+As we explain below, elements of a set are accessed using iterators (see \secref{iterators}).
 
 %---------------------------------------------------------
 \subsection{SortedCollection}
-In contrast to an \ct{OrderedCollection}, a \clsindmain{SortedCollection} maintains its elements in sort order. By default, a sorted collection uses the message \mthind{Magnitude}{<=} to establish sort order, \ie it can sort instances of subclasses of the abstract class \clsind{Magnitude}, which defines the protocol of comparable objects (\mthind{Magnitude}{<}, \mthind{Magnitude}{=}, \mthind{Magnitude}{>}, \mthind{Magnitude}{>=}, \mthind{Magnitude}{between:and:}...).
+In contrast to an \ct{OrderedCollection}, a \clsindmain{SortedCollection} maintains its elements in sort order. By default, a sorted collection uses the message \mthind{Magnitude}{<=} to establish sort order, so it can sort instances of subclasses of the abstract class \clsind{Magnitude}, which defines the protocol of comparable objects (\mthind{Magnitude}{<}, \mthind{Magnitude}{=}, \mthind{Magnitude}{>}, \mthind{Magnitude}{>=}, \mthind{Magnitude}{between:and:}...).
 (See \charef{basic}.)
 
 You can create a \ct{SortedCollection} by creating a new instance and adding elements to it:
@@ -564,7 +564,7 @@ It is possible to have different kinds of elements in a \ct{SortedCollection} as
 { 5. 2/-3. 5.21 } asSortedCollection --> a SortedCollection((-2/3) 5 5.21)
 \end{code}
 
-Imagine you want to sort objects that do not define the method \ct{<=} or that you would like to have a different sorting criterion. You can do that by specifying a two argument block. For example, the class \ct{Color} is not a Magnitude and it does not implement the method \ct{<=}, but we can specify a block stating that the colors should be sorted according to their luminance (a measure of brightness).
+Imagine that you want to sort objects that do not define the method \ct{<=} or that you would like to have a different sorting criterion. You can do this by supplying a two argument block, called a sortblock, to the sorted collection. For example, the class \ct{Color} is not a Magnitude and it does not implement the method \ct{<=}, but we can specify a block stating that the colors should be sorted according to their luminance (a measure of brightness).
 
 \begin{code}{@TEST | col |}
 col := SortedCollection sortBlock: [:c1 :c2 | c1 luminance <= c2 luminance].
@@ -621,22 +621,22 @@ s replaceFrom: 4 to: 5 with: 'wo'.
 s --> 'No worries'
 \end{code}
 
-Instead, with \mthind{String}{copyReplaceAll:} a new string is created.
-(Curiously, here the arguments are substrings rather than individual characters, and the sizes do not have to match.)
+In contrast to the methods described above, the method \mthind{String}{copyReplaceAll:} creates a new string.
+(Curiously, here the arguments are substrings rather than individual characters, and their sizes do not have to match.)
 
 \begin{code}{@TEST |s| s:= 'No worries' copy.}
 s copyReplaceAll: 'rries' with: 'mbats' --> 'No wombats'
 \end{code}
 
-A quick look at the implementation of these methods reveals that they are defined not only for \ct{String}s, but for any kind of \ct{SequenceableCollection}, hence the following also works:
+A quick look at the implementation of these methods reveals that they are defined not only for \ct{String}s, but for any kind of \ct{SequenceableCollection}, so the following also works:
 
 \begin{code}{@TEST}
 (1 to: 6) copyReplaceAll: (3 to: 5) with: { 'three'. 'etc.' } --> #(1 2 'three' 'etc.' 6)
 \end{code}
 
-\paragraph{String matching}
+\paragraph{String matching.}
 \index{String!pattern matching}
-It is possible to ask whether a string matches a pattern by sending the \mthind{String}{match:} message.
+It is possible to ask whether a pattern matches a string by sending the \mthind{String}{match:} message.
 The pattern can specify \ct{*} to match an arbitrary series of characters and \# to match a single character. Note that \ct{match:} is sent to the pattern and not the string to be matched.
 \begin{code}{@TEST}
 'Linux *' match: 'Linux mag'                      --> true
@@ -931,7 +931,7 @@ range --> an OrderedCollection(2 3 5 7 11 13 17 19)
 \end{code}
 
 \paragraph{Redefining both \ct{=} and \ct{hash}.}
-A difficult error to spot is when you redefine \ct{=} but not \ct{hash}. The symptoms are that you will lose elements that you put in sets or other strange behavior. One solution proposed by Kent Beck is to using \ct{xor:} to redefine \ct{hash}.
+A difficult error to spot is when you redefine \ct{=} but not \ct{hash}. The symptoms are that you will lose elements that you put in sets or other strange behaviour. One solution proposed by Kent Beck is to using \ct{xor:} to redefine \ct{hash}.
 Suppose that we want two books to be considered equal if their titles and authors are the same.
 Then we would redefine not only \ct{=} but also \ct{hash} as follows:
 \index{Dictionary!overriding \ct{=} and \ct{hash}}
@@ -945,7 +945,7 @@ Book>>>hash
    ^ title hash xor: authors hash
 \end{method}
 
-Another nasty problem that can arise is to use mutable objects, \ie that may change their hash value over time, as elements of a \ct{Set} or as keys of a \ct{Dictionary}.
+Another nasty problem arises if you use a mutable object, \ie an object that can change its hash value over time, as an element of a \ct{Set} or as a key to a \ct{Dictionary}.
 Don't do this unless you love debugging!
 
 %=========================================================

@@ -351,7 +351,7 @@ Note also that \ct{WebServer} and \ct{ReliableWebServer} will each have their ow
 
 %\ruleref{inheritance}
 
-Each class in \st inherits its behavior and the description of its structure from a single \emphind{superclass}.
+Each class in \st inherits its behaviour and the description of its structure from a single \emphind{superclass}.
 This means that \st has single \ind{inheritance}.
 
 \needlines{2}
@@ -381,7 +381,7 @@ Have a look at the protocol \prot{Kernel-Classes \go Class \go subclass creation
 %An abstract class is an ordinary class in which the implementation of some methods is deferred to a subclass.
 %This is repeated in the next section
 
-Although \squeak does not provide multiple inheritance, since version 3.9 it has incorporated a mechanism called \emphind{trait}{}s for sharing behavior across unrelated classes.
+Although \squeak does not provide multiple inheritance, since version 3.9 it has incorporated a mechanism called \emphind{trait}{}s for sharing behaviour across unrelated classes.
 Traits are collections of methods that can be reused by multiple classes that are not related by inheritance. Using traits allows one to share code between different classes without duplicating code.
 
 %---------------------------------------------------------
@@ -432,7 +432,7 @@ Character>>>< aCharacter
 
 %---------------------------------------------------------
 \subsection{Traits}
-A \emphind{trait} is a collection of methods that can be included in the behavior of a class without the need for inheritance.
+A \emphind{trait} is a collection of methods that can be included in the behaviour of a class without the need for inheritance.
 This makes it easy for classes to have a unique superclass, yet still share useful methods with otherwise unrelated classes.
 
 To define a new trait, simply replace the subclass creation template by a message to the class \clsind{Trait}.
@@ -487,7 +487,7 @@ Traits are used in the system kernel.
 One good example is the class \clsind{Behavior}.
 
 \needlines{8}
-\begin{classdef}[behaviorwithtraits]{Behavior defined using traits}
+\begin{classdef}[behaviorwithtraits]{\ct{Behavior} defined using traits}
 Object subclass: #Behavior
 	uses: TPureBehavior @ {#basicAddTraitSelector:withMethod:->#addTraitSelector:withMethod:}
 	instanceVariableNames: 'superclass methodDict format'
@@ -524,7 +524,7 @@ Since different objects may have different methods for responding to the same me
 \noindent
 As a consequence, we can send the \emph{same message} to different objects, each of which may have \emph{its own method} for responding to the message.
 We do not tell the \ct{SmallInteger} \ct{3} or the \ct{Point} \ct{1@2} how to respond to the message \ct{+ 4}.
-Each has its own method for answering this message send, and responds accordingly.
+Each has its own method for \ct{+}, and responds to \ct{+ 4} accordingly.
 
 One of the consequences of \st's model of message sending is that it encourages a style in which objects tend to have very small methods and delegate tasks to other objects, rather than implementing huge, procedural methods that assume too much responsibility.
 Joseph Pelrine
@@ -699,7 +699,7 @@ BorderedMorph>>>initialize
 %---------------------------------------------------------
 \subsection{Self sends and super sends}
 
-We need \super \subind{super}{send}{}s to compose inherited behavior that would otherwise be overridden.
+We need \super \subind{super}{send}{}s to compose inherited behaviour that would otherwise be overridden.
 The usual way to compose methods, whether inherited or not, however, is by means of \self \subind{self}{send}{}s.
 
 How do \self sends differ from \super sends?
@@ -750,8 +750,9 @@ BorderedMorph>>>fullPrintOn: aStream
 	aStream nextPutAll: ') setBorderWidth: '; print: borderWidth;
 		nextPutAll: ' borderColor: ' , (self colorString: borderColor)
 \end{method}
-At this point, \ct{BorderedMorph>>>fullPrintOn:} does a \super send to extend the \ct{fullPrintOn:}behavior it inherits from its superclass.
-Because this is a \super send, the lookup now starts from the superclass of the class where the \super send occurs, namely in \ct{Morph}.
+At this point, \ct{BorderedMorph>>>fullPrintOn:} does a \super send to extend the 
+\ct{fullPrintOn:} behaviour it inherits from its superclass.
+Because this is a \super send, the lookup now starts in the superclass of the class where the \super send occurs, namely in \ct{Morph}.
 We then immediately find and evaluate \ct{Morph>>>fullPrintOn:}.
 
 Note that the \super lookup did not start in the superclass of the receiver.
@@ -992,7 +993,7 @@ Everything is an object, and pretty much everything happens by message sends.
   Primitive entities like integers are objects, but also classes are first-class objects.
 
   \item Every object is an instance of a class.
-  Classes define the structure of their instances via \emph{private} instance variables and the behavior of their instances via \emph{public} methods. Each class is the unique instance of its metaclass.  Class variables are private variables shared by the class and all the instances of the class.
+  Classes define the structure of their instances via \emph{private} instance variables and the behaviour of their instances via \emph{public} methods. Each class is the unique instance of its metaclass.  Class variables are private variables shared by the class and all the instances of the class.
   Classes cannot directly access instance variables of their instances, and instances cannot access class variables of their class.
   Accessors must be defined if this is needed.
 
