@@ -37,6 +37,9 @@ The Squeak Programming Environment -- DONE (mostly)
 	- Write more about Monticello -> Cassou?
 	* redo all screendumps with white background!
 SUnit -- DONE
+Add something on expected failures:
+expectedFailures
+	^#(testReifySendResult ...)
 Basic Classes -- Stef is working on it
 	* Need a chapter on Control Flow and Iterators?
 	[Iterators are discussed in the Collections chapter]

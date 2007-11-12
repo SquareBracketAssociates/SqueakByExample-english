@@ -36,9 +36,136 @@
 %=================================================================
 \section{Getting started}
 
+\begin{faq}
+How do I install seaside?
+\end{faq}
+\answer
+\begin{itemize}
+  \item 
+Start the SqueakMap browser.
+  \item 
+Update map from the net.
+  \item 
+Install seaside (2.8a)
+  \item 
+Ignore warnings
+  \item 
+Say "yes" to "Install KOM server?"
+  \item 
+Pick (say) admin/seaside for server login and password
+Now you probably have an old version of seaside loaded
+  \item 
+Open Monticello browser
+  \item 
+Create new repository for http://www.squeaksource.com/Seaside
+  \item 
+Open and load the latest version of seaside
+  \item 
+Start the websever ny evaluating:
+	WAKom startOn: 8080
+  \item 
+Point your browser to
+	http://localhost:8080/seaside
+\end{itemize}
+
+FAQs and other tutorials:
+\url{http://www.seaside.st/}
+
+Read also \cite{Duca07a}
+
+Turn server on and off:
+
+\begin{code}
+WAKom startOn: 8080
+WAKom stop
+\end{code}
+
+\begin{faq}
+How do you change the login and password?
+\end{faq}
+\answer
+
+\begin{faq}
+How do you turn off the toolbar?
+\end{faq}
+\answer
+All components must inherit from WAComponent
+Every component must implement \ct{#renderContentOn:}
+
+\begin{faq}
+But what about the \ct{#go} method?
+\end{faq}
+\answer
+That's for tasks, not components.
+
+\begin{faq}
+What's the difference between a task and a component?
+\end{faq}
+\answer
+It doesn't render -- it just encapsulates a workflow.
+(See the class comment.)
+Subclasses must not implement \ct{#renderContentOn:}
+
+Root components implement \ct{#canBeRoot} on the class side (returns true)
+Applications can be configured through the web interface
+
+Alternatively you can register a component as an application by implementing \ct{#initialize} on the class side:
+\begin{code}
+initialize
+	self registerAsApplication: 'myapp'
+\end{code}
+
+Halos ...
+
+\section{Registering state for backtracking in Seaside 2.8}
+
+\ct{#registerObjectForBacktracking:} has been deprecated and actually does not work
+anymore in Seaside 2.8
+
+
+The mechanism in Seaside 2.8 is different, it's similar to how the \ct{#children} mechanism works.
+
+So to define which objects a component is supposed to backtrack, we need to implement a method \ct{#states} which returns an array with these objects.
+
+So for the counter, intead of calling in the initialize
+
+\begin{code}
+	self registerObjectForBacktracking: sefl.
+\end{code}
+
+we define a method \ct{#states} like this:
+
+\begin{code}
+states
+	^ Array with: self
+\end{code}
+
+
+For the TicTacToe example of the exercises, this means that we have to change
+the class  a little.
+
+\begin{code}
+newModel
+	self model: STTicTacToeModel empty.
+	self session registerObjectForBacktracking: self model board
+\end{code}
+
+the line with the \ct{#registerObjectForBacktracking:} has to be deleted. Instead, we add a method \ct{#states:}
+
+\begin{code}
+states
+	self model ifNil: [^#()].
+	^Array with: self model board.
+\end{code}
+
+
 %-----------------------------------------------------------------
 
+
 %=================================================================
-\ifx\wholebook\relax\else
-\end{document}\fi
+\ifx\wholebook\relax\else 
+   \bibliographystyle{jurabib}
+   \nobibliography{scg}
+   \end{document}
+\fi
 %=================================================================
