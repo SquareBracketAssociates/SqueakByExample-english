@@ -44,6 +44,9 @@ Basic Classes -- Stef is working on it
 	* Need a chapter on Control Flow and Iterators?
 	[Iterators are discussed in the Collections chapter]
 Collections -- DONE
+	* Fix description of IdentityDictionary
+	- the foobar example is confusing if someone tries to reproduce it
+	since there are no dots between the printits ...
 Streams -- DONE
 Morphic -- DONE
 
