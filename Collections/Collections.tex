@@ -111,17 +111,21 @@ These methods are defined, redefined, optimized or occasionally even forbidden b
 \hline
 \protind{accessing}	&	\lct{size}, \lct{capacity}, \lct{at: \emph{anIndex}}, \lct{at: \emph{anIndex} put: \emph{anElement}}	\\
 \hline
-\protind{testing}	&	\lct{isEmpty}, \lct{includes: \emph{anElement}}, \lct{contains: \emph{aBlock}}, \lct{occurrencesOf: \emph{anElement}}	\\
+\protind{testing}	&	\lct{isEmpty}, \lct{includes: \emph{anElement}}, \lct{contains: \emph{aBlock}}, \\
+& \lct{occurrencesOf: \emph{anElement}}	\\
 \hline
 \protind{adding}	&	\lct{add: \emph{anElement}}, \lct{addAll: \emph{aCollection}}	\\
 \hline
 \protind{removing}		&	\lct{remove: \emph{anElement}}, \lct{remove: \emph{anElement} ifAbsent: \emph{aBlock}}, \lct{removeAll: \emph{aCollection}}	\\
 \hline
-\protind{enumerating}	&	\lct{do: \emph{aBlock}}, \lct{collect: \emph{aBlock}}, \lct{select: \emph{aBlock}}, \lct{ reject: \emph{aBlock}}, \lct{detect: \emph{aBlock}}, \lct{detect: \emph{aBlock} ifNone: aNoneBlock}, \lct{inject: \emph{aValue} into: \emph{aBinaryBlock}}	\\
+\protind{enumerating}	&	\lct{do: \emph{aBlock}}, \lct{collect: \emph{aBlock}}, \lct{select: \emph{aBlock}}, \lct{ reject: \emph{aBlock}}, \lct{detect: \emph{aBlock}}, \lct{detect: \emph{aBlock} ifNone: aNoneBlock}, \\
+& \lct{inject: \emph{aValue} into: \emph{aBinaryBlock}}	\\
 \hline
-\protind{converting}	&	\lct{asBag}, \lct{asSet}, \lct{asOrderedCollection}, \lct{asSortedCollection}, \lct{asArray}, \lct{asSortedCollection: \emph{aBlock}}	\\
+\protind{converting}	&	\lct{asBag}, \lct{asSet}, \lct{asOrderedCollection}, \lct{asSortedCollection}, \\
+& \lct{asArray}, \lct{asSortedCollection: \emph{aBlock}}	\\
 \hline
-\protind{creation}		&	\lct{with: \emph{anElement}}, \lct{with:with:}, \lct{with:with:with:}, \lct{ with:with:with:with:}, \lct{with: \emph{anElement} All: \emph{aCollection}}	\\
+\protind{creation}		&	\lct{with: \emph{anElement}}, \lct{with:with:}, \lct{with:with:with:}, \\
+& \lct{with:with:with:with:}, \lct{withAll: \emph{aCollection}}	\\
 \hline
 \end{tabular}
 \caption{Standard Collection protocols\label{fig:protocols}}
