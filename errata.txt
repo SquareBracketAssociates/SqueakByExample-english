@@ -35,6 +35,13 @@ p 138 "want to want to" -> "want to"
 p 186: "All Number objects support various....
 	others which generate Duration s, such as hour..."
 	[2007-10-22 Mike Roberts; fixed --on]
+	
+p 191: `conjuctions' => `conjuncations'
+	[2007-11-08 Has van der Krieken;  fixed --apb]
+	
+p 196: Figure 9.3. In Protocol creation: 
+	with: anElement All: aCollection should be: withAll: aCollection
+	[2007-11-08 Has van der Krieken;  fixed --apb]
 
 p 191: "conjuctions" -> "conjunctions"
 	[2007-11-08 Has van der Krieken; fixed --on]
@@ -44,8 +51,8 @@ p 196: "with:All:" -> "withAll:"
 
 p 199: "relize" instead of "realize" at the end of the "Common creation protocol"
 	paragraph.
-	[2--7-11-08 Has van der Krieken;  fixed --apb]
-     "behavior" => "behaviour" also fixed here and throughout the book.
+	[2007-11-08 Has van der Krieken;  fixed --apb]
+         "behavior" => "behaviour" also fixed here and throughout the book.
 
 p 208: First string test should read "'Hello' isEmpty --> false"
 	[2007-10-21; fixed --on]
