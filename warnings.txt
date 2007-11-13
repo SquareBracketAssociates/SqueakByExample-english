@@ -565,24 +565,19 @@ Underfull \vbox (badness 10000) has occurred while \output is active [193]
 [194 <./Collections/figures/CollectionHierarchyList.pdf>]
 (/usr/local/texlive/2007/texmf-dist/tex/latex/lm/ot1lmss.fd)
 Underfull \vbox (badness 1472) has occurred while \output is active [195 <./Col
-lections/figures/CollectionHierarchy.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
-[]|\T1/phv/m/n/10 (+20) with: \T1/phv/m/sl/10 (+20) anEle-ment\T1/ppl/m/n/10 (+
-20) , \T1/phv/m/n/10 (+20) with:with:\T1/ppl/m/n/10 (+20) , \T1/phv/m/n/10 (+20
-) with:with:with:\T1/ppl/m/n/10 (+20) ,
-[196]
+lections/figures/CollectionHierarchy.pdf>] [196]
 <Collections/figures/CollectionsByImpl.pdf, id=3592, 519.02164pt x 148.07831pt>
 <use Collections/figures/CollectionsByImpl.pdf> [197] [198 <./Collections/figur
 es/CollectionsByImpl.pdf>] [199] [200] [201] [202] [203] [204]
-Underfull \hbox (badness 7722) in paragraph at lines 533--535
+Underfull \hbox (badness 7722) in paragraph at lines 537--539
 \T1/ppl/m/n/10 (+20) More usu-ally, though, one will send the con-ver-sion mes-
 sage
 [205] [206]
-Underfull \hbox (badness 3219) in paragraph at lines 615--616
+Underfull \hbox (badness 3219) in paragraph at lines 619--620
 []\T1/ppl/m/n/10 (+20) We can also mod-ify an ex-ist-ing string us-ing [][][][]
 [] or
 [207] [208]
-Underfull \hbox (badness 2689) in paragraph at lines 720--722
+Underfull \hbox (badness 2689) in paragraph at lines 724--726
 \T1/ppl/m/n/10 (+20) and [][][][][]: For the in-dexed col-lec-tions ([][][][], 
 [][][][],
 [209] [210] [211] [212] [213] [214]) (./Streams/Streams.tex [215] [216]
@@ -737,5 +732,5 @@ pe1/urw/palatino/uplb8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw
 /palatino/uplbi8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palat
 ino/uplr8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palatino/upl
 ri8a.pfb>
-Output written on SBE.pdf (304 pages, 3651748 bytes).
+Output written on SBE.pdf (304 pages, 3651666 bytes).
 Transcript written on SBE.log.

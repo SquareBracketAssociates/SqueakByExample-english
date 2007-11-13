@@ -872,7 +872,7 @@ factorial value: 10 --> 3628800
 %---------------------------------------------------------
 \subsection{Other messages}
 
-\paragraph{\mthind{Collection}{count:}} The message \ct{count:} returns the number of elements matching a block.
+\paragraph{\mthind{Collection}{count:}} The message \ct{count:} returns the number of elements satisfying a condition.  The condition is represented as a boolean block.
 
 \begin{code}{@TEST}
 Smalltalk allClasses count: [:each | '*Collection*' match: each asString ] --> 14
@@ -885,7 +885,7 @@ colors := {Color white . Color yellow. Color red . Color blue . Color orange}.
 colors includes: Color blue. --> true
 \end{code}
 
-\paragraph{\mthind{OrderedCollection}{anySatisfy:}} The message \ct{anySatisfy:} returns whether at least one element satisfies a condition.
+\paragraph{\mthind{OrderedCollection}{anySatisfy:}} The message \ct{anySatisfy:} answers true if at least one element of the collection satisfies the condition represented by the argument.
 
 \begin{code}{@TEST | colors | colors := {Color white . Color yellow. Color red . Color blue . Color orange}.}
 colors anySatisfy: [:c | c red > 0.5] --> true
@@ -902,7 +902,7 @@ collection --> 2
 \end{code}
 \noindent
 Here the variable \ct{collection} does not hold the newly created collection but rather the last number added. 
-Indeed the method \ct{add:} returns the element added and not the receiver.
+This is because the method \ct{add:} returns the element added and not the receiver.
 
 The following code yields the expected result:
 \begin{code}{@TEST | collection |}
