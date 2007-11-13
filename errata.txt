@@ -43,11 +43,9 @@ p 196: Figure 9.3. In Protocol creation:
 	with: anElement All: aCollection should be: withAll: aCollection
 	[2007-11-08 Has van der Krieken;  fixed --apb]
 
-p 191: "conjuctions" -> "conjunctions"
-	[2007-11-08 Has van der Krieken; fixed --on]
-
-p 196: "with:All:" -> "withAll:"
-	[2007-11-08 Has van der Krieken; fixed --on]
+p 196: Figure 9.3  In protocol enumerating
+	aNoneBlock should be italicized.
+	[2007-11-12 Andrew Black; fixed -- apb]
 
 p 199: "relize" instead of "realize" at the end of the "Common creation protocol"
 	paragraph.
