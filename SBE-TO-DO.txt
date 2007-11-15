@@ -15,6 +15,7 @@ Schweizerische Nationalbibliothek, Erwerbungsdienst, Hallwylstr. 15, 3003 Bern
 - Oscar: ? Add mechanism to test that certain expressions raise an ERROR?
 	1 / 0 --> ERROR
 - Oscar: Add means to define classes in tests (e.g., Model chapter)?
+- Add a code folder with change sets for all full examples (alternative to squeaksource)
 -----------------------------------------------------------------------------
 STATUS OF CHAPTERS
 ------------------
