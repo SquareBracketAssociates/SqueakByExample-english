@@ -1,7 +1,11 @@
 *.aux
+*.blg
 *.log
 *.out
 *.url
 *.image
 *.changes
 *.command
+Bergel*.pdf
+s5056.pdf
+scg.bib
