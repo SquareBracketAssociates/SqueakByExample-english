@@ -5,6 +5,8 @@
 *.glo
 *.idx
 *.ilg
+*.toc
 *.image
 *.changes
 *.command
+_*
