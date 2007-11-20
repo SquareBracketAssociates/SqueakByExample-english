@@ -34,118 +34,122 @@
 \on{I am working on this chapter.}
 
 %=================================================================
-\section{XXX}
+\section{What is Seaside?}
 
-\begin{verbatim}
-Outline
-- What is Seaside?
-  - Problems with web development
-  - advantage of seaside cf IEEE paper
-  - history?
-  - lots of recent changes
-  - Developed by ...
-\end{verbatim}
+Seaside is a web application framework for Smalltalk originally developed by Avi Bryant in 2002.
+A couple of the better known applications of Seaside are SqueakSource\cite{SqueakSource} and Dabble DB\cite{DabbleDB}.
 
-%=================================================================
-\section{XXX}
-\begin{verbatim}
-- Getting Started
-  - Downloading and installing
-  - Running examples
-  - Using the GUI: Halos, debugging etc
-\end{verbatim}
+Modern web application development frameworks have to cope with a host of problems. Expressing non-trivial control flows across multiple web pages is often cumbersome. Many web applications forbid the use of the browser's ``back button'' due to the difficulty of keeping track of the state of a session. Multiple control flows can also be difficult or impossible to express.
 
-%=================================================================
-\section{XXX}
-\begin{verbatim}
-- Overview
-  - Components, Tasks, Rendering, Call & Answer ...
-\end{verbatim}
+Seaside is a component-based framework that uses ``continuations''\footnote{A \emph{continuation} represents ``the rest of the computation'' at any point in a computation. In Smalltalk, a continuation is just an object that captures the current state of the computation, and which can be resumed at any point.} to keep track of multiple points in the control flow of web applications. Continuations are managed automatically by Seaside, so web developers do not even have to be aware of the underlying machinery. It just works.
 
-%-----------------------------------------------------------------
-\subsection{XXX}
-\begin{verbatim}
-- Rendering
-  - Hello World
-  - Rendering examples
-  - Nested Components
-\end{verbatim}
-%-----------------------------------------------------------------
-\subsection{XXX}
-\begin{verbatim}
-- Call and Answer
-  - Standard Dialogues
-  - Tasks
-\end{verbatim}
-%-----------------------------------------------------------------
-\subsection{XXX}
-\begin{verbatim}
-- Backtracking state
-- Transactions
-\end{verbatim}
-
-%=================================================================
-\section{A complete example}
-\begin{verbatim}
-- RPN Calculator
-\end{verbatim}
+Seaside makes web development easier in the following ways:
+Control flow can be expressed naturally in terms of messages sends.
+Seaside keeps track of the state of each user session.
+The browser's ``back button'' will work\,---\,Seaside keeps track for you which web page corresponds to which continuation.
+Backtracking of state can be enabled, so that navigation back in time will undo side-effects.
+Alternatively, transaction support is available too, to prevent users from undoing permanent side-effects using the back button.
+The developer does not have to encode any information in the URL\,---\,this too is managed automatically for you.
+Web pages are built up from nested components, each of which may supports its own, independent control flow.
+There are no HTML templates\,---\,instead valid XHTML is generated using a simple Smalltalk API.
+Seaside supports Cascading Style Sheets (CSS), so content and layout are cleanly separated.
+Finally, Seaside provides a convenient web-based development interface, making it easy to develop applications iteratively, debug applications interactively, and recompile and extend applications while the server is running.
 
 %=================================================================
 \section{Getting started}
 
-\begin{faq}
-How do I install seaside?
-\end{faq}
-\answer
-\begin{itemize}
-  \item 
-Start the SqueakMap browser.
-  \item 
-Update map from the net.
-  \item 
-Install seaside (2.8a)
-  \item 
-Ignore warnings
-  \item 
-Say "yes" to "Install KOM server?"
-  \item 
-Pick (say) admin/seaside for server login and password
-Now you probably have an old version of seaside loaded
-  \item 
-Open Monticello browser
-  \item 
-Create new repository for http://www.squeaksource.com/Seaside
-  \item 
-Open and load the latest version of seaside
-  \item 
-Start the websever ny evaluating:
-	WAKom startOn: 8080
-  \item 
-Point your browser to
-	http://localhost:8080/seaside
-\end{itemize}
+The easiest way to get started is to download the ``Seaside One-Click Experience'' from the Seaside web site\cite{Seaside}.
+This is a prepackaged version of Seaside 2.8 for Mac OSX, Linux and Windows.
 
-FAQs and other tutorials:
-\url{http://www.seaside.st/}
+Alternatively, you may download the latest Squeak Developers' Web image\cite{SqueakDevImage}, which comes with many useful tools pre-loaded.
+If you are feeling more adventurous, you can install Seaside yourself into an image by following the manual installation instructions on the Seaside web site.
 
-Read also \cite{Duca07a}
+You can turn the Seaside server on and off respectively by evaluating
+\ct{WAKom startOn: 8080}
+or
+\ct{WAKom stop}.
+The default administrator login and password in the prepackaged installation is \lct{admin/seaside}.
+To change this, simply evaluate: \lct{WADispatcherEditor initialize}
 
-Turn server on and off:
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=\textwidth]{seasideStartup}
+\caption{Starting up Seaside}
+\label{fig:seasideStartup}
+\end{center}
+\end{figure}
 
-\begin{code}
-WAKom startOn: 8080
-WAKom stop
-\end{code}
+\dothis{Start the Seaside server and open a browser to \url{http://localhost:8080/seaside/}.
+What you see should look like \figref{seasideStartup}.
+Now go to \lct{examples{\go}counter}.
+This is a simple example of a counter that can be incremented or decremented by clicking on the \ct{++} and \ct{--} links.
+Play with the counter by clicking on these links.
+Use your browser's ``back button'' to go back to a previous state, and then click on \ct{++} again.
+Notice how the counter is correctly incremented with respect to the current displayed state, rather than the state the counter was left in when you started using the ``back'' button.}
 
-\begin{faq}
-How do you change the login and password?
-\end{faq}
-\answer
+Now notice the toolbar at the bottom of the web page.
+\menu{New Session} will restart the counter.
+\menu{Configure} allows you to configure the binding of the URL to the underlying Seaside component.
+(To close the \menu{Configure} view, click on the \menu{x} in the top right corner.)
+\menu{Toggle Halos} provides you with an interface to explore the state of the running application.
+\menu{Profiler} and \menu{Memory} provide you with detailed information about the run-time performance of the application.
+\menu{XHTML} can be used to validate the generated web page.
 
-\begin{faq}
-How do you turn off the toolbar?
-\end{faq}
-\answer
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=\textwidth]{counterHalos}
+\caption{Halos}
+\label{fig:counterHalos}
+\end{center}
+\end{figure}
+
+\dothis{Select \menu{Toggle Halos}. (See \figref{counterHalos}.) At the top left you will see the text \ct{WACounter}. This is the class of the Seaside component that implements the behaviour of this web page. Next to this are three icons. The first activates a Seaside class browser opened to this class. The second opens an object inspector on the currently active instance. The third displays the CSS style sheet for this component. At the top right you can toggle between the rendered view and the source view of the web page. Experiment with all of these buttons. Note that the source view contains active links.  Contrast the source view provided by the Halos with the source view offered by your browser.}
+
+The class browser and object inspector available from Seaside are provided for convenience. For development purposes you will normally be working from the currently running image.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{haltingCounter}
+\caption{Halting the counter}
+\label{fig:haltingCounter}
+\end{center}
+\end{figure}
+
+\dothis{Open an inspector on the counter within the browser and evaluate \ct{self halt}.
+Notice that the web page will stop loading.
+Now switch to the Seaside image.
+You should now see a pre-debugger window (\figref{haltingCounter}) open on the current instance.
+Browse this instance in the debugger, and then \menu{Proceed}.
+Go back to the browser and note that the counter application is running again.}
+
+\dothis{Point your browser to \url{http://localhost:8080/seaside/config}.
+Supply the login and password \ct{admin/seaside} (or whatever you defined them to be).
+Note that you can configure, copy or remove individual components.
+Select \menu{Configure} next to ``examples''.
+Add a new entry point called ``counter2''.
+Set the root component to \ct{WACounter}, then \menu{Save} and \menu{Close}.
+Now we have a new counter installed at \url{http://localhost:8080/seaside/examples/counter2}.
+Use the same configuration interface to remove this entry point.
+}
+
+The toolbar is only available during development.
+You can either use the configuration interface or the \menu{Configure} button in the toolbar to set the deployment mode from false to true.
+Note that this only affects new sessions.
+You can also set the deployment mode on or off globally by evaluating
+\ct{WAGlobalConfiguration setDeploymentMode}
+or
+\ct{WAGlobalConfiguration setDevelopmentMode}.
+
+If you remove the config application, you can get it back by evaluating:
+\ct{WADispatcherEditor initialize}
+
+
+%=================================================================
+\section{}
+\begin{verbatim}
+- Overview
+  - Components, Tasks, Rendering, Call & Answer ...
+\end{verbatim}
 
 \begin{faq}
 How do you render components?
@@ -177,9 +181,30 @@ initialize
 	self registerAsApplication: 'myapp'
 \end{code}
 
-Halos ...
 
-\section{Registering state for backtracking in Seaside 2.8}
+%-----------------------------------------------------------------
+\subsection{Rendering HTML}
+\begin{verbatim}
+- Rendering
+  - Hello World
+  - Rendering examples -- brushes
+  - Nested Components
+  - CSS in a Nutshell
+\end{verbatim}
+%-----------------------------------------------------------------
+\subsection{Tasks and dialogues}
+\begin{verbatim}
+- Call and Answer
+  - Standard Dialogues
+  - Tasks
+\end{verbatim}
+%-----------------------------------------------------------------
+\subsection{Keeping track of state}
+\begin{verbatim}
+- Backtracking state
+- Transactions
+\end{verbatim}
+
 
 \ct{#registerObjectForBacktracking:} has been deprecated and actually does not work
 anymore in Seaside 2.8
@@ -220,6 +245,13 @@ states
 	^Array with: self model board.
 \end{code}
 
+
+
+%=================================================================
+\section{A complete example}
+\begin{verbatim}
+- RPN Calculator
+\end{verbatim}
 
 %-----------------------------------------------------------------
 
