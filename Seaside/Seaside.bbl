@@ -1,0 +1,29 @@
+%
+% This bibliography was produced by using jurabib.bst
+%
+\begin{thebibliography}{}
+
+\bibitem[{Ducasse\jbbfsasep Lienhard\jbbstasep Renggli\jbdy {2007}}%
+         {IEEE Software 24  \peryearformat {2007}}%
+         {{0}{}{article}{2007}{}{}{}{56--63}%
+          {Los Alamitos, CA, USA\bpubaddr {} IEEE Computer Society\bibbdsep {}
+  2007}}%
+         {{Seaside: A Flexible Environment for Building Dynamic Web
+  Applications}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{Duca07a}
+ \jburldef
+  {Duca07a}{http://www.computer.org/portal/cms_docs_software/software/homepage%
+/2007/S507/s5056.pdf}%
+ \jbbibargs {\bibnf {Ducasse} {St\'ephane} {S.} {} {}\Bibbfsasep \bibnf
+  {Lienhard} {Adrian} {A.} {} {}\Bibbstasep \bibnf {Renggli} {Lukas} {L.} {}
+  {}} {St\'ephane DucasseAdrian LienhardLukas Renggli} {aus} {\bibapifont
+  {Seaside: A Flexible Environment for Building Dynamic Web
+  Applications}\bibatsep\ \bibJTsep \bibjtfont {IEEE Software}\ajtsep\
+  \artvolumeformat {24} \artyearformat {2007}\artnumberformat {5}
+  \jbPages{56--63} \jburluse {Duca07a}\jbissn {0740--7459}}
+  {\bibartperiodhowcited} \jbdoitem {{Ducasse}{St\'ephane}{S.}{}{};
+  {Lienhard}{Adrian}{A.}{}{}; {Renggli}{Lukas}{L.}{}{}} {} {} \bibAnnote
+  {internationaljournal}
+
+\end{thebibliography}
