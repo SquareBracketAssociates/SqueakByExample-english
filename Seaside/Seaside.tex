@@ -122,6 +122,15 @@ You should now see a pre-debugger window (\figref{haltingCounter}) open on the c
 Browse this instance in the debugger, and then \menu{Proceed}.
 Go back to the browser and note that the counter application is running again.}
 
+\dothis{Open \url{http://localhost:8080/seaside/examples/multicounter}.
+You will see an application built out of a number of independent instances of the counter component.
+Increment and decrement several of the counters.
+Verify that they behave correctly even if you use the ``back'' button.
+Toggle the halos to see how the application is built out of nested components.
+Use the Seaside class browser to view the implementation.
+(There should be three methods each on the class and instance sides.)
+}
+
 \dothis{Point your browser to \url{http://localhost:8080/seaside/config}.
 Supply the login and password \ct{admin/seaside} (or whatever you defined them to be).
 Note that you can configure, copy or remove individual components.
@@ -145,7 +154,28 @@ If you remove the config application, you can get it back by evaluating:
 
 
 %=================================================================
-\section{}
+\section{Seaside components}
+
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=\textwidth]{WACounter}
+\caption{WACounter}
+\label{fig:WACounter}
+\end{center}
+\end{figure}
+
+
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=\textwidth]{WAMultiCounter}
+\caption{WAMultiCounter}
+\label{fig:WAMultiCounter}
+\end{center}
+\end{figure}
+
+
 \begin{verbatim}
 - Overview
   - Components, Tasks, Rendering, Call & Answer ...
