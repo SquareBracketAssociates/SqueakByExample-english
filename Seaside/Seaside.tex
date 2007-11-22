@@ -122,6 +122,14 @@ You should now see a pre-debugger window (\figref{haltingCounter}) open on the c
 Browse this instance in the debugger, and then \menu{Proceed}.
 Go back to the browser and note that the counter application is running again.}
 
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=\textwidth]{multiCounterHalos}
+\caption{Independent subcomponents}
+\label{fig:multiCounterHalos}
+\end{center}
+\end{figure}
+
 \dothis{Open \url{http://localhost:8080/seaside/examples/multicounter}.
 You will see an application built out of a number of independent instances of the counter component.
 Increment and decrement several of the counters.
@@ -152,10 +160,52 @@ or
 If you remove the config application, you can get it back by evaluating:
 \ct{WADispatcherEditor initialize}
 
-
 %=================================================================
 \section{Seaside components}
 
+Let's have a closer look at how Seaside works.
+
+Seaside applications are built out of components.
+Every Seaside component should inherit directly or indirectly from \ct{WAComponent}. (See \figref{WACounter}.)
+
+\dothis{Define a subclass of \ct{WAComponent} called \ct{WAHelloWorld}.}
+
+Components must know how to render themselves.
+Usually this is done by implementing the method \ct{renderContentOn:}, which gets as its argument an instance of \ct{WAHtmlCanvas} that knows how to render html.
+
+\dothis{Implement the following method:}
+\begin{code}{}
+WAHelloWorld>>>renderContentOn: html
+	html text: 'hello world'
+\end{code}
+
+Now we must inform Seaside that this component is allowed to be a standalone application.
+
+\dothis{Implement the following method on the class side of \ct{WAHelloWorld}.}
+
+\begin{code}{}
+WAHelloWorld class>>>canBeRoot
+	^ true
+\end{code}
+
+You are almost done now.
+
+\dothis{Go to \url{http://localhost:8080/seaside/config}, add a new entry point called ``hello'', and set its root component to be \ct{WAHelloWorld}.
+Now point your browser to \url{http://localhost:8080/seaside/hello}.
+That's it!}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=\textwidth]{WAHelloWorld}
+\caption{``Hello World'' in Seaside}
+\label{fig:WAHelloWorld}
+\end{center}
+\end{figure}
+
+%-----------------------------------------------------------------
+\subsection{Simple and nested components}
+
+The counter and multi-counter examples are only slightly more complex than the ``hello world'' application.
 
 \begin{figure}[ht]
 \begin{center}
@@ -165,7 +215,25 @@ If you remove the config application, you can get it back by evaluating:
 \end{center}
 \end{figure}
 
+The class \ct{WACounter} is a standalone application, so it implements \ct{canBeRoot} on the class side.
+It also automatically registers itself as an application in its class-side \ct{initialize} method (see \figref{WACounter}).
 
+\ct{WACounter} defines an instance variable \ct{count} to keep track of the state of the counter.
+Since we want Seaside to synchronize the state with the browser page, \ie in case the user clicks on the browser's ``back button'', we must inform Seaside which variables to track by implementing the \ct{states} method.
+This should return an array of all objects to be tracked.
+In this case \ct{WACounter} asks to track its own state by returning \ct{Array with: self}.
+
+\paragraph{\emph{Caveat.}}
+Seaside tracks state by making a \emph{snapshot} of all the state objects.
+A \ct{WASnapShot} is a subclass of \ct{IdentityDictionary} that registers the object to be tracked as a key, and a (shallow) copy of its state as a value.
+If the state is restored from a snapshot, all registered objects are restored to the saved value.
+This means that \ct{WACounter>>>states} must return \ct{Array with: self} and not \ct{Array with: count}!  Since \ct{count} is presumably a \ct{SmallInteger} it cannot be backed up or restored. The \ct{WACounter} instance is a regular object, however, so its state can be tracked.
+
+The rendering of the counter is relatively straightforward.
+The current value of the counter is displayed as an html heading, and the increment and decrement operations are implemented as html anchors with callbacks to methods \ct{increase} and \ct{decrease} (not shown).
+
+We will have a closer look at the rendering protocol in a moment.
+First let us have a quick look at the multi-counter.
 
 \begin{figure}[ht]
 \begin{center}
@@ -174,6 +242,114 @@ If you remove the config application, you can get it back by evaluating:
 \label{fig:WAMultiCounter}
 \end{center}
 \end{figure}
+
+It is also a standalone application, so it implements \ct{canBeRoot}.
+In addition, it is composite component, so Seaside requires it to declare its children by implementing a method \ct{children} that returns an array of all the components it contains.
+It trivially renders itself by rendering each of its subcomponents, separated by a horizontal rule.
+Aside from instance and class-side initialization methods, there is nothing else to the multi-counter!
+
+%-----------------------------------------------------------------
+\subsection{Rendering HTML}
+
+
+
+%:===>HERE<===
+
+\begin{verbatim}
+Build XHTML programmatically.
+Component should implement renderContentOn:
+All rendering methods go in method category 'rendering'
+
+Will be called by framework when component should presnet itself.
+Will be given a "canvas" to render on (html).
+
+Basic rendering:
+
+html text: 'hello world'.
+html html: '&ndash;'
+html render: 1
+
+(renders anything, with double dispatch)
+
+html is some instance of WARenderCanvas
+You can ask the canvas for a "brush".
+Look at WACanvas and subclasses for the full protocol
+
+basic brushes:
+
+html break.
+html horizontalRule.
+html space.
+
+Using brushes:
+
+Create a brush:
+html div.
+
+Configure it:
+html div class: 'highlight'.
+
+Configure and render:
+html div
+	class: 'highlight';
+	with: 'hello world'.
+
+NB: with: must be sent last.
+
+Somethings you can set contents directky.
+
+html strong with: 'hello!'.
+html strong: 'hello!'.
+
+Argument to with: is rendering with double-dispatch, so can be anything.
+
+Often is a block to create nested HTML tags:
+
+html strong with: [ html emphasis with: 'hello!!!' ].
+
+Nested divs:
+html div id: 'frame'; with: [	html div id: 'contents'; with: ...	html div id: 'sidebar'; with: ... ].
+
+Lists:
+html orderedList with: [	html listItem with: ...	html listItem with: ... ].
+
+Tables:
+...
+
+
+Caveats:
+Don't change the state of the application while rendering, unless you have a really good reason to do so.Rendering is a read-only phase.Don't put all your rendering code into a single method. Split it into small parts and choose a method name following the pattern #render*On:
+
+*** Should fix RPN example to conform to this rule
+
+Rendering is a read-ony phase.Don't send #renderContentOn: from your own code, use #render: instead.Don't send #call: and #answer: while renderingAlways use #with: as the last message in the configuration cascase of your brush 
+
+
+Callbacks:
+
+html anchor	callback: [self someAction]	with: 'Some Action'].
+
+
+Forms:
+
+html form: [	html textInput		value: text;		callback: [:value | text := value].	html submitButton ].
+
+* Check the big example ...
+
+
+Images
+
+Others:
+Text Input / Text AreaSubmit ButtonCheck-BoxRadio GroupSelect ListFile-UploadHave a look at the functional tests!
+
+Category 'Seaside-Tests-Functional'
+
+\url{http://localhost:8080/seaside/tests/alltests}
+
+- Rendering
+  - Rendering examples -- brushes
+  - CSS in a Nutshell
+\end{verbatim}
 
 
 \begin{verbatim}
@@ -213,14 +389,8 @@ initialize
 
 
 %-----------------------------------------------------------------
-\subsection{Rendering HTML}
-\begin{verbatim}
-- Rendering
-  - Hello World
-  - Rendering examples -- brushes
-  - Nested Components
-  - CSS in a Nutshell
-\end{verbatim}
+\subsection{Cascading style sheets}
+
 %-----------------------------------------------------------------
 \subsection{Tasks and dialogues}
 \begin{verbatim}
@@ -283,6 +453,20 @@ states
 - RPN Calculator
 \end{verbatim}
 
+%=================================================================
+\section{Chapter summary}
+
+\begin{itemize}
+  \item 
+  \item 
+  \item 
+  \item 
+  \item 
+  \item 
+  \item 
+  \item 
+  \item 
+\end{itemize}
 %-----------------------------------------------------------------
 
 
