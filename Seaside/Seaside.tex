@@ -251,35 +251,37 @@ Aside from instance and class-side initialization methods, there is nothing else
 %-----------------------------------------------------------------
 \subsection{Rendering HTML}
 
+Seaside does not use templates to generate web pages.
+Instead XTHML is generated programmatically.
+We have already seen a couple of examples of of how this is done.
+
+Basically a Seaside component should implement the method \ct{renderContentOn:}, which will be called by the framework whenever the component needs to be rendered.
+This method will be passed an argument, called \ct{html}, which is a \emph{canvas} for rendering the component.
+
+Here are some of the most basic rendering methods:
+\begin{code}{}
+html text: 'hello world'.  "render a plain text string"
+html html: '&ndash;'.     "render an HTML incantation"
+html render: 1.              "render any object"
+\end{code}
+
+The message \ct{render:} can be sent to a canvas to render any object (using double dispatch), though it is usually used to render subcomponents (as in \figref{WAMultiCounter}).
+
+A canvas provides a number of \emph{brushes} that can be used to render content on the canvas.
+To see the full protocol of brushes and convenience methods available, you should browse the class \ct{WACanvas} and its subclasses.
+\ct{html} is actually an instance of the subclass \ct{WARenderCanvas}.
+
+We have already seen the following brushes used in the counter and multi-counter examples:
+\begin{code}{}
+html horizontalRule.
+html space.
+\end{code}
+
 
 
 %:===>HERE<===
 
 \begin{verbatim}
-Build XHTML programmatically.
-Component should implement renderContentOn:
-All rendering methods go in method category 'rendering'
-
-Will be called by framework when component should presnet itself.
-Will be given a "canvas" to render on (html).
-
-Basic rendering:
-
-html text: 'hello world'.
-html html: '&ndash;'
-html render: 1
-
-(renders anything, with double dispatch)
-
-html is some instance of WARenderCanvas
-You can ask the canvas for a "brush".
-Look at WACanvas and subclasses for the full protocol
-
-basic brushes:
-
-html break.
-html horizontalRule.
-html space.
 
 Using brushes:
 
@@ -308,31 +310,48 @@ Often is a block to create nested HTML tags:
 html strong with: [ html emphasis with: 'hello!!!' ].
 
 Nested divs:
-html div id: 'frame'; with: [	html div id: 'contents'; with: ...	html div id: 'sidebar'; with: ... ].
+html div id: 'frame'; with: [
+	html div id: 'contents'; with: ...
+	html div id: 'sidebar'; with: ... ].
 
 Lists:
-html orderedList with: [	html listItem with: ...	html listItem with: ... ].
+html orderedList with: [
+	html listItem with: ...
+	html listItem with: ... ].
 
 Tables:
 ...
 
 
 Caveats:
-Don't change the state of the application while rendering, unless you have a really good reason to do so.Rendering is a read-only phase.Don't put all your rendering code into a single method. Split it into small parts and choose a method name following the pattern #render*On:
+Don't change the state of the application while rendering, unless you have a really good reason to do so.
+Rendering is a read-only phase.
+Don't put all your rendering code into a single method. Split it into small parts and choose a method name following the pattern #render*On:
+All rendering methods go in method category 'rendering'
 
 *** Should fix RPN example to conform to this rule
 
-Rendering is a read-ony phase.Don't send #renderContentOn: from your own code, use #render: instead.Don't send #call: and #answer: while renderingAlways use #with: as the last message in the configuration cascase of your brush 
+Rendering is a read-ony phase.
+Don't send #renderContentOn: from your own code, use #render: instead.
+Don't send #call: and #answer: while rendering
+
+Always use #with: as the last message in the configuration cascase of your brush 
 
 
 Callbacks:
 
-html anchor	callback: [self someAction]	with: 'Some Action'].
+html anchor
+	callback: [self someAction]
+	with: 'Some Action'].
 
 
 Forms:
 
-html form: [	html textInput		value: text;		callback: [:value | text := value].	html submitButton ].
+html form: [
+	html textInput
+		value: text;
+		callback: [:value | text := value].
+	html submitButton ].
 
 * Check the big example ...
 
@@ -340,7 +359,15 @@ html form: [	html textInput		value: text;		callback: [:value | text := value]
 Images
 
 Others:
-Text Input / Text AreaSubmit ButtonCheck-BoxRadio GroupSelect ListFile-UploadHave a look at the functional tests!
+
+Text Input / Text Area
+Submit Button
+Check-Box
+Radio Group
+Select List
+File-Upload
+
+Have a look at the functional tests!
 
 Category 'Seaside-Tests-Functional'
 
