@@ -27,7 +27,15 @@
 	\sloppy
 \fi
 %=================================================================
-\chapter{Monticello}
+\chapter{Versioning your Code with Monticello}
+
+A versioning system is a tool that helps managing concurrent access to a common source code repository. It helps to keep track of all work and all changes in a set of classes and allows several developers to collaborate. As soon as the size of your software program goes over few classes, you probably need a versioning system.
+
+Many tools are available. CVS\footnote{\href{http://www.nongnu.org/cvs/}{www.nongnu.org/cvs/}} and Subversion\footnote{\href{http://subversion.tigris.org/}{subversion.tigris.org/}} are probably the most popular. Using them to manage the development of a squeak software will reduce the Squeak Smalltalk to a file-based language. 
+
+\emph{Monticello} is a versioning system for Squeak. It takes advantages of the Smalltalk meta-model by having a method as the software change grain. 
+
+In this chapter, you will read about using Monticello for manage your software program for day-to-day programming.
 
 \section{Packages in Monticello: PackageInfo}
 
