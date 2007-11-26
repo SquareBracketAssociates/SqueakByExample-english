@@ -31,11 +31,60 @@
 
 A versioning system is a tool that helps managing concurrent access to a common source code repository. It helps to keep track of all work and all changes in a set of classes and allows several developers to collaborate. As soon as the size of your software program goes over few classes, you probably need a versioning system.
 
-Many tools are available. CVS\footnote{\href{http://www.nongnu.org/cvs/}{www.nongnu.org/cvs/}} and Subversion\footnote{\href{http://subversion.tigris.org/}{subversion.tigris.org/}} are probably the most popular. Using them to manage the development of a squeak software will reduce the Squeak Smalltalk to a file-based language. 
+Many tools are available. CVS\footnote{\href{http://www.nongnu.org/cvs/}{www.nongnu.org/cvs/}} and Subversion\footnote{\href{http://subversion.tigris.org/}{subversion.tigris.org/}} are probably the most popular. Using them to manage the development of a software in Squeak will reduce the Squeak Smalltalk to a soulless file-based language. 
 
 \emph{Monticello} is a versioning system for Squeak. It takes advantages of the Smalltalk meta-model by having a method as the software change grain. 
 
-In this chapter, you will read about using Monticello for manage your software program for day-to-day programming.
+In this chapter, you will read about using Monticello to manage your software program for day-to-day programming.
+
+%=================================================================
+
+\section{Monticello in a Nutshell}
+
+This section gives a brief description of the basic features of Monticello: creating a packages, committing and updating.
+
+Once Monticello is installed, the Monticello Browser will be available from the 'open...' menu. Open it by selecting the \emph{World} menu, then select open and press \emph{Monticello Browser}.
+
+%\begin{figure}[ht]\centering
+%	\includegraphics[width=.75\linewidth]{monticello}
+%	\caption{Displaying all instance variables of a random instance of \ct!SystemWindow!.\label{fig:monticelloMain}}
+%\end{figure}
+
+
+\subsection{Creating a Package}
+
+The very first thing you need is to tell Monticello about the package you want to version. Monticello packages are mapped into class categories. For example, the two classes in Quinto, the first application you have seen, are contained in the category \emph{SBE-Quinto}. Press the \emph{+Package} in the Monticello browser and enter \emph{SBE-Quinto}. Voila, you just created the \emph{SBE-Quinto} Monticello package. 
+
+\subsection{Committing}
+
+Before committing you need to specify \emph{where} you want to save your package. The \emph{+Repository} button is for that purpose. Choose a folder. The \emph{Save} button will save your package into this repository. You may change the version name and add a comment. 
+
+\subsection{Updating}
+
+Select the repository you want to load a version from in the list on the right-hand side of the Monticello Browser, and click the 'Open' button. his will open a Repository Inspector. Select your version and click the 'Load' button.
+
+\subsection{Using SqueakSource}
+
+SqueakSource is a central online repository. Accessible on the address \href{http://www.squeaksource.com}{www.squeaksource.com}. For example, visit the BreakOut project\footnote{\href{http://www.squeaksource.com/BreakOut.html}{www.squeaksource.com/BreakOut.html}}. In the registration section you should see the 
+
+\begin{code}
+
+MCHttpRepository
+    location: 'http://www.squeaksource.com/BreakOut'
+    user: ''
+    password: ''
+\end{code}
+
+Enter a new repository (press \emph{+Repository}), then select \emph{HTTP}. Fill out the template with the URL corresponding to the BreakOut project (note that you may use a cut-and-paste). Choose one version, there is a high chance that you are interested in the last version. Select one and press \emph{Load}.
+
+If you want to save your code in a SqueakSource Monticello repository, you need permission. We will come back on that point later in this chapter.
+%=================================================================
+
+
+%=================================================================
+%=================================================================
+%=================================================================
+%=================================================================
 
 \section{Packages in Monticello: PackageInfo}
 
@@ -56,24 +105,15 @@ The rules, to be precise, are this: a package named "Foo" contains
 
 \paragraph{Installing}
 
-The best way to install Monticello is via SqueakMap. Note however, that MC has two dependencies, both are part of the standard image, so it's usually not necessary to install them explicitly. However, the update stream tends to lag behind the versions on SqueakMap, so it's often a good idea to upgrade them before installing MC.!
-\begin{itemize}
-\item PackageInfo groups classes and methods into packages using a simple naming convention. It became part of the standard image in update 5250.
-\item MCInstaller provides a way to load Monticello Versions into an image that doesn't have Monticello installed. Since Monticello is self hosting, it's used for bootstrapping. It's present in images updated through 5710 and later.
-\end{itemize}
+Monticello is included in the standard Squeak distribution (@@TO CHECK) and in the image for developers\footnote{@@TO ENTER}. If you use another image, Monticello is installable via \emph{SqueakMap} and \emph{Universe}.
+
 
 \paragraph{Creating a Working Copy}
-
-Once Monticello is installed, the Monticello Browser will be available from the 'open...' menu. Open it by selecting World / open... / Monticello Browser.
 
 The first thing you need to do is tell Monticello about the package you are interested in versioning. You do this by creating a Working Copy.
 
 \paragraph{From an .mcz version file}
 Open a FileList and navigate to the version file. Click on the 'Load' button to load the package into your image.
-
-\paragraph{From a version in a repository}
-
-First connect to the repository, either local or remote, that contains the verison you want to load. See below for details. Then open the repository: select the repository in the list on the right-hand side of the Monticello Browser, and click the 'Open' button. This will open a Repository Inspector. Select your version and click the 'Load' button.
 
 \paragraph{From scratch}
 
@@ -267,4 +307,6 @@ You can send fileOut to an instance of PackageInfo to get a changeset of the ent
    \end{document}
 \fi
 %=========================================================
+
+
 
