@@ -265,7 +265,7 @@ html html: '&ndash;'.     "render an HTML incantation"
 html render: 1.              "render any object"
 \end{code}
 
-The message \ct{render:} can be sent to a canvas to render any object (using double dispatch), though it is usually used to render subcomponents (as in \figref{WAMultiCounter}).
+The message \ct{render:} can be sent to a canvas to render any object (using double dispatch), though it is normally used to render subcomponents (as was the case in our multi-counter; see \figref{WAMultiCounter}).
 
 A canvas provides a number of \emph{brushes} that can be used to render content on the canvas.
 To see the full protocol of brushes and convenience methods available, you should browse the class \ct{WACanvas} and its subclasses.
@@ -279,7 +279,45 @@ html space.
 
 
 
+
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=\textwidth]{RenderingDemo}
+\caption{RenderingDemo}
+\label{fig:RenderingDemo}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=\textwidth]{dialogs}
+\caption{Standard dialogs}
+\label{fig:dialogs}
+\end{center}
+\end{figure}
+
 %:===>HERE<===
+
+\begin{code}{}
+SeasideDemo>>>renderContentOn: html	html heading: 'Rendering Demo'.	html heading		level: 2;		with: 'Rendering basic HTML: '.	html div		class: 'subcomponent';		with: htmlDemo.	html heading		level: 2;		with: 'A form subcomponent: '.	html div		class: 'subcomponent';		with: formDemo.	html heading		level: 2;		with: 'Calling an edit field subcomponent: '.	html div		class: 'subcomponent';		with: editDemo.	html heading		level: 2;		with: 'Some standard dialogs: '..	html div		class: 'subcomponent';		with: dialogDemo.
+
+
+SeasideHtmlDemo>>>renderContentOn: html	html paragraph: 'A plain text paragraph.'.	html paragraph: [		html			text: 'A paragraph with plain text followed by a line break. ';			break;			emphasis: 'Emphasized text ';			text: 'followed by a horizontal rule.';			horizontalRule;			text: 'An image URI: '.			html image				url: 'https://www.iam.unibe.ch/scg/svn_repos/SqueakByExample/Book/figures/sq.png';				width: '50'.		].	html orderedList: [ html listItem: 'An ordered list item' ].	html unorderedList: [ html listItem: 'An unordered list item' ].	html table: [ html tableRow: [ html tableData: 'A table with one data cell.' ] ].	html div id: 'author';		with: [			html text: 'Raw text within a div with id ''author''. '.			html span class: 'highlight'; with: 'A span with class ''highlight''.'. ].	html paragraph: [		html text: 'An anchor with a local action: '.		html span			with: [				html anchor					callback: [ toggleValue := toggleValue not ];					with: 'toggle boolean:'			].		html space.		html span			class: 'boolean';			with: (toggleValue ifTrue: [ 'true'] ifFalse: [ 'false' ])		].
+
+
+SeasideFormDemo>>>renderContentOn: html	| radioGroup |	html heading: heading.	html form: [		html span: 'Heading: '.		html textInput on: #heading of: self.		html select			list: self colors;			on: #color of: self.		radioGroup := html radioGroup.		html text: 'Radio on:'.		radioGroup radioButton			selected: radioOn;			callback: [radioOn := true].		html text: 'off:'.		radioGroup radioButton			selected: radioOn not;			callback: [radioOn := false].		html checkbox on: #checked of: self.		html submitButton			text: 'done'						";			callback: [ self inform: 'Text is ''', text, '''; color is ''', color, '''' ]."		]
+
+
+SeasideEditCallDemo>>>renderContentOn: html 	(html span)		class: 'field';		with: self text.	html space.	(html anchor)		callback: 				[self text: (self call: (SeasideEditAnswerDemo new text: self text))];		with: 'edit'
+
+
+SeasideEditAnswerDemo>>>renderContentOn: html	html form: [		html textInput			on: #text of: self.		html submitButton			callback: [ self answer: self text ];			text: 'ok'.		]
+
+SeasideDialogDemo>>>renderContentOn: html	(html anchor)		callback: [ self request: 'edit this' label: 'done' default: 'some text' ];		with: 'self request:'.	html space.	(html anchor)		callback: [self inform: 'yes!'];		with: 'self inform:'.			html space.	(html anchor)		callback: [				(self confirm: 'Are you happy?')					ifTrue: [ self inform: ':-)' ]					ifFalse: [ self inform: ':-(' ]				];		with: 'self confirm:'.
+
+\end{code}
 
 \begin{verbatim}
 
@@ -377,6 +415,11 @@ Category 'Seaside-Tests-Functional'
   - Rendering examples -- brushes
   - CSS in a Nutshell
 \end{verbatim}
+
+
+\begin{code}{}
+style	^ 'body {	font: 10pt Arial, Helvetica, sans-serif, Times New Roman;}h2 {	font-size: 12pt;	font-weight: normal;	font-style: italic;}table {	border-collapse: collapse;}td {	border: 2px solid #CCCCCC;	padding: 4px;}#author {	border: 1px solid black;	padding: 2px;	margin: 2px;}.subcomponent {	border: 2px solid lightblue;	padding: 2px;	margin: 2px;}.highlight {	background-color: yellow;}.boolean {	background-color: lightgrey;}.field {	background-color: lightgrey;}'
+\end{code}
 
 
 \begin{verbatim}
