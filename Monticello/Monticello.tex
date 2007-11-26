@@ -26,12 +26,15 @@
 	\renewcommand{\nnbb}[2]{} % Disable editorial comments
 	\sloppy
 \fi
+
+\newcommand{\seclabel}[1]{\label{sec:#1}}
+
 %=================================================================
 \chapter{Versioning your Code with Monticello}
 
 A versioning system is a tool that helps managing concurrent access to a common source code repository. It helps to keep track of all work and all changes in a set of classes and allows several developers to collaborate. As soon as the size of your software program goes over few classes, you probably need a versioning system.
 
-Many tools are available. CVS\footnote{\href{http://www.nongnu.org/cvs/}{www.nongnu.org/cvs/}} and Subversion\footnote{\href{http://subversion.tigris.org/}{subversion.tigris.org/}} are probably the most popular. Using them to manage the development of a software in Squeak will reduce the Squeak Smalltalk to a soulless file-based language. 
+Many tools are available. CVS\footnote{\href{http://www.nongnu.org/cvs/}{www.nongnu.org/cvs}} and Subversion\footnote{\href{http://subversion.tigris.org/}{subversion.tigris.org}} are probably the most popular. Using them to manage the development of a software in Squeak will reduce the Squeak Smalltalk to a soulless file-based language. 
 
 \emph{Monticello} is a versioning system for Squeak. It takes advantages of the Smalltalk meta-model by having a method as the software change grain. 
 
@@ -39,16 +42,16 @@ In this chapter, you will read about using Monticello to manage your software pr
 
 %=================================================================
 
-\section{Monticello in a Nutshell}
+\section{Basic Usage}
 
 This section gives a brief description of the basic features of Monticello: creating a packages, committing and updating.
 
 Once Monticello is installed, the Monticello Browser will be available from the 'open...' menu. Open it by selecting the \emph{World} menu, then select open and press \emph{Monticello Browser}.
 
-%\begin{figure}[ht]\centering
-%	\includegraphics[width=.75\linewidth]{monticello}
-%	\caption{Displaying all instance variables of a random instance of \ct!SystemWindow!.\label{fig:monticelloMain}}
-%\end{figure}
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{monticello}
+	\caption{The Monticello Browser.\label{fig:monticelloMain}}
+\end{figure}
 
 
 \subsection{Creating a Package}
@@ -59,13 +62,23 @@ The very first thing you need is to tell Monticello about the package you want t
 
 Before committing you need to specify \emph{where} you want to save your package. The \emph{+Repository} button is for that purpose. Choose a folder. The \emph{Save} button will save your package into this repository. You may change the version name and add a comment. 
 
+%\begin{figure}[ht]\centering
+%	\includegraphics[width=.75\linewidth]{merger}
+%	\caption{A new version name and a comment may be set when committing.\figlabel{saving}}
+%\end{figure}
+
 \subsection{Updating}
 
-Select the repository you want to load a version from in the list on the right-hand side of the Monticello Browser, and click the 'Open' button. his will open a Repository Inspector. Select your version and click the 'Load' button.
+Select the repository you want to load a version from in the list on the right-hand side of the Monticello Browser, and click the \emph{Open} button. his will open a Repository Inspector. Select your version and click the \emph{Load} button.
+
+%\begin{figure}[ht]\centering
+%	\includegraphics[width=.75\linewidth]{viewingRepository}
+%	\caption{A repository offers different package versions.\figlabel{viewingRepository}}
+%\end{figure}
 
 \subsection{Using SqueakSource}
 
-SqueakSource is a central online repository. Accessible on the address \href{http://www.squeaksource.com}{www.squeaksource.com}. For example, visit the BreakOut project\footnote{\href{http://www.squeaksource.com/BreakOut.html}{www.squeaksource.com/BreakOut.html}}. In the registration section you should see the 
+SqueakSource is a central online repository. Accessible from \href{http://www.squeaksource.com}{www.squeaksource.com}. For example, visit the BreakOut project\footnote{\href{http://www.squeaksource.com/BreakOut.html}{www.squeaksource.com/BreakOut.html}}. In the registration section you should see the 
 
 \begin{code}
 
@@ -77,7 +90,69 @@ MCHttpRepository
 
 Enter a new repository (press \emph{+Repository}), then select \emph{HTTP}. Fill out the template with the URL corresponding to the BreakOut project (note that you may use a cut-and-paste). Choose one version, there is a high chance that you are interested in the last version. Select one and press \emph{Load}.
 
-If you want to save your code in a SqueakSource Monticello repository, you need permission. We will come back on that point later in this chapter.
+If you want to save your code in a SqueakSource Monticello repository, the project security policy should allow you to do so. We will come back on that point later in \secref{monti:squeaksource} in this chapter.
+
+
+%\begin{figure}[ht]\centering
+%	\includegraphics[width=.75\linewidth]{squeaksource1}
+%	\caption{SqueakSource is an online central repository.\figlabel{squeaksource1}}
+%\end{figure}
+
+\subsection{Merging Changes}
+
+Your package may be merged with another version by using the \emph{Merge} button in the Monticello browser. We will come back on the different options available at that stage. Press \emph{Merge} to replace your package with a new version of this one. Note that your change, if any, will be erased.
+
+%\begin{figure}[ht]\centering
+%	\includegraphics[width=.75\linewidth]{merger}
+%	\caption{Merging two packages is performed using a fine grain.\figlabel{merging}}
+%\end{figure}
+
+\subsection{Dirty Package}
+
+%=================================================================
+
+\section{SqueakSource} \seclabel{monti:squeaksource}
+
+Modifying a package with the system code browser makes this package \emph{dirty}, meaning that you produced a delta with the last version that has been saved or loaded. A dirty package has its name prepended with the \emph{*} character in the Monticello browser.
+
+%=================================================================
+
+\section{Operations} \seclabel{monti:squeaksource}
+
+\subsection{Merging}
+
+Replacing a package with a new version. When are my local changes erased?
+
+\subsection{Branching}
+
+\subsection{Ancestor}
+
+%=================================================================
+
+\section{Repositories} \seclabel{monti:repositories}
+
+Several types of repositories are supported by Monticello, each with different characteristics and uses. Repositories can be read-only, write-only or read-write.
+
+\paragraph{HTTP} HTTP Repositories are often general purpose read-write repositories for day-to-day development using a shared server. (Although the server can be configured for read-only access. Saving Versions via HTTP uses the PUT method, wich must be enabled on the server.)
+
+The nice thing about HTTP repositories is that it's easy to link directly to specific versions from web sites or SqueakMap. With a little configuration work on the HTTP server, HTTP repositories can be made browseable by ordinary web browsers, WebDAV clients, etc.
+
+\paragraph{FTP} Similar to an HTTP repository, except that it uses an FTP server instead.
+
+\paragraph{GOODS} This repository type stores Versions in a GOODS object database. It's a read-write repository, so it makes a good "working" repository where Versions can be saved and retreived. Because of the transaction support, journaling and replication capabilities of GOODS, it is suitable for large repositories used by many clients.
+
+\paragraph{Directory} A directory repository stores Versions in a directory in the local filesystem. Since it requires very little work to set up, it's handy for private projects or disconnected development. Versions in a directory repository may be uploaded to a public or shared repository at a later time.
+
+\paragraph{SMTP} SMTP repositories are useful for sending versions by mail. When creating an SMTP repository, you specify a destination email address. This could be the address of another developer - the package's maintainer, for example - or a mailing list such as squeak-dev. Any versions saved in such a repository will be emailed to this address.
+
+\paragraph{SqueakMap Release} This is a write-only repository used for publishing releases of a package to SqueakMap. To configure the repository enter the name of the package on SqueakMap, your SqueakMap initials and your SqueakMap password. Now any Versions saved to the repository will be uploaded to your SqueakMap account, and registered as a new release with SqueakMap.
+
+\paragraph{SqueakMap Cache} When packages are installed via SqueakMap, downloaded files are stored in particular location in your directory called a cache. In order to make these files available to Monticello for loading, merges etc, a SqueakMap Cache repository is created when these files are loaded for the first time.
+
+%\paragraph{package-cache}
+
+%The package cache is a special repository that Monticello creates automatically. Like a directory repository, the package cache stores files in a directory on your local filesystem. See Elements of Monticello for more information.
+
 %=================================================================
 
 
@@ -174,46 +249,6 @@ When you use images in different directories you will have multiple package-cach
 \paragraph{Why cache packages at all?}
 
 When a Version is loaded into the image, it is likely to become the ancestor of new versions that are created as part of the development process. During merges, Monticello needs to examine the Snapshots of these ancestors in order to detect conflicts. By caching these ancestors as it loads them, MC reduces the chance that the necessary version will be unavailable - either because the repository it's in is no longer available or because it was loaded directly from a file and isn't in any repository.
-
-
-
-\section{Repositories}
-
-There are currently 8 types of repositories, each with different characteristics and uses. Repositories can be read-only, write-only or read-write.
-
-\paragraph{HTTP}
-
-HTTP Repositories are often general purpose read-write repositories for day-to-day development using a shared server. (Although the server can be configured for read-only access. Saving Versions via HTTP uses the PUT method, wich must be enabled on the server.)
-
-The nice thing about HTTP repositories is that it's easy to link directly to specific versions from web sites or SqueakMap. With a little configuration work on the HTTP server, HTTP repositories can be made browseable by ordinary web browsers, WebDAV clients, etc.
-
-\paragraph{FTP}
-
-Similar to an HTTP repository, except that it uses an FTP server instead.
-
-\paragraph{GOODS}
-
-This repository type stores Versions in a GOODS object database. It's a read-write repository, so it makes a good "working" repository where Versions can be saved and retreived. Because of the transaction support, journaling and replication capabilities of GOODS, it is suitable for large repositories used by many clients.
-
-\paragraph{directory}
-
-A directory repository stores Versions in a directory in the local filesystem. Since it requires very little work to set up, it's handy for private projects or disconnected development. The Versions in a directory repository can be uploaded to a public or shared repository at a later time.
-
-\paragraph{SMTP}
-
-SMTP repositories are useful for sending Versions by mail. When creating an SMTP repository, you specify an a destination email address. This could be the address of another developer - the package's maintainer, for example - or a mailing list such as squeak-dev. Any Versions save to the repository will be emailed to this address.
-
-\paragraph{SqueakMap Release}
-
-This is a write-only repository used for publishing releases of a package to SqueakMap. To configure the repository enter the name of the package on SqueakMap, your SM initials and your SM password. Now any Versions saved to the repository will be uploaded to your SM account, and registered as a new release with SqueakMap.
-
-\paragraph{SqueakMap Cache}
-
-When packages are installed through SqueakMap, the downloaded files are stored in a cache. In order to make these files, which are often Versions in .mcz format, available to Monticello for loading, merges etc, a SqueakMap Cache repository is created when these files are loaded for the first time.
-
-\paragraph{package-cache}
-
-The package cache is a special repository that Monticello creates automatically. Like a directory repository, the package cache stores files in a directory on your local filesystem. See Elements of Monticello for more information.
 
 
 \section{File Format}
