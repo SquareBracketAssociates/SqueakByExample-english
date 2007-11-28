@@ -27,10 +27,11 @@
 	\sloppy
 \fi
 
+\newcommand{\figlabel}[1]{\label{fig:#1}}
 \newcommand{\seclabel}[1]{\label{sec:#1}}
 
 %=================================================================
-\chapter{Versioning your Code with Monticello}
+\chapter{Versioning your Code with Monticello and SqueakSource}
 
 A versioning system is a tool that helps managing concurrent access to a common source code repository. It helps to keep track of all work and all changes in a set of classes and allows several developers to collaborate. As soon as the size of your software program goes over few classes, you probably need a versioning system.
 
@@ -49,8 +50,8 @@ This section gives a brief description of the basic features of Monticello: crea
 Once Monticello is installed, the Monticello Browser will be available from the 'open...' menu. Open it by selecting the \emph{World} menu, then select open and press \emph{Monticello Browser}.
 
 \begin{figure}[ht]\centering
-	\includegraphics[width=.75\linewidth]{monticello}
-	\caption{The Monticello Browser.\label{fig:monticelloMain}}
+	\includegraphics[width=.75\linewidth]{monticello.png}
+	\caption{The Monticello Browser.\figlabel{monticelloMain}}
 \end{figure}
 
 
@@ -62,10 +63,10 @@ The very first thing you need is to tell Monticello about the package you want t
 
 Before committing you need to specify \emph{where} you want to save your package. The \emph{+Repository} button is for that purpose. Choose a folder. The \emph{Save} button will save your package into this repository. You may change the version name and add a comment. 
 
-%\begin{figure}[ht]\centering
-%	\includegraphics[width=.75\linewidth]{merger}
-%	\caption{A new version name and a comment may be set when committing.\figlabel{saving}}
-%\end{figure}
+\begin{figure}[ht]\centering
+	\includegraphics[width=.55\linewidth]{saving.png}
+	\caption{A new version name and a comment may be set when committing.\figlabel{saving}}
+\end{figure}
 
 \subsection{Updating}
 
@@ -98,34 +99,106 @@ If you want to save your code in a SqueakSource Monticello repository, the proje
 %	\caption{SqueakSource is an online central repository.\figlabel{squeaksource1}}
 %\end{figure}
 
-\subsection{Merging Changes}
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{squeaksource2}
+	\caption{SqueakSource, the online Monticello code repository.\figlabel{squeaksource}}
+\end{figure}
 
-Your package may be merged with another version by using the \emph{Merge} button in the Monticello browser. We will come back on the different options available at that stage. Press \emph{Merge} to replace your package with a new version of this one. Note that your change, if any, will be erased.
+At the time this chapter is being written, about 1000 projects are registered and more than 1100 peoples have an account. \figref{squeaksource} shows the main web page.
 
-%\begin{figure}[ht]\centering
-%	\includegraphics[width=.75\linewidth]{merger}
-%	\caption{Merging two packages is performed using a fine grain.\figlabel{merging}}
-%\end{figure}
+Pressing the \emph{Register Member} menu item will probably be your very first step if you do not have a SqueakSource account. \emph{Register Project} allows for project creation. 
+
+
+\subsection{Merging a New Version}
+
+Your package may be merged with another version by using the \emph{Merge} button in the Monticello browser. We will come back on the different options that are available at that stage. Press \emph{Merge} to replace your package with a new version of this one. Note that your change, if any, will be erased.
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{merger}
+	\caption{Merging two packages is performed using a fine grain.\figlabel{merging}}
+\end{figure}
 
 \subsection{Dirty Package}
 
-%=================================================================
+Modifying a package with the system code browser makes this package \emph{dirty}, meaning that you produced a delta with the last version that has been saved or loaded. A dirty package has its name prepended with the \emph{*} character in the Monticello browser. This is a help for the programmer to indicate which package as to be saved. Saving a dirty package cleans it.
 
-\section{SqueakSource} \seclabel{monti:squeaksource}
-
-Modifying a package with the system code browser makes this package \emph{dirty}, meaning that you produced a delta with the last version that has been saved or loaded. A dirty package has its name prepended with the \emph{*} character in the Monticello browser.
 
 %=================================================================
 
-\section{Operations} \seclabel{monti:squeaksource}
+\section{Useful Features} \seclabel{monti:usefulfeatures}
 
-\subsection{Merging}
+Monticello has many non-vital but useful features. The Monticello browser contains 9 buttons (\figref{monticelloMain}). We already have seen 4 of them (\emph{+Package}, \emph{Save}, \emph{+Repository} and \emph{Open}). This section describes the remaining ones.
 
-Replacing a package with a new version. When are my local changes erased?
+\subsection{Browse} 
+
+As it is described in \secref{packageextension}, a Monticello package may define and redefine methods on classes defined in another package. The standard Squeak code browser does not help getting a clear view on the content of a package. The \emph{Browse} button open a package code viewer (also called snapshot browser).
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{{packageviewer}}
+	\caption{The package Sound extends the class GraphMorph with 3 methods.\figlabel{packageviewer}}
+\end{figure}
+
+For example, \figref{packageviewer} shows the class extension defined in the \emph{Sound} package. This package extends the class \ct{GraphMorph} with the three methods displayed in the right most upper pane. Note that code edition is not allowed at that stage.
+
+%\subsection{Scripts}
+% Script do not work!
+
+\subsection{History} 
+
+The \emph{History} button opens a version history viewer that shows all package version comments for a selection. \figref{historyviewer} illustrates this situation. The list on the left hand side shows the versions of the package AST. The text pane on the right gives information about the version 140 of this package.
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{{historyviewer}}
+	\caption{The version history viewer allows for crawling over different version of a package.\figlabel{packageviewer}}
+\end{figure}
+
+%Cannot do the swapping!
+
+\subsection{Changes} 
+
+The \emph{Changes} button computes the difference between your current package version and the last version of the package stored in the repository. 
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{{patchbrowser}}
+	\caption{The patch browser shows the difference between your local version and the last committe version.\figlabel{patchbrowser}}
+\end{figure}
+
+\figref{patchbrowser} shows that the Perseus package has been locally modified with three changes. One removed method (\emph{functionName}) and two method additions (\emph{toSmalltalkCompiledMethod} on \emph{PSCompiledFunction} and \emph{PSCompiledScript}).
+
+
+\subsection{Backport} 
+
+Each package version has an ancestor which is its parent version. The left pane of the history viewer display the list of ancestor actually. \emph{Backport} allows for changing the version of a package without erasing non-commited changes. For example, let's assume you are working on the version 6 of \emph{SBE-Quinto}. This current package can be turned into the version 3 while keeping your changes. 
+
+Backporting a package is useful when you want to revert your package to a previous while keeping your modification. You may then create a new branch. 
+
+
+%=================================================================
+
+\section{Advanced Operations} \seclabel{monti:advancedoperations}
+
+
+\subsection{Package Extension} \seclabel{packageextension} 
+Monticello packages are defined according to few naming conventions of class and method categories. A package named \emph{Foo} contains:
+
+\begin{itemize}
+\item All classes in the system category \emph{Foo}, or in system categories with names starting with \emph{Foo-}.
+\item All method definitions in any class in method categories named \emph{*foo}, with names starting with \emph{*foo-}, \emph{*Foo} and \emph{*Foo-}.
+\item All methods in classes in the system category \emph{Foo}, or in system categories for which their names begin with \emph{Foo-}, except those in method categories with names starting with \emph{*} (which has to belong to another modules).
+\end{itemize}
+
+
+\subsection{Version Loading}
+
+Loading a package with another version fully erases changes for that package that are committed. For example, let's assume that you are working on a package which contains a method \emph{m} for a class \emph{C}. Loading a new version for this package will either remove or replace your definition of \emph{C} and \emph{m}. You will not keep it, even if \emph{C} is not defined in a new version.
+
+You probably want to use the \emph{Merge} or the \emph{Backport} if you want to change the version of your package while keeping your change.
 
 \subsection{Branching}
 
 \subsection{Ancestor}
+
+\subsection{Adding New Variables}
 
 %=================================================================
 
@@ -168,13 +241,6 @@ The PackageInfo system is a simple, lightweight way of organizing Smalltalk sour
 
 These methods belong in the same package as the classes in \cat{SqueakLink-Connections} and \cat{SqueakLink-Model}. You mark this by placing those methods in a method category (of \ct{Object}, \ct{String}, \ct{Date}, and so on) named \cat{*squeaklink} (note the initial star). The combination of the \cat{SqueakLink-...} system categories and the \cat{*squeaklink} method categories forms a package named "SqueakLink".
 
-The rules, to be precise, are this: a package named "Foo" contains
-
-\begin{itemize}
-\item All class definitions of classes in the system category \cat{Foo}, or in system categories with names starting with "Foo-".
-\item All method definitions in any class in method categories named \cat{*foo} or with names starting with \cat{*foo-}.
-\item All methods in classes in the system category \cat{Foo}, or in system categories with names starting with \cat{Foo-}, except those in method categories with names starting with \cat{*} (which must belong to other modules).
-\end{itemize}
 
 \section{Getting Started}
 
@@ -283,41 +349,7 @@ The metadata for a Version ends up being fairly compact, so it's not unreasonabl
 
 Stated another way, a Version doesn't contain a full history of the source code. It's a snapshot of the code at a single point in time, with a UUID identifying that snapshot, and a record of the UUIDs of all the previous snapshots it's descended from. So it's a great thing to distribute.
 
-\section{The Monticello Browser}
 
-The Monticello Browser is the central window of the interface. All versioning operations begin with the Monticello Browser.
-
-The browser contains two panes. The left pane contains the list of packages that have Working Copies in the image. In parenthesis, the immediate ancestors of the Working Copies are also listed. Packages that have been modified since they were loaded are displayed with an asterisk before their names. The list on the right shows the repositories that are configured for the selected package. The buttons across the top are enabled and disabled depending on the selections in the two panes; many commands require you to first select a package and repository.
-
-\paragraph{+Package}
-
-The '+Package' button is used to create a Working Copy for a package. When you click on it, Monticello will ask for the name of the Package you want to version, the same name that PackageInfo uses to identify the package. Once the Working Copy has been created, the name of the package will appear in the left pane.
-
-The '+Package' button should only be used to create a Working Copy for a brand-new package, one that has not previously versioned with Monticello. To create a Working Copy from an existing Version, you should load the version from a repository or directly from an .mcz file using the FileList. See Getting Started for details.
-
-\paragraph{Browse}
-
-The 'Browse' button takes a Snapshot of the current state of the selected package and opens a Snapshot Browser on it.
-
-\paragraph{History}
-
-The 'History' button opens a History Browser on the Working Copy for the selected pacakge.
-
-\paragraph{Changes}
-
-The 'Changes' button is used to display the changes made to the selected package since it was last saved or loaded. Monticello first takes a Snapshot of the package and compares it to the package's first immediate ancestor. If any changes have been made, a Patch Browser is opened to display them.
-
-\paragraph{Save}
-
-The 'Save' button is for saving new Versions of the selected package. It opens a dialog that allows you to enter the name of the new version and a log message describing the changes made since the last version. If you click 'accept,' Monticello will take a Snapshot of the package and save it as a Version to the selected repository.
-
-\paragraph{+Repository}
-
-The '+Repository' button is used to connect to a Repository. It opens a menu allowing you to choose the type of repository you with to connect to, and depending on the repository type, a configuration dialog for the connection.
-
-\paragraph{Open}
-
-The 'Open' button opens a Repository Inspector on the selected repository. The is useful when you need to find a specific Version to load, merge, browse etc.
 
 \section{The Snapshot Browser}
 
