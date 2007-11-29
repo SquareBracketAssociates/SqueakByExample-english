@@ -799,9 +799,11 @@ Try to navigate back and forth within the parent and child transaction.
 Note that as soon as a transaction is complete, you can no longer go back inside the transaction without generating an error.}
 
 %=================================================================
-\section{A complete example}
+\section{A complete tutorial example}
 
-Let's see how we can build a complete Seaside application from scratch.\footnote{If you prefer to just look at the completed source code, you can grab it from the SqueakSource project \url{http://www.squeaksource.com/SqueakByExample}.
+% ON: Should take about two hours
+
+Let's see how we can build a complete Seaside application from scratch.\footnote{The exercise should take at most a couple of hours. If you prefer to just look at the completed source code, you can grab it from the SqueakSource project \url{http://www.squeaksource.com/SqueakByExample}.
 The relevant category is \scat{SBE-SeasideRPN}.}
 We will build a RPN (Reverse Polish Notation) calculator as a Seaside application that uses a simple stack machine as its underlying model.
 Furthermore, the Seaside interface will let us toggle between two displays\,---\,one which just shows us the current value on top of the stack, and the other which shows us the complete state of the stack.
@@ -816,8 +818,6 @@ Furthermore, the Seaside interface will let us toggle between two displays\,---\
 \end{center}
 \end{figure}
 
-%:-- Start stack machine implementation
-
 We begin by implementing the stack machine and its tests.
 
 \dothis{Define a new class called \ct{StackMachine} with an instance variable \ct{contents} initialized to a new \ct{OrderedCollection}.}
@@ -831,7 +831,7 @@ StackMachine>>>initialize
 The stack machine should provide operations to \ct{push:} and \ct{pop} values, view the \ct{top} of the stack, and perform various arithmetic operations to add, subtract, multiply and divide the top values on the stack.
 
 \dothis{Write some tests for the stack operations, and then implement these operations.
-Here is a simple test:}
+Here is a sample test:}
 
 \begin{code}{}
 StackMachineTest>>>testDiv
@@ -844,14 +844,13 @@ StackMachineTest>>>testDiv
 \end{code}
 
 You might consider using some helper methods for the arithmetic operations to check that there are two numbers on the stack before doing anything, and raising an error if this precondition is not fulfilled.\footnote{Better yet, use \ct{Object>>>assert:} to specify the preconditions for each operation.
-This will arise an \ct{AssertionFailure} if you try to use the stack machine in an invalid state.}
+This will raise an \ct{AssertionFailure} if you try to use the stack machine in an invalid state.}
 If you do this, most  of your methods will just be one or two lines long.
 
 You might also consider implementing \ct{StackMachine>>>printOn:} to make it easier to debug your stack machine implementation with the help of an object inspector.
+(Hint: just delegate printing to the \ct{contents} variable.)
 
 \dothis{Complete the \ct{StackMachine} by writing operations \ct{dup} (push a duplicate of the top value onto the stack), \ct{exch} (exchange the top two values), and \ct{rotUp} (rotate the entire stack contents up\,---\,the top value will move to the bottom).}
-
-%:-- minimum 20 minutes to implement stack machine with tests
 
 Now we have a simple stack machine implementation.
 We can start to implement the Seaside RPN Calculator.
@@ -891,7 +890,7 @@ td.stackcell {
 td.small { font-size: 8pt; }'
 \end{code}
 
-\dothis{Define \ct{RPNCalculator} as the root component.
+\dothis{Define \ct{RPNCalculator} to be a root component and register itself as an application.
 Implement \ct{RPNCalculator>>>renderContentOn:} to render something trivial, and verify that the application runs in a browser.
 }
 
@@ -932,24 +931,34 @@ First define the following helper methods, which will make it easier to script t
 }
 
 \begin{code}{}
-RPNKeypad>>>renderStackButtonOn: html with: text callback: aBlock colSpan: anInteger 	(html tableData)		class: 'key';		colSpan: anInteger;		with: 				[(html anchor)					callback: aBlock;					with: [html html: text]]
+RPNKeypad>>>renderStackButtonOn: html with: text callback: aBlock colSpan: anInteger 
+	(html tableData)
+		class: 'key';
+		colSpan: anInteger;
+		with: 
+				[(html anchor)
+					callback: aBlock;
+					with: [html html: text]]
 \end{code}
 
 
 \begin{code}{}
-RPNKeypad>>>renderStackButtonOn: html with: text callback: aBlock 	self 		renderStackButtonOn: html		with: text		callback: aBlock		colSpan: 1
+RPNKeypad>>>renderStackButtonOn: html with: text callback: aBlock 
+	self 
+		renderStackButtonOn: html
+		with: text
+		callback: aBlock
+		colSpan: 1
 \end{code}
 
 We will use these two methods to define the buttons on the keypad with appropriate callbacks.
 Certain buttons may span multiple columns, but the default is to occupy just one column.
 
 \dothis{
-Use the two helper methods to script the keypad as shown in \figref{renderKeypad}.
+Use the two helper methods to script the keypad as follows:
 }
 
 
-%:FIG Keypad rendering -- renderKeypad
-\begin{figure}[t]
 \begin{code}{}
 RPNKeypad>>>RPNKeypad>>>renderContentOn: html 
   self ensureStackNotEmpty.
@@ -977,9 +986,6 @@ RPNKeypad>>>RPNKeypad>>>renderContentOn: html
               colSpan: 2]]
 
 \end{code}
-\caption{Rendering the keypad}
-\label{fig:renderKeypad}
-\end{figure}
 
 Check that the keypad displays properly.
 If you try to click on the keys, however, you will find that the calculator does not work yet ...
@@ -989,7 +995,8 @@ Implement \ct{Keypad>>>type:} to update the top of the stack by appending the ty
 You will need something like this:
 }
 \begin{code}{}
-RPNKeypad>>>type: aString	stackMachine push: (stackMachine pop asString, aString) asNumber.
+RPNKeypad>>>type: aString
+	stackMachine push: (stackMachine pop asString, aString) asNumber.
 \end{code}
 Now when you click on the digit keys the display should be updated.
 (Be sure that \ct{StackMachine>>>pop} returns the value popped, or this will not work!)
@@ -999,7 +1006,8 @@ Now when you click on the digit keys the display should be updated.
 Something like this will do the trick:}
 
 \begin{code}{}
-RPNKeypad>>>stackOp: op	[ stackMachine perform: op.	] on: AssertionFailure do: [ ].
+RPNKeypad>>>stackOp: op
+	[ stackMachine perform: op ] on: AssertionFailure do: [ ].
 \end{code}
 
 The point is that we are not sure that all operations will succeed, for example, addition will fail if we do not have two numbers on the stack.
@@ -1014,18 +1022,25 @@ Actually the calculator should be aware of whether you are typing a \emph{new} n
 
 \dothis{Adapt \ct{RPNKeypad>>>type:} to behave differently depending on the current typing mode.
 Introduce an instance variable \ct{mode} which takes on one of the three values \lct{\#typing} (when you are typing), \lct{\#push} (after you you have performed a calculator operation and typing should force the top value to be pushed), or \lct{\#clear} (after you have performed \menu{Enter} and the top value should be cleared before typing).
+The new \ct{type:} method might look like this:
 }
+
+\begin{code}{}
+RPNKeypad>>>type: aString	self inPushMode ifTrue: [		stackMachine push: stackMachine top.		self stackClearTop ].	self inClearMode ifTrue: [ self stackClearTop ].	stackMachine push: (stackMachine pop asString, aString) asNumber.
+\end{code}
 
 Typing might work better now, but it is still frustrating not to be able to see what is on the stack.
 
 \dothis{
 Define \ct{RPNDisplayStack} as a subclass of \ct{RPNDisplay}.
 Add a button to the rendering method of \ct{RPNDisplay} which will call a new instance of \ct{RPNDisplayStack}.
-You will need an html anchor that look something like this:
+You will need an html anchor that looks something like this:
 }
 
 \begin{code}{}
-html anchor	callback: [ self call: (RPNDisplayStack new setStackMachine: stackMachine)];	with: 'open'
+html anchor
+	callback: [ self call: (RPNDisplayStack new setStackMachine: stackMachine)];
+	with: 'open'
 \end{code}
 
 \dothis{
@@ -1051,8 +1066,12 @@ Implement \ct{RPNCalculator>>>states} to return the contents of the stack machin
 Verify that backtracking now works correctly!
 }
 
+Sit back and enjoy a tall glass of something cool!
+
 %=================================================================
 \section{Chapter summary}
+
+\on{to do}
 
 \begin{itemize}
   \item 
