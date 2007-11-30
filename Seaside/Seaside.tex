@@ -31,18 +31,20 @@
 \chapter{Seaside}
 \label{cha:seaside}
 
-\on{I am working on this chapter.}
-
 %=================================================================
 \section{What is Seaside?}
 
-Seaside is a web application framework for Smalltalk originally developed by Avi Bryant in 2002.
-A couple of the better known applications of Seaside are SqueakSource\footnote{\url{http://SqueakSource.com}} and Dabble DB\footnote{\url{http://DabbleDB.com}}.
+\ind{Seaside} is a web application framework for Smalltalk originally developed by Avi Bryant in 2002.
+\index{Bryant, Avi}
+A couple of the better known applications of Seaside are \ind{SqueakSource}\footnote{\url{http://SqueakSource.com}} and \ind{Dabble DB}\footnote{\url{http://DabbleDB.com}}.
 
-Modern web application development frameworks have to cope with a host of problems. Expressing non-trivial control flows across multiple web pages is often cumbersome. Many web applications forbid the use of the browser's ``back'' button due to the difficulty of keeping track of the state of a session. Multiple control flows can also be difficult or impossible to express.
+Modern \ind{web application development} frameworks have to cope with a host of problems. Expressing non-trivial control flows across multiple web pages is often cumbersome. Many web applications forbid the use of the browser's ``back'' button due to the difficulty of keeping track of the state of a session. Multiple control flows can also be difficult or impossible to express.
 
-Seaside is a component-based framework that uses ``continuations''\footnote{A \emph{continuation} represents ``the rest of the computation'' at any point in a computation. In Smalltalk, a continuation is just an object that captures the current state of the computation, and which can be resumed at any point.} to keep track of multiple points in the control flow of web applications. Continuations are managed automatically by Seaside, so web developers do not even have to be aware of the underlying machinery. It just works.
+Seaside is a component-based framework that uses ``\ind{continuations}''\footnote{A \emph{continuation} represents ``the rest of the computation'' at any point in a computation. In Smalltalk, a continuation is just an object that captures the current state of the computation, and which can be resumed at any point.} to keep track of multiple points in the control flow of web applications. Continuations are managed automatically by Seaside, so web developers do not even have to be aware of the underlying machinery. It just works.
 
+\index{Seaside!backtracking state}
+\index{Seaside!transactions}
+\index{Seaside!components}
 Seaside makes web development easier in the following ways:
 Control flow can be expressed naturally in terms of messages sends.
 Seaside keeps track of the state of each user session.
@@ -53,27 +55,28 @@ The developer does not have to encode any information in the URL\,---\,this too 
 
 Web pages are built up from nested components, each of which may supports its own, independent control flow.
 There are no HTML templates\,---\,instead valid XHTML is generated programmatically using a simple Smalltalk API.
-Seaside supports Cascading Style Sheets (CSS), so content and layout are cleanly separated.
+Seaside supports Cascading Style Sheets (\ind{CSS}), so content and layout are cleanly separated.
+\seeindex{Cascading Style Sheets}{CSS}
 
 Finally, Seaside provides a convenient web-based development interface, making it easy to develop applications iteratively, debug applications interactively, and recompile and extend applications while the server is running.
 
 %=================================================================
 \section{Getting started}
 
-The easiest way to get started is to download the ``Seaside One-Click Experience'' from the Seaside web site\footnote{\url{http://seaside.st}}.
-This is a prepackaged version of Seaside 2.8 for Mac OSX, Linux and Windows.
+The easiest way to get started is to download the ``Seaside \subind{Seaside}{One-Click Experience}'' from the Seaside \subind{Seaside}{web site}\footnote{\url{http://seaside.st}}.
+This is a prepackaged version of Seaside 2.8 for \ind{Mac OSX}, \ind{Linux} and \ind{Windows}.
 The same web site lists many pointers to additional resources, including documentation and tutorials.
 Be warned, however, that Seaside has evolved considerably over the years, and not all available material refers to the latest version of Seaside.
 
-An alternative to the ``one-click'' image is to download the latest Squeak Developers' Web image\footnote{\url{http://damien.cassou.free.fr/squeak-dev.html}}, which comes with many useful tools pre-loaded.
-If you are feeling more adventurous, you can install Seaside yourself into an image by following the manual installation instructions on the Seaside web site.
+An alternative to the ``one-click'' image is to download the latest \ind{Squeak Developers' Web image}\footnote{\url{http://damien.cassou.free.fr/squeak-dev.html}}, which comes with many useful tools pre-loaded.
+If you are feeling more adventurous, you can install Seaside yourself into an image by following the manual \subind{Seaside}{installation} instructions on the Seaside web site.
 
 You can turn the Seaside server on and off respectively by evaluating
-\ct{WAKom startOn: 8080}
+\clsind{WAKom} \ct{startOn: 8080}
 or
 \ct{WAKom stop}.
-The default administrator login and password in the prepackaged installation is \lct{admin/seaside}.
-To change this, simply evaluate: \lct{WADispatcherEditor initialize}
+The default \subind{Seaside}{administrator login} and password in the prepackaged installation is \lct{admin/seaside}.
+To change this, simply evaluate: \clsind{WADispatcherEditor} \ct{initialize}
 
 %:FIG seasideStartup
 \begin{figure}[ht]
@@ -87,18 +90,19 @@ To change this, simply evaluate: \lct{WADispatcherEditor initialize}
 \dothis{Start the Seaside server and open a browser to \url{http://localhost:8080/seaside/}.
 What you see should look like \figref{seasideStartup}.
 Now go to \lct{examples{\go}counter}.
-This is a simple example of a counter that can be incremented or decremented by clicking on the \ct{++} and \ct{--} links.
+This is a simple example of a \subind{Seaside}{counter} that can be incremented or decremented by clicking on the \ct{++} and \ct{--} links.
 Play with the counter by clicking on these links.
 Use your browser's ``back'' button to go back to a previous state, and then click on \ct{++} again.
 Notice how the counter is correctly incremented with respect to the current displayed state, rather than the state the counter was left in when you started using the ``back'' button.}
 
-Now notice the toolbar at the bottom of the web page.
+Now notice the \subind{Seaside}{toolbar} at the bottom of the web page.
 \menu{New Session} will restart the counter.
 \menu{Configure} allows you to configure the binding of the URL to the underlying Seaside component.
 (To close the \menu{Configure} view, click on the \menu{x} in the top right corner.)
 \menu{Toggle Halos} provides you with an interface to explore the state of the running application.
 \menu{Profiler} and \menu{Memory} provide you with detailed information about the run-time performance of the application.
 \menu{XHTML} can be used to validate the generated web page.
+\index{Seaside!halos}
 
 %:FIG counterHalos
 \begin{figure}[ht]
@@ -109,7 +113,7 @@ Now notice the toolbar at the bottom of the web page.
 \end{center}
 \end{figure}
 
-\dothis{Select \menu{Toggle Halos}. (See \figref{counterHalos}.) At the top left you will see the text \ct{WACounter}. This is the class of the Seaside component that implements the behaviour of this web page. Next to this are three icons. The first activates a Seaside class browser opened to this class. The second opens an object inspector on the currently active instance. The third displays the CSS style sheet for this component. At the top right you can toggle between the rendered view and the source view of the web page. Experiment with all of these buttons. Note that the source view contains active links.  Contrast the source view provided by the Halos with the source view offered by your browser.}
+\dothis{Select \menu{Toggle Halos}. (See \figref{counterHalos}.) At the top left you will see the text \ct{WACounter}. This is the class of the Seaside component that implements the behaviour of this web page. Next to this are three icons. The first activates a Seaside class browser opened to this class. The second opens an object inspector on the currently active instance. The third displays the \ind{CSS} style sheet for this component. At the top right you can toggle between the rendered view and the source view of the web page. Experiment with all of these buttons. Note that the source view contains active links.  Contrast the source view provided by the Halos with the source view offered by your browser.}
 
 The class browser and object inspector available from Seaside are provided for convenience. For development purposes you will normally be working from the currently running image.
 
@@ -146,40 +150,44 @@ Toggle the halos to see how the application is built out of nested components.
 Use the Seaside class browser to view the implementation.
 (There should be three methods each on the class and instance sides.)
 }
+\index{Seaside!multi-counter}
 
 \dothis{Point your browser to \url{http://localhost:8080/seaside/config}.
 Supply the login and password \ct{admin/seaside} (or whatever you defined them to be).
 Note that you can configure, copy or remove individual components.
 Select \menu{Configure} next to ``examples''.
 Add a new entry point called ``counter2''.
-Set the root component to \ct{WACounter}, then \menu{Save} and \menu{Close}.
+Set the root component to \clsind{WACounter}, then \menu{Save} and \menu{Close}.
 Now we have a new counter installed at \url{http://localhost:8080/seaside/examples/counter2}.
 Use the same configuration interface to remove this entry point.
 }
+\index{Seaside!configuration}
 
 The toolbar is only available during development.
 You can either use the configuration interface or the \menu{Configure} button in the toolbar to set the deployment mode from false to true.
 Note that this only affects new sessions.
 You can also set the deployment mode on or off globally by evaluating
-\ct{WAGlobalConfiguration setDeploymentMode}
+\clsind{WAGlobalConfiguration} \lct{setDeploymentMode}
 or
 \ct{WAGlobalConfiguration setDevelopmentMode}.
+\index{Seaside!deployment mode}
 
 If you remove the config application, you can get it back by evaluating:
-\ct{WADispatcherEditor initialize}
+\clsind{WADispatcherEditor} \ct{initialize}
 
 %=================================================================
 \section{Seaside components}
 
 Let's have a closer look at how Seaside works.
 
-Seaside applications are built out of components.
-Every Seaside component should inherit directly or indirectly from \ct{WAComponent}. (See \figref{WACounter}.)
+Seaside applications are built out of \subind{Seaside}{components}.
+Every Seaside component should inherit directly or indirectly from \clsind{WAComponent}. (See \figref{WACounter}.)
 
 \dothis{Define a subclass of \ct{WAComponent} called \ct{WAHelloWorld}.}
 
 Components must know how to render themselves.
-Usually this is done by implementing the method \ct{renderContentOn:}, which gets as its argument an instance of \ct{WAHtmlCanvas} that knows how to render html.
+Usually this is done by implementing the method \mthind{WAPresenter}{renderContentOn:}, which gets as its argument an instance of \clsind{WAHtmlCanvas} that knows how to render html.
+\index{Seaside!rendering}
 
 \dothis{Implement the following method:}
 \begin{code}{}
@@ -225,7 +233,7 @@ The counter and multi-counter examples are only slightly more complex than the `
 \end{center}
 \end{figure}
 
-The class \ct{WACounter} is a standalone application, so it implements \ct{canBeRoot} on the class side.
+The class \clsind{WACounter} is a standalone application, so it implements \mthind{WAComponent class}{canBeRoot} on the class side.
 It also automatically registers itself as an application in its class-side \ct{initialize} method (see \figref{WACounter}).
 
 \ct{WACounter} defines an instance variable \ct{count} to keep track of the state of the counter.
@@ -236,18 +244,20 @@ In this case \ct{WACounter} asks to track its own state by returning \ct{Array w
 \paragraph{\emph{Caveat.}}
 There is a subtle but important point to watch for when declaring state for backtracking.
 Seaside tracks state by making a \emph{snapshot} of all the objects declared in the \ct{states} array.
-\ct{WASnapShot} is a subclass of \ct{IdentityDictionary} that registers each object to be tracked as a key, and a (shallow) copy of its state as a value.
+\clsind{WASnapShot} is a subclass of \clsind{IdentityDictionary} that registers each object to be tracked as a key, and a (shallow) copy of its state as a value.
 If the state is restored from a snapshot, all registered objects are restored to the saved value.
-In the case of the counter, the state to be backed up is presumably a \ct{SmallInteger}.
+In the case of the counter, the state to be backed up is presumably a \clsind{SmallInteger}.
 Since small integers are stored by value, not by reference, they cannot be backed up or restored!\footnote{Seaside can restore a regular object's state, but not that of a \ct{SmallInteger}\,---\,if there are many instances of the integer \ct{10}, which one should be rolled back to the value \ct{9}?}
 The \ct{WACounter} instance is a regular object, however, so its state can be tracked.
 This means that \ct{WACounter>>>states} must return \ct{Array with: self} and not \ct{Array with: count}.
+\index{Seaside!backtracking state}
+\index{WAPresenter!states@\ct{states}}
 
 The rendering of the counter is relatively straightforward.
 The current value of the counter is displayed as an html heading, and the increment and decrement operations are implemented as html anchors with callbacks to methods \ct{increase} and \ct{decrease} (not shown).
 
 We will have a closer look at the rendering protocol in a moment.
-First let us have a quick look at the multi-counter.
+First let us have a quick look at the \subind{Seaside}{multi-counter}.
 
 %:FIG WAMultiCounter
 \begin{figure}[ht]
@@ -258,7 +268,7 @@ First let us have a quick look at the multi-counter.
 \end{center}
 \end{figure}
 
-It is also a standalone application, so it implements \ct{canBeRoot}.
+It is also a standalone application, so it implements \mthind{WAComponent class}{canBeRoot}.
 In addition, it is composite component, so Seaside requires it to declare its children by implementing a method \ct{children}, which returns an array of all the components it contains.
 It trivially renders itself by rendering each of its subcomponents, separated by a horizontal rule.
 Aside from instance and class-side initialization methods, there is nothing else to the multi-counter!
@@ -270,8 +280,8 @@ Seaside does not use templates to generate web pages.
 Instead XTHML is generated programmatically.
 We have already seen a couple of examples of how this is done.
 
-Basically a Seaside component should implement the method \ct{renderContentOn:}, which will be called by the framework whenever the component needs to be rendered.
-This method will be passed an argument, called \ct{html}, which is a \emph{canvas} for rendering the component.
+Basically a Seaside component should implement the method \mthind{WAPresenter}{renderContentOn:}, which will be called by the framework whenever the component needs to be rendered.
+This method will be passed an argument, called \ct{html}, which is a \emphind{canvas} for rendering the component.
 
 Here are some of the most basic rendering methods:
 \begin{code}{}
@@ -283,9 +293,9 @@ html render: 1.              "render any object"
 The message \ct{render:} can be sent to a canvas to render any object (using double dispatch), though it is normally used to render subcomponents.
 This was the case in our multi-counter (see \figref{WAMultiCounter}).
 
-A canvas provides a number of \emph{brushes} that can be used to render content on the canvas.
-To see the full protocol of brushes and convenience methods available, you should browse the class \ct{WACanvas} and its subclasses.
-\ct{html} is actually an instance of the subclass \ct{WARenderCanvas}.
+A canvas provides a number of \emphind{brushes} that can be used to render content on the canvas.
+To see the full protocol of brushes and convenience methods available, you should browse the class \clsind{WACanvas} and its subclasses.
+\ct{html} is actually an instance of the subclass \clsind{WARenderCanvas}.
 
 We have already seen the following brushes used in the counter and multi-counter examples:
 \begin{code}{}
@@ -322,11 +332,11 @@ In the first case we set the text directly by sending the message \ct{heading:}.
 In the second case, we instantiate the brush by sending \ct{heading}, and then we send a cascade of messages to the brush to set its properties and render it.
 This is typical for many of the available brushes.
 
-\important{If you send a cascade of messages to a brush, the last message sent should always be \ct{with:}, which sets the content and renders the result.}
+\important{If you send a \ind{cascade} of messages to a brush, the last message sent should always be \mthind{WABrush}{with:}, which sets the content and renders the result.}
 
 The default heading is at level 1.
 We explicitly set the level of the second heading to 2.
-The subcomponent is rendered as an HTML \emph{div} with the CSS class ``subcomponent''.
+The subcomponent is rendered as an HTML \emph{div} with the \ind{CSS} class ``subcomponent''.
 (More on CSS in \secref{css}.)
 Note as well that the argument to the \ct{with:} keyword message need not be a literal string, but may be another component, or even\,---\,as in the next example\,---\,a block containing further rendering actions.
 
@@ -343,9 +353,9 @@ SeasideHtmlDemo>>>renderContentOn: html
 
 It is common practice to break up long rendering methods into many helper methods, as we have done here.
 
-\important{Don't put all your rendering code into a single method. Split it into helper methods named after the pattern \ct{#render*On:}.
+\important{Don't put all your rendering code into a single method. Split it into helper methods named after the pattern \ct{render*On:}.
 All rendering methods go in method category \prot{rendering}.
-Don't send \ct{#renderContentOn:} from your own code, use \ct{#render:} instead.}
+Don't send \ct{renderContentOn:} from your own code, use \ct{render:} instead.}
 
 The first helper method shows how to generate HTML paragraphs, plain and emphasized text, and images.
 Note that simple elements are rendered by directly specifying the text they contain, whereas as complex elements are specified using blocks.
@@ -395,7 +405,7 @@ SeasideHtmlDemo>>>renderDivsAndSpansOn: html
 				with: 'A span with class ''highlight''.']
 \end{code}
 
-Finally we see a simple example of a link, created by binding a simple callback to an anchor.
+Finally we see a simple example of a link, created by binding a simple \subind{Seaside}{callback} to an anchor.
 Clicking on the link will cause the subsequent text to toggle between ``true'' and ``false''.
 
 \begin{code}{}
@@ -420,6 +430,7 @@ You should not change the state of the application while you are rendering it.}
 
 Forms are rendered just like the other examples we have seen till now.
 Here is the code for the \ct{SeasideFormDemo} component in \figref{RenderingDemo}.
+\index{Seaside!HTML forms}
 
 \begin{code}{}
 SeasideFormDemo>>>renderContentOn: html
@@ -449,7 +460,7 @@ SeasideFormDemo>>>renderContentOn: html
 Since a form is a complex entity, it is rendered using a block.
 Note that state changes are all specified as callbacks.
 
-There is one Seaside trick here that is worth special mention, namely the message \ct{#on:of:}, which is used to bind the text input field to the variable \ct{heading}.
+There is one Seaside trick here that is worth special mention, namely the message \mthind{WAAnchorTag}{on:of:}, which is used to bind the text input field to the variable \ct{heading}.
 Anchors and buttons also support this protocol.
 The first argument is the name of an instance variable for which accessors have been defined, and the second argument is the object to which this instance variable belongs.
 In the case here of a text input field, this saves us the trouble if having to define a callback which updates the field as well as having to bind the default contents of the field to the current value.
@@ -467,20 +478,20 @@ Don't forget, if you \menu{Toggle Halos}, you can directly browse all the source
 \subsection{Cascading style sheets}
 \label{sec:css}
 
-Cascading Style Sheets\footnote{\url{http://www.w3.org/Style/CSS/}}, or CSS for short, provide a very elegant way to separate style from content.
+Cascading Style Sheets\footnote{\url{http://www.w3.org/Style/CSS/}}, or \ind{CSS} for short, provide a very elegant way to separate style from content.
 Seaside relies on CSS to avoid cluttering your rendering code with layout considerations.
 
 You can set the CSS style sheet for your web components by defining the method \ct{style}, which should return a string containing the CSS rules for that component.
 The styles of all the components displayed on a web page are joined together, so each component can have its own style.
 It is more usual, however, to define an abstract class for your web application that defines a common style for all its subclasses.
 
-Actually, for deployed applications, it is even more common to define stylesheets as external files.
-(Have a look at \ct{WAFileLibrary}, which provides a way to serve static files without the need for a standalone server.)
+Actually, for deployed applications, it is even more common to define style sheets as external files.
+(Have a look at \clsind{WAFileLibrary}, which provides a way to serve static files without the need for a standalone server.)
 
 If you already are familiar with CSS, then that's all you need to know.
 Otherwise, read on for a very brief introduction to CSS.
 
-Basically a CSS stylesheet consists of a set of rules that specify how to format given HTML elements.
+Basically a CSS style sheet consists of a set of rules that specify how to format given HTML elements.
 Each rule consists of two parts.
 There is a \emph{selector} that specifies which HTML elements the rule applies to, and there is a \emph{declaration} which sets a number of attributes for that element.
 
@@ -517,17 +528,17 @@ td {
 .field { background-color: lightgrey; }
 '
 \end{code}
-\caption{\lct{SeasideDemoWidget} common stylesheet.
+\caption{\lct{SeasideDemoWidget} common style sheet.
 \label{fig:democss}}
 \end{figure}
-\figref{democss} illustrates a particularly simply stylesheet for the rendering demo.
+\figref{democss} illustrates a particularly simply style sheet for the rendering demo.
 The first rule specifies a preference for the fonts to use for the \emph{body} of the web page.
 The next few rules specify properties of second-level headings, tables, and table data.
 
 The remaining rules have selectors which will match HTML elements that have the given ``id'' or ``class'' attributes.
 The main difference between these two is that many elements may have the same class, but only one element may have a given id (\ie an \emph{identifier} must identify a \emph{unique} element on the page, such as a menu, last modified date, or author, whereas a class attribute, such as highlighted text, may occur multiple times on any page).
 
-This stylesheet expects at most one element to specify the \emph{author} of the web page.
+This style sheet expects at most one element to specify the \emph{author} of the web page.
 To match an id, the selector should include the name of the id preceded by a \ct{#}.
 A class name should be preceded by a dot.
 
@@ -537,7 +548,7 @@ It is also possible to specify nested elements, though this is seldom necessary.
 For example, the selector ``\ct{p span}'' will only match a span within a paragraph.
 
 There are numerous books and web sites to help you learn CSS.
-For a dramatic demonstration of the power of CSS, we recommend you to have a look at the CSS Zen garden\footnote{\url{http://www.csszengarden.com/}}, which shows how the same content can be rendered in radically different ways simply by changing the CSS style sheet.
+For a dramatic demonstration of the power of CSS, we recommend you to have a look at the CSS Zen Garden\footnote{\url{http://www.csszengarden.com/}}, which shows how the same content can be rendered in radically different ways simply by changing the CSS style sheet.
 
 %-----------------------------------------------------------------
 \subsection{Managing control flow}
@@ -548,19 +559,20 @@ There are basically two mechanisms that you can use:
 \begin{enumerate}
   \item A component \ct{caller} can be temporarily replaced by another component, \ct{callee}, by sending \ct{caller call: callee}.
   The caller is usually \ct{self}, but could also be a subcomponent.
-  The callee returns control by sending \ct{#answer:}.
+  The callee returns control by sending \ct{answer:}.
 
-  \item A \emph{task} is a special kind of component that subclasses \ct{WATask} (instead of \ct{WAComponent}).
-  Instead of defining \ct{#renderContentOn:}, it defines no content of its own, but rather defines a \ct{#go} method that sends a series of \ct{#call:} messages to activate various subcomponents in turn.
+  \item A \emphsubind{Seaside}{task} is a special kind of component that subclasses \clsind{WATask} (instead of \clsind{WAComponent}).
+  Instead of defining \ct{renderContentOn:}, it defines no content of its own, but rather defines a \ct{go} method that sends a series of \ct{call:} messages to activate various subcomponents in turn.
 \end{enumerate}
+\index{Seaside!control flow}
 
 %-----------------------------------------------------------------
 \subsubsection{Call and answer}
 
-\ct{#call:} and \ct{answer:} should never be used while rendering.
-They may safely be sent from within a callback, or from with the \ct{#go} method of a task.
+\mthind{WAComponent}{call:} and \mthind{WAComponent}{answer:} should never be used while rendering.
+They may safely be sent from within a \subind{Seaside}{callback}, or from with the \mthind{WATask}{go} method of a task.
 
-There is a trivial example of \ct{#call:} and \ct{#answer:} in the rendering demo of \figref{RenderingDemo}.
+There is a trivial example of \ct{call:} and \ct{answer:} in the rendering demo of \figref{RenderingDemo}.
 The component \ct{SeasideEditCallDemo} displays a text field and an \emph{edit} link.
 The callback for the edit link calls a new instance of \ct{SeasideEditAnswerDemo} initialized to the value of the text field.
 The callback also updates this text field to the result which is sent as an answer.
@@ -603,8 +615,9 @@ Interestingly, the ``back'' button of the browser will also work just fine (thou
 %-----------------------------------------------------------------
 \subsubsection{Convenience methods}
 
-Since certain call/answer dialogues are very common, Seaside provide some convenience methods to save you the trouble of writing components like \ct{SeasideEditAnswerDemo}.
+Since certain call/answer dialogues are very common, Seaside provides some convenience methods to save you the trouble of writing components like \ct{SeasideEditAnswerDemo}.
 We can see the following convenience methods being used within \ct{SeasideDialogDemo>>>renderContentOn}
+\index{Seaside!convenience methods}
 
 %:FIG dialogs
 \begin{figure}[ht]
@@ -615,7 +628,7 @@ We can see the following convenience methods being used within \ct{SeasideDialog
 \end{center}
 \end{figure}
 
-The message \ct{#request:} performs a call to a component that will let you edit a text field.
+The message \mthind{WAComponent}{request:} performs a call to a component that will let you edit a text field.
 The component answers the edited string.
 (See \figref{dialogs}.)
 An optional label and default value may also be specified.
@@ -627,7 +640,7 @@ html anchor
 	with: 'self request:'.
 \end{code}
 
-The message \ct{#inform:} calls a component that simply displays the argument message and waits for the user to click ``ok''.
+The message \mthind{WAComponent}{inform:} calls a component that simply displays the argument message and waits for the user to click ``ok''.
 The called component just returns \ct{self}.
 
 \begin{code}{}
@@ -637,7 +650,7 @@ html anchor
 	with: 'self inform:'.
 \end{code}
 
-The message \ct{#confirm:} asks a questions and waits for the user to select either ``Yes'' or ``No''.
+The message \mthind{WAComponent}{confirm:} asks a questions and waits for the user to select either ``Yes'' or ``No''.
 The component answers a boolean, which can be used to perform further actions.
 
 \begin{code}{}
@@ -651,15 +664,15 @@ html anchor
 	with: 'self confirm:'.
 \end{code}
 
-A few further convenience methods, such as \ct{chooseFrom:caption:}, are defined in the \prot{convenience} protocol of \ct{WAComponent}.
+A few further convenience methods, such as \mthind{WAComponent}{chooseFrom:caption:}, are defined in the \prot{convenience} protocol of \clsind{WAComponent}.
 
 %-----------------------------------------------------------------
 \subsubsection{Tasks}
 
-A task is a component that subclasses \ct{WATask}.
-It does not render anything itself, but simply calls other components in a control flow defined by implementing the method \ct{#go}.
+A \subind{Seaside}{task} is a component that subclasses \clsind{WATask}.
+It does not render anything itself, but simply calls other components in a control flow defined by implementing the method \mthind{WATask}{go}.
 
-\ct{WAConvenienceTest} is a simple example of a task defined in the system category \scat{Seaside-Tests-Functional}.
+\clsind{WAConvenienceTest} is a simple example of a task defined in the system category \scat{Seaside-Tests-Functional}.
 To see its effect, just point your browser to \url{http://localhost:8080/seaside/tests/alltests} and select \menu{Convenience}.
 
 \begin{code}{}
@@ -670,7 +683,7 @@ WAConvenienceTest>>>go
 \end{code}
 
 This task calls in turn three components.
-The first is a \ct{WAChoiceDialog} to choose a cheese (generated by the convenience method \lct{\#chooseFrom:caption:}).
+The first is a \clsind{WAChoiceDialog} to choose a cheese (generated by the convenience method \mthind{WAComponent}{chooseFrom:caption:}).
 
 \begin{code}{}
 WAConvenienceTest>>>chooseCheese
@@ -680,8 +693,8 @@ WAConvenienceTest>>>chooseCheese
 	cheese isNil ifTrue: [ self chooseCheese ]
 \end{code}
 
-The second is a \ct{WAYesOrNoDialog} to confirm the choice (generated by the convenience method \ct{#confirm:}).
-Finally a \ct{WAFormDialog} is called (via the convenience method \ct{#inform:}).
+The second is a \clsind{WAYesOrNoDialog} to confirm the choice (generated by the convenience method \mthind{WAComponent}{confirm:}).
+Finally a \clsind{WAFormDialog} is called (via the convenience method \mthind{WAComponent}{inform:}).
 
 %:FIG chooseCheese
 \begin{figure}[ht]
@@ -696,7 +709,7 @@ Finally a \ct{WAFormDialog} is called (via the convenience method \ct{#inform:})
 \subsubsection{Transactions}
 
 We have already seen that Seaside can keep track of the correspondence between the state of components and individual web pages by having components register their state for backtracking.
-It suffices to implement the method \ct{#states} and have it return an array of all the objects whose state must be tracked (\ie by having Seaside make shallow copies of these objects).
+It suffices to implement the method \ct{states} and have it return an array of all the objects whose state must be tracked (\ie by having Seaside make shallow copies of these objects).
 
 Sometimes, however, we do not want to track state, but rather \emph{prevent} the user from accidentally undoing side effects that should be permanent.
 This is often referred to as ``the shopping cart problem''.
@@ -715,7 +728,7 @@ The corresponding pages are \emph{invalidated}, and any attempt to go back to th
 \end{center}
 \end{figure}
 
-The Seaside \emph{Sushi Store} is sample application that illustrates many of the features of Seaside, including transactions.
+The Seaside \emphsubind{Seaside}{Sushi Store} is sample application that illustrates many of the features of Seaside, including transactions.
 It should be bundled together with your installation of Seaside, in which case you can try it out by pointing your browser at
 \url{http://localhost:8080/seaside/examples/store}.\footnote{If you cannot find it in your image, there is a version of the sushi store available on SqueakSource from \url{http://www.squeaksource.com/SeasideExamples/}.}
 
@@ -732,8 +745,8 @@ The sushi store supports the following workflow:
   \item Your fish is on its way!
 \end{itemize}
 
-If you toggle the halos, you will see that the top-level component of the sushi store is an instance of \ct{WAStore}.
-It does nothing but render the title bar, and then it renders an instance of \ct{WAStoreTask}.
+If you toggle the \subind{Seaside}{halos}, you will see that the top-level component of the sushi store is an instance of \clsind{WAStore}.
+It does nothing but render the title bar, and then it renders an instance of \clsind{WAStoreTask}.
 
 \begin{code}{}
 WAStore>>>renderContentOn: html
@@ -741,14 +754,14 @@ WAStore>>>renderContentOn: html
 	html div id: 'body'; with: task
 \end{code}
 
-\ct{WAStoreTask} actually capture the workflow above.
+\clsind{WAStoreTask} actually capture the workflow above.
 At a couple of points it is critical that you not be able to go back and change the submitted information.
 
-\dothis{``Purchase'' some sushi and then use the ``back'' button to try put more sushi into your cart.
+\dothis{\,``Purchase'' some sushi and then use the ``back'' button to try put more sushi into your cart.
 You will get the message ``That page has expired.''}
 
 Seaside allows you to express that certain part of a workflow act like a transaction\,---\,once the transaction is complete, you cannot go back.
-You can specify this very simply in a task by sending \ct{#isolate:} to the task with the transactional block as its argument.
+You can specify this very simply in a task by sending \mthind{WAComponent}{isolate:} to the task with the transactional block as its argument.
 We can see this in the sushi store workflow as follows:
 
 \begin{code}{}
@@ -781,7 +794,7 @@ then both transactions are complete, and any attempt to navigate back will fail.
 
 Transactions may also be nested.
 
-A simple demonstration of this is found in the class \ct{WANestedTransaction}.
+A simple demonstration of this is found in the class \clsind{WANestedTransaction}.
 The argument block to the first \ct{isolate:} send contains itself another, nested \ct{isolate:} send:
 
 \begin{code}{}
@@ -849,6 +862,7 @@ If you do this, most  of your methods will just be one or two lines long.
 
 You might also consider implementing \ct{StackMachine>>>printOn:} to make it easier to debug your stack machine implementation with the help of an object inspector.
 (Hint: just delegate printing to the \ct{contents} variable.)
+\index{Object!printOn:@\ct{printOn:}}
 
 \dothis{Complete the \ct{StackMachine} by writing operations \ct{dup} (push a duplicate of the top value onto the stack), \ct{exch} (exchange the top two values), and \ct{rotUp} (rotate the entire stack contents up\,---\,the top value will move to the bottom).}
 
@@ -857,7 +871,7 @@ We can start to implement the Seaside RPN Calculator.
 
 We will make use of 5 classes:
 \begin{itemize}
-  \item \ct{RPNWidget}\,---\,this should be an abstract class that defines the common CSS stylesheet for the application
+  \item \ct{RPNWidget}\,---\,this should be an abstract class that defines the common CSS style sheet for the application
   \item \ct{RPNCalculator}\,---\,this is the root component.
   It should register the application (on the class side), it should instantiate and render its subcomponents, and it should register any state for backtracking.
   \item \ct{RPNKeyPad}\,---\,this displays the keys that we use to interact with the calculator.
@@ -1021,12 +1035,17 @@ You will notice that typing digits does not behave the way you might expect.
 Actually the calculator should be aware of whether you are typing a \emph{new} number, or appending to an existing number.
 
 \dothis{Adapt \ct{RPNKeypad>>>type:} to behave differently depending on the current typing mode.
-Introduce an instance variable \ct{mode} which takes on one of the three values \lct{\#typing} (when you are typing), \lct{\#push} (after you you have performed a calculator operation and typing should force the top value to be pushed), or \lct{\#clear} (after you have performed \menu{Enter} and the top value should be cleared before typing).
+Introduce an instance variable \ct{mode} which takes on one of the three values \lct{typing} (when you are typing), \lct{push} (after you you have performed a calculator operation and typing should force the top value to be pushed), or \lct{clear} (after you have performed \menu{Enter} and the top value should be cleared before typing).
 The new \ct{type:} method might look like this:
 }
 
 \begin{code}{}
-RPNKeypad>>>type: aString	self inPushMode ifTrue: [		stackMachine push: stackMachine top.		self stackClearTop ].	self inClearMode ifTrue: [ self stackClearTop ].	stackMachine push: (stackMachine pop asString, aString) asNumber.
+RPNKeypad>>>type: aString
+	self inPushMode ifTrue: [
+		stackMachine push: stackMachine top.
+		self stackClearTop ].
+	self inClearMode ifTrue: [ self stackClearTop ].
+	stackMachine push: (stackMachine pop asString, aString) asNumber.
 \end{code}
 
 Typing might work better now, but it is still frustrating not to be able to see what is on the stack.
@@ -1071,21 +1090,32 @@ Sit back and enjoy a tall glass of something cool!
 %=================================================================
 \section{Chapter summary}
 
-\on{to do}
-
 \begin{itemize}
-  \item 
-  \item 
-  \item 
-  \item 
-  \item 
-  \item 
-  \item 
-  \item 
-  \item 
+  \item The easiest way to get started is to download the ``Seaside One-Click Experience'' from \url{http://seaside.st}
+  \item Turn the server on and off by evaluating \ct{WAKom startOn: 8080} and \ct{WAKom stop}.
+  \item Reset the administrator login and password by evaluating \ct{WADispatcherEditor initialize}.
+  \item \menu{Toggle Halos} to directly view application source code, run-time objects, CSS and XHTML.
+  \item Send \ct{WAGlobalConfiguration setDeploymentMode} to hide the toolbar.
+  \item Seaside web applications are composed of components, each of which is an instance of a subclass of \ct{WAComponent}.
+  \item Only a root component may be registered as a component. It should implement \ct{canBeRoot} on the class side. Alternatively it may register itself as an application in its class-side \ct{initialize} method by sending \ct{self registerAsApplication:} \emph{application name}.
+  \item To backtrack state, a component must implement the \ct{states} method to return an array of objects whose state must be restored if the user clicks the browsers ``back'' button. (\emph{Caveat:}  To be backed up and restored, the state objects must be real objects accessed by reference, not small integers!)
+  \item A component renders itself by implementing \ct{renderContentOn:}.
+  The argument to this method is an HTML rendering \emph{canvas} (usually called \ct{html}).
+  \item A component can render a subcomponent by sending \ct{self render} \emph{subcomponent}.
+  \item XHTML is generated programmatically by sending messages to \emph{brushes}. A brush is obtained by sending a message, such as \ct{paragraph} or \ct{div} to the html canvas.
+  \item If you send a cascade of messages to a brush, the last message sent should always be \ct{with:}, which sets the content and renders the result.
+  \item Actions should only appear in callbacks.
+You should not change the state of the application while you are rendering it.
+  \item You can bind various form widgets and anchors to th evalues of instance variables by sending the message \ct{on:} \emph{instance variable} \ct{of:} \emph{object} to the brush.
+  \item You can define the CSS for a component hierarchy by defining the method \ct{style}, which should return a string containing the style sheet.
+  (For deployed applications, it is more usual to refer to a style sheet located at a static URL.)
+  \item Control flows can be programmed by sending \ct{x call: y}, in which case component \ct{x} will be replaced by \ct{y} untill \ct{y} answers by sending \ct{answer:} with a result in a callback.
+  The receiver of \ct{call:} is usually \ct{self} or a subcomponent.
+  \item A control flow can also be specified as a \emph{task}\,---\,a instance of a subclass of \ct{WATask}. It should implement the method \ct{go}, which should call a series of components in a workflow.
+  \item Use \ct{WAComponents}'s convenience methods \ct{request:}, \ct{inform:}, \ct{confirm:} and \ct{chooseFrom:caption:} for basic interactions.
+  \item To prevent the user from using the browser's ``back'' button to access a previous execution state of the web application, you can declare portions of the workflow to be a \emph{transaction} by enclosing them in an \ct{isolate:} block.
 \end{itemize}
 %-----------------------------------------------------------------
-
 
 %=================================================================
 \ifx\wholebook\relax\else 
