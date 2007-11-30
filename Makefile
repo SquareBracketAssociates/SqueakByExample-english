@@ -10,6 +10,7 @@ C = Preface QuickTour FirstApp Syntax Messages \
 
 PDFLATEX = pdflatex -file-line-error
 BOOK=SBE
+ETC=SBE-etc
 
 # --------------------------------------------------------------------------------
 all : book
@@ -19,7 +20,7 @@ all : book
 
 book : clean examples
 	time ${PDFLATEX} ${BOOK}
-	time ${PDFLATEX} ${BOOK} |tee warnings.txt
+	time ${PDFLATEX} ${BOOK} | tee warnings.txt
 	# Filter out blank lines and bogus warnings
 	perl -pi \
 		-e '$$/ = "";' \
@@ -34,6 +35,13 @@ index :
 
 complete : book index
 	time ${PDFLATEX} ${BOOK}
+
+etc :
+	time ${PDFLATEX} ${ETC}
+	makeindex ${ETC}
+	time ${PDFLATEX} ${ETC}
+	time ${PDFLATEX} ${ETC}
+	open ${ETC}.pdf
 
 examples :
 	./examples.rb $C > ../$@.txt
