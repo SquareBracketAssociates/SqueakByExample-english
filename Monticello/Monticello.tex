@@ -109,7 +109,7 @@ At the time this chapter is being written, about 1000 projects are registered an
 Pressing the \emph{Register Member} menu item will probably be your very first step if you do not have a SqueakSource account. \emph{Register Project} allows for project creation. 
 
 
-\subsection{Merging a New Version}
+\subsection{Merging a with New Version}
 
 Your package may be merged with another version by using the \emph{Merge} button in the Monticello browser. We will come back on the different options that are available at that stage. Press \emph{Merge} to replace your package with a new version of this one. Note that your change, if any, will be erased.
 
@@ -192,13 +192,49 @@ Monticello packages are defined according to few naming conventions of class and
 
 Loading a package with another version fully erases changes for that package that are committed. For example, let's assume that you are working on a package which contains a method \emph{m} for a class \emph{C}. Loading a new version for this package will either remove or replace your definition of \emph{C} and \emph{m}. You will not keep it, even if \emph{C} is not defined in a new version.
 
-You probably want to use the \emph{Merge} or the \emph{Backport} if you want to change the version of your package while keeping your change.
+You probably want to use the \emph{Merge} or the \emph{Backport} if you want to update the version of your package while keeping your code change.
 
-\subsection{Branching}
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{{filerepositoryinspector}}
+	\caption{File Repository Inspector.\figlabel{filerepositoryinspector}}
+\end{figure}
 
-\subsection{Ancestor}
+\subsection{File Repository Inspector} 
+Information about the content of a repository is displayed using the File Repository Inspector triggered with the \emph{Open} button. The list of packages contained in the repository is shown on the left-hand side of the inspector:
+
+\begin{itemize}
+\item An \emph{underlined} package name means that this package is locally installed;
+\item A \emph{bolded} and \emph{underlined} name means that the package is installed, but a more recent version exist in the repository.
+\end{itemize}
+
+The right-hand side enumerates the versions for the selected package:
+
+\begin{itemize}
+\item \emph{Underlined} version name means that the package is present in the system;
+\item \emph{Bold} version name means that this version is not an ancestor of the local version. The bolded version belongs to a branch different than the one which is locally installed.
+\end{itemize}
+
+Note that a right click on the right-hand side of the inspector opens a menu with different sorting options.
+
+%\subsection{Branching}
+%\subsection{Ancestor}
+
+\subsection{Class Initialization}
+
+After being loaded, classes are initialized by Monticello by invoking the \emph{initialize} class method on classes for which this method is defined only. Note that inherited \emph{initialize} method are not invoked. 
 
 \subsection{Adding New Variables}
+
+Monticello supports method extension only. One way to circumvent this limitation is to define an initialize method on the class side, and manually add this variable. For example, let us image a package that extends the class \emph{OBUCommand} with a variable \emph{parent}.
+
+\begin{code}
+
+OBUCommand class>>initialize
+	(OBUCommand instVarNames includes: 'parent') 
+		ifFalse: [OBUCommand addInstVarName: 'parent']
+\end{code}
+
+In the case that \emph{initialize} is already defined in \emph{OBUCommand}, then you may define this \emph{initialize} method on a class in your package.
 
 %=================================================================
 
@@ -246,7 +282,7 @@ These methods belong in the same package as the classes in \cat{SqueakLink-Conne
 
 \paragraph{Installing}
 
-Monticello is included in the standard Squeak distribution (@@TO CHECK) and in the image for developers\footnote{@@TO ENTER}. If you use another image, Monticello is installable via \emph{SqueakMap} and \emph{Universe}.
+Monticello is included in the standard Squeak distribution\footnote{\href{http://www.squeak.org}{www.squeak.org}} and in the image for developers\footnote{\href{http://damien.cassou.free.fr/squeak-dev.html}{damien.cassou.free.fr/squeak-dev.html}}. If you use another image, Monticello is installable via \emph{SqueakMap} and \emph{Universe}.
 
 
 \paragraph{Creating a Working Copy}
@@ -274,7 +310,7 @@ Changes to your working copy are automatically logged in your changes file, so y
 
 \paragraph{Merging Changes}
 
-If you or some other developer have made changes to the same version of a package, load one version as your working set and then select the repository containing the other version in the Monticello Browser, open a Repository Browser and select the other version. Clicking the 'Merge' button will automatically load all non-conflicting changes from the other version. If you need to control which changes to accept, you may instead click 'Changes' to browse every difference.
+If you or some other developer have made changes to the same version of a package, load one version as your working set and then select the repository containing the other version in the Monticello Browser, open a Repository Inspector and select the other version. Clicking the 'Merge' button will automatically load all non-conflicting changes from the other version. If you need to control which changes to accept, you may instead click 'Changes' to browse every difference.
 
 
 
@@ -351,11 +387,11 @@ Stated another way, a Version doesn't contain a full history of the source code.
 
 
 
-\section{The Snapshot Browser}
+%\section{The Snapshot Browser}
 
-The Snapshot browser is much like the standard Smalltalk System Browser except that it displays the contents of a Snapshot, rather than the code that is active in the image. Since Snapshots are immutable, the Snapshot browser does not allow editiing.
+%The Snapshot browser is much like the standard Smalltalk System Browser except that it displays the contents of a Snapshot, rather than the code that is active in the image. Since Snapshots are immutable, the Snapshot browser does not allow editiing.
 
-One difference between the Snapshot Browser and the familiar system browsers is that the Snapshot browser uses the special system category '*Extensions' to categorize classes that do not belong to the package, but which have extension methods that do.
+%One difference between the Snapshot Browser and the familiar system browsers is that the Snapshot browser uses the special system category '*Extensions' to categorize classes that do not belong to the package, but which have extension methods that do.
 
 \section{More on PackageInfo}
 To get a feel for this, try filing the Refactoring Browser. The Refactoring Browser code uses PackageInfo's naming conventions, using "Refactory" as the package name. In a workspace, create a model of this package with  \ct{refactory := PackageInfo named: 'Refactory'}. 
