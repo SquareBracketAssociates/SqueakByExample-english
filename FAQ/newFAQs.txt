@@ -1,6 +1,24 @@
 ---------------------------------------------------------------------------
 NEW FAQS
 ---------------------------------------------------------------------------
+
+How do I search all method bodies for a text string?
+
+Thanks!
+
+Put the string in the Workspace. Highlight it. Summon the menu with do
+it/print it. Scroll down to the bottom where it says "more". Select. Scroll
+down to "method with source". Voila.
+
+Ugh, that does a full-text search on all method sources, very slow. Much faster is pressing Cmd-Shift-E (or "method strings with ir" from the menu) which only looks at string literals..
+
+- Bert -
+
+Indeed. A cool trick if you want to find the implementation behind a menu item: bring up the menu, shift-click the item, press Cmd-Shift-E :)
+
+- Bert -
+
+---------------------------------------------------------------------------
 Q How do I find out where a given primitive is used?
 A
 findPrim := [:prim | SystemNavigation default browseAllSelect: [:method | method pragmas contains: [:pragma | (pragma keyword = #primitive:) and: [(pragma argumentAt: 1) = prim]]]].
