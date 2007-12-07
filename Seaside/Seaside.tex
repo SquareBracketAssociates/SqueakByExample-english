@@ -37,6 +37,7 @@
 \ind{Seaside} is a web application framework for Smalltalk originally developed by Avi Bryant in 2002.
 \index{Bryant, Avi}
 A couple of the better known applications of Seaside are \ind{SqueakSource}\footnote{\url{http://SqueakSource.com}} and \ind{Dabble DB}\footnote{\url{http://DabbleDB.com}}.
+Seaside is unusual in that it is thoroughly object-oriented\,---\,there are no HTML templates, no complicated control flows through web pages, and no encoding of state in URLs\,---\,you just send messages to objects.
 
 Modern \ind{web application development} frameworks have to cope with a host of problems. Expressing non-trivial control flows across multiple web pages is often cumbersome. Many web applications forbid the use of the browser's ``back'' button due to the difficulty of keeping track of the state of a session. Multiple control flows can also be difficult or impossible to express.
 
@@ -189,7 +190,8 @@ Components must know how to render themselves.
 Usually this is done by implementing the method \mthind{WAPresenter}{renderContentOn:}, which gets as its argument an instance of \clsind{WAHtmlCanvas} that knows how to render html.
 \index{Seaside!rendering}
 
-\dothis{Implement the following method:}
+\dothis{Implement the following method, and put it in a method category called \prot{rendering}:}
+\needlines{2}
 \begin{code}{}
 WAHelloWorld>>>renderContentOn: html
 	html text: 'hello world'
@@ -294,10 +296,12 @@ The message \ct{render:} can be sent to a canvas to render any object (using dou
 This was the case in our multi-counter (see \figref{WAMultiCounter}).
 
 A canvas provides a number of \emphind{brushes} that can be used to render content on the canvas.
+There are brushes for every kind of HTML element such as paragraphs, tables, lists and so on.
 To see the full protocol of brushes and convenience methods available, you should browse the class \clsind{WACanvas} and its subclasses.
 \ct{html} is actually an instance of the subclass \clsind{WARenderCanvas}.
 
 We have already seen the following brushes used in the counter and multi-counter examples:
+\needlines{2}
 \begin{code}{}
 html horizontalRule.
 html space.
@@ -316,7 +320,7 @@ In \figref{RenderingDemo} we can see a demo of many of the basic brushes offered
 The root component \ct{SeasideDemo} simply renders its subcomponents, which are instances of \ct{SeasideHtmlDemo}, \ct{SeasideFormDemo}, \ct{SeasideEditCallDemo} and \ct{SeasideDialogDemo}.
 
 \begin{code}{}
-SeasideDemo >>>renderContentOn: html
+SeasideDemo>>>renderContentOn: html
 	html heading: 'Rendering Demo'.
 	html heading
 		level: 2;
@@ -325,6 +329,11 @@ SeasideDemo >>>renderContentOn: html
 		class: 'subcomponent';
 		with: htmlDemo.
 	"render the remaining components ..."
+\end{code}
+
+Recall that a root component must always declare its children, or Seaside will refuse to render them.
+\begin{code}{}
+SeasideDemo>>>children	^ Array with: htmlDemo with: formDemo with: editDemo with: dialogDemo
 \end{code}
 
 Note the two different ways of instantiating the \ct{heading} brush.
@@ -817,7 +826,7 @@ Note that as soon as a transaction is complete, you can no longer go back inside
 % ON: Should take about two hours
 
 Let's see how we can build a complete Seaside application from scratch.\footnote{The exercise should take at most a couple of hours. If you prefer to just look at the completed source code, you can grab it from the SqueakSource project \url{http://www.squeaksource.com/SqueakByExample}.
-The relevant category is \scat{SBE-SeasideRPN}.}
+The relevant category is \scat{SBE-SeasideRPN}. The tutorial that follows uses slightly different class names so that you can compare your implementation with ours.}
 We will build a RPN (Reverse Polish Notation) calculator as a Seaside application that uses a simple stack machine as its underlying model.
 Furthermore, the Seaside interface will let us toggle between two displays\,---\,one which just shows us the current value on top of the stack, and the other which shows us the complete state of the stack.
 (See \figref{stackMachine}.)
@@ -833,10 +842,10 @@ Furthermore, the Seaside interface will let us toggle between two displays\,---\
 
 We begin by implementing the stack machine and its tests.
 
-\dothis{Define a new class called \ct{StackMachine} with an instance variable \ct{contents} initialized to a new \ct{OrderedCollection}.}
+\dothis{Define a new class called \ct{MyStackMachine} with an instance variable \ct{contents} initialized to a new \ct{OrderedCollection}.}
 
 \begin{code}{}
-StackMachine>>>initialize
+MyStackMachine>>>initialize
 	super initialize.
 	contents := OrderedCollection new.
 \end{code}
@@ -846,8 +855,9 @@ The stack machine should provide operations to \ct{push:} and \ct{pop} values, v
 \dothis{Write some tests for the stack operations, and then implement these operations.
 Here is a sample test:}
 
+\needlines{4}
 \begin{code}{}
-StackMachineTest>>>testDiv
+MyStackMachineTest>>>testDiv
 	stack
 		push: 3;
 		push: 4;
@@ -860,31 +870,34 @@ You might consider using some helper methods for the arithmetic operations to ch
 This will raise an \ct{AssertionFailure} if you try to use the stack machine in an invalid state.}
 If you do this, most  of your methods will just be one or two lines long.
 
-You might also consider implementing \ct{StackMachine>>>printOn:} to make it easier to debug your stack machine implementation with the help of an object inspector.
+You might also consider implementing \ct{MyStackMachine>>>printOn:} to make it easier to debug your stack machine implementation with the help of an object inspector.
 (Hint: just delegate printing to the \ct{contents} variable.)
 \index{Object!printOn:@\ct{printOn:}}
 
-\dothis{Complete the \ct{StackMachine} by writing operations \ct{dup} (push a duplicate of the top value onto the stack), \ct{exch} (exchange the top two values), and \ct{rotUp} (rotate the entire stack contents up\,---\,the top value will move to the bottom).}
+\dothis{Complete the \ct{MyStackMachine} by writing operations \ct{dup} (push a duplicate of the top value onto the stack), \ct{exch} (exchange the top two values), and \ct{rotUp} (rotate the entire stack contents up\,---\,the top value will move to the bottom).}
 
 Now we have a simple stack machine implementation.
 We can start to implement the Seaside RPN Calculator.
 
 We will make use of 5 classes:
 \begin{itemize}
-  \item \ct{RPNWidget}\,---\,this should be an abstract class that defines the common CSS style sheet for the application
-  \item \ct{RPNCalculator}\,---\,this is the root component.
+  \item \ct{MyWidget}\,---\,this should be an abstract class that defines the common CSS style sheet for the application, and other common behaviour for the components of the RPN calculator.
+  It is a subclass of \ct{WAComponent} and the direct superclass of the following three classes.
+  \item \ct{MyCalculator}\,---\,this is the root component.
   It should register the application (on the class side), it should instantiate and render its subcomponents, and it should register any state for backtracking.
-  \item \ct{RPNKeyPad}\,---\,this displays the keys that we use to interact with the calculator.
-  \item \ct{RPNDisplay}\,---\,this component displays the top of the stack and provides a button to call another component to display the detailed view.
-  \item \ct{RPNDisplayStack}\,---\,this component shows the detailed view of the stack and provides a button to answer back.
+  \item \ct{MyKeypad}\,---\,this displays the keys that we use to interact with the calculator.
+  \item \ct{MyDisplay}\,---\,this component displays the top of the stack and provides a button to call another component to display the detailed view.
+  \item \ct{MyDisplayStack}\,---\,this component shows the detailed view of the stack and provides a button to answer back.
+  It is a subclass of \lct{MyDisplay}.
 \end{itemize}
 
-\dothis{Define \ct{RPNWidget} and the common \ct{style}.}
+\dothis{Define \ct{MyWidget} in the category \ct{MyCalculator}.
+Define the common \ct{style} for the application.}
 
 Here is a minimal CSS for the application.
 You can make it more fancy if you like.
 \begin{code}{}
-RPNWidget >>>style
+MyWidget>>>style
 	^ 'table.keypad { float: left; }
 td.key {
 	border: 1px solid grey;
@@ -904,19 +917,19 @@ td.stackcell {
 td.small { font-size: 8pt; }'
 \end{code}
 
-\dothis{Define \ct{RPNCalculator} to be a root component and register itself as an application.
-Implement \ct{RPNCalculator>>>renderContentOn:} to render something trivial, and verify that the application runs in a browser.
+\dothis{Define \ct{MyCalculator} to be a root component and register itself as an application.
+Implement \ct{MyCalculator>>>renderContentOn:} to render something trivial, and verify that the application runs in a browser.
 }
 
 \dothis{
-\ct{RPNCalculator} is responsible for instantiating \ct{StackMachine}, \ct{RPNKeyPad} and \ct{RPNDisplay}.
-Define \ct{RPNKeyPad} and \ct{RPNDisplay} as subclasses of \lct{RPNWidget}.
-All three components will need access to a common instance of the stack machine, so define the instance variable \ct{stackMachine} and an initialization method \ct{setStackMachine:} in the common parent, \ct{RPNWidget}.
-Add instance variables \ct{keypad} and \ct{display} to \ct{RPNCalculator} and initialize them in \ct{RPNCalculator>>>initialize}.
+\ct{MyCalculator} is responsible for instantiating \ct{MyStackMachine}, \ct{MyKeypad} and \ct{MyDisplay}.
+Define \ct{MyKeypad} and \ct{MyDisplay} as subclasses of \lct{MyWidget}.
+All three components will need access to a common instance of the stack machine, so define the instance variable \ct{stackMachine} and an initialization method \ct{setMyStackMachine:} in the common parent, \ct{MyWidget}.
+Add instance variables \ct{keypad} and \ct{display} to \ct{MyCalculator} and initialize them in \ct{MyCalculator>>>initialize}.
 (Don't forget to send \lct{super initialize}!)
 Pass the shared instance of the stack machine to the keypad and the display in the same initialize method.
-Implement \ct{RPNCalculator>>>renderContentOn:} to simply render in turn the keypad and the display.
-To correctly display the subcomponents, you must implement \ct{RPNCalculator>>>children} to return an array with the keypad and the display.
+Implement \ct{MyCalculator>>>renderContentOn:} to simply render in turn the keypad and the display.
+To correctly display the subcomponents, you must implement \ct{MyCalculator>>>children} to return an array with the keypad and the display.
 Implement placeholder rendering methods for the keypad and the display and verify that the calculator now displays its two subcomponents.
 }
 
@@ -924,7 +937,7 @@ Implement placeholder rendering methods for the keypad and the display and verif
 Change the implementation of the display to show the top value of the stack.
 Use a table with class ``keypad'' containing a row with a single table data cell with class ``stackcell''.
 Change the rendering method of the keypad to ensure that the number 0 is pushed on the stack in case it is empty.
-(Define and use \ct{RPNKeypad>>>ensureStackMachineNotEmpty}.)
+(Define and use \ct{MyKeypad>>>ensureMyStackMachineNotEmpty}.)
 Also make it display an empty table with class ``keypad''.
 Now the calculator should display a single cell containing the value 0.
 If you toggle the halos, you should see something like this:
@@ -945,7 +958,7 @@ First define the following helper methods, which will make it easier to script t
 }
 
 \begin{code}{}
-RPNKeypad>>>renderStackButtonOn: html with: text callback: aBlock colSpan: anInteger 
+MyKeypad>>>renderStackButtonOn: html with: text callback: aBlock colSpan: anInteger 
 	(html tableData)
 		class: 'key';
 		colSpan: anInteger;
@@ -957,7 +970,7 @@ RPNKeypad>>>renderStackButtonOn: html with: text callback: aBlock colSpan: anInt
 
 
 \begin{code}{}
-RPNKeypad>>>renderStackButtonOn: html with: text callback: aBlock 
+MyKeypad>>>renderStackButtonOn: html with: text callback: aBlock 
 	self 
 		renderStackButtonOn: html
 		with: text
@@ -974,7 +987,7 @@ Use the two helper methods to script the keypad as follows:
 
 
 \begin{code}{}
-RPNKeypad>>>RPNKeypad>>>renderContentOn: html 
+MyKeypad>>>MyKeypad>>>renderContentOn: html 
   self ensureStackNotEmpty.
   html table
     class: 'keypad';
@@ -1009,18 +1022,18 @@ Implement \ct{Keypad>>>type:} to update the top of the stack by appending the ty
 You will need something like this:
 }
 \begin{code}{}
-RPNKeypad>>>type: aString
+MyKeypad>>>type: aString
 	stackMachine push: (stackMachine pop asString, aString) asNumber.
 \end{code}
 Now when you click on the digit keys the display should be updated.
-(Be sure that \ct{StackMachine>>>pop} returns the value popped, or this will not work!)
+(Be sure that \ct{MyStackMachine>>>pop} returns the value popped, or this will not work!)
 
 
-\dothis{Now we must implement \ct{RPNKeypad>>>stackOp:}
+\dothis{Now we must implement \ct{MyKeypad>>>stackOp:}
 Something like this will do the trick:}
 
 \begin{code}{}
-RPNKeypad>>>stackOp: op
+MyKeypad>>>stackOp: op
 	[ stackMachine perform: op ] on: AssertionFailure do: [ ].
 \end{code}
 
@@ -1034,13 +1047,13 @@ Try to enter some numbers by pressing the digit keys, hitting \menu{Enter} to pu
 You will notice that typing digits does not behave the way you might expect.
 Actually the calculator should be aware of whether you are typing a \emph{new} number, or appending to an existing number.
 
-\dothis{Adapt \ct{RPNKeypad>>>type:} to behave differently depending on the current typing mode.
+\dothis{Adapt \ct{MyKeypad>>>type:} to behave differently depending on the current typing mode.
 Introduce an instance variable \ct{mode} which takes on one of the three values \lct{typing} (when you are typing), \lct{push} (after you you have performed a calculator operation and typing should force the top value to be pushed), or \lct{clear} (after you have performed \menu{Enter} and the top value should be cleared before typing).
 The new \ct{type:} method might look like this:
 }
 
 \begin{code}{}
-RPNKeypad>>>type: aString
+MyKeypad>>>type: aString
 	self inPushMode ifTrue: [
 		stackMachine push: stackMachine top.
 		self stackClearTop ].
@@ -1051,20 +1064,20 @@ RPNKeypad>>>type: aString
 Typing might work better now, but it is still frustrating not to be able to see what is on the stack.
 
 \dothis{
-Define \ct{RPNDisplayStack} as a subclass of \ct{RPNDisplay}.
-Add a button to the rendering method of \ct{RPNDisplay} which will call a new instance of \ct{RPNDisplayStack}.
+Define \ct{MyDisplayStack} as a subclass of \ct{MyDisplay}.
+Add a button to the rendering method of \ct{MyDisplay} which will call a new instance of \ct{MyDisplayStack}.
 You will need an html anchor that looks something like this:
 }
 
 \begin{code}{}
 html anchor
-	callback: [ self call: (RPNDisplayStack new setStackMachine: stackMachine)];
+	callback: [ self call: (MyDisplayStack new setMyStackMachine: stackMachine)];
 	with: 'open'
 \end{code}
 
 \dothis{
-Define the rendering method of \ct{RPNDisplayStack} to display all of the values on the stack.
-(You will either need to define an accessor for the stack machine's \ct{contents} or you can define \ct{StackMachine>>>do:} to iterate over the stack values.)
+Define the rendering method of \ct{MyDisplayStack} to display all of the values on the stack.
+(You will either need to define an accessor for the stack machine's \ct{contents} or you can define \ct{MyStackMachine>>>do:} to iterate over the stack values.)
 The stack display should also have a button whose callback will simply form \ct{self answer}.
 }
 
@@ -1081,7 +1094,7 @@ Now if you type \menu{+} the stack shows ``3''.
 Backtracking is not yet working.
 
 \dothis{
-Implement \ct{RPNCalculator>>>states} to return the contents of the stack machine.
+Implement \ct{MyCalculator>>>states} to return the contents of the stack machine.
 Verify that backtracking now works correctly!
 }
 
