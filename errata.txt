@@ -32,6 +32,9 @@ p 138: 3rd para "you should fell free" -> "you should feel free"
 p 138 "want to want to" -> "want to"
 	[2007-11-05 Andrew Black; fixed --apb]
 
+p 172 end of first paragraph 'form' should be 'from'.
+	[2007-12-07 Ken G. Brown; fixed --on]
+
 p 186: "All Number objects support various....
 	others which generate Duration s, such as hour..."
 	[2007-10-22 Mike Roberts; fixed --on]
