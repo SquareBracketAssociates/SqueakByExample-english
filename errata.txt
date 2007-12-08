@@ -1,6 +1,9 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2007-09-13
 ---------------------------------------------------------------------------
+p 4: the link for downloading squeak-dev has recently moved.
+	[2007-12-08 Doug Edmunds; fixed -- on]
+
 p 34: "Type the expression SBCell new and inspect it." should be "SBECell"
 	[2007-10-06 Luca Bettosini; fixed --on]
 
