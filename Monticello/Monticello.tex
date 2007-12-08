@@ -31,21 +31,24 @@
 \newcommand{\seclabel}[1]{\label{sec:#1}}
 
 %=================================================================
-\chapter{Versioning your Code with Monticello and SqueakSource}
+%\chapter{Versioning your Code with Monticello and SqueakSource}
+\chapter{Monticello and SqueakSource}
 
 A versioning system is a tool that helps managing concurrent access to a common source code repository. It helps to keep track of all work and all changes in a set of classes and allows several developers to collaborate. As soon as the size of your software program goes over few classes, you probably need a versioning system.
 
 Many tools are available. CVS\footnote{\href{http://www.nongnu.org/cvs/}{www.nongnu.org/cvs}} and Subversion\footnote{\href{http://subversion.tigris.org/}{subversion.tigris.org}} are probably the most popular. Using them to manage the development of a software in Squeak will reduce the Squeak Smalltalk to a soulless file-based language. 
 
-\emph{Monticello} is a versioning system for Squeak. It takes advantages of the Smalltalk meta-model by having a method as the software change grain. 
+\emph{Monticello} is a versioning system for Squeak. It takes advantages of the Smalltalk meta-model by having a method as the software change grain. \emph{SqueakSource} is an online central repository in which you can store your application.
 
-In this chapter, you will read about using Monticello to manage your software program for day-to-day programming.
+In this chapter, you will read about using Monticello and SqueakSource to manage your software program for day-to-day programming.
 
 %=================================================================
 
 \section{Basic Usage}
 
-This section gives a brief description of the basic features of Monticello: creating a packages, committing and updating.
+This section gives a brief description of the basic features of Monticello and SqueakSource: creating a packages, committing, updating and merging.
+
+Monticello is included in the standard Squeak distribution\footnote{\href{http://www.squeak.org}{www.squeak.org}} and in the image for developers\footnote{\href{http://damien.cassou.free.fr/squeak-dev.html}{damien.cassou.free.fr/squeak-dev.html}}. If you use another image, Monticello is installable via \emph{SqueakMap} and \emph{Universe}.
 
 Once Monticello is installed, the Monticello Browser will be available from the 'open...' menu. Open it by selecting the \emph{World} menu, then select open and press \emph{Monticello Browser}.
 
@@ -91,7 +94,7 @@ MCHttpRepository
 
 Enter a new repository (press \emph{+Repository}), then select \emph{HTTP}. Fill out the template with the URL corresponding to the BreakOut project (note that you may use a cut-and-paste). Choose one version, there is a high chance that you are interested in the last version. Select one and press \emph{Load}.
 
-If you want to save your code in a SqueakSource Monticello repository, the project security policy should allow you to do so. We will come back on that point later in \secref{monti:squeaksource} in this chapter.
+Note If you want to save your code in a SqueakSource Monticello repository, the project security policy should allow you to do so.
 
 
 %\begin{figure}[ht]\centering
@@ -149,7 +152,7 @@ The \emph{History} button opens a version history viewer that shows all package 
 
 \begin{figure}[ht]\centering
 	\includegraphics[width=.75\linewidth]{{historyviewer}}
-	\caption{The version history viewer allows for crawling over different version of a package.\figlabel{packageviewer}}
+	\caption{The version history viewer allows for crawling over different version of a package.\figlabel{historyviewer}}
 \end{figure}
 
 %Cannot do the swapping!
@@ -177,6 +180,9 @@ Backporting a package is useful when you want to revert your package to a previo
 
 \section{Advanced Operations} \seclabel{monti:advancedoperations}
 
+\subsection{Branching}
+
+You may create new version branch when saving your package. This is useful when you want to have a new parallel development. A new branch is easily created by giving a new name of the version in the upper text pane of the \emph{Edit Version} window. For example, \figref{saving} shows the package \emph{SBE-Quinto} being save. You make give a new name such as \emph{SBE-Quinto-MyBranch-ab.1} to create the branch \emph{MyBranch}. Giving a totally new name is not a great idea since it will hamper repository browsing.
 
 \subsection{Package Extension} \seclabel{packageextension} 
 Monticello packages are defined according to few naming conventions of class and method categories. A package named \emph{Foo} contains:
@@ -187,6 +193,18 @@ Monticello packages are defined according to few naming conventions of class and
 \item All methods in classes in the system category \emph{Foo}, or in system categories for which their names begin with \emph{Foo-}, except those in method categories with names starting with \emph{*} (which has to belong to another modules).
 \end{itemize}
 
+\subsection{Dependencies}
+
+A package may require another package to be properly used. Monticello supports a light weight dependency mechanism. Right-click on a package In a Monticello browser and select \emph{add required package}.
+
+Let us assume a package \emph{A} version 1 requires another package \emph{B} version 1. This implies:
+
+\begin{itemize}
+\item Saving \emph{A} requires \emph{B} to be saved as well if \emph{B} is dirty.
+\item Saving a new version of \emph{B} does \emph{not} imply saving \emph{A}.
+\item Loading \emph{A} in a fresh image implies loading the version 1 of \emph{B} from the same repository where \emph{A} is loaded.
+\item To make \emph{A} require a new version of \emph{B}, use the \emph{Add required package} menu item.
+\end{itemize}
 
 \subsection{Version Loading}
 
@@ -262,98 +280,7 @@ The nice thing about HTTP repositories is that it's easy to link directly to spe
 
 %The package cache is a special repository that Monticello creates automatically. Like a directory repository, the package cache stores files in a directory on your local filesystem. See Elements of Monticello for more information.
 
-%=================================================================
-
-
-%=================================================================
-%=================================================================
-%=================================================================
-%=================================================================
-
-\section{Packages in Monticello: PackageInfo}
-
-The PackageInfo system is a simple, lightweight way of organizing Smalltalk source: it is nothing more than a naming convention, which uses (or abuses) the existing categorization mechanisms to group related code. Let me give you an example: say that you are developing a framework named SqueakLink to facilitate using relational databases from Squeak. You will probably have a series of system categories to contain all of your classes (e.g., category \cat{SqueakLink-Connections} containing the classes \ct{OracleConnection}, \ct{MySQLConnection} and \ct{PostgresConnection})
-(\cat{SqueakLink-Model} containing \ct{DBTable}, \ct{DBRow}  and \ct{DBQuery}) and so on. But not all of your code will reside in these classes - you may also have, for example, a series of methods to convert objects into an SQL friendly format: \mthind{Object}{asSQL},  \mthind{String}{asSQL} and \mthind{Date}{asSQL}.
-
-These methods belong in the same package as the classes in \cat{SqueakLink-Connections} and \cat{SqueakLink-Model}. You mark this by placing those methods in a method category (of \ct{Object}, \ct{String}, \ct{Date}, and so on) named \cat{*squeaklink} (note the initial star). The combination of the \cat{SqueakLink-...} system categories and the \cat{*squeaklink} method categories forms a package named "SqueakLink".
-
-
-\section{Getting Started}
-
-\paragraph{Installing}
-
-Monticello is included in the standard Squeak distribution\footnote{\href{http://www.squeak.org}{www.squeak.org}} and in the image for developers\footnote{\href{http://damien.cassou.free.fr/squeak-dev.html}{damien.cassou.free.fr/squeak-dev.html}}. If you use another image, Monticello is installable via \emph{SqueakMap} and \emph{Universe}.
-
-
-\paragraph{Creating a Working Copy}
-
-The first thing you need to do is tell Monticello about the package you are interested in versioning. You do this by creating a Working Copy.
-
-\paragraph{From an .mcz version file}
-Open a FileList and navigate to the version file. Click on the 'Load' button to load the package into your image.
-
-\paragraph{From scratch}
-
-Click on the '+Package' button, and enter the name of a PackageInfo package. It doesn't matter whether or not the code for the package already exists.
-
-Once the Working Copy has been created, the name of the package will appear in the package list on the left side of the Monticello Browser. If you loaded an existing version, the version name will be displayed in parenthesis after the package name, otherwise the parenthesis will be empty, indicating that your working copy has no ancestors.
-
-\paragraph{Connecting to a Repository}
-
-If you've already got a Working Copy, click on the package name on the left side of the Monticello Browser, so that your repository will be associated with your package. To connect to a repository, click on the '+Repository' button in the Monticello Browser. A pop-up menu will appear, allowing you to select the type of repository you want to connect to.
-
-The simplest repository type is 'directory.' When you select this type of repository, Monticello will open a FileList2 to allow you to select an existing directory in which to store versions. Other types of repositories typically require more configuration, and will open a text pane to allow you to enter it.
-
-\paragraph{Saving Changes}
-
-Changes to your working copy are automatically logged in your changes file, so you only need to create a new version of your package when you want to share the changes with others. Select the package on the left side of the Monticello Browser and the repository to save to on the right, then click the 'Save' button. See Repositories for discussion of how to publish to shared repositories.
-
-\paragraph{Merging Changes}
-
-If you or some other developer have made changes to the same version of a package, load one version as your working set and then select the repository containing the other version in the Monticello Browser, open a Repository Inspector and select the other version. Clicking the 'Merge' button will automatically load all non-conflicting changes from the other version. If you need to control which changes to accept, you may instead click 'Changes' to browse every difference.
-
-
-
-\section{Elements of Monticello}
-
-\paragraph{Packages}
-
-Packages are the units of versioning used by Monticello; the classes and methods they contain are recorded and versioned together. Monticello uses the packages defined by PackageInfo.
-
-\paragraph{Snapshots}
-
-A Snapshot is the state of a Package at a particular point in time
-
-\paragraph{Versions}
-
-A Version is a Snapshot of a Package and it's associated metadata - author initials, the date and time the snapshot was taken, and the Version's ancestry - the list of Versions from which it is derived.
-
-A Version is the standard currency of the system. You save them, load them, give them to others, merge them, delete... you get the picture. Versions are often stored in mcz files - see File Format
-
-\paragraph{Working Copies}
-
-Each package in an image that is being versioned with Monticello has a Working Copy. The Working Copy represents the Version of the package that is currently active in the image, and which may be modified by the Smalltalk development tools.
-
-\paragraph{Repositories}
-
-These are places to store your Versions. Unlike CVS, in which a Package is associated with one Repository, a Monticello Package can have Versions in many repositories. When adding a new Repository to use, you can choose from SqueakMap Cache, FTP, HTTP (webdav), SqueakMap Release, SMTP, or a directory somewhere on your hard drive (or network drive).
-
-For example, if I have six versions of package Foo, I could have Foo versions 1-4 being on my local harddrive, and 5-6 being on an ftp server. You could download version 5, make some changes and commit a new version (7) to your WebDAV repository. I can download and merge that version with my own work to produce version 8, which I save to my ftp repository.
-
-This is a key element of Monticello's distributed development model.
-
-\paragraph{Package cache}
-
-The package-cache is a local repository the Monticello uses to cache any package that is loaded into a particular image in a directory. That means it is filled with .mcz files, whether it is a package you create in your image, or one you download from somewhere else.
-
-When you use images in different directories you will have multiple package-caches, and may hold many of the same packages. If MC is loaded into an image which is subsequently moved, MC will continue to use the package-cache in the directory the image was moved from. Otherwise MC creates a new package-cache in the local directory. This can become a real mess and so some have used symlinks on unix systems to centralize it.
-
-\paragraph{Why cache packages at all?}
-
-When a Version is loaded into the image, it is likely to become the ancestor of new versions that are created as part of the development process. During merges, Monticello needs to examine the Snapshots of these ancestors in order to detect conflicts. By caching these ancestors as it loads them, MC reduces the chance that the necessary version will be unavailable - either because the repository it's in is no longer available or because it was loaded directly from a file and isn't in any repository.
-
-
-\section{File Format}
+\section{The .mcz File Format}
 
 Versions are often saved in binary files for storage in repositories, distribution to users etc. These files are commonly call 'mcz files' as they carry the extension .mcz.
 
@@ -387,20 +314,129 @@ Stated another way, a Version doesn't contain a full history of the source code.
 
 
 
+%=================================================================
+
+\section{Chapter Summary}
+
+This chapter explained how to use Monticello and SqueakSource to manage the source code of your application.
+
+\begin{itemize}
+\item Monticello is used to manages your packages. Monticello is part of the Squeak standard distribution.
+
+\item SqueakSource is a remote online central repository in which you can store your application.
+
+\item Monticello packages are mapped into class categories. 
+
+\item After having created a package in Monticello, you may store it in a remote repository offered by SqueakSource.
+
+\item Monticello allows for a package version different from the local version may be merge, creating a new branch and changing the local version of your package.
+\end{itemize}
+
+
+
+%=================================================================
+%=================================================================
+%=================================================================
+%=================================================================
+
+%\section{Packages in Monticello: PackageInfo}
+
+%The PackageInfo system is a simple, lightweight way of organizing Smalltalk source: it is nothing more than a naming convention, which uses (or abuses) the existing categorization mechanisms to group related code. Let me give you an example: say that you are developing a framework named SqueakLink to facilitate using relational databases from Squeak. You will probably have a series of system categories to contain all of your classes (e.g., category \cat{SqueakLink-Connections} containing the classes \ct{OracleConnection}, \ct{MySQLConnection} and \ct{PostgresConnection})
+%(\cat{SqueakLink-Model} containing \ct{DBTable}, \ct{DBRow}  and \ct{DBQuery}) and so on. But not all of your code will reside in these classes - you may also have, for example, a series of methods to convert objects into an SQL friendly format: \mthind{Object}{asSQL},  \mthind{String}{asSQL} and \mthind{Date}{asSQL}.
+
+%These methods belong in the same package as the classes in \cat{SqueakLink-Connections} and \cat{SqueakLink-Model}. You mark this by placing those methods in a method category (of \ct{Object}, \ct{String}, \ct{Date}, and so on) named \cat{*squeaklink} (note the initial star). The combination of the \cat{SqueakLink-...} system categories and the \cat{*squeaklink} method categories forms a package named "SqueakLink".
+
+%
+%\section{Getting Started}
+
+%\paragraph{Installing}
+
+%
+
+%\paragraph{Creating a Working Copy}
+
+%The first thing you need to do is tell Monticello about the package you are interested in versioning. You do this by creating a Working Copy.
+
+%\paragraph{From an .mcz version file}
+%Open a FileList and navigate to the version file. Click on the 'Load' button to load the package into your image.
+
+%\paragraph{From scratch}
+
+%Click on the '+Package' button, and enter the name of a PackageInfo package. It doesn't matter whether or not the code for the package already exists.
+
+%Once the Working Copy has been created, the name of the package will appear in the package list on the left side of the Monticello Browser. If you loaded an existing version, the version name will be displayed in parenthesis after the package name, otherwise the parenthesis will be empty, indicating that your working copy has no ancestors.
+
+%\paragraph{Connecting to a Repository}
+
+%If you've already got a Working Copy, click on the package name on the left side of the Monticello Browser, so that your repository will be associated with your package. To connect to a repository, click on the '+Repository' button in the Monticello Browser. A pop-up menu will appear, allowing you to select the type of repository you want to connect to.
+
+%The simplest repository type is 'directory.' When you select this type of repository, Monticello will open a FileList2 to allow you to select an existing directory in which to store versions. Other types of repositories typically require more configuration, and will open a text pane to allow you to enter it.
+
+%\paragraph{Saving Changes}
+
+%Changes to your working copy are automatically logged in your changes file, so you only need to create a new version of your package when you want to share the changes with others. Select the package on the left side of the Monticello Browser and the repository to save to on the right, then click the 'Save' button. See Repositories for discussion of how to publish to shared repositories.
+
+%\paragraph{Merging Changes}
+
+%If you or some other developer have made changes to the same version of a package, load one version as your working set and then select the repository containing the other version in the Monticello Browser, open a Repository Inspector and select the other version. Clicking the 'Merge' button will automatically load all non-conflicting changes from the other version. If you need to control which changes to accept, you may instead click 'Changes' to browse every difference.
+
+%
+
+%\section{Elements of Monticello}
+
+%\paragraph{Packages}
+
+%Packages are the units of versioning used by Monticello; the classes and methods they contain are recorded and versioned together. Monticello uses the packages defined by PackageInfo.
+
+%\paragraph{Snapshots}
+
+%A Snapshot is the state of a Package at a particular point in time
+
+%\paragraph{Versions}
+
+%A Version is a Snapshot of a Package and it's associated metadata - author initials, the date and time the snapshot was taken, and the Version's ancestry - the list of Versions from which it is derived.
+
+%A Version is the standard currency of the system. You save them, load them, give them to others, merge them, delete... you get the picture. Versions are often stored in mcz files - see File Format
+
+%\paragraph{Working Copies}
+
+%Each package in an image that is being versioned with Monticello has a Working Copy. The Working Copy represents the Version of the package that is currently active in the image, and which may be modified by the Smalltalk development tools.
+
+%\paragraph{Repositories}
+
+%These are places to store your Versions. Unlike CVS, in which a Package is associated with one Repository, a Monticello Package can have Versions in many repositories. When adding a new Repository to use, you can choose from SqueakMap Cache, FTP, HTTP (webdav), SqueakMap Release, SMTP, or a directory somewhere on your hard drive (or network drive).
+
+%For example, if I have six versions of package Foo, I could have Foo versions 1-4 being on my local harddrive, and 5-6 being on an ftp server. You could download version 5, make some changes and commit a new version (7) to your WebDAV repository. I can download and merge that version with my own work to produce version 8, which I save to my ftp repository.
+
+%This is a key element of Monticello's distributed development model.
+
+%\paragraph{Package cache}
+
+%The package-cache is a local repository the Monticello uses to cache any package that is loaded into a particular image in a directory. That means it is filled with .mcz files, whether it is a package you create in your image, or one you download from somewhere else.
+
+%When you use images in different directories you will have multiple package-caches, and may hold many of the same packages. If MC is loaded into an image which is subsequently moved, MC will continue to use the package-cache in the directory the image was moved from. Otherwise MC creates a new package-cache in the local directory. This can become a real mess and so some have used symlinks on unix systems to centralize it.
+
+%\paragraph{Why cache packages at all?}
+
+%When a Version is loaded into the image, it is likely to become the ancestor of new versions that are created as part of the development process. During merges, Monticello needs to examine the Snapshots of these ancestors in order to detect conflicts. By caching these ancestors as it loads them, MC reduces the chance that the necessary version will be unavailable - either because the repository it's in is no longer available or because it was loaded directly from a file and isn't in any repository.
+
+
+
+
 %\section{The Snapshot Browser}
 
 %The Snapshot browser is much like the standard Smalltalk System Browser except that it displays the contents of a Snapshot, rather than the code that is active in the image. Since Snapshots are immutable, the Snapshot browser does not allow editiing.
 
 %One difference between the Snapshot Browser and the familiar system browsers is that the Snapshot browser uses the special system category '*Extensions' to categorize classes that do not belong to the package, but which have extension methods that do.
+%
+%\section{More on PackageInfo}
+%To get a feel for this, try filing the Refactoring Browser. The Refactoring Browser code uses PackageInfo's naming conventions, using "Refactory" as the package name. In a workspace, create a model of this package with  \ct{refactory := PackageInfo named: 'Refactory'}. 
 
-\section{More on PackageInfo}
-To get a feel for this, try filing the Refactoring Browser. The Refactoring Browser code uses PackageInfo's naming conventions, using "Refactory" as the package name. In a workspace, create a model of this package with  \ct{refactory := PackageInfo named: 'Refactory'}. 
+%It is now possible to introspect on this package; for example, refactory classes will return the long list of classes that make up the Refactoring Browser. refactory coreMethods will return a list of MethodReferences for all of the methods in those classes. refactory extensionMethods is perhaps one of the most interesting queries: it will return a list of all methods contained in the Refactory package but not contained within a Refactory class. This includes, for example, \mthind{String}{expandMacrosWithArguments:} and \mthind{Behavior}{parseTreeFor:}.
 
-It is now possible to introspect on this package; for example, refactory classes will return the long list of classes that make up the Refactoring Browser. refactory coreMethods will return a list of MethodReferences for all of the methods in those classes. refactory extensionMethods is perhaps one of the most interesting queries: it will return a list of all methods contained in the Refactory package but not contained within a Refactory class. This includes, for example, \mthind{String}{expandMacrosWithArguments:} and \mthind{Behavior}{parseTreeFor:}.
+%Since the PackageInfo naming conventions are based on those used already by Squeak, it is possible to use it to perform analysis even of code that has not explicitly adapted to work with it. For example, (PackageInfo named: 'Collections') externalSubclasses will return a list of all Collection subclasses outside the Collections categories.
 
-Since the PackageInfo naming conventions are based on those used already by Squeak, it is possible to use it to perform analysis even of code that has not explicitly adapted to work with it. For example, (PackageInfo named: 'Collections') externalSubclasses will return a list of all Collection subclasses outside the Collections categories.
-
-You can send fileOut to an instance of PackageInfo to get a changeset of the entire package. For more sophisticated versioning of packages, see the Monticello project.
+%You can send fileOut to an instance of PackageInfo to get a changeset of the entire package. For more sophisticated versioning of packages, see the Monticello project.
 
 
 %=========================================================
