@@ -347,7 +347,7 @@ This sets the content and renders the result.}
 
 The default heading is at level 1.
 We explicitly set the level of the second heading to 2.
-The subcomponent is rendered as an XHTML \emph{div} with the \ind{CSS} class ``subcomponent''.
+The subcomponent is rendered as an XHTML \emph{DIV} with the \ind{CSS} class ``subcomponent''.
 (More on CSS in \secref{css}.)
 Note as well that the argument to the \ct{with:} keyword message need not be a literal string, but may be another component, or even\,---\,as in the next example\,---\,a block containing further rendering actions.
 
@@ -401,8 +401,8 @@ SeasideHtmlDemo>>>renderListsAndTablesOn: html
 			html tableData: 'A table with one data cell.']]
 \end{code}
 
-The next example shows how we can specify CSS divs and spans with class or id attributes.
-Of course, the messages \ct{class:} and \ct{id:} can also be sent to the other brushes, not just to divs and spans.
+The next example shows how we can specify CSS DIVs and SPANs with class or id attributes.
+Of course, the messages \ct{class:} and \ct{id:} can also be sent to the other brushes, not just to DIVs and SPANs.
 The method \ct{SeasideDemoWidget>>>style} defines the display attributes for XHTML elements with these attributes (see \secref{css}).
 
 \begin{code}{}
@@ -420,7 +420,17 @@ Finally we see a simple example of a link, created by binding a simple \subind{S
 Clicking on the link will cause the subsequent text to toggle between ``true'' and ``false''.
 
 \begin{code}{}
-SeasideHtmlDemo>>>renderLinkWithCallbackOn: html 	html paragraph: [		html text: 'An anchor with a local action: '.		html span with: [			html anchor				callback: [toggleValue := toggleValue not];				with: 'toggle boolean:'].		html space.		html span			class: 'boolean';			with: toggleValue ]
+SeasideHtmlDemo>>>renderLinkWithCallbackOn: html 
+	html paragraph: [
+		html text: 'An anchor with a local action: '.
+		html span with: [
+			html anchor
+				callback: [toggleValue := toggleValue not];
+				with: 'toggle boolean:'].
+		html space.
+		html span
+			class: 'boolean';
+			with: toggleValue ]
 \end{code}
 
 \important{Note that actions should only appear in callbacks.
@@ -544,10 +554,10 @@ This style sheet expects at most one element to specify the \emph{author} of the
 To match an id, the selector should include the name of the id preceded by a \ct{#}.
 A class name should be preceded by a dot.
 
-Selector conditions may be combined, so the selector \ct{div.subcomponent} will only match an XHTML element if it is both a div \emph{and} it has a class attribute equal to ``subcomponent''.
+Selector conditions may be combined, so the selector \ct{div.subcomponent} will only match an XHTML element if it is both a DIV \emph{and} it has a class attribute equal to ``subcomponent''.
 
 It is also possible to specify nested elements, though this is seldom necessary.
-For example, the selector ``\ct{p span}'' will only match a span within a paragraph.
+For example, the selector ``\ct{p span}'' will only match a SPAN within a paragraph.
 
 There are numerous books and web sites to help you learn CSS.
 For a dramatic demonstration of the power of CSS, we recommend you to have a look at the CSS Zen Garden\footnote{\url{http://www.csszengarden.com/}}, which shows how the same content can be rendered in radically different ways simply by changing the CSS style sheet.
@@ -1104,6 +1114,94 @@ Check that backtracking now works correctly!
 Sit back and enjoy a tall glass of something cool!
 
 %=================================================================
+\section{A quick look at AJAX}
+
+% Original text by Lukas Renggli
+
+\ind{AJAX} (Asynchronous \ind{JavaScript} and \ind{XML}) is a technique to make web applications more interactive by exploiting JavaScript functionality on the client side.
+
+Two well-known JavaScript libraries are \ind{Prototype} (\url{http://www.prototypejs.org}) and \ind{script.aculo.us} (\url{http://script.aculo.us}).
+Prototype provides a framework to ease writing JavaScript.
+script.aculo.us provides some additional features to support animations and drag-and-drop on top of Prototype.
+Both frameworks supported in Seaside through the package ``Scriptaculous''.
+
+All ready-made images have the Scriptaculous package extensions already loaded.
+The latest version is available from \url{http://www.squeaksource.com/Seaside}.
+An online demo is available at \url{http://scriptaculous.seasidehosting.st}.
+Alternatively, if you have a enabled image running, simply go to \url{http://localhost:8080/seaside/tests/scriptaculous}.
+
+The Scriptaculous extensions follow the same approach as Seaside itself\,---\,simply configure Smalltalk objects to model your application, and the needed Javascript code will be generated for you.
+
+Let us look at a simple example of how client-side Javascript support can make our RPN calculator behave more naturally.
+Currently every keystroke to enter a digit generates a request to refresh the page.
+We would like instead to handle editing of the display on the client-side by updating the display in the existing page.
+
+\dothis{To address the display from JavaScript code we must first give it a unique id.
+Update the calculator's rendering method as follows:\footnote{If you have not implemented the tutorial example yourself, you can simply load the complete example from \url{http://www.squeaksource.com/SqueakByExample} and apply the suggested changes to the classes \ct{RPN*} instead of \ct{My*}.}}
+
+\begin{code}{}
+MyCalculator>>>renderContentOn: html
+	html div id: 'keypad'; with: keypad.
+	html div id: 'display'; with: display.	
+\end{code}
+				
+\dothis{To be able to re-render the display when a keyboard button is pressed, the keyboard needs to know the display component.
+Add a \ct{display} instance variable to \ct{MyKeypad}, an initializer method \ct{MyKeypad>>>setDisplay:}, and call this from \ct{MyCalculator>>initialize}.
+Now we are able to assign some JavaScript code to the buttons by updating \ct{MyKeypad>>>renderStackButtonOn:} as follows:}
+
+\begin{code}{}
+MyKeypad>>>renderStackButton: text callback: aBlock colSpan: anInteger on: html 
+	html tableData
+		class: 'key';
+		colSpan: anInteger;
+		with: [
+			html anchor
+				callback: aBlock;
+				onClick:				"handle Javascript event"
+					(html updater
+						id: 'display';
+						callback: [ :r |
+							aBlock value.
+							r render: display ];
+						return: false);
+				with: [ html html: text ] ]
+\end{code}
+
+\mthind{WATagBrush}{onClick:} specifies a \ind{JavaScript} event handler.
+\ct{html updater} returns an instance of \ct{SUUpdater}, a Smalltalk object representing the JavaScript Ajax.Updater object (\url{http://www.prototypejs.org/api/ajax/updater}).
+\ct{id:} tells the updater what XHTML DOM element to update, in this case the contents of the DIV element with the id 'display'.
+\ct{callback:} specifies a block that is triggered \on{on the client-side} when the user presses the button.
+The block argument is a new renderer \ct{r}, which we can use to render the display component.
+(Note: Even though html is still accessible, it is not valid anymore at the time this callback block is evaluated).
+\on{Isn't the point here that the rendering within the javascript callback is *client-side*, so it is a different renderer than the html renderer we have in the enclosing scope?}
+Before rendering the display component we evaluate \ct{aBlock} to perform the desired action.
+
+\ct{return: false} tells the JavaScript engine to not trigger the original link callback, which would cause a full refresh.
+We could instead remove the original anchor \ct{callback:}, but like this the calculator will still work even if JavaScript is disabled.
+
+\dothis{Try the calculator again, and notice how a full page refresh is triggered every time you press a digit key. (The URL of the web page is updated at each keystroke.)}
+
+Although we have implemented the client-side behaviour, we have not yet activated it.
+Now we will enable the Javascript event handling.
+
+\dothis{
+Click on the \menu{Configure} button in the toolbar of the calculator.
+Select ``Add Library:'' \ct{SULibrary}, click the \button{Add} button and \button{Close}.
+Try the revised application.  Note that the feedback is much more natural.
+In particular the URL is not refreshed every time you enter a digit.
+Have a look at the generated source-code, especially the JavaScript code:}
+
+\begin{code}{}
+new Ajax.Updater('display', 'http://localhost/seaside/RPN+Calculator', {'evalScripts':true, 'parameters':['UNDERSCOREs=zcdqfonqwbeYzkza','UNDERSCOREk=jMORHtqr','9'].join('&')}); return false
+\end{code}
+
+For more advanced examples, have a further look at \url{http://localhost:8080/seaside/tests/scriptaculous}.
+
+\paragraph{\emph{Hints.}}
+In case of server side problems use the Smalltalk debugger.
+In case of client side problems use FireFox (\url{http://www.mozilla.com}) with the JavaScript debugger FireBug (\url{http://www.getfirebug.com/}) plugin enabled.
+
+%=================================================================
 \section{Chapter summary}
 
 \begin{itemize}
@@ -1119,7 +1217,7 @@ Sit back and enjoy a tall glass of something cool!
   \item A component renders itself by implementing \ct{renderContentOn:}.
   The argument to this method is an XHTML rendering \emph{canvas} (usually called \ct{html}).
   \item A component can render a subcomponent by sending \ct{self render:} \emph{subcomponent}.
-  \item XHTML is generated programmatically by sending messages to \emph{brushes}. A brush is obtained by sending a message, such as \ct{paragraph} or \ct{div} to the html canvas.
+  \item XHTML is generated programmatically by sending messages to \emph{brushes}. A brush is obtained by sending a message, such as \ct{paragraph} or \ct{DIV} to the html canvas.
   \item If you send a cascade of messages to a brush including the message \ct{with:}, then this should be the last message sent.
   This sets the content and renders the result.
   \item Actions should only appear in callbacks.
