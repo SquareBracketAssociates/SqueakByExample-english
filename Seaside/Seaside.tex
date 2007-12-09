@@ -333,7 +333,8 @@ SeasideDemo>>>renderContentOn: html
 
 Recall that a root component must always declare its children, or Seaside will refuse to render them.
 \begin{code}{}
-SeasideDemo>>>children	^ Array with: htmlDemo with: formDemo with: editDemo with: dialogDemo
+SeasideDemo>>>children
+	^ Array with: htmlDemo with: formDemo with: editDemo with: dialogDemo
 \end{code}
 
 Note the two different ways of instantiating the \ct{heading} brush.
@@ -917,8 +918,8 @@ td.stackcell {
 td.small { font-size: 8pt; }'
 \end{code}
 
-\dothis{Define \ct{MyCalculator} to be a root component and register itself as an application.
-Implement \ct{MyCalculator>>>renderContentOn:} to render something trivial, and verify that the application runs in a browser.
+\dothis{Define \ct{MyCalculator} to be a root component and register itself as an application (\ie implement \ct{canBeRoot} and \ct{initialize} on the class side).
+Implement \ct{MyCalculator>>>renderContentOn:} to render something trivial (such as its name), and verify that the application runs in a browser.
 }
 
 \dothis{
@@ -983,12 +984,13 @@ Certain buttons may span multiple columns, but the default is to occupy just one
 
 \dothis{
 Use the two helper methods to script the keypad as follows:
+(Hint: start by getting the digit and ``Enter'' keys working, then the arithmetic operators.)
 }
 
-
+\needlines{4}
 \begin{code}{}
-MyKeypad>>>MyKeypad>>>renderContentOn: html 
-  self ensureStackNotEmpty.
+MyKeypad>>>renderContentOn: html 
+  self ensureStackMachineNotEmpty.
   html table
     class: 'keypad';
     with: [
@@ -1018,8 +1020,8 @@ Check that the keypad displays properly.
 If you try to click on the keys, however, you will find that the calculator does not work yet ...
 
 \dothis{
-Implement \ct{Keypad>>>type:} to update the top of the stack by appending the typed digit.
-You will need something like this:
+Implement \ct{MyKeypad>>>type:} to update the top of the stack by appending the typed digit.
+You will need to convert the top value to a string, update it, and convert it back to an integer, something like this:
 }
 \begin{code}{}
 MyKeypad>>>type: aString
@@ -1075,11 +1077,21 @@ html anchor
 	with: 'open'
 \end{code}
 
+The callback will cause the current instance of \ct{MyDisplay} to be temporarily replaced by a new instance of \ct{MyDisplayStack} whose job it is to display the complete stack.
+When this component signals that it is done (\ie by sending \ct{self answer}), then control will return to the original instance of \ct{MyDisplay}.
+
 \dothis{
 Define the rendering method of \ct{MyDisplayStack} to display all of the values on the stack.
 (You will either need to define an accessor for the stack machine's \ct{contents} or you can define \ct{MyStackMachine>>>do:} to iterate over the stack values.)
-The stack display should also have a button whose callback will simply form \ct{self answer}.
+The stack display should also have a button labelled ``close'' whose callback will simply perform \ct{self answer}.
 }
+
+\begin{code}{}
+html anchor
+	callback: [ self answer];
+	with: 'close'
+\end{code}
+
 
 Now you should be able to \emph{open} and \emph{close} the stack while you are using the calculator.
 
@@ -1095,7 +1107,7 @@ Backtracking is not yet working.
 
 \dothis{
 Implement \ct{MyCalculator>>>states} to return the contents of the stack machine.
-Verify that backtracking now works correctly!
+Check that backtracking now works correctly!
 }
 
 Sit back and enjoy a tall glass of something cool!
