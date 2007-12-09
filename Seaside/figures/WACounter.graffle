@@ -4,6 +4,11 @@
 <dict>
 	<key>ActiveLayerIndex</key>
 	<integer>0</integer>
+	<key>ApplicationVersion</key>
+	<array>
+		<string>com.omnigroup.OmniGraffle</string>
+		<string>129.15</string>
+	</array>
 	<key>AutoAdjust</key>
 	<false/>
 	<key>CanvasColor</key>
@@ -44,14 +49,114 @@
 			<key>Head</key>
 			<dict>
 				<key>ID</key>
+				<integer>85</integer>
+			</dict>
+			<key>ID</key>
+			<integer>86</integer>
+			<key>Points</key>
+			<array>
+				<string>{296, 463}</string>
+				<string>{467.775, 314.675}</string>
+			</array>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>Cap</key>
+					<integer>0</integer>
+					<key>HeadArrow</key>
+					<string>0</string>
+					<key>HeadScale</key>
+					<real>1.4375</real>
+					<key>Join</key>
+					<integer>0</integer>
+					<key>Pattern</key>
+					<integer>1</integer>
+					<key>TailArrow</key>
+					<string>0</string>
+					<key>TailScale</key>
+					<real>1.5</real>
+				</dict>
+			</dict>
+			<key>Tail</key>
+			<dict>
+				<key>ID</key>
+				<integer>65</integer>
+				<key>Info</key>
+				<integer>6</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>Bounds</key>
+			<string>{{467.775, 297.675}, {170.1, 34}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>FitText</key>
+			<string>Vertical</string>
+			<key>Flow</key>
+			<string>Resize</string>
+			<key>FontInfo</key>
+			<dict>
+				<key>Font</key>
+				<string>LucidaSans</string>
+				<key>Size</key>
+				<real>14</real>
+			</dict>
+			<key>ID</key>
+			<integer>85</integer>
+			<key>Magnets</key>
+			<array>
+				<string>{-0.5, -9.53674e-07}</string>
+			</array>
+			<key>Shape</key>
+			<string>NoteShape</string>
+			<key>Style</key>
+			<dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Align</key>
+				<integer>0</integer>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf949
+{\fonttbl\f0\fnil\fcharset0 LucidaSans;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\fs28 \cf0 super initialize.\
+self count: 0}</string>
+			</dict>
+			<key>TextPlacement</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>AllowLabelDrop</key>
+			<false/>
+			<key>Class</key>
+			<string>LineGraphic</string>
+			<key>FontInfo</key>
+			<dict>
+				<key>Font</key>
+				<string>LucidaSans</string>
+				<key>Size</key>
+				<real>18</real>
+			</dict>
+			<key>Head</key>
+			<dict>
+				<key>ID</key>
 				<integer>83</integer>
 			</dict>
 			<key>ID</key>
 			<integer>84</integer>
 			<key>Points</key>
 			<array>
-				<string>{299, 445}</string>
-				<string>{499.244, 348.891}</string>
+				<string>{297, 443.05}</string>
+				<string>{467.775, 238.125}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -83,7 +188,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{467.775, 297.675}, {170.1, 51}}</string>
+			<string>{{467.775, 212.625}, {170.1, 51}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -99,6 +204,10 @@
 			</dict>
 			<key>ID</key>
 			<integer>83</integer>
+			<key>Magnets</key>
+			<array>
+				<string>{-0.5, 0}</string>
+			</array>
 			<key>Shape</key>
 			<string>NoteShape</string>
 			<key>Style</key>
@@ -459,8 +568,8 @@
 			<integer>75</integer>
 			<key>Points</key>
 			<array>
-				<string>{381, 464.55}</string>
-				<string>{467.28, 452.05}</string>
+				<string>{381, 480.3}</string>
+				<string>{467.287, 460.768}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -511,8 +620,8 @@
 			<integer>74</integer>
 			<key>Points</key>
 			<array>
-				<string>{212.65, 485.7}</string>
-				<string>{169.023, 481.862}</string>
+				<string>{212.65, 504.92}</string>
+				<string>{137.796, 484.904}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -660,8 +769,8 @@ html anchor\
 			<integer>71</integer>
 			<key>Points</key>
 			<array>
-				<string>{212.625, 422.997}</string>
-				<string>{94.0213, 408.564}</string>
+				<string>{212.625, 431.929}</string>
+				<string>{94.0168, 410.168}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -891,7 +1000,7 @@ html anchor\
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{212.625, 412.55}, {184.275, 84}}</string>
+					<string>{{212.625, 412.55}, {184.275, 105}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -936,6 +1045,7 @@ html anchor\
 
 \f0\fs36 \cf0 \ul \ulc0 canBeRoot\
 initialize\
+\ulnone initialize\ul \
 \ulnone renderContentOn:\
 states}</string>
 					</dict>
@@ -960,7 +1070,8 @@ states}</string>
 				<string>{0, -1}</string>
 				<string>{-0.499864, 0.415234}</string>
 				<string>{0.413716, 0.25}</string>
-				<string>{-0.0312712, 0.0972655}</string>
+				<string>{-0.0421246, 0}</string>
+				<string>{-0.0475513, 0.133893}</string>
 			</array>
 		</dict>
 		<dict>
@@ -1347,7 +1458,7 @@ states}</string>
 		</dict>
 	</array>
 	<key>ModificationDate</key>
-	<string>2007-11-20 16:57:09 +0100</string>
+	<string>2007-12-09 12:45:56 +0100</string>
 	<key>Modifier</key>
 	<string>Oscar Nierstrasz</string>
 	<key>NotesVisible</key>
@@ -1388,7 +1499,7 @@ states}</string>
 		<key>NSPaperSize</key>
 		<array>
 			<string>size</string>
-			<string>{842, 595}</string>
+			<string>{841.98, 594.99}</string>
 		</array>
 		<key>NSPrintAllPages</key>
 		<array>
@@ -1432,25 +1543,17 @@ states}</string>
 	<key>WindowInfo</key>
 	<dict>
 		<key>CurrentSheet</key>
-		<string>0</string>
-		<key>DrawerOpen</key>
-		<false/>
+		<integer>0</integer>
 		<key>DrawerTab</key>
 		<string>Outline</string>
 		<key>DrawerWidth</key>
 		<real>209</real>
-		<key>FitInWindow</key>
-		<false/>
 		<key>Frame</key>
 		<string>{{168, 187}, {882, 686}}</string>
-		<key>ShowRuler</key>
-		<false/>
-		<key>ShowStatusBar</key>
-		<true/>
 		<key>VisibleRegion</key>
-		<string>{{-24, 0}, {867, 572}}</string>
+		<string>{{-31, 4}, {867, 572}}</string>
 		<key>Zoom</key>
-		<string>1</string>
+		<real>1</real>
 	</dict>
 </dict>
 </plist>
