@@ -50,8 +50,7 @@ We have already seen Monticello in ``A First Application'' (section 2.9) and in 
 }
 
 %=================================================================
-
-\section{Basic Usage}
+\section{Basic usage}
 
 This section gives a brief description of the basic features of Monticello and SqueakSource: creating a packages, committing, updating and merging.
 
@@ -65,11 +64,12 @@ Once Monticello is installed, the Monticello Browser will be available from the 
 	\caption{The Monticello Browser.\figlabel{monticelloMain}}
 \end{figure}
 
-
-\subsection{Creating a Package}
+%-----------------------------------------------------------------
+\subsection{Creating a package}
 
 The very first thing you need to do is to tell Monticello about the package you want to version. Monticello packages are mapped to class categories. For example, the two classes in Quinto, the first application you have seen, are contained in the category \scat{SBE-Quinto}. Press the \button{+Package} in the Monticello browser and enter \scat{SBE-Quinto}. \emph{Voil\`a!} You have just created the \pkg{SBE-Quinto} Monticello package. 
 
+%-----------------------------------------------------------------
 \subsection{Committing}
 
 Before committing you need to specify \emph{where} you want to save your package. The \button{+Repository} button is for that purpose. Choose a folder. The \button{Save} button will save your package into this repository. You may change the version name and add a comment. 
@@ -79,6 +79,7 @@ Before committing you need to specify \emph{where} you want to save your package
 	\caption{A new version name and a comment may be set when committing.\figlabel{saving}}
 \end{figure}
 
+%-----------------------------------------------------------------
 \subsection{Updating}
 
 Select the repository you want to load a version from in the list on the right-hand side of the Monticello Browser, and click the \button{Open} button. This will open a Repository Inspector. Select your version and click the \button{Load} button.
@@ -88,6 +89,7 @@ Select the repository you want to load a version from in the list on the right-h
 %	\caption{A repository offers different package versions.\figlabel{viewingRepository}}
 %\end{figure}
 
+%-----------------------------------------------------------------
 \subsection{Using SqueakSource}
 
 SqueakSource is a central online repository accessible from \url{http://www.squeaksource.com}. For example, visit the BreakOut project\footnote{\url{http://www.squeaksource.com/BreakOut.html}}. In the registration section you should see the 
@@ -103,7 +105,7 @@ Enter a new repository (press \button{+Repository}), then select \button{HTTP}. 
 \button{Open} the repository and choose one version. There is a high chance that you are interested in the last version. Select one and press \button{Load}.
 
 Note If you want to save your code in a SqueakSource Monticello repository, the project security policy should allow you to do so.
-
+\on{huh? what is this?}
 
 %\begin{figure}[ht]\centering
 %	\includegraphics[width=.75\linewidth]{squeaksource1}
@@ -117,29 +119,36 @@ Note If you want to save your code in a SqueakSource Monticello repository, the 
 
 At the time this chapter is being written, about 1000 projects are registered and more than 1100 peoples have an account. \figref{squeaksource} shows the main web page.
 
-Pressing the \menu{Register Member} menu item will probably be your very first step if you do not have a SqueakSource account. \menu{Register Project} allows for project creation. 
+Pressing the \menu{Register Member} menu item will probably be your very first step if you do not have a SqueakSource account. \menu{Register Project} allows you to create a new project. 
+
+%-----------------------------------------------------------------
+\subsection{Merging a with newer version}
+
+Your package may be merged with another version by using the \button{Merge} button in the Monticello browser. We will come back to the different options that are available at that stage. Press \button{Merge} to replace your package with a new version of this one. Note that your changes, if any, will be erased.
+\on{Not really very clear.
+Why is it called ``merge''?
+It seems to be just updating.}
 
 
-\subsection{Merging a with New Version}
-
-Your package may be merged with another version by using the \button{Merge} button in the Monticello browser. We will come back on the different options that are available at that stage. Press \button{Merge} to replace your package with a new version of this one. Note that your change, if any, will be erased.
+%:==> CONTINUE HERE <===
 
 \begin{figure}[ht]\centering
 	\includegraphics[width=.75\linewidth]{merger}
 	\caption{Merging two packages is performed using a fine grain.\figlabel{merging}}
 \end{figure}
 
-\subsection{Dirty Package}
+%-----------------------------------------------------------------
+\subsection{Dirty packages}
 
 Modifying a package with the system code browser makes this package \emph{dirty}, meaning that you produced a delta with the last version that has been saved or loaded. A dirty package has its name prepended with the \emph{*} character in the Monticello browser. This is a help for the programmer to indicate which package as to be saved. Saving a dirty package cleans it.
 
-
 %=================================================================
-
-\section{Useful Features} \seclabel{monti:usefulfeatures}
+\section{Useful features}
+\seclabel{monti:usefulfeatures}
 
 Monticello has many non-vital but useful features. The Monticello browser contains 9 buttons (\figref{monticelloMain}). We already have seen 4 of them (\button{+Package}, \button{Save}, \button{+Repository} and \button{Open}). This section describes the remaining ones.
 
+%-----------------------------------------------------------------
 \subsection{Browse} 
 
 As it is described in \secref{packageextension}, a Monticello package may define and redefine methods on classes defined in another package. The standard Squeak code browser does not help getting a clear view on the content of a package. The \button{Browse} button open a package code viewer (also called snapshot browser).
@@ -154,6 +163,7 @@ For example, \figref{packageviewer} shows the class extension defined in the \pk
 %\subsection{Scripts}
 % Script do not work!
 
+%-----------------------------------------------------------------
 \subsection{History} 
 
 The \button{History} button opens a version history viewer that shows all package version comments for a selection. \figref{historyviewer} illustrates this situation. The list on the left hand side shows the versions of the package AST. The text pane on the right gives information about the version 140 of this package.
@@ -165,6 +175,7 @@ The \button{History} button opens a version history viewer that shows all packag
 
 %Cannot do the swapping!
 
+%-----------------------------------------------------------------
 \subsection{Changes} 
 
 The \button{Changes} button computes the difference between your current package version and the last version of the package stored in the repository. 
@@ -176,23 +187,25 @@ The \button{Changes} button computes the difference between your current package
 
 \figref{patchbrowser} shows that the Perseus package has been locally modified with three changes. One removed method (\ct{functionName}) and two method additions (\ct{toSmalltalkCompiledMethod} on \ct{PSCompiledFunction} and \ct{PSCompiledScript}).
 
-
+%-----------------------------------------------------------------
 \subsection{Backport} 
 
 Each package version has an ancestor which is its parent version. The left pane of the history viewer display the list of ancestor actually. \button{Backport} allows for changing the version of a package without erasing non-commited changes. For example, let's assume you are working on the version 6 of \pkg{SBE-Quinto}. This current package can be turned into the version 3 while keeping your changes. 
 
 Backporting a package is useful when you want to revert your package to a previous while keeping your modification. You may then create a new branch. 
 
-
 %=================================================================
+\section{Advanced operations}
+\seclabel{monti:advancedoperations}
 
-\section{Advanced Operations} \seclabel{monti:advancedoperations}
-
+%-----------------------------------------------------------------
 \subsection{Branching}
 
 You may create new version branch when saving your package. This is useful when you want to have a new parallel development. A new branch is easily created by giving a new name of the version in the upper text pane of the \button{Edit Version} window. For example, \figref{saving} shows the package \pkg{SBE-Quinto} being save. You make give a new name such as \emph{SBE-Quinto-MyBranch-ab.1} to create the branch \emph{MyBranch}. Giving a totally new name is not a great idea since it will hamper repository browsing.
 
-\subsection{Package Extension} \seclabel{packageextension} 
+%-----------------------------------------------------------------
+\subsection{Package extensions}
+\seclabel{packageextension} 
 Monticello packages are defined according to few naming conventions of class and method categories. A package named \pkg{Foo} contains:
 
 \begin{itemize}
@@ -201,6 +214,7 @@ Monticello packages are defined according to few naming conventions of class and
 \item All methods in classes in the system category \scat{Foo}, or in system categories for which their names begin with \scat{Foo-}, except those in method categories with names starting with \prot{*} (which has to belong to another modules).
 \end{itemize}
 
+%-----------------------------------------------------------------
 \subsection{Dependencies}
 
 A package may require another package to be properly used. Monticello supports a light weight dependency mechanism. Right-click on a package In a Monticello browser and select \emph{add required package}.
@@ -214,7 +228,8 @@ Let us assume a package \pkg{A} version 1 requires another package \pkg{B} versi
 \item To make \pkg{A} require a new version of \pkg{B}, use the \menu{Add required package} menu item.
 \end{itemize}
 
-\subsection{Version Loading}
+%-----------------------------------------------------------------
+\subsection{Version loading}
 
 Loading a package with another version fully erases changes for that package that are committed. For example, let's assume that you are working on a package which contains a method \ct{m} for a class \ct{C}. Loading a new version for this package will either remove or replace your definition of \ct{C} and \ct{m}. You will not keep it, even if \ct{C} is not defined in a new version.
 
@@ -225,7 +240,8 @@ You probably want to use the \button{Merge} or the \button{Backport} if you want
 	\caption{File Repository Inspector.\figlabel{filerepositoryinspector}}
 \end{figure}
 
-\subsection{File Repository Inspector} 
+%-----------------------------------------------------------------
+\subsection{File repository inspector} 
 Information about the content of a repository is displayed using the File Repository Inspector triggered with the \button{Open} button. The list of packages contained in the repository is shown on the left-hand side of the inspector:
 
 \begin{itemize}
@@ -245,11 +261,13 @@ Note that a right click on the right-hand side of the inspector opens a menu wit
 %\subsection{Branching}
 %\subsection{Ancestor}
 
-\subsection{Class Initialization}
+%-----------------------------------------------------------------
+\subsection{Class initialization}
 
 After being loaded, classes are initialized by Monticello by invoking the \ct{initialize} class method on classes for which this method is defined only. Note that inherited \ct{initialize} method are not invoked. 
 
-\subsection{Adding New Variables}
+%-----------------------------------------------------------------
+\subsection{Adding new variables}
 
 Monticello supports method extension only. One way to circumvent this limitation is to define an initialize method on the class side, and manually add this variable. For example, let us image a package that extends the class \ct{OBUCommand} with a variable \ct{parent}.
 
@@ -263,8 +281,8 @@ OBUCommand class>>initialize
 In the case that \ct{initialize} is already defined in \ct{OBUCommand}, then you may define this \ct{initialize} method on a class in your package.
 
 %=================================================================
-
-\section{Repositories} \seclabel{monti:repositories}
+\section{Repositories}
+\seclabel{monti:repositories}
 
 Several types of repositories are supported by Monticello, each with different characteristics and uses. Repositories can be read-only, write-only or read-write.
 
@@ -288,7 +306,8 @@ The nice thing about HTTP repositories is that it's easy to link directly to spe
 
 %The package cache is a special repository that Monticello creates automatically. Like a directory repository, the package cache stores files in a directory on your local filesystem. See Elements of Monticello for more information.
 
-\section{The .mcz File Format}
+%=================================================================
+\section{The .mcz file format}
 
 Versions are often saved in binary files for storage in repositories, distribution to users etc. These files are commonly call 'mcz files' as they carry the extension .mcz.
 
@@ -320,10 +339,7 @@ The metadata for a Version ends up being fairly compact, so it's not unreasonabl
 
 Stated another way, a Version doesn't contain a full history of the source code. It's a snapshot of the code at a single point in time, with a UUID identifying that snapshot, and a record of the UUIDs of all the previous snapshots it's descended from. So it's a great thing to distribute.
 
-
-
 %=================================================================
-
 \section{Chapter Summary}
 
 This chapter explained how to use Monticello and SqueakSource to manage the source code of your application.
@@ -340,11 +356,6 @@ This chapter explained how to use Monticello and SqueakSource to manage the sour
 \item Monticello allows for a package version different from the local version may be merge, creating a new branch and changing the local version of your package.
 \end{itemize}
 
-
-
-%=================================================================
-%=================================================================
-%=================================================================
 %=================================================================
 
 %\section{Packages in Monticello: PackageInfo}
@@ -428,9 +439,6 @@ This chapter explained how to use Monticello and SqueakSource to manage the sour
 
 %When a Version is loaded into the image, it is likely to become the ancestor of new versions that are created as part of the development process. During merges, Monticello needs to examine the Snapshots of these ancestors in order to detect conflicts. By caching these ancestors as it loads them, MC reduces the chance that the necessary version will be unavailable - either because the repository it's in is no longer available or because it was loaded directly from a file and isn't in any repository.
 
-
-
-
 %\section{The Snapshot Browser}
 
 %The Snapshot browser is much like the standard Smalltalk System Browser except that it displays the contents of a Snapshot, rather than the code that is active in the image. Since Snapshots are immutable, the Snapshot browser does not allow editiing.
@@ -446,7 +454,6 @@ This chapter explained how to use Monticello and SqueakSource to manage the sour
 
 %You can send fileOut to an instance of PackageInfo to get a changeset of the entire package. For more sophisticated versioning of packages, see the Monticello project.
 
-
 %=========================================================
 \ifx\wholebook\relax\else
    \bibliographystyle{jurabib}
@@ -454,6 +461,4 @@ This chapter explained how to use Monticello and SqueakSource to manage the sour
    \end{document}
 \fi
 %=========================================================
-
-
 
