@@ -36,13 +36,18 @@
 
 \on{I am reviewing this chapter.}
 
-A versioning system is a tool that helps managing concurrent access to a common source code repository. It helps to keep track of all work and all changes in a set of classes and allows several developers to collaborate. As soon as the size of your software program goes over few classes, you probably need a versioning system.
+A versioning system is a tool that helps you to manage concurrent access to a common source code repository. It helps you by keeping track of all work and all changes to a set of classes and allows several developers to collaborate. As soon as the size of your software goes beyond a few classes, you probably need a versioning system.
 
-Many tools are available. CVS\footnote{\href{http://www.nongnu.org/cvs/}{www.nongnu.org/cvs}} and Subversion\footnote{\href{http://subversion.tigris.org/}{subversion.tigris.org}} are probably the most popular. Using them to manage the development of a software in Squeak will reduce the Squeak Smalltalk to a soulless file-based language. 
+Many versioning tools are available. CVS\footnote{\url{http://www.nongnu.org/cvs}} and Subversion\footnote{\url{http://subversion.tigris.org}} are probably the most popular.
+In principle you could use them to manage the development of Squeak software projects, but this would reduce Squeak Smalltalk to a soulless file-based language. 
 
-\emph{Monticello} is a versioning system for Squeak. It takes advantages of the Smalltalk meta-model by having a method as the software change grain. \emph{SqueakSource} is an online central repository in which you can store your application.
+\emph{Monticello} is a versioning system for Squeak. It takes advantage of Smalltalk's meta-model by adopting methods as the unit of software change. \emph{SqueakSource} is an online central repository in which you can store your application.
 
 In this chapter, you will read about using Monticello and SqueakSource to manage your software program for day-to-day programming.
+
+\on{Should state explicitly what is new in this chapter.
+We have already seen Monticello in ``A First Application'' (section 2.9) and in ``The Squeak Programming Environment'' (section 6.3), so we should be told what is new.
+}
 
 %=================================================================
 
@@ -50,7 +55,8 @@ In this chapter, you will read about using Monticello and SqueakSource to manage
 
 This section gives a brief description of the basic features of Monticello and SqueakSource: creating a packages, committing, updating and merging.
 
-Monticello is included in the standard Squeak distribution\footnote{\href{http://www.squeak.org}{www.squeak.org}} and in the image for developers\footnote{\href{http://damien.cassou.free.fr/squeak-dev.html}{damien.cassou.free.fr/squeak-dev.html}}. If you use another image, Monticello is installable via \emph{SqueakMap} and \emph{Universe}.
+Monticello is included in the standard Squeak distribution\footnote{\url{http://www.squeak.org}} and in the image for developers\footnote{\url{http://damien.cassou.free.fr/squeak-dev.html}}. If you use another image, Monticello is installable via \emph{SqueakMap} and \emph{Universe}.
+\on{Universe is not described anywhere else in the book.  The reader does not know what this is.}
 
 Once Monticello is installed, the Monticello Browser will be available from the 'open...' menu. Open it by selecting the \emph{World} menu, then select open and press \emph{Monticello Browser}.
 
@@ -62,11 +68,11 @@ Once Monticello is installed, the Monticello Browser will be available from the 
 
 \subsection{Creating a Package}
 
-The very first thing you need is to tell Monticello about the package you want to version. Monticello packages are mapped into class categories. For example, the two classes in Quinto, the first application you have seen, are contained in the category \emph{SBE-Quinto}. Press the \emph{+Package} in the Monticello browser and enter \emph{SBE-Quinto}. Voila, you just created the \emph{SBE-Quinto} Monticello package. 
+The very first thing you need to do is to tell Monticello about the package you want to version. Monticello packages are mapped to class categories. For example, the two classes in Quinto, the first application you have seen, are contained in the category \scat{SBE-Quinto}. Press the \button{+Package} in the Monticello browser and enter \scat{SBE-Quinto}. \emph{Voil\`a!} You have just created the \pkg{SBE-Quinto} Monticello package. 
 
 \subsection{Committing}
 
-Before committing you need to specify \emph{where} you want to save your package. The \emph{+Repository} button is for that purpose. Choose a folder. The \emph{Save} button will save your package into this repository. You may change the version name and add a comment. 
+Before committing you need to specify \emph{where} you want to save your package. The \button{+Repository} button is for that purpose. Choose a folder. The \button{Save} button will save your package into this repository. You may change the version name and add a comment. 
 
 \begin{figure}[ht]\centering
 	\includegraphics[width=.55\linewidth]{saving.png}
@@ -75,7 +81,7 @@ Before committing you need to specify \emph{where} you want to save your package
 
 \subsection{Updating}
 
-Select the repository you want to load a version from in the list on the right-hand side of the Monticello Browser, and click the \emph{Open} button. his will open a Repository Inspector. Select your version and click the \emph{Load} button.
+Select the repository you want to load a version from in the list on the right-hand side of the Monticello Browser, and click the \button{Open} button. This will open a Repository Inspector. Select your version and click the \button{Load} button.
 
 %\begin{figure}[ht]\centering
 %	\includegraphics[width=.75\linewidth]{viewingRepository}
@@ -84,17 +90,17 @@ Select the repository you want to load a version from in the list on the right-h
 
 \subsection{Using SqueakSource}
 
-SqueakSource is a central online repository. Accessible from \href{http://www.squeaksource.com}{www.squeaksource.com}. For example, visit the BreakOut project\footnote{\href{http://www.squeaksource.com/BreakOut.html}{www.squeaksource.com/BreakOut.html}}. In the registration section you should see the 
+SqueakSource is a central online repository accessible from \url{http://www.squeaksource.com}. For example, visit the BreakOut project\footnote{\url{http://www.squeaksource.com/BreakOut.html}}. In the registration section you should see the 
 
 \begin{code}
-
 MCHttpRepository
     location: 'http://www.squeaksource.com/BreakOut'
     user: ''
     password: ''
 \end{code}
 
-Enter a new repository (press \emph{+Repository}), then select \emph{HTTP}. Fill out the template with the URL corresponding to the BreakOut project (note that you may use a cut-and-paste). Choose one version, there is a high chance that you are interested in the last version. Select one and press \emph{Load}.
+Enter a new repository (press \button{+Repository}), then select \button{HTTP}. Fill out the template with the URL corresponding to the BreakOut project (note that you may cut-and-paste the repository expression).
+\button{Open} the repository and choose one version. There is a high chance that you are interested in the last version. Select one and press \button{Load}.
 
 Note If you want to save your code in a SqueakSource Monticello repository, the project security policy should allow you to do so.
 
@@ -111,12 +117,12 @@ Note If you want to save your code in a SqueakSource Monticello repository, the 
 
 At the time this chapter is being written, about 1000 projects are registered and more than 1100 peoples have an account. \figref{squeaksource} shows the main web page.
 
-Pressing the \emph{Register Member} menu item will probably be your very first step if you do not have a SqueakSource account. \emph{Register Project} allows for project creation. 
+Pressing the \menu{Register Member} menu item will probably be your very first step if you do not have a SqueakSource account. \menu{Register Project} allows for project creation. 
 
 
 \subsection{Merging a with New Version}
 
-Your package may be merged with another version by using the \emph{Merge} button in the Monticello browser. We will come back on the different options that are available at that stage. Press \emph{Merge} to replace your package with a new version of this one. Note that your change, if any, will be erased.
+Your package may be merged with another version by using the \button{Merge} button in the Monticello browser. We will come back on the different options that are available at that stage. Press \button{Merge} to replace your package with a new version of this one. Note that your change, if any, will be erased.
 
 \begin{figure}[ht]\centering
 	\includegraphics[width=.75\linewidth]{merger}
@@ -132,25 +138,25 @@ Modifying a package with the system code browser makes this package \emph{dirty}
 
 \section{Useful Features} \seclabel{monti:usefulfeatures}
 
-Monticello has many non-vital but useful features. The Monticello browser contains 9 buttons (\figref{monticelloMain}). We already have seen 4 of them (\emph{+Package}, \emph{Save}, \emph{+Repository} and \emph{Open}). This section describes the remaining ones.
+Monticello has many non-vital but useful features. The Monticello browser contains 9 buttons (\figref{monticelloMain}). We already have seen 4 of them (\button{+Package}, \button{Save}, \button{+Repository} and \button{Open}). This section describes the remaining ones.
 
 \subsection{Browse} 
 
-As it is described in \secref{packageextension}, a Monticello package may define and redefine methods on classes defined in another package. The standard Squeak code browser does not help getting a clear view on the content of a package. The \emph{Browse} button open a package code viewer (also called snapshot browser).
+As it is described in \secref{packageextension}, a Monticello package may define and redefine methods on classes defined in another package. The standard Squeak code browser does not help getting a clear view on the content of a package. The \button{Browse} button open a package code viewer (also called snapshot browser).
 
 \begin{figure}[ht]\centering
 	\includegraphics[width=.75\linewidth]{{packageviewer}}
 	\caption{The package Sound extends the class GraphMorph with 3 methods.\figlabel{packageviewer}}
 \end{figure}
 
-For example, \figref{packageviewer} shows the class extension defined in the \emph{Sound} package. This package extends the class \ct{GraphMorph} with the three methods displayed in the right most upper pane. Note that code edition is not allowed at that stage.
+For example, \figref{packageviewer} shows the class extension defined in the \pkg{Sound} package. This package extends the class \ct{GraphMorph} with the three methods displayed in the right most upper pane. Note that code edition is not allowed at that stage.
 
 %\subsection{Scripts}
 % Script do not work!
 
 \subsection{History} 
 
-The \emph{History} button opens a version history viewer that shows all package version comments for a selection. \figref{historyviewer} illustrates this situation. The list on the left hand side shows the versions of the package AST. The text pane on the right gives information about the version 140 of this package.
+The \button{History} button opens a version history viewer that shows all package version comments for a selection. \figref{historyviewer} illustrates this situation. The list on the left hand side shows the versions of the package AST. The text pane on the right gives information about the version 140 of this package.
 
 \begin{figure}[ht]\centering
 	\includegraphics[width=.75\linewidth]{{historyviewer}}
@@ -161,19 +167,19 @@ The \emph{History} button opens a version history viewer that shows all package 
 
 \subsection{Changes} 
 
-The \emph{Changes} button computes the difference between your current package version and the last version of the package stored in the repository. 
+The \button{Changes} button computes the difference between your current package version and the last version of the package stored in the repository. 
 
 \begin{figure}[ht]\centering
 	\includegraphics[width=.75\linewidth]{{patchbrowser}}
 	\caption{The patch browser shows the difference between your local version and the last committe version.\figlabel{patchbrowser}}
 \end{figure}
 
-\figref{patchbrowser} shows that the Perseus package has been locally modified with three changes. One removed method (\emph{functionName}) and two method additions (\emph{toSmalltalkCompiledMethod} on \emph{PSCompiledFunction} and \emph{PSCompiledScript}).
+\figref{patchbrowser} shows that the Perseus package has been locally modified with three changes. One removed method (\ct{functionName}) and two method additions (\ct{toSmalltalkCompiledMethod} on \ct{PSCompiledFunction} and \ct{PSCompiledScript}).
 
 
 \subsection{Backport} 
 
-Each package version has an ancestor which is its parent version. The left pane of the history viewer display the list of ancestor actually. \emph{Backport} allows for changing the version of a package without erasing non-commited changes. For example, let's assume you are working on the version 6 of \emph{SBE-Quinto}. This current package can be turned into the version 3 while keeping your changes. 
+Each package version has an ancestor which is its parent version. The left pane of the history viewer display the list of ancestor actually. \button{Backport} allows for changing the version of a package without erasing non-commited changes. For example, let's assume you are working on the version 6 of \pkg{SBE-Quinto}. This current package can be turned into the version 3 while keeping your changes. 
 
 Backporting a package is useful when you want to revert your package to a previous while keeping your modification. You may then create a new branch. 
 
@@ -184,35 +190,35 @@ Backporting a package is useful when you want to revert your package to a previo
 
 \subsection{Branching}
 
-You may create new version branch when saving your package. This is useful when you want to have a new parallel development. A new branch is easily created by giving a new name of the version in the upper text pane of the \emph{Edit Version} window. For example, \figref{saving} shows the package \emph{SBE-Quinto} being save. You make give a new name such as \emph{SBE-Quinto-MyBranch-ab.1} to create the branch \emph{MyBranch}. Giving a totally new name is not a great idea since it will hamper repository browsing.
+You may create new version branch when saving your package. This is useful when you want to have a new parallel development. A new branch is easily created by giving a new name of the version in the upper text pane of the \button{Edit Version} window. For example, \figref{saving} shows the package \pkg{SBE-Quinto} being save. You make give a new name such as \emph{SBE-Quinto-MyBranch-ab.1} to create the branch \emph{MyBranch}. Giving a totally new name is not a great idea since it will hamper repository browsing.
 
 \subsection{Package Extension} \seclabel{packageextension} 
-Monticello packages are defined according to few naming conventions of class and method categories. A package named \emph{Foo} contains:
+Monticello packages are defined according to few naming conventions of class and method categories. A package named \pkg{Foo} contains:
 
 \begin{itemize}
-\item All classes in the system category \emph{Foo}, or in system categories with names starting with \emph{Foo-}.
-\item All method definitions in any class in method categories named \emph{*foo}, with names starting with \emph{*foo-}, \emph{*Foo} and \emph{*Foo-}.
-\item All methods in classes in the system category \emph{Foo}, or in system categories for which their names begin with \emph{Foo-}, except those in method categories with names starting with \emph{*} (which has to belong to another modules).
+\item All classes in the system category \scat{Foo}, or in system categories with names starting with \scat{Foo-}.
+\item All method definitions in any class in method categories named \prot{*foo}, with names starting with \prot{*foo-}, \prot{*Foo} and \prot{*Foo-}.
+\item All methods in classes in the system category \scat{Foo}, or in system categories for which their names begin with \scat{Foo-}, except those in method categories with names starting with \prot{*} (which has to belong to another modules).
 \end{itemize}
 
 \subsection{Dependencies}
 
 A package may require another package to be properly used. Monticello supports a light weight dependency mechanism. Right-click on a package In a Monticello browser and select \emph{add required package}.
 
-Let us assume a package \emph{A} version 1 requires another package \emph{B} version 1. This implies:
+Let us assume a package \pkg{A} version 1 requires another package \pkg{B} version 1. This implies:
 
 \begin{itemize}
-\item Saving \emph{A} requires \emph{B} to be saved as well if \emph{B} is dirty.
-\item Saving a new version of \emph{B} does \emph{not} imply saving \emph{A}.
-\item Loading \emph{A} in a fresh image implies loading the version 1 of \emph{B} from the same repository where \emph{A} is loaded.
-\item To make \emph{A} require a new version of \emph{B}, use the \emph{Add required package} menu item.
+\item Saving \pkg{A} requires \pkg{B} to be saved as well if \pkg{B} is dirty.
+\item Saving a new version of \pkg{B} does \emph{not} imply saving \pkg{A}.
+\item Loading \pkg{A} in a fresh image implies loading the version 1 of \pkg{B} from the same repository where \pkg{A} is loaded.
+\item To make \pkg{A} require a new version of \pkg{B}, use the \menu{Add required package} menu item.
 \end{itemize}
 
 \subsection{Version Loading}
 
-Loading a package with another version fully erases changes for that package that are committed. For example, let's assume that you are working on a package which contains a method \emph{m} for a class \emph{C}. Loading a new version for this package will either remove or replace your definition of \emph{C} and \emph{m}. You will not keep it, even if \emph{C} is not defined in a new version.
+Loading a package with another version fully erases changes for that package that are committed. For example, let's assume that you are working on a package which contains a method \ct{m} for a class \ct{C}. Loading a new version for this package will either remove or replace your definition of \ct{C} and \ct{m}. You will not keep it, even if \ct{C} is not defined in a new version.
 
-You probably want to use the \emph{Merge} or the \emph{Backport} if you want to update the version of your package while keeping your code change.
+You probably want to use the \button{Merge} or the \button{Backport} if you want to update the version of your package while keeping your code change.
 
 \begin{figure}[ht]\centering
 	\includegraphics[width=.75\linewidth]{{filerepositoryinspector}}
@@ -220,7 +226,7 @@ You probably want to use the \emph{Merge} or the \emph{Backport} if you want to 
 \end{figure}
 
 \subsection{File Repository Inspector} 
-Information about the content of a repository is displayed using the File Repository Inspector triggered with the \emph{Open} button. The list of packages contained in the repository is shown on the left-hand side of the inspector:
+Information about the content of a repository is displayed using the File Repository Inspector triggered with the \button{Open} button. The list of packages contained in the repository is shown on the left-hand side of the inspector:
 
 \begin{itemize}
 \item An \emph{underlined} package name means that this package is locally installed;
@@ -241,11 +247,11 @@ Note that a right click on the right-hand side of the inspector opens a menu wit
 
 \subsection{Class Initialization}
 
-After being loaded, classes are initialized by Monticello by invoking the \emph{initialize} class method on classes for which this method is defined only. Note that inherited \emph{initialize} method are not invoked. 
+After being loaded, classes are initialized by Monticello by invoking the \ct{initialize} class method on classes for which this method is defined only. Note that inherited \ct{initialize} method are not invoked. 
 
 \subsection{Adding New Variables}
 
-Monticello supports method extension only. One way to circumvent this limitation is to define an initialize method on the class side, and manually add this variable. For example, let us image a package that extends the class \emph{OBUCommand} with a variable \emph{parent}.
+Monticello supports method extension only. One way to circumvent this limitation is to define an initialize method on the class side, and manually add this variable. For example, let us image a package that extends the class \ct{OBUCommand} with a variable \ct{parent}.
 
 \begin{code}
 
@@ -254,7 +260,7 @@ OBUCommand class>>initialize
 		ifFalse: [OBUCommand addInstVarName: 'parent']
 \end{code}
 
-In the case that \emph{initialize} is already defined in \emph{OBUCommand}, then you may define this \emph{initialize} method on a class in your package.
+In the case that \ct{initialize} is already defined in \ct{OBUCommand}, then you may define this \ct{initialize} method on a class in your package.
 
 %=================================================================
 
