@@ -1169,11 +1169,11 @@ MyKeypad>>>renderStackButton: text callback: aBlock colSpan: anInteger on: html
 
 \mthind{WATagBrush}{onClick:} specifies a \ind{JavaScript} event handler.
 \ct{html updater} returns an instance of \ct{SUUpdater}, a Smalltalk object representing the JavaScript Ajax.Updater object (\url{http://www.prototypejs.org/api/ajax/updater}).
+This object performs an AJAX request and updates a container's contents based on the response text.
 \ct{id:} tells the updater what XHTML DOM element to update, in this case the contents of the DIV element with the id 'display'.
-\ct{callback:} specifies a block that is triggered \on{on the client-side} when the user presses the button.
+\ct{callback:} specifies a block that is triggered when the user presses the button.
 The block argument is a new renderer \ct{r}, which we can use to render the display component.
 (Note: Even though html is still accessible, it is not valid anymore at the time this callback block is evaluated).
-\on{Isn't the point here that the rendering within the javascript callback is *client-side*, so it is a different renderer than the html renderer we have in the enclosing scope?}
 Before rendering the display component we evaluate \ct{aBlock} to perform the desired action.
 
 \ct{return: false} tells the JavaScript engine to not trigger the original link callback, which would cause a full refresh.
@@ -1186,13 +1186,39 @@ Now we will enable the Javascript event handling.
 
 \dothis{
 Click on the \menu{Configure} button in the toolbar of the calculator.
-Select ``Add Library:'' \ct{SULibrary}, click the \button{Add} button and \button{Close}.
-Try the revised application.  Note that the feedback is much more natural.
-In particular the URL is not refreshed every time you enter a digit.
-Have a look at the generated source-code, especially the JavaScript code:}
+Select ``Add Library:'' \ct{SULibrary}, click the \button{Add} button and \button{Close}.}
+
+Instead of manually adding the library, you may also do it programmatically when you register the application:
+\begin{code}{}
+MyCalculator class>>>initialize
+	(self registerAsApplication: 'rpn')
+		addLibrary: SULibrary}}
+\end{code}
+
+%:FIG ajax-processing
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=\textwidth]{ajax-processing}
+\caption{Seaside AJAX processing (simplified)}
+\label{fig:ajax-processing}
+\end{center}
+\end{figure}
+
+\dothis{Try the revised application.  Note that the feedback is much more natural. In particular, a new URL is not generated with each keystroke.}
+
+You may well ask, \emph{yes, but how does this work?}
+\figref{ajax-processing} shows how the RPN applications would both without and with AJAX.
+Basically AJAX short-circuits the rendering to \emph{only} update the display component.
+Javascript is responsible both for triggering the request and updating the corresponding DOM element.
+Have a look at the generated source-code, especially the JavaScript code:
 
 \begin{code}{}
-new Ajax.Updater('display', 'http://localhost/seaside/RPN+Calculator', {'evalScripts':true, 'parameters':['UNDERSCOREs=zcdqfonqwbeYzkza','UNDERSCOREk=jMORHtqr','9'].join('&')}); return false
+new Ajax.Updater(
+	'display',
+	'http://localhost/seaside/RPN+Calculator',
+	{'evalScripts': true,
+	  'parameters': ['UNDERSCOREs=zcdqfonqwbeYzkza', 'UNDERSCOREk=jMORHtqr','9'].join('&')});
+return false
 \end{code}
 
 For more advanced examples, have a further look at \url{http://localhost:8080/seaside/tests/scriptaculous}.
