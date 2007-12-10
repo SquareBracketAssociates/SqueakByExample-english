@@ -6,6 +6,7 @@
 -----------------------------------------------------------------------------
 TO DO
 -----
+* Update the Metaprogramming chapter by incorporating material on metaprogramming and reflection from our lecture notes (including method wrappers and other  practical stuff), and http://www.iam.unibe.ch/~scg/Archive/Papers/Bergel06bRDLPrototyping.pdf
 * Fix consistency of footnotes and captions. (needs consistent style -- full sentences with periods or what ...)
 - NB: Send a copy of each edition to:
 Schweizerische Nationalbibliothek, Erwerbungsdienst, Hallwylstr. 15, 3003 Bern
