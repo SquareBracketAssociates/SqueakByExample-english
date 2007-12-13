@@ -1,6 +1,17 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2007-09-13
 ---------------------------------------------------------------------------
+PENDING:
+
+p 194: It would be a good idea to include 'ByteString' in figure 9.1
+      since it is mentioned in figure 9.2
+
+---------------------------------------------------------------------------
+FIXED:
+
+p 4: line 14 from top: 'sources' should be 'changes'.
+	[2007-12-13 Jordi Delgado; fixed -- on]
+
 p 4: the link for downloading squeak-dev has recently moved.
 	[2007-12-08 Doug Edmunds; fixed -- on]
 
@@ -29,14 +40,27 @@ p 88: "All that the class can do ..., [which may use --> possibly] using accesso
 p 94: "providing setter and getter methods for all the instance variables of an
 	object does is not good object-oriented style" [delete "does"; fixed --on]
 
-p 135: 2nd para delete "Maybe explain what "self" ......item)
-	[2007-09-24 Nick Ager; fixed --on]
+p 106: "instances cannot access class variables of their class."
+	should be: "cannot access instance variables"
+	[2007-12-13 Jordi Delgado; fixed -- on]
+
+p 124: line 9 from bottom: "chapter A" -> "FAQ (Appendix A)".
+	[2007-12-13 Jordi Delgado; fixed -- on]
+
+p 135: 2nd para delete "Maybe explain what "self" ......item)  (p. 154)"
+	[2007-09-24 Nick Ager; broken macro -- fixed --on]
 
 p 138: 3rd para "you should fell free" -> "you should feel free"
 	[2007-09-24 Nick Ager; fixed --on]
 
 p 138 "want to want to" -> "want to"
 	[2007-11-05 Andrew Black; fixed --apb]
+
+p 164: First paragraph: "...you will then [then] have to create..."
+	[2007-12-13 Jordi Delgado; fixed -- on]
+
+p 170: Method 7.14: should start 'TestCase class>>testSelectors ...'
+	[2007-12-13 Jordi Delgado; fixed -- on]
 
 p 172 end of first paragraph 'form' should be 'from'.
 	[2007-12-07 Ken G. Brown; fixed --on]
@@ -45,7 +69,7 @@ p 186: "All Number objects support various....
 	others which generate Duration s, such as hour..."
 	[2007-10-22 Mike Roberts; fixed --on]
 	
-p 191: `conjuctions' => `conjuncations'
+p 191: `conjuctions' => `conjunctions'
 	[2007-11-08 Has van der Krieken;  fixed --apb]
 	
 p 196: Figure 9.3. In Protocol creation: 
@@ -64,15 +88,26 @@ p 199: "relize" instead of "realize" at the end of the "Common creation protocol
 p 208: First string test should read "'Hello' isEmpty --> false"
 	[2007-10-21; fixed --on]
 
+p 214: Line 3 from bottom: '..., Dictionary AND its subclasses...'
+	[2007-12-13 Jordi Delgado; fixed -- on]
+
 p 236: Last para "Once the morph handles mouse events, it you cannot grab it"
 	should read: "Once the morph handles mouse events, you cannot grab it"
 	[2007-09-24 Nick Ager; fixed --on]
 
-p 230-247: Rewordings throughout the chapter to correct typos and to make it more consistent in
-	style with the other chapters.  Provided new versions of the CrossMorph methods that
-	work correctly with translucent colors.  better explanation of the roles of the methods involved
-	in drag and drop.  Added periods after all captions (!).
+p 230-247: Rewordings throughout the chapter to correct typos and to make it more
+	consistent in style with the other chapters.  Provided new versions of the
+	CrossMorph methods that work correctly with translucent colors.  better explanation
+	of the roles of the methods involved in drag and drop.  Added periods after all
+	captions (!).
 	[2007-11-05 Andrew Black; fixed --apb]
+
+p 234: Class 11.2 Its category should be 'SBE-Morphs'
+	[2007-12-13 Jordi Delgado; fixed -- apb]
+
+p 236: use colors to refer to mouse buttons, not 'left mouse button'
+	nor 'middle button' nor 'right click'.
+	[2007-12-13 Jordi Delgado; fixed -- apb]
 
 p 269: Smalltalk allClasses select: [:each | each hasTraitComposition]
 	does not work as advertised

@@ -454,7 +454,7 @@ ExampleSetTest suite run --> 5 run, 5 passed, 0 failed, 0 errors
 
 In \JUnit{} you can build a \clsind{TestSuite} from an arbitrary class
 containing \ct{test*} methods.  In \st you can do the same
-but you will then then have to create a suite by hand and your class will
+but you will then have to create a suite by hand and your class will
 have to implement all the essential \ct{TestCase} methods like \ct{assert:}.
 We recommend that you not try to do this.  The framework is there: use it.
 %=================================================================
@@ -739,7 +739,7 @@ To run more than one test, we send the message
 its methods.  The expression \ct{MyTestCase buildSuiteFromSelectors} returns a suite containing all the tests defined in the {\ct{MyTestCase} class.
 The core of this process is
 \begin{method}[testcasetestselectors]{Auto-building the test suite}
-TestCase>>>testSelectors 
+TestCase class>>>testSelectors 
 	^self selectors asSortedCollection asOrderedCollection select: [:each | 
 		('test*' match: each) and: [each numArgs isZero]]
 \end{method}

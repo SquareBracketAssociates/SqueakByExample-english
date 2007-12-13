@@ -958,7 +958,7 @@ Don't do this unless you love debugging!
 The \st collection hierarchy provides a common vocabulary for uniformly manipulating a variety of different kinds of collections.
 
 \begin{itemize}
-  \item A key distinction is between \ct{SequenceableCollection}s, which maintain their elements in a given order, \ct{Dictionary} its subclasses, which maintain key-to-value associations, and \ct{Set}s and \ct{Bag}s, which are unordered.
+  \item A key distinction is between \ct{SequenceableCollection}s, which maintain their elements in a given order, \ct{Dictionary} and its subclasses, which maintain key-to-value associations, and \ct{Set}s and \ct{Bag}s, which are unordered.
   \item You can convert most collections to another kind of collection by sending them the messages \ct{asArray}, \ct{asOrderedCollection} \etc.
   \item To sort a collection, send it the message \ct{asSortedCollection}.
   \item Literal \ct{Array}s are created with the special syntax \ct{#( ... )}.  Dynamic \ct{Array}s are created with the syntax \ct|{ ... }|.
