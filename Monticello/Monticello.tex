@@ -31,8 +31,10 @@
 \newcommand{\seclabel}[1]{\label{sec:#1}}
 
 %=================================================================
-%\chapter{Versioning your Code with Monticello and SqueakSource}
-\chapter{Monticello and SqueakSource}
+\chapter{Versioning your Code with Monticello}
+%\chapter{Monticello and SqueakSource}
+
+\ab{I'm reviewing this chapter.  I changed the title back to the other one, since it is more descriptive.}
 
 \on{I massaged some text and added comments for things that still need to be fixed}
 
@@ -74,7 +76,7 @@ The very first thing you need to do is to tell Monticello about the package you 
 %-----------------------------------------------------------------
 \subsection{Committing}
 
-Before committing you need to specify \emph{where} you want to save your package. The \button{+Repository} button is for that purpose. Choose a folder. The \button{Save} button will save your package into this repository. You may change the version name and add a comment. 
+Before committing you need to specify \emph{where} you want to save your package. The \button{+Repository} button is for that purpose. Choose a folder. \ab{I don't know what this means.  +Repository does not have ``folder'' as an option.  ``directory'' and ``directory with subdirectories'' are the most likely options.}  The \button{Save} button will save your package into this repository. You may change the version name and add a comment. \ab{Experience with my students is that changing the version name is a really bad idea, since it can easily break Monticello.}
 
 \begin{figure}[ht]\centering
 	\includegraphics[width=.55\linewidth]{saving.png}
@@ -84,6 +86,7 @@ Before committing you need to specify \emph{where} you want to save your package
 %-----------------------------------------------------------------
 \subsection{Updating}
 
+\ab{What is ``updating''.  OK, I think that I know\,---\,it is like \emph{svn update}.  But I don't think that we can assume that the reader knows this}. 
 Select the repository you want to load a version from in the list on the right-hand side of the Monticello Browser, and click the \button{Open} button. This will open a Repository Inspector. Select your version and click the \button{Load} button.
 
 %\begin{figure}[ht]\centering
@@ -94,7 +97,7 @@ Select the repository you want to load a version from in the list on the right-h
 %-----------------------------------------------------------------
 \subsection{Using SqueakSource}
 
-SqueakSource is a central online repository accessible from \url{http://www.squeaksource.com}. For example, visit the BreakOut project\footnote{\url{http://www.squeaksource.com/BreakOut.html}}. In the registration section you should see the 
+SqueakSource is a central online repository accessible from \url{http://www.squeaksource.com}. For example, use a web browser to visit the BreakOut project at \url{http://www.squeaksource.com/BreakOut.html}. In the registration section on that web page you should see this \emph{repository expression:}
 
 \begin{code}{}
 MCHttpRepository
@@ -103,11 +106,13 @@ MCHttpRepository
     password: ''
 \end{code}
 
-Enter a new repository (press \button{+Repository}), then select \button{HTTP}. Fill out the template with the URL corresponding to the BreakOut project (note that you may cut-and-paste the repository expression).
-\button{Open} the repository and choose one version. There is a high chance that you are interested in the last version. Select one and press \button{Load}.
+Add this repository to Monticello by clicking \button{+Repository}, and then selecting \menu{HTTP}. Fill out the template with the URL corresponding to the BreakOut project\,---\,you can cut the above repository expression form the web page and paste it into the template.
+\button{Open} the repository and choose one version. 
+Unless you are running an old image, you are most likely to want the most recent version. Select a version and click \button{Load}.
 
 Note If you want to save your code in a SqueakSource Monticello repository, the project security policy should allow you to do so.
 \on{huh? what is this?}
+\ab{We need a sub-section on read and write permissions}
 
 %\begin{figure}[ht]\centering
 %	\includegraphics[width=.75\linewidth]{squeaksource1}
@@ -119,14 +124,15 @@ Note If you want to save your code in a SqueakSource Monticello repository, the 
 	\caption{SqueakSource, the online Monticello code repository.\figlabel{squeaksource}}
 \end{figure}
 
-At the time this chapter is being written, about 1000 projects are registered and more than 1100 people have an account. \figref{squeaksource} shows the main web page.
+At the time this chapter is being written, about 1000 projects are registered on SqueakSource and more than 1100 people have an account. \figref{squeaksource} shows the main web page.  \ab{This should come first.}
 
-Pressing the \menu{Register Member} menu item will probably be your very first step if you do not have a SqueakSource account. \menu{Register Project} allows you to create a new project. 
+Pressing the \menu{Register Member} link on the SqueakSource home page will probably be your first step If you do not have a SqueakSource account. 
+Once you are a member, \menu{Register Project} allows you to create a new project. 
 
 %-----------------------------------------------------------------
 \subsection{Merging a with newer version}
 
-Your package may be merged with another version by using the \button{Merge} button in the Monticello browser. We will come back to the different options that are available at that stage. Press \button{Merge} to replace your package with a new version of this one. Note that your changes, if any, will be erased.
+Your package may be merged with another version by using the \button{Merge} button in the Monticello browser. We will come back to the different options that are available at that stage. Press \button{Merge} to replace your package with a new version of this one. \ab{Isn't this what update does?   What is the difference?}Note that your changes, if any, will be erased.
 \on{Not really very clear.
 Why is it called ``merge''?
 It seems to be just updating.
@@ -136,19 +142,22 @@ And what is \figref{merging} supposed to show us?}
 	\includegraphics[width=.75\linewidth]{merger}
 	\caption{Merging two packages is performed using a fine grain.
 	\on{huh?}
+	\ab{I would like to know what those buttons do}
 	\figlabel{merging}}
 \end{figure}
 
 %-----------------------------------------------------------------
-\subsection{Dirty packages}
+\subsection{``Clean'' and ``Dirty'' packages}
 
-Modifying a package with the system code browser makes this package \emph{dirty}, meaning that you produced a delta with the last version that has been saved or loaded. A dirty package has its name prepended with an asterisk (\ct{*}) in the Monticello browser. This indicates to the programmer which package have to be saved. Saving a dirty package cleans it.
+Modifying the code in a package with the system browser makes that package \emph{dirty}.
+This means that the version package in the image is different from the version that has been saved or loaded. 
+In Monticello, the name of a dirty package is preceded by an asterisk (\ct{*}) . This indicates to the programmer which package have uncommitted changes, and therefore need to be saved into a repository if those changes are not to be lost. Saving a dirty package cleans it.
 
 %=================================================================
 \section{Useful features}
 \seclabel{monti:usefulfeatures}
 
-Monticello has many non-vital but useful features. The Monticello browser contains 9 buttons (\figref{monticelloMain}). We already have seen 4 of them (\button{+Package}, \button{Save}, \button{+Repository} and \button{Open}). This section describes the remaining ones.
+Monticello has many other useful features. As shown in \figref{monticelloMain}, the Monticello browser window has nine buttons. We have already seen four of them\,---\,\button{+Package}, \button{Save}, \button{+Repository} and \button{Open}. Let's look at the remaining five.
 
 %-----------------------------------------------------------------
 \subsection{Browse} 
