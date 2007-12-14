@@ -47,6 +47,9 @@ p 106: "instances cannot access class variables of their class."
 p 124: line 9 from bottom: "chapter A" -> "FAQ (Appendix A)".
 	[2007-12-13 Jordi Delgado; fixed -- on]
 
+p 126: line 6 from bottom, "those used already" -> "those already"
+	[2007-12-14 Andrew Black; fixed -- apb]
+
 p 135: 2nd para delete "Maybe explain what "self" ......item)  (p. 154)"
 	[2007-09-24 Nick Ager; broken macro -- fixed --on]
 

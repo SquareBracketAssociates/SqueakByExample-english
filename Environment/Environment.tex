@@ -537,7 +537,7 @@ For example, \ct{refactory classes} will return the long list of classes that ma
 \ct{refactory coreMethods}
 will return a list of \ct{MethodReference}s for all of the methods in those classes. \ct{refactory extensionMethods} is perhaps one of the most interesting queries: it will return a list of all methods contained in the \ct{RefactoringEngine} package but not contained within a \lct{Refactoring\-Engine} class. This includes, for example, \ct{ClassDescription>>>chooseThisClassInstVarThenDo:} and \ct{SharedPool class>>>keys}.
 
-Packages are a relatively new addition to Squeak, but since the package naming conventions were based on those used already in use, it is possible to use \ct{PackageInfo} to analyze older code that has not been explicitly adapted to work with it.
+Packages are a relatively new addition to Squeak, but since the package naming conventions were based on those already in use, it is possible to use \ct{PackageInfo} to analyze older code that has not been explicitly adapted to work with it.
 
 \dothis{Evaluate  \ct{(PackageInfo named: 'Collections') externalSubclasses}; this expression will answer a list of all subclasses of  \ct{Collection} that are \emph{not} in the \ct{Collections} package. }
 
