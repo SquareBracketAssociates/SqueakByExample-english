@@ -19,7 +19,7 @@
 % --------------------------------------------
 % A4:
 %	\documentclass[a4paper,11pt,twoside]{book}
-%	\input{../common.tex}
+%	\input{../co	mmon.tex}
 %	\usepackage{a4wide}
 % --------------------------------------------
     \graphicspath{{figures/} {../figures/}}
@@ -30,6 +30,10 @@
 %=================================================================
 \chapter{Seaside by Example}
 \label{cha:seaside}
+
+\alex{A short intro before the first section will make this chapter homogenous with other chapters.}
+
+\alex{We should also mention that Seaside embeds a web server. This is not clear.}
 
 %=================================================================
 \section{What is Seaside?}
@@ -115,7 +119,7 @@ Now notice the \subind{Seaside}{toolbar} at the bottom of the web page.
 \end{center}
 \end{figure}
 
-\dothis{Select \menu{Toggle Halos}. (See \figref{counterHalos}.) At the top left you will see the text \ct{WACounter}. This is the class of the Seaside component that implements the behaviour of this web page. Next to this are three icons. The first activates a Seaside class browser opened to this class. The second opens an object inspector on the currently active instance. The third displays the \ind{CSS} style sheet for this component. At the top right you can toggle between the rendered view and the source view of the web page. Experiment with all of these buttons. Note that the source view contains active links.  Contrast the source view provided by the Halos with the source view offered by your browser.}
+\dothis{Select \menu{Toggle Halos}. (See \figref{counterHalos}.) At the top left you will see the text \ct{WACounter}. This is the class of the Seaside component that implements the behavior of this web page. Next to this are three icons. The first activates a Seaside class browser opened to this class. The second opens an object inspector on the currently active instance. The third displays the \ind{CSS} style sheet for this component. At the top right you can toggle between the rendered view and the source view of the web page. Experiment with all of these buttons. Note that the source view contains active links.  Contrast the source view provided by the Halos with the source view offered by your browser.}
 
 The class browser and object inspector available from Seaside are provided for convenience. For development purposes you will normally be working from the currently running image.
 
@@ -198,7 +202,7 @@ WAHelloWorld>>>renderContentOn: html
 	html text: 'hello world'
 \end{code}
 
-Now we must inform Seaside that this component is allowed to be a standalone application.
+Now we must inform Seaside that this component is allowed to be a standalone application. \alex{is this "allow to" correct?}
 
 \dothis{Implement the following method on the class side of \ct{WAHelloWorld}.}
 
@@ -239,6 +243,7 @@ The counter and multi-counter examples are only slightly more complex than the `
 The class \clsind{WACounter} is a standalone application, so it implements \mthind{WAComponent class}{canBeRoot} on the class side.
 It also automatically registers itself as an application in its class-side \ct{initialize} method (see \figref{WACounter}).
 
+\alex{increase and decrease are not shown in Figure \ref{fig:WACounter}}
 \ct{WACounter} defines an instance variable \ct{count} to keep track of the state of the counter.
 Since we want Seaside to synchronize the state with the browser page, \ie in case the user clicks on the browser's ``back'' button, we must inform Seaside which variables to track by implementing the \ct{states} method.
 This should return an array of all objects to be tracked.
@@ -271,7 +276,7 @@ First let us have a quick look at the \subind{Seaside}{multi-counter}.
 \end{figure}
 
 It is also a standalone application, so it implements \mthind{WAComponent class}{canBeRoot}.
-In addition, it is composite component, so Seaside requires it to declare its children by implementing a method \ct{children}, which returns an array of all the components it contains.
+In addition, it is a composite component, so Seaside requires it to declare its children by implementing a method \ct{children}, which returns an array of all the components it contains.
 It trivially renders itself by rendering each of its subcomponents, separated by a horizontal rule.
 Aside from instance and class-side initialization methods, there is nothing else to the multi-counter!
 
@@ -433,6 +438,8 @@ SeasideHtmlDemo>>>renderLinkWithCallbackOn: html
 			with: toggleValue ]
 \end{code}
 
+\alex{I would stress that toggleValue has to be a class attribute. It cannot be a temporary variable (method or block)}
+
 \important{Note that actions should only appear in callbacks.
 You should not change the state of the application while you are rendering it.}
 
@@ -467,12 +474,12 @@ SeasideFormDemo>>>renderContentOn: html
 			text: 'done' ]
 \end{code}{}
 
-Since a form is a complex entity, it is rendered using a block.
+Since a form is a complex entity, it is rendered using a block. \alex{I would love to see a better justification for using blocks. It is not that clear}
 Note that state changes are all specified as callbacks.
 
 There is one Seaside trick here that is worth special mention, namely the message \mthind{WAAnchorTag}{on:of:}, which is used to bind the text input field to accessors for the variable \ct{heading}.
 Anchors and buttons also support this protocol.
-The first argument is the name of an instance variable for which accessors have been defined, and the second argument is the object to which this instance variable belongs.
+The first argument is the name of an instance variable for which accessors have been defined \alex{Which accessors ? Shall I define heading and heading:, accessor and mutator of the variable heading? Does these accessors have to follow a naming convention ?}, and the second argument is the object to which this instance variable belongs.
 In the case here of a text input field, this saves us the trouble if having to define a callback which updates the field as well as having to bind the default contents of the field to the current value.
 The \ct{heading} variable is automatically updated whenever we update the text field.
 
@@ -482,7 +489,7 @@ Many further examples are available directly in the functional tests for Seaside
 Have a look at the system category \scat{Seaside-Tests-Functional}, or just point your browser to \url{http://localhost:8080/seaside/tests/alltests}.
 The \menu{Form Elements} example illustrates most of the features of forms.
 
-Don't forget, if you \menu{Toggle Halos}, you can directly browse all the source code of the examples on line using the Seaside class browser
+Don't forget, if you \menu{Toggle Halos}, you can directly browse all the source code of the examples on line using the Seaside class browser.
 
 %-----------------------------------------------------------------
 \subsection{Cascading style sheets}
@@ -705,6 +712,8 @@ WAConvenienceTest>>>chooseCheese
 	cheese isNil ifTrue: [ self chooseCheese ]
 \end{code}
 
+\alex{Is there a situation where cheese may be nil? Maybe if a browser authorizes an empty selection...}
+
 The second is a \clsind{WAYesOrNoDialog} to confirm the choice (generated by the convenience method \mthind{WAComponent}{confirm:}).
 Finally a \clsind{WAFormDialog} is called (via the convenience method \mthind{WAComponent}{inform:}).
 
@@ -756,6 +765,7 @@ The sushi store supports the following workflow:
   \item Enter payment information.
   \item Your fish is on its way!
 \end{itemize}
+\alex{An enumerate instead of an itemize would fit better I guess}
 
 If you toggle the \subind{Seaside}{halos}, you will see that the top-level component of the sushi store is an instance of \clsind{WAStore}.
 It does nothing but render the title bar, and then it renders an instance of \clsind{WAStoreTask}.
@@ -809,6 +819,7 @@ Transactions may also be nested.
 A simple demonstration of this is found in the class \clsind{WANestedTransaction}.
 The argument block to the first \ct{isolate:} send contains itself another, nested \ct{isolate:} send:
 
+\alex{On the example below, I am wondering whether it makes sense to have a ``self isolate: [self inform: 'Inside child txn']'' since self inform: is a kind of atomic operation. There is no much to isolate here. why not to change the code with something like ``self isolate: [self confirm: (self request: 'Inside child txn')].'' I can do a back and forth within this isolate block in that case...}
 \begin{code}{}
 WANestedTransaction>>>go
 	self inform: 'Before parent txn'.
@@ -884,8 +895,8 @@ We can start to implement the Seaside RPN Calculator.
 
 We will make use of 5 classes:
 \begin{itemize}
-  \item \ct{MyWidget}\,---\,this should be an abstract class that defines the common CSS style sheet for the application, and other common behaviour for the components of the RPN calculator.
-  It is a subclass of \ct{WAComponent} and the direct superclass of the following three classes.
+  \item \ct{MyWidget}\,---\,this should be an abstract class that defines the common CSS style sheet for the application, and other common behavior for the components of the RPN calculator.
+  It is a subclass of \ct{WAComponent} and the direct superclass of the following three classes. \alex{four classes?}
   \item \ct{MyCalculator}\,---\,this is the root component.
   It should register the application (on the class side), it should instantiate and render its subcomponents, and it should register any state for backtracking.
   \item \ct{MyKeypad}\,---\,this displays the keys that we use to interact with the calculator.
@@ -1123,7 +1134,7 @@ Sit back and enjoy a tall glass of something cool!
 Two well-known JavaScript libraries are \ind{Prototype} (\url{http://www.prototypejs.org}) and \ind{script.aculo.us} (\url{http://script.aculo.us}).
 Prototype provides a framework to ease writing JavaScript.
 script.aculo.us provides some additional features to support animations and drag-and-drop on top of Prototype.
-Both frameworks supported in Seaside through the package ``Scriptaculous''.
+Both frameworks \alex{are?} supported in Seaside through the package ``Scriptaculous''.
 
 All ready-made images have the Scriptaculous package extensions already loaded.
 The latest version is available from \url{http://www.squeaksource.com/Seaside}.
@@ -1181,7 +1192,7 @@ We could instead remove the original anchor \ct{callback:}, but like this the ca
 
 \dothis{Try the calculator again, and notice how a full page refresh is triggered every time you press a digit key. (The URL of the web page is updated at each keystroke.)}
 
-Although we have implemented the client-side behaviour, we have not yet activated it.
+Although we have implemented the client-side behavior, we have not yet activated it.
 Now we will enable the Javascript event handling.
 
 \dothis{
