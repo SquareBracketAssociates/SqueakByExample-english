@@ -1,5 +1,13 @@
 
 # $Id$
+# --------------------------------------------------------------------------------
+# NB: There is no separate rule for running bibtex, though perhaps there should be.
+# The idea is that there should be only very few references, so bibtex can be run
+# manually.  The generated .bbl file should be part of the subversion repository,
+# so it will always be up-to-date, and bibtex should not need to be run unless
+# new references are added.
+# The source bib file is in a separate repository, as described in the README file.
+# --------------------------------------------------------------------------------
 
 # export TEXINPUTS:=.:local
 export TEXINPUTS:=./local//:../local//:
