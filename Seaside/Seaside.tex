@@ -33,35 +33,40 @@
 
 \ab{I'm reviewing this chapter}
 
-\alex{A short intro before the first section will make this chapter homogenous with other chapters.}
-
-\alex{We should also mention that Seaside embeds a web server. This is not clear.}
-
 %=================================================================
-\section{What is Seaside?}
 
-\ind{Seaside} is a web application framework for Smalltalk originally developed by Avi Bryant in 2002.
-\index{Bryant, Avi}
-A couple of the better known applications of Seaside are \ind{SqueakSource}\footnote{\url{http://SqueakSource.com}} and \ind{Dabble DB}\footnote{\url{http://DabbleDB.com}}.
-Seaside is unusual in that it is thoroughly object-oriented\,---\,there are no XHTML templates, no complicated control flows through web pages, and no encoding of state in URLs\,---\,you just send messages to objects.
 
-Modern \ind{web application development} frameworks have to cope with a host of problems. Expressing non-trivial control flows across multiple web pages is often cumbersome. Many web applications forbid the use of the browser's ``back'' button due to the difficulty of keeping track of the state of a session. Multiple control flows can also be difficult or impossible to express.
+\ind{Seaside} is a framework for building web applications in Smalltalk.  It was originally developed by Avi Bryant \index{Bryant, Avi} in 2002; once mastered, Seaside makes web applications almost as easy to write as desktop application.
+
+Two of the better known applications built with Seaside are \ind{SqueakSource}\footnote{\url{http://SqueakSource.com}} and \ind{Dabble DB}\footnote{\url{http://DabbleDB.com}}.
+Seaside is unusual in that it is thoroughly object-oriented: there are no XHTML templates, no complicated control flows through web pages, and no encoding of state in URLs. Instead, you just send messages to objects.  What a nice idea!
+
+\section{Why do we need Seaside?}
+
+Modern web applications try to interact with the user in the same way as desktop applications: they ask the user questions, and the user responds, usually by filling in a form or clicking a button.
+But the web works the other way around: the user's browser makes a request of the server, and the server responds with a new web page.
+So \ind{web application development} frameworks have to cope with a host of problems, chief among them being the management of this ``inverted'' control flow. 
+Because of this, many web applications try to forbid the use of the browser's ``back'' button due to the difficulty of keeping track of the state of a session. 
+Expressing non-trivial control flows across multiple web pages is often cumbersome, and multiple control flows can be difficult or impossible to express.
 
 Seaside is a component-based framework that uses ``\ind{continuations}''\footnote{A \emph{continuation} represents ``the rest of the computation'' at any point in a computation. In Smalltalk, a continuation is just an object that captures the current state of the computation, and which can be resumed at any point.} to keep track of multiple points in the control flow of web applications. Continuations are managed automatically by Seaside, so web developers do not even have to be aware of the underlying machinery. It just works.
 
 \index{Seaside!backtracking state}
 \index{Seaside!transactions}
 \index{Seaside!components}
-Seaside makes web development easier in the following ways:
-Control flow can be expressed naturally in terms of messages sends.
-Seaside keeps track of the state of each user session.
-The browser's ``back'' button will work\,---\,Seaside keeps track for you which web page corresponds to which point in the execution of the web application.
-Backtracking of state can be enabled, so that navigation back in time will undo side-effects.
-Alternatively, transaction support is available too, to prevent users from undoing permanent side-effects using the back button.
-The developer does not have to encode any information in the URL\,---\,this too is managed automatically for you.
+Seaside makes web development easier in several ways.
+First,  control flow can be expressed naturally using message sends.
+Seaside keeps track of which web page corresponds to which point in the execution of the web application.
+This means that the browser's ``back'' button works correctly.
 
-Web pages are built up from nested components, each of which may supports its own, independent control flow.
-There are no XHTML templates\,---\,instead valid XHTML is generated programmatically using a simple Smalltalk API.
+Second, state is managed for you.
+As the developer, you have the choice of enabling 
+backtracking of state, so that navigation ``back'' in time will undo side-effects.
+Alternatively, you can use the transaction support built into Seaside to prevent users from undoing permanent side-effects when they use the back button.
+You do not have to encode state information in the URL\,---\,this too is managed automatically for you.
+
+Third, web pages are built up from nested components, each of which can support its own, independent control flow.
+There are no XHTML templates\,---\,instead valid XHTML is generated programmatically using a simple Smalltalk protocol.
 Seaside supports Cascading Style Sheets (\ind{CSS}), so content and layout are cleanly separated.
 \seeindex{Cascading Style Sheets}{CSS}
 
@@ -75,41 +80,51 @@ This is a prepackaged version of Seaside 2.8 for \ind{Mac OSX}, \ind{Linux} and 
 The same web site lists many pointers to additional resources, including documentation and tutorials.
 Be warned, however, that Seaside has evolved considerably over the years, and not all available material refers to the latest version of Seaside.
 
-An alternative to the ``one-click'' image is to download the latest \ind{Squeak Developers' Web image}\footnote{\url{http://damien.cassou.free.fr/squeak-dev.html}}, which comes with many useful tools pre-loaded.
-If you are feeling more adventurous, you can install Seaside yourself into an image by following the manual \subind{Seaside}{installation} instructions on the Seaside web site.
+If you are feeling more adventurous, an alternative to the ``one-click'' image is to start with the latest \ind{Squeak Developers' Web image}\footnote{\url{http://damien.cassou.free.fr/squeak-dev.html}}, and install Seaside yourself by following the manual \subind{Seaside}{installation} instructions on the Seaside web site.
 
-You can turn the Seaside server on and off respectively by evaluating
+Seaside includes a web server; you can turn the server on, listening on port 8080, by evaluating
 \clsind{WAKom} \ct{startOn: 8080}
-or
+and you can turn it off again by evaluating
 \ct{WAKom stop}.
-The default \subind{Seaside}{administrator login} and password in the prepackaged installation is \lct{admin/seaside}.
-To change this, simply evaluate: \clsind{WADispatcherEditor} \ct{initialize}
+In the prepackaged installation, \ab{is this referring to the ``one-click'' image?}the default \subind{Seaside}{administrator login} is \lct{admin} and the default password is \lct{seaside}.
+To change them, evaluate: \clsind{WADispatcherEditor} \ct{initialize}. \ab{does it prompt me for a new name and password?  Or must I edit the \ct{initialize} method?}
 
 %:FIG seasideStartup
-\begin{figure}[ht]
+\begin{figure}[tbh]
 \begin{center}
 \includegraphics[width=\textwidth]{seasideStartup}
-\caption{Starting up Seaside}
+\caption{Starting up Seaside \ab{This picture looks ``soft''.  Perhaps it was captured from an anti-aliased screen?  Screen resolution anti-aliasing looks bad when printed in the book at three-times the resolution!}}
 \label{fig:seasideStartup}
 \end{center}
 \end{figure}
 
-\dothis{Start the Seaside server and open a browser to \url{http://localhost:8080/seaside/}.
-What you see should look like \figref{seasideStartup}.
-Now go to \lct{examples{\go}counter}.
-This is a simple example of a \subind{Seaside}{counter} that can be incremented or decremented by clicking on the \ct{++} and \ct{--} links.
-Play with the counter by clicking on these links.
-Use your browser's ``back'' button to go back to a previous state, and then click on \ct{++} again.
-Notice how the counter is correctly incremented with respect to the current displayed state, rather than the state the counter was left in when you started using the ``back'' button.}
+\dothis{Start the Seaside server and direct a web browser to \url{http://localhost:8080/seaside/}.}
 
-Now notice the \subind{Seaside}{toolbar} at the bottom of the web page.
-\menu{New Session} will start a new session on the counter application.
-\menu{Configure} allows you to configure the settings of your application through a convenient web-interface.
-(To close the \menu{Configure} view, click on the \menu{x} in the top right corner.)
-\menu{Toggle Halos} provides you with an interface to explore the state of the running application.
-\menu{Profiler} and \menu{Memory} provide you with detailed information about the run-time performance of the application.
-\menu{XHTML} can be used to validate the generated web page.
-(This only works when the application is publicly accessible from the web, as it uses the W3C validation service.)
+\noindent
+You should see a web page that looks like \figref{seasideStartup}.
+
+\noindent
+\dothis{Navigate to the \lct{examples{\go}counter} page.}
+\ab{we need a picture of this page}
+
+\noindent
+This page is a small Seaside application: it displays a \subind{Seaside}{counter} that can be incremented or decremented by clicking on the \link{++} and \link{--\,--} links.
+
+\noindent
+\dothis{
+Play with the counter by clicking on these links.
+Use your browser's ``back'' button to go back to a previous state, and then click on \link{++} again.
+Notice how the counter is correctly incremented with respect to the currently displayed state, rather than the state that the counter was in when you started using the ``back'' button.}
+
+Notice the \subind{Seaside}{toolbar} at the bottom of the web page in \figref{seasideStartup}.
+\ab{I don't think that we should use the $\backslash$menu macro for links on a web page.  I've changed what I hope are the correct ones  to $\backslash$link, which presently uses underlining, but we could easily change to use colored text, or whatever.}
+\link{New Session} will start a new session on the counter application.
+\ab{The reader doesn't know what ``a new session on the counter application'' means.  We haven't heard about ``sessions'' yet.}
+\link{Configure} allows you to configure the settings of your application through a convenient web-interface.
+(To close the \link{Configure} view, click on the \link{x} in the top right corner.)
+\link{Toggle Halos} provides a way to explore the state of the application running on the Seaside server.
+\link{Profiler} and \link{Memory} provide detailed information about the run-time performance of the application.
+\link{XHTML} can be used to validate the generated web page, but works only  when the web page is publicly accessible from the Internet, because it uses the W3C validation service.
 \index{Seaside!halos}
 
 %:FIG counterHalos
@@ -121,9 +136,23 @@ Now notice the \subind{Seaside}{toolbar} at the bottom of the web page.
 \end{center}
 \end{figure}
 
-\dothis{Select \menu{Toggle Halos}. (See \figref{counterHalos}.) At the top left you will see the text \ct{WACounter}. This is the class of the Seaside component that implements the behavior of this web page. Next to this are three icons. The first activates a Seaside class browser opened to this class. The second opens an object inspector on the currently active instance. The third displays the \ind{CSS} style sheet for this component. At the top right you can toggle between the rendered view and the source view of the web page. Experiment with all of these buttons. Note that the source view contains active links.  Contrast the source view provided by the Halos with the source view offered by your browser.}
+\dothis{Select \link{Toggle Halos}. You should see a web page like \figref{counterHalos}.
+At the top left the text \ct{WACounter} tells us the class of the Seaside component that implements the behavior of this web page. 
+Next to this are three clickable icons. 
+The first, with the pencil, activates a Seaside class browser on this class.
+The second, with the magnifying glass, opens an object inspector on the currently active instance. 
+The third, with the coloured circles, displays the \ind{CSS} style sheet for this component. 
+\ab{This is going a bit too fast for me.  I want to be told first that there is a counter object, and maybe see its protocol.  I don't yet know what a ``component'' is.}
+At the top right, the \link{R} and \link{S} let you toggle between the rendered and source views of the web page. 
+Experiment with all of these links. 
+Note that the source view contains active links.  
+\ab{eh?}
+Contrast the source view provided by the Halos with the source view offered by your browser.
+\ab{What am I supposed to see?}}
 
-The class browser and object inspector available from Seaside are provided for convenience. For development purposes you will normally be working from the currently running image.
+
+The Seaside class browser and object inspector can be very convenient when the server is running on another computer, especially when the server does not have a display, or if it is in remote place. 
+However, when you are first developing a Seaside application, the server will be running locally, and it is easy to use the ordinary \sq development tools in the server image.
 
 %:FIG haltingCounter
 \begin{figure}[ht]
@@ -134,12 +163,14 @@ The class browser and object inspector available from Seaside are provided for c
 \end{center}
 \end{figure}
 
-\dothis{Open an inspector on the counter within the browser and evaluate \ct{self halt}.
-Notice that the web page will stop loading.
+\dothis{Using the object inspector link in the web browser, open an inspector on the underlying Smalltalk counter object and evaluate \ct{self halt}.
+The web page will stop loading.
 Now switch to the Seaside image.
-You should now see a pre-debugger window (\figref{haltingCounter}) open on the current instance.
-Browse this instance in the debugger, and then \menu{Proceed}.
-Go back to the web browser and note that the counter application is running again.}
+You should see a pre-debugger window (\figref{haltingCounter}) showing a \ct{WACounter} object executing a \ct{halt}.
+Examine this execution in the debugger, and then \button{Proceed}.
+Go back to the web browser and notice that the counter application is running again.}
+
+\ab{Stylistically, I don't like this: three ``dothis''s with no intervening explanation or commentary.}
 
 %:FIG multiCounterHalos
 \begin{figure}[ht]
@@ -150,45 +181,52 @@ Go back to the web browser and note that the counter application is running agai
 \end{center}
 \end{figure}
 
-\dothis{Open \url{http://localhost:8080/seaside/examples/multicounter}.
+\dothis{Point your web browser to \url{http://localhost:8080/seaside/examples/multicounter}.
 You will see an application built out of a number of independent instances of the counter component.
 Increment and decrement several of the counters.
 Verify that they behave correctly even if you use the ``back'' button.
 Toggle the halos to see how the application is built out of nested components.
-Use the Seaside class browser to view the implementation.
-(There should be three methods each on the class and instance sides.)
+Use the Seaside class browser to view the implementation of \ct{WACounter}.
+You should see three methods on the class side and three on the instance side.
 }
 \index{Seaside!multi-counter}
 
-\dothis{Point your browser to \url{http://localhost:8080/seaside/config}.
-Supply the login and password \ct{admin/seaside} (or whatever you defined them to be).
+\dothis{Point your web browser to \url{http://localhost:8080/seaside/config}.
+Supply the login and password (\ct{admin} and \ct{seaside} by default).
 Note that you can configure, copy or remove individual components.
-Select \menu{Configure} next to ``examples''.
+\ab{applications? components? objects?  Shouldn't we explain this terminology somewhere?}
+Select \link{Configure} next to ``examples.''
 Add a new entry point called ``counter2''.
-Set the root component to \clsind{WACounter}, then \menu{Save} and \menu{Close}.
+Set the root component to \clsind{WACounter}, then \link{Save} and \link{Close}.
 Now we have a new counter installed at \url{http://localhost:8080/seaside/examples/counter2}.
 Use the same configuration interface to remove this entry point.
 }
 \index{Seaside!configuration}
+\ab{I can't follow this without running Seaside.  Maybe that is OK; certainly it is a good way to learn.  But my goal up until now has been to make the book stand alone, so that one can read it on the train or in bed.   Should we add enough pictures to make  that possible here too?}
 
-The toolbar is only available during development.
-You can either use the configuration interface or the \menu{Configure} button in the toolbar to set the deployment mode from false to true.
-Note that this only affects new sessions.
-You can also set the deployment mode on or off globally by evaluating
+Seaside operates in two modes: \emph{development} mode, which is what we have seen so far, and \emph{deployment} mode, in which the toolbar is not available.
+\index{Seaside!deployment mode}
+\index{Seaside!development mode}
+You can put Seaside into deployment mode using either the configuration page or the \link{Configure} button in the toolbar.
+In either case, set the deployment mode to \emph{true}.
+Note that this affects new sessions only.  \ab{There's that ``sessions'' word again!}
+You can also set the mode globally by evaluating
 \clsind{WAGlobalConfiguration} \lct{setDeploymentMode}
 or
 \ct{WAGlobalConfiguration setDevelopmentMode}.
 \index{Seaside!deployment mode}
+\index{Seaside!development mode}
 
-If you remove the config application, you can get it back by evaluating:
-\clsind{WADispatcherEditor} \ct{initialize}
+The configuration web page is just another Seaside application, so it too can be controlled from the configuration page.
+If you remove the configuration \ab{``config''?} application, you can get it back by evaluating
+\clsind{WADispatcherEditor} \ct{initialize}.
 
 %=================================================================
 \section{Seaside components}
 
-Let's have a closer look at how Seaside works.
+Seaside applications are built out of \emph{\subind{Seaside}{components}}.
+Let's take a closer look at how Seaside works by implementing the \emph{Hello World} component.
 
-Seaside applications are built out of \subind{Seaside}{components}.
 Every Seaside component should inherit directly or indirectly from \clsind{WAComponent}. (See \figref{WACounter}.)
 
 \dothis{Define a subclass of \ct{WAComponent} called \ct{WAHelloWorld}.}
@@ -197,14 +235,17 @@ Components must know how to render themselves.
 Usually this is done by implementing the method \mthind{WAPresenter}{renderContentOn:}, which gets as its argument an instance of \clsind{WAHtmlCanvas} that knows how to render XHTML.
 \index{Seaside!rendering}
 
-\dothis{Implement the following method, and put it in a method category called \prot{rendering}:}
+\dothis{Implement the following method, and put it in a protocol called \prot{rendering}:}
 \needlines{2}
 \begin{code}{}
 WAHelloWorld>>>renderContentOn: html
 	html text: 'hello world'
 \end{code}
 
-Now we must inform Seaside that this component is allowed to be a standalone application. \alex{is this "allow to" correct?}
+\noindent
+Now we must inform Seaside that this component is allowed to be a standalone application. 
+%\alex{is this "allow to" correct?}
+%ab{``allowed to be'' is correct.}
 
 \dothis{Implement the following method on the class side of \ct{WAHelloWorld}.}
 
@@ -213,14 +254,15 @@ WAHelloWorld class>>>canBeRoot
 	^ true
 \end{code}
 
-You are almost done now.
+\noindent
+We are almost done!
 
-\dothis{Go to \url{http://localhost:8080/seaside/config}, add a new entry point called ``hello'', and set its root component to be \ct{WAHelloWorld}.
+\dothis{Point your web browser at \url{http://localhost:8080/seaside/config}, add a new entry point called ``hello'', and set its root component to be \ct{WAHelloWorld}.
 Now point your browser to \url{http://localhost:8080/seaside/hello}.
-That's it!}
+That's it!  You should see a web page like \figref{WAHelloWorld}.}
 
 %:FIG WAHelloWorld
-\begin{figure}[ht]
+\begin{figure}[htb]
 \begin{center}
 \includegraphics[width=\textwidth]{WAHelloWorld}
 \caption{``Hello World'' in Seaside}
@@ -237,22 +279,22 @@ The counter and multi-counter examples are only slightly more complex than the `
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[width=\textwidth]{WACounter}
-\caption{WACounter}
+\caption{The \ct{WACounter} component\ab{It took me a while to realize that this figure shows both class and instance methods, and that it uses underlining to indicate class methods.  Is this a convention that we have used elsewhere?  Is it UML? I found it confusing for SMalltalk, where the class and instance methods are on different objects.  How about using two columns of method names, with the instance methods on the left and the class methods on the right?}}
 \label{fig:WACounter}
 \end{center}
 \end{figure}
 
-The class \clsind{WACounter} is a standalone application, so it implements \mthind{WAComponent class}{canBeRoot} on the class side.
-It also automatically registers itself as an application in its class-side \ct{initialize} method (see \figref{WACounter}).
+The class \clsind{WACounter} is a standalone application, so \ct{WACounter class} must answer \ct{true} to the  \mthind{WAComponent class}{canBeRoot} message.
+It must also automatically register itself as an application; this is done in its class-side \ct{initialize} method (see \figref{WACounter}).
 
 \alex{increase and decrease are not shown in Figure \ref{fig:WACounter}}
 \ct{WACounter} defines an instance variable \ct{count} to keep track of the state of the counter.
 Since we want Seaside to synchronize the state with the browser page, \ie in case the user clicks on the browser's ``back'' button, we must inform Seaside which variables to track by implementing the \ct{states} method.
 This should return an array of all objects to be tracked.
-In this case \ct{WACounter} asks to track its own state by returning \ct{Array with: self}.
+In this case \ct{WACounter} asks to track its own state by returning \ct{Array with: self}. \ab{This paragraph has lost me.  I think that I get the general idea, but not the details.  Another new term\,---\,``tracked''\,---\,is introduced without being explained.}
 
 \paragraph{\emph{Caveat.}}
-There is a subtle but important point to watch for when declaring state for backtracking.
+There is a subtle but important point to watch for when declaring state for backtracking. \ab{Does this refer back to the previous paragraph?  It uses different words.}
 Seaside tracks state by making a \emph{snapshot} of all the objects declared in the \ct{states} array.
 \clsind{WASnapshot} is a subclass of \clsind{IdentityDictionary} that registers each object to be tracked as a key, and a (shallow) copy of its state as a value.
 If the state is restored from a snapshot, all registered objects are restored to the saved value.
@@ -371,10 +413,12 @@ SeasideHtmlDemo>>>renderContentOn: html
 
 It is common practice to break up long rendering methods into many helper methods, as we have done here.
 
-\important{Don't put all your rendering code into a single method. Split it into helper methods named after the pattern \ct{render*On:}.
-All rendering methods go in method category \prot{rendering}.
+\important{Don't put all your rendering code into a single method. 
+Split it into helper methods named using the pattern \ct{render*On:}.
+All rendering methods go in the \prot{rendering} protocol.
 Don't send \ct{renderContentOn:} from your own code, use \ct{render:} instead.}
 
+Look at the following code.  
 The first helper method shows how to generate XHTML paragraphs, plain and emphasized text, and images.
 Note that simple elements are rendered by directly specifying the text they contain, whereas as complex elements are specified using blocks.
 
@@ -489,9 +533,9 @@ The same trick is used twice more in this example, to cause the selection of a c
 
 Many further examples are available directly in the functional tests for Seaside.
 Have a look at the system category \scat{Seaside-Tests-Functional}, or just point your browser to \url{http://localhost:8080/seaside/tests/alltests}.
-The \menu{Form Elements} example illustrates most of the features of forms.
+The \link{Form Elements} example illustrates most of the features of forms.
 
-Don't forget, if you \menu{Toggle Halos}, you can directly browse all the source code of the examples on line using the Seaside class browser.
+Don't forget, if you \link{Toggle Halos}, you can directly browse all the source code of the examples on line using the Seaside class browser.
 
 %-----------------------------------------------------------------
 \subsection{Cascading style sheets}
@@ -694,7 +738,7 @@ A \subind{Seaside}{task} is a component that subclasses \clsind{WATask}.
 It does not render anything itself, but simply calls other components in a control flow defined by implementing the method \mthind{WATask}{go}.
 
 \clsind{WAConvenienceTest} is a simple example of a task defined in the system category \scat{Seaside-Tests-Functional}.
-To see its effect, just point your browser to \url{http://localhost:8080/seaside/tests/alltests} and select \menu{Convenience}.
+To see its effect, just point your browser to \url{http://localhost:8080/seaside/tests/alltests} and select \link{Convenience}.
 
 \begin{code}{}
 WAConvenienceTest>>>go
@@ -832,7 +876,7 @@ WANestedTransaction>>>go
 	self inform: 'Outside parent txn'
 \end{code}
 
-\dothis{Go to \url{http://localhost:8080/seaside/tests/alltests} and select \menu{Convenience} and select \menu{Transaction}.
+\dothis{Go to \url{http://localhost:8080/seaside/tests/alltests} and select \link{Convenience} and select \link{Transaction}.
 Try to navigate back and forth within the parent and child transaction.
 Note that as soon as a transaction is complete, you can no longer go back inside the transaction without generating an error.}
 
@@ -1198,7 +1242,7 @@ Although we have implemented the client-side behavior, we have not yet activated
 Now we will enable the Javascript event handling.
 
 \dothis{
-Click on the \menu{Configure} button in the toolbar of the calculator.
+Click on the \link{Configure} link in the toolbar of the calculator.
 Select ``Add Library:'' \ct{SULibrary}, click the \button{Add} button and \button{Close}.}
 
 Instead of manually adding the library, you may also do it programmatically when you register the application:
