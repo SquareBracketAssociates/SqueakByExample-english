@@ -140,7 +140,7 @@ Notice the \subind{Seaside}{toolbar} at the bottom of the web page in \figref{se
 At the top left the text \ct{WACounter} tells us the class of the Seaside component that implements the behavior of this web page. 
 Next to this are three clickable icons. 
 The first, with the pencil, activates a Seaside class browser on this class.
-The second, with the magnifying glass, opens an object inspector on the currently active instance. 
+The second, with the magnifying glass, opens an object inspector on the currently active \ct{WACounter} instance. 
 The third, with the coloured circles, displays the \ind{CSS} style sheet for this component. 
 \ab{This is going a bit too fast for me.  I want to be told first that there is a counter object, and maybe see its protocol.  I don't yet know what a ``component'' is.}
 At the top right, the \link{R} and \link{S} let you toggle between the rendered and source views of the web page. 
@@ -196,8 +196,8 @@ Supply the login and password (\ct{admin} and \ct{seaside} by default).
 Note that you can configure, copy or remove individual components.
 \ab{applications? components? objects?  Shouldn't we explain this terminology somewhere?}
 Select \link{Configure} next to ``examples.''
-Add a new entry point called ``counter2''.
-Set the root component to \clsind{WACounter}, then \link{Save} and \link{Close}.
+Add a new entry point called ``counter2'' for an \emph{Application}.  \ab{I added this.  Is it correct?}
+On the next screen, set the \emph{root component} to \clsind{WACounter}, then \button{Save} and \button{Close}.
 Now we have a new counter installed at \url{http://localhost:8080/seaside/examples/counter2}.
 Use the same configuration interface to remove this entry point.
 }
@@ -271,67 +271,89 @@ That's it!  You should see a web page like \figref{WAHelloWorld}.}
 \end{figure}
 
 %-----------------------------------------------------------------
-\subsection{Simple and nested components}
+\subsection{State backtracking and the ``Counter'' Application}
+%{Simple and nested components}
 
-The counter and multi-counter examples are only slightly more complex than the ``hello world'' application.
+The ``counter'' application is only slightly more complex than the ``hello world'' application.
 
 %:FIG WACounter
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[width=\textwidth]{WACounter}
-\caption{The \ct{WACounter} component\ab{It took me a while to realize that this figure shows both class and instance methods, and that it uses underlining to indicate class methods.  Is this a convention that we have used elsewhere?  Is it UML? I found it confusing for SMalltalk, where the class and instance methods are on different objects.  How about using two columns of method names, with the instance methods on the left and the class methods on the right?}}
+\caption{The \ct{WACounter} class, which implements the \emph{counter} application.  Methods with underlined names are on the class-slde; those with plain-text names are on the instance side.}
 \label{fig:WACounter}
 \end{center}
 \end{figure}
 
 The class \clsind{WACounter} is a standalone application, so \ct{WACounter class} must answer \ct{true} to the  \mthind{WAComponent class}{canBeRoot} message.
-It must also automatically register itself as an application; this is done in its class-side \ct{initialize} method (see \figref{WACounter}).
+It must also register itself as an application; this is done in its class-side \ct{initialize} method, as shown in \figref{WACounter}.
 
-\alex{increase and decrease are not shown in Figure \ref{fig:WACounter}}
-\ct{WACounter} defines an instance variable \ct{count} to keep track of the state of the counter.
-Since we want Seaside to synchronize the state with the browser page, \ie in case the user clicks on the browser's ``back'' button, we must inform Seaside which variables to track by implementing the \ct{states} method.
-This should return an array of all objects to be tracked.
-In this case \ct{WACounter} asks to track its own state by returning \ct{Array with: self}. \ab{This paragraph has lost me.  I think that I get the general idea, but not the details.  Another new term\,---\,``tracked''\,---\,is introduced without being explained.}
+%\alex{increase and decrease are not shown in Figure \ref{fig:WACounter}}
+%\ab{they are now!}
+\ct{WACounter} defines two methods, \ct{increase} and \ct{decrease}, which will be triggered from the \link{++} and \link{--\,--} links on the web page.  
+It also defines an instance variable \ct{count} to record the state of the counter.
+However, we also want Seaside to synchronize the counter with the browser page; that is, when the user clicks on the browser's ``back'' button, we want seaside to ``backtrack'' the state of the \ct{WACounter} object.
+Seaside includes a general mechanism for backtracking, but each application has to tell Seaside which objects to track.  
+
+An application \ab{component?} does this by implementing the \ct{states} method on the instance side:
+\ct{states} should return an array containing all the objects to be tracked.
+In this case, the \ct{WACounter} object adds itself to Seaside's table of backtrackable objects by returning \ct{Array with: self}. \ab{I tried to make this more readable. I think that I get the general idea, but not the details.  Another new term\,---\,``tracked''\,---\,is introduced without being explained.}
 
 \paragraph{\emph{Caveat.}}
-There is a subtle but important point to watch for when declaring state for backtracking. \ab{Does this refer back to the previous paragraph?  It uses different words.}
-Seaside tracks state by making a \emph{snapshot} of all the objects declared in the \ct{states} array.
-\clsind{WASnapshot} is a subclass of \clsind{IdentityDictionary} that registers each object to be tracked as a key, and a (shallow) copy of its state as a value.
-If the state is restored from a snapshot, all registered objects are restored to the saved value.
-In the case of the counter, the state to be tracked is a number, which is \emph{replaced} every time the count is incremented or decremented.
-The numbers themselves don't change, since they are immutable!
-This means that \ct{WACounter>>>states} must return \ct{Array with: self} and not \ct{Array with: count}.
+There is a subtle but important point to watch for when declaring objects for backtracking. 
+Seaside tracks state by making a \emph{copy} of all the objects declared in the \ct{states} array.
+It does this using a
+\clsind{WASnapshot} object; \ct{WASnapshot} is a subclass of \clsind{IdentityDictionary} that records the objects to be tracked as keys, and shallow copies of their state as values.
+If the state of an application is backtracked to a particular snapshot, the state of each object entered into the snapshot dictionary is overwritten by the copy saved in the snapshot.
+
+In the case of \ct{WACounter}, you might think that the state to be tracked is a number\,---\,the value of the \ct{count} instance variable.
+However, having the \ct{states} method answer \ct{Array with: count} won't work.  
+At any time, the object named by \ct{count} is an integer, and integers are immutable.
+The \ct{increase} and \ct{decrease} methods don't change \ct{0} into \ct{1} or \ct{3} into \ct{2}.
+\ab{Can someone tell me WHY the macros add that extra space after a code word?  Why should I have to put an $\backslash$mbox around every one justin case it comes at the end of a line?}
+Instead, they make \ct{count} name a different integer: 
+every time the count is incremented or decremented, the object named by \ct{count} is \emph{replaced} by another.
+This is why \ct{WACounter>>>states} must return \ct{Array with: self}.
+When the state of a \mbox{\ct{WACounter}} object is replaced by a previous state, the \emph{value} of the whole object is replaced by a previous value, which correctly replaces the current value of \ct{count} by a prior value. 
 \index{Seaside!backtracking state}
 \index{WAPresenter!states@\ct{states}}
 
+\ab{Did we ever explain what the subtle but important point is?}
+
+\subsection{Rendering XHTML}
+
 The rendering of the counter is relatively straightforward.
-The current value of the counter is displayed as an XHTML heading, and the increment and decrement operations are implemented as html anchors with callbacks to methods \ct{increase} and \ct{decrease} (not shown).
+The current value of the counter is displayed as an XHTML heading, and the increment and decrement operations are implemented as html anchors (that is, links) with callbacks to blocks that will send the counter object \ct{increase} and \ct{decrease}.
+% (not shown).
+%\ab{We \emph{should} show this}
 
 We will have a closer look at the rendering protocol in a moment.
-First let us have a quick look at the \subind{Seaside}{multi-counter}.
+But before we do, let's have a quick look at the \subind{Seaside}{multi-counter}.
+
+\subsection{From Counter to MultiCounter}
 
 %:FIG WAMultiCounter
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[width=\textwidth]{WAMultiCounter}
-\caption{WAMultiCounter}
+\caption{WAMultiCounter \ab{In all of these figures the method patterns have been omitted to save space.  Unfortunately, this doesn't work for methods that take parameters, like renderContentOn: html.  One possible fix is to put the parameters in the UML box.  Whatever we do, it has to be done uniformly for all the UML figures.}}
 \label{fig:WAMultiCounter}
 \end{center}
 \end{figure}
 
-It is also a standalone application, so it implements \mthind{WAComponent class}{canBeRoot}.
-In addition, it is a composite component, so Seaside requires it to declare its children by implementing a method \ct{children}, which returns an array of all the components it contains.
-It trivially renders itself by rendering each of its subcomponents, separated by a horizontal rule.
+\noindent
+\ct{WAMultiCounter} is also a standalone application, so it overrides \mthind{WAComponent class}{canBeRoot} to answer \ct{true}.
+In addition, it is a \emph{composite} component, so Seaside requires it to declare its children by implementing a method \ct{children} that answers an array of all the components it contains.
+It renders itself by rendering each of its subcomponents, separated by a horizontal rule.
 Aside from instance and class-side initialization methods, there is nothing else to the multi-counter!
 
 %-----------------------------------------------------------------
-\subsection{Rendering XHTML}
+\subsection{More about Rendering XHTML}
 
 Seaside does not use templates to generate web pages.
-Instead XTHML is generated programmatically.
+Instead it generates XTHML programmatically.
 We have already seen a couple of examples of how this is done.
-
-Basically a Seaside component should implement the method \mthind{WAPresenter}{renderContentOn:}, which will be called by the framework whenever the component needs to be rendered.
+The basic idea is that a Seaside component should override the method \mthind{WAPresenter}{renderContentOn:}, which will be called by the framework whenever the component needs to be rendered.
 This method will be passed an argument, by convention called \ct{html}, which is a \emphind{canvas} for rendering the component.
 
 Here are some of the most basic rendering methods:
@@ -341,13 +363,13 @@ html html: '&ndash;'.     "render an XHTML incantation"
 html render: 1.              "render any object"
 \end{code}
 
-The message \ct{render:} can be sent to a canvas to render any object (using double dispatch), though it is normally used to render subcomponents.
-This was the case in our multi-counter (see \figref{WAMultiCounter}).
+The message \ct{render: anyObject} can be sent to a canvas to render \ct{anyObject}, though it is normally used to render subcomponents.  \ct{anyObject} will itself be sent the message \ct{renderContentOn:}
+This is what happens in our multi-counter (see \figref{WAMultiCounter}).
 
 A canvas provides a number of \emphind{brushes} that can be used to render content on the canvas.
-There are brushes for every kind of XHTML element such as paragraphs, tables, lists and so on.
+There are brushes for every kind of XHTML element\,---\,paragraphs, tables, lists, and so on.
 To see the full protocol of brushes and convenience methods available, you should browse the class \clsind{WACanvas} and its subclasses.
-\ct{html} is actually an instance of the subclass \clsind{WARenderCanvas}.
+The argument to \ct{renderContentOn:} is actually an instance of the subclass \clsind{WARenderCanvas}.
 
 We have already seen the following brush used in the counter and multi-counter examples:
 \needlines{2}
@@ -396,9 +418,9 @@ This sets the content and renders the result.}
 
 The default heading is at level 1.
 We explicitly set the level of the second heading to 2.
-The subcomponent is rendered as an XHTML \emph{DIV} with the \ind{CSS} class ``subcomponent''.
+The subcomponent is rendered as an XHTML \emph{DIV} \ab{why capitals?} with the \ind{CSS} class ``subcomponent''.
 (More on CSS in \secref{css}.)
-Note as well that the argument to the \ct{with:} keyword message need not be a literal string, but may be another component, or even\,---\,as in the next example\,---\,a block containing further rendering actions.
+Also note that the argument to the \ct{with:} keyword message need not be a literal string: it can be another component, or even\,---\,as in the next example\,---\,a block containing further rendering actions.
 
 The \ct{SeasideHtmlDemo} component demonstrates many of the most basic brushes.
 Most of the code should be self-explanatory.
@@ -419,8 +441,9 @@ All rendering methods go in the \prot{rendering} protocol.
 Don't send \ct{renderContentOn:} from your own code, use \ct{render:} instead.}
 
 Look at the following code.  
-The first helper method shows how to generate XHTML paragraphs, plain and emphasized text, and images.
+The first helper method shows you how to generate XHTML paragraphs, plain and emphasized text, and images.
 Note that simple elements are rendered by directly specifying the text they contain, whereas as complex elements are specified using blocks.
+\ab{I don't understand this point.  Why?}
 
 \begin{code}{}
 SeasideHtmlDemo>>>renderParagraphsOn: html 
@@ -438,8 +461,8 @@ SeasideHtmlDemo>>>renderParagraphsOn: html
 			width: '50']
 \end{code}
 
-The next helper method shows how to generate lists and tables.
-A table even uses two levels of blocks to display each of its rows and the cells within the rows.
+The next helper method shows you how to generate lists and tables.
+A table uses two levels of blocks to display each of its rows and the cells within the rows.
 
 \begin{code}{}
 SeasideHtmlDemo>>>renderListsAndTablesOn: html 
@@ -452,9 +475,9 @@ SeasideHtmlDemo>>>renderListsAndTablesOn: html
 			html tableData: 'A table with one data cell.']]
 \end{code}
 
-The next example shows how we can specify CSS DIVs and SPANs with class or id attributes.
-Of course, the messages \ct{class:} and \ct{id:} can also be sent to the other brushes, not just to DIVs and SPANs.
-The method \ct{SeasideDemoWidget>>>style} defines the display attributes for XHTML elements with these attributes (see \secref{css}).
+The next example shows how we can specify CSS \emph{DIV}s and \emph{SPAN}s with \emph{class} or \emph{id} attributes.
+Of course, the messages \ct{class:} and \ct{id:} can also be sent to the other brushes, not just to \emph{DIV}s and \emph{SPAN}s.
+The method \ct{SeasideDemoWidget>>>style} defines the display attributes for XHTML elements with these attributes (see \secref{css}). \ab{eh?}
 
 \begin{code}{}
 SeasideHtmlDemo>>>renderDivsAndSpansOn: html 
@@ -484,10 +507,10 @@ SeasideHtmlDemo>>>renderLinkWithCallbackOn: html
 			with: toggleValue ]
 \end{code}
 
-\alex{I would stress that toggleValue has to be a class attribute. It cannot be a temporary variable (method or block)}
+\alex{I would stress that toggleValue has to be a class attribute  \ab{You mean instance variable?}. It cannot be a temporary variable (method or block)}
 
-\important{Note that actions should only appear in callbacks.
-You should not change the state of the application while you are rendering it.}
+\important{Note that actions should appear only in callbacks.
+The code executed while rendering should not change the state of the application!}
 
 %-----------------------------------------------------------------
 \subsection{Forms}
@@ -1301,8 +1324,8 @@ In case of client side problems use FireFox (\url{http://www.mozilla.com}) with 
   The argument to this method is an XHTML rendering \emph{canvas} (usually called \ct{html}).
   \item A component can render a subcomponent by sending \ct{self render:} \emph{subcomponent}.
   \item XHTML is generated programmatically by sending messages to \emph{brushes}. A brush is obtained by sending a message, such as \ct{paragraph} or \ct{DIV} to the html canvas.
-  \item If you send a cascade of messages to a brush including the message \ct{with:}, then this should be the last message sent.
-  This sets the content and renders the result.
+  \item If you send a cascade of messages to a brush that includes the message \ct{with:}, then \ct{with:} should be the last message sent.
+  This sets the contents and renders the result.
   \item Actions should only appear in callbacks.
 You should not change the state of the application while you are rendering it.
   \item You can bind various form widgets and anchors to instance variables with accessors by sending the message \ct{on:} \emph{instance variable} \ct{of:} \emph{object} to the brush.
