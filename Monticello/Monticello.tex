@@ -61,8 +61,8 @@ We have already seen Monticello in ``A First Application'' (section 2.9) and in 
 
 This section gives a brief description of the basic features of Monticello and SqueakSource: creating a packages, committing, updating and merging.
 
-Monticello is included in the standard Squeak distribution\footnote{\url{http://www.squeak.org}} and in the image for developers\footnote{\url{http://damien.cassou.free.fr/squeak-dev.html}}. If you use another image, Monticello is installable via \emph{SqueakMap} and \emph{Universe}.
-\on{Universe is not described anywhere else in the book.  The reader does not know what this is.}
+Monticello is included in the standard Squeak distribution\footnote{\url{http://www.squeak.org}} and in the image for developers\footnote{\url{http://damien.cassou.free.fr/squeak-dev.html}}. If you use another image, Monticello is installable via application deployment tools such as \emph{SqueakMap} and \emph{Universe} (accessible via \menu{open ...} then \menu{SqueakMap Package Loader} and \menu{Package Universe Browser}).
+%:\on{Universe is not described anywhere else in the book.  The reader does not know what this is.}
 
 Once Monticello is installed, the Monticello Browser will be available from the \menu{open...} menu. Open it by selecting the \emph{World} menu, then select open and press \emph{Monticello Browser}.
 
@@ -71,38 +71,67 @@ Once Monticello is installed, the Monticello Browser will be available from the 
 	\caption{The Monticello Browser.\figlabel{monticelloMain}}
 \end{figure}
 
+The Monticello Browser consists of three panes, two list panes and one button pane. The left hand side pane lists installed packages. Repositories are shown on the right hand side list pane. Several operations may be performed via the button pane and list menus.
+
 %-----------------------------------------------------------------
 \subsection{Creating a package}
 
-The very first thing you need to do is to tell Monticello about the package you want to version. Monticello packages are mapped to system categories. For example, the two classes in Quinto, the first application you have seen, are contained in the category \scat{SBE-Quinto}. Press the \button{+Package} in the Monticello browser and enter \scat{SBE-Quinto}. \emph{Voil\`a!} You have just created the \pkg{SBE-Quinto} Monticello package. \ab{We need to refer back to the description of \ct{PackageInfo} packages.}
+The very first thing you need to do is to tell Monticello about the package you want to version. Monticello packages are mapped to class categories. For example, the two classes in Quinto, the first application you have seen, are contained in the category \scat{SBE-Quinto}. 
+
+\dothis{Press the \button{+Package} in the Monticello browser and enter \scat{SBE-Quinto}.}
+
+\emph{Voil\`a!} You have just created the \pkg{SBE-Quinto} Monticello package. 
+
+\ab{We need to refer back to the description of \ct{PackageInfo} packages.}
 
 %-----------------------------------------------------------------
 \subsection{Committing}
 
-Before committing you need to specify \emph{where} you want to save your package. The \button{+Repository} button is for that purpose. Choose a folder. \ab{I don't know what this means.  \button{+Repository} does not have ``folder'' as an option.  ``directory'' and ``directory with subdirectories'' are the most likely options.}  The \button{Save} button will save your package into this repository. You may change the version name and add a comment. \ab{Experience with my students is that changing the version name is a really bad idea, since it can easily break Monticello.}
+Before committing you need to specify \emph{where} you want to save your package. The \button{+Repository} button is for that purpose. A repository is a package holder, which may be remotely accessible (via network) or located in your machine (in your hard disk typically). Several protocols may be employed to establish a connection between your Squeak and a repository. As we will see later (\secref{monti:repositories}), Monticello may work with a large range of repositories.
+
+%:\ab{Experience with my students is that changing the version name is a really bad idea, since it can easily break Monticello.}
+
+At least one repository is set up per default, which corresponds to the first line in the list of repositories on the right hand side of your Monticello browser. As illustrated in \figref{monticelloMain}, this repository should point to the local package cache directory (\ct{/Users/alexandrebergel/.../package-cache} in the figure).
+
+%:\ab{I don't know what this means.  +Repository does not have ``folder'' as an option.  ``directory'' and ``directory with subdirectories'' are the most likely options.}  
+The \button{Save} button will save your package into the selected repository. A window that asks for a comment will popup (\figref{saving}).
+
+\dothis{Select the directory repository package cache, then press \button{Save} and enter an appropriate comment.}
+
+Your package will be saved in \ct{package-cache} contained in the same directory that your Squeak image.
+
+\dothis{Use your favorite file browser (\eg Windows Explorer, Finder or XTerm) to ensure that a file \ct{SBE-Quinto-XX.1.mcz} was created in your package cache. \ct{XX} corresponds to your initials}
+
+You may change the version name and add a comment. \ab{Experience with my students is that changing the version name is a really bad idea, since it can easily break Monticello.}
 
 \begin{figure}[ht]\centering
 	\includegraphics[width=.55\linewidth]{saving.png}
 	\caption{A new version name and a comment may be set when committing.\figlabel{saving}}
 \end{figure}
 
-\ab{We need to say here, if not earlier, what a ``version'' is.  Perhaps: an immutable snapshot of a package that has been written into a repository at some point in the past?  Also introduce the version numbering scheme?}
+A version is an immutable snapshot of a package that has been written into a repository. Each version comes with a number that identifies the version in a repository. When saving a version into a repository, the next number available is assigned to a version. Version numbers are increased by 1 at each saving and are full integer. Note that version branches do not interfere with this numbering scheme (as with CVS or Subversion). As we shall see later, versions are ordered by their version number per default when opening a repository.
+
+%:\ab{We need to say here, if not earlier, what a ``version'' is.  Perhaps: an immutable snapshot of a package that has been written into a repository at some point in the past?  Also introduce the version numbering scheme?}
 
 %-----------------------------------------------------------------
-\subsection{Updating}
+\subsection{Loading and updating}
 
-\ab{What is ``updating''.  OK, I think that I know\,---\,it is like \emph{svn update}.  But I don't think that we can assume that the reader knows this}. 
-Select the repository you want to load a version from in the list on the right-hand side of the Monticello Browser, and click the \button{Open} button. This will open a Repository Inspector. Select your version and click the \button{Load} button.
+%:\ab{What is ``updating''.  OK, I think that I know\,---\,it is like \emph{svn update}.  But I don't think that we can assume that the reader knows this}. \alex{I added a short paragraph below}
+Select the repository you want to load a package from in the list on the right-hand side of the Monticello Browser, and click the \button{Open} button. This will open a Repository Inspector. Select your version and click the \button{Load} button.
 
-%\begin{figure}[ht]\centering
-%	\includegraphics[width=.75\linewidth]{viewingRepository}
-%	\caption{A repository offers different package versions.\figlabel{viewingRepository}}
-%\end{figure}
+\dothis{Unload your Quinto package and load it back: right click (or middle, depending on your configuration) on the selected \emph{SBE-Quinto} package in the Monticello browser and select \menu{unload package}. Open the \ct{package-cache} repository and load the Quinto back.}
+
+The same procedure has to be applied to upgrade an installed package with a new version. Note that Monticello checks whether you have altered your local copy of packages; this prevents unsaved changes from being erased by loading a new package version.
+
+\dothis{Add and redefine few methods on one of the two classes defining Quinto. Save \ct{SBE-Quinto} again (version 2). Load the version 1 of the game. Alter your copy by adding few methods and load the version 2 of the Quinto game. You will get a warning saying you have some unsaved changes. By proceeding, your change will be erased and your package replaced by the version 2.}
 
 %-----------------------------------------------------------------
 \subsection{Using SqueakSource}
 
-SqueakSource is a central online repository accessible from \url{http://www.squeaksource.com}. For example, use a web browser to visit the BreakOut project at \url{http://www.squeaksource.com/BreakOut.html}. In the registration section on that web page you should see this \emph{repository expression:}
+SqueakSource is a central online repository accessible from \url{http://www.squeaksource.com}. At the time this chapter is being written, about 1000 projects are registered on SqueakSource and more than 1100 people have an account. \figref{squeaksource} shows the main web page.  
+%:\ab{This should come first.}
+
+For example, use a web browser to visit the BreakOut project at \url{http://www.squeaksource.com/BreakOut.html}. In the registration section on that web page you should see this \emph{repository expression:}
 
 \begin{code}{}
 MCHttpRepository
@@ -129,51 +158,79 @@ Note If you want to save your code in a SqueakSource Monticello repository, the 
 	\caption{SqueakSource, the online Monticello code repository.\figlabel{squeaksource}}
 \end{figure}
 
-At the time this chapter is being written, about 1000 projects are registered on SqueakSource and more than 1100 people have an account. \figref{squeaksource} shows the main web page.  \ab{This should come first.}
-
 Pressing the \menu{Register Member} link on the SqueakSource home page will probably be your first step If you do not have a SqueakSource account. 
 Once you are a member, \menu{Register Project} allows you to create a new project. 
 
 %-----------------------------------------------------------------
-\subsection{Merging a with newer version}
+\subsection{Merging}
 
-Your package may be merged with another version by using the \button{Merge} button in the Monticello browser. We will come back to the different options that are available at that stage. Press \button{Merge} to replace your package with a new version of this one. \ab{Isn't this what update does?   What is the difference?}Note that your changes, if any, will be erased.
-\on{Not really very clear.
-Why is it called ``merge''?
-It seems to be just updating.
-And what is \figref{merging} supposed to show us?}
+Your package may be merged with another version by using \button{Merge} in the Monticello browser. You may want to merge your version with another one when (i) your package version branch has to be unified under a single branch or when (ii) you are working on an old version. This situation frequently arises when more than one developer are working on a same package. 
+
+The following exercise illustrates the need for a merge operation. As a continuation of the previous exercise, we assume that two versions of the \ct{SBE-Quinto} package are present in the package cache repository.
+
+\dothis{Load the version 1 of the Quinto game. Create and redefine few methods in this package. Save the package. You should be facing a notification saying that \ct{SBE-Quinto-XX.2} may be a newer version. Do not save.}
+
+Saving the altered Version 1 produces the version 3 that will not contains changes included in Version 2. A new branch would then be created since Version 1 is the direct ancestor of Version 2 and 3. Creating a new branch for a package is a delicate operation that may significantly reduce package maintainability when not properly employed. Branching is avoided by merging your changes of the version 1 with the version 2.
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{viewingRepository}
+	\caption{A repository offers different package versions.\figlabel{viewingRepository}}
+\end{figure}
+
+Open a repository inspector with \button{open}. You will then have a window similar to the one shown in \figref{viewingRepository}. The left hand side shows the list of packages available in the repository and the right hand side the list of version of the selected package.
+
+After having selected a package version, for a given package, \button{Merge} merges the selected version with your local version. 
+
+\dothis{Select the version 2 of the Quinto game and press \button{Merge}. A \emph{merger} window shows up.}
 
 \begin{figure}[ht]\centering
 	\includegraphics[width=.75\linewidth]{merger}
-	\caption{Merging two packages is performed using a fine grain.
-	\on{huh?}
-	\ab{I would like to know what those buttons do}
+	\caption{Version 4 of the package \ct{SBE-Quinto} is being merged with the current version.
 	\figlabel{merging}}
 \end{figure}
+%:\on{huh?}
+%:\ab{I would like to know what those buttons do}
+
+A merger is a tool that allows for fine grain package version merging. Elements contained in the package to-be-merged are listed in the upper text pane. The lower text pane shows the definition of a selected element. 
+
+For example, \figref{merging} illustrates a situation where the version 4 of the \ct{SBE-Quinto} package is being merged. It shows that in Version 4 of the game the class \ct{SBEFixedCell} is defined, some methods have been redefined and the class \ct{SBEGame} has changed. Methods that have been redefined in the version to-be-merged have \ct{(changed)} that follows their name.
+
+A method or a class is in conflict if its definition has been altered without being saved in the repository. \figref{merging} shows 3 conflicting methods in the class \ct{SBEGame}: \ct{initialize}, \ct{cellsPerSide} and \ct{newCellAt:at:}. A conflicting package element is identifiable either by being \underline{underlined}, barred, or in {\bf bold} \alex{anyone knows how to bar a text?}. The font used to display an element in the upper part of a merger window follows the convention:
+
+\begin{itemize}
+\item When a plain font is used, the definition is non-conflicting. For example, the class \ct{SBEFixedCell} and its methods will be installed and the method \ct{SBEGame>>>toggleNeighboursOfCellAt:at} will be updated with a new version.
+\item An \underline{underlined} name means that the element located in the repository is kept and will replace the current element. \ct{SBEGame>>>initialize} will be replaced with the definition provided by Version 4.
+\item A barred element name means that the local definition will not be replaced. The definition contained in the repository is rejected. \ct{SBEGame>>>newCellAt:at:} will remain as it was before the merging operation.
+\end{itemize}
+
+Colors used in the lower text pane follows the convention: new code is displayed in red, removed code is barred and displayed in blue, unchanged code uses the black color. 
+
+Remember that conflicts happen when you have modified your package without having saving it.
+
+
+%:\ab{Isn't this what update does?   What is the difference?}
+%:\on{Not really very clear. Why is it called ``merge''? It seems to be just updating. And what is \figref{merging} supposed to show us?}
+
 
 %-----------------------------------------------------------------
 \subsection{``Clean'' and ``Dirty'' packages}
 
 Modifying the code in a package with any of the development tools makes that package \emph{dirty}.
 This means that the version package in the image is different from the version that has been saved or loaded. 
-In Monticello, the name of a dirty package is preceded by an asterisk (\ct{*}) . This indicates which packages have uncommitted changes, and therefore need to be saved into a repository if those changes are not to be lost. Saving a dirty package cleans it.
+
+In Monticello, the name of a dirty package is preceded by an asterisk (\ct{*}). This indicates which packages have uncommitted changes, and therefore need to be saved into a repository if those changes are not to be lost. Saving a dirty package cleans it.
+
+Note that only dirty package may lead to conflicts when being merged.
 
 %=================================================================
 \section{Useful features}
 \seclabel{monti:usefulfeatures}
 
-Monticello has many other useful features. As shown in \figref{monticelloMain}, the Monticello browser window has nine buttons. We have already seen four of them\,---\,\button{+Package}, \button{Save}, \button{+Repository} and \button{Open}. Let's look at the remaining five.
+Monticello has many other useful features. As shown in \figref{monticelloMain}, the Monticello browser window has nine buttons. We have already seen four of them\,---\,\button{+Package}, \button{Save}, \button{+Repository} and \button{Open}. Let's look at the remaining ones.
 
 %-----------------------------------------------------------------
 \subsection{Browse} 
 
-As described in \secref{packageextension}, a Monticello package may define and redefine methods on classes defined in another package.
-\on{explain that this is called an ``extension''.}
-\ab{There is already a section explaining the \ct{PackageInfo} conventions in the \emph{Environment} chapter.   If we merge the two, this description will be in a prior section of this chapter.}
-The system browser provide a clear view on the content of a package \on{huh? what does this mean?}.
-\ab{I don't know what it means either, but I think that it's wrong.  As far as I'm aware, the system browser (or even the package-pane browser) can't be used to look at packages at all, only classes\,---\,that's one of the deficiencies that needs to be fixed.}
-The \button{Browse} button opens a snapshot browser on the code in a particular version of a package; this browser can be used to view, but not change, the package.
-\ab{I reworded this to reflect my understanding, based on some quick experiments.}
 
 \begin{figure}[tb]
 \centering
@@ -181,8 +238,12 @@ The \button{Browse} button opens a snapshot browser on the code in a particular 
 	\caption{The snapshot browser shows us that the package \ct{Sound} extends the class \ct{GraphMorph} with 3 methods.\figlabel{packageviewer}}
 \end{figure}
 
-In \figref{packageviewer} the snapshot browser is showing us the extensions defined in the \pkg{Sound} package. 
-This package extends the class \ct{GraphMorph} with the three methods listed in the top right pane.
+The content of a package may be viewed with \button{Browse}. It opens a browser similar to the system browser called a snapshot browser. The advantage of the snapshot browser over the system browser is the ability to render class extension: a Monticello package may define and redefine methods on classes defined in another package (\secref{packageextension}).
+%:\on{explain that this is called an ``extension''.}
+
+For example, \figref{packageviewer} shows the class extension defined in the \pkg{Sound} package. This package extends the class \ct{GraphMorph} with the three methods displayed in the rightmost upper pane.
+Note that code may not be edited here.
+
 
 %\subsection{Scripts}
 % Script do not work!
@@ -191,7 +252,7 @@ This package extends the class \ct{GraphMorph} with the three methods listed in 
 \subsection{History} 
 
 The \button{History} button opens a version history viewer that displays the comments committed along with each version of the selected package (see \figref{historyviewer}).  
-The versions of the package, in this case \ct{Perseus}\ab{was: AST!  I changed the text since this was easier than changing the figure.  Also \ct{Perseus} is the selected package in \figref{monticelloMain}} are listed on the left,
+The versions of the package, in this case \ct{Perseus}, are listed on the left,
 while information about the selected version is displayed on the right.
 
 \begin{figure}[tb]\centering
@@ -204,7 +265,9 @@ while information about the selected version is displayed on the right.
 %-----------------------------------------------------------------
 \subsection{Changes} 
 
-The \button{Changes} button computes the difference between your current package version \ab{shouldn't this be ``between the code in the image''.  It's not a ``version'' until it is written to a repository.  Or. maybe you intended to define version differently \ldots?} and the most recent version of the package in the repository. 
+The \button{Changes} button computes the difference between the code in the image and the most recent version of the package in the repository. 
+%: \ab{shouldn't this be ``between the code in the image''.  It's not a ``version'' until it is written to a repository.  Or. maybe you intended to define version differently \ldots?}
+%:\alex{Good point!}
 
 \begin{figure}[b]\centering
 	\includegraphics[width=.75\linewidth]{{patchbrowser}}
@@ -216,11 +279,51 @@ The \button{Changes} button computes the difference between your current package
 %-----------------------------------------------------------------
 \subsection{Backport} 
 
-Each package version has an ancestor which is its parent version.  \ab{You need to explain what a ``parent'' is, that is, what the developer can use it for.}  The left pane of the history viewer displays the list of ancestor versions. \button{Backport} allows you to change the version {what does ``change the version'' mean.  I thought that versions were immutable?}  of a package without erasing non-commited changes. For example, let's assume you are working on the version 6 of \pkg{SBE-Quinto}. This current package can be turned into the version 3 while keeping your changes. \ab{I don't understand this.  Isn't there already a version 3?  Can't you use the same running example (\ct{Perseus}), so we can see what versions exist by looking at the figures? } 
+Each version of a package knows what is the previous version of this package. We use the notion of \emph{ancestor} or \emph{parent} to designate a previous version. In the example seen before, Version 2 is the parent of Version 1 of  \ct{SBE-Quinto}. On \figref{historyviewer}, one can see that ancestors of Version 38 of Perseus includes version 37, 35, 30. A version branch is given by its set of recursive ancestors. 
+%:\ab{You need to explain what a ``parent'' is, that is, what the developer can use it for.}  
 
-Backporting a package is useful when you want to revert your package to a previous while keeping your modifications. You may then create a new branch.
+%\button{Backport} allows for a package to be reverted to a previous version. Note that a package may be backported only if one version is loaded and this package is clean.
 
-\on{not entirely clear to me. in the example, what happens to the old version 3? what happens to newer versions? when would you use this? is this the topic of the next section? if so, we should say so, otherwise it stops abruptly.}
+Backporting is a way of selectively moving changes from a version to its ancestor (perhaps from a private or experimental branch back to the mainline), without introducing conflicts into future merges.
+
+To use \button{Backport}, you must have just saved your package - if your package is marked with the modified *, \button{Backport} will be disabled.  When you press \button{Backport}, you will first be asked to pick the ancestor version you want to backport to.  You will then be presented with a multi-select list of all the changes between that ancestor and the current version.   Choose only the changes you want to backport, and then press \button{Select}.
+
+Any changes you didn't select will then be reverted; that is, your image will now contain only the code from the ancestor version, plus the changes that you chose. You can now save this backported version, merge it into something else, or whatever you like.
+
+\begin{figure}[b]\centering
+	\includegraphics[width=\linewidth]{{backport}}
+	\caption{Backporting a change X from an experimental branch into the main branch.\figlabel{backport}}
+\end{figure}
+
+The system records the fact that this new version was backported from a later version, and will make use of that information when merging.  For example, if you backport some changes in version C to its ancestor A, making a backported version B, and you then make some new changes to B and save that as B', then when merging B' into C, only the difference between B and B' will be considered.  One possible scenario this enables is the following:
+
+The "maintainer" has a mainline branch. The "contributor" sends the maintainer a version with two different changes, X and Y. The maintainer only wants to integrate change X, and asks the 
+contributor to separate it out. The contributor backports change X to a released version, and sends this backport to the maintainer. The maintainer merges the backport into the mainline, and later release a new version. The contributor should be able to merge this new release into their branch, without: (i) losing change Y and (ii) having any conflicts to do with change X.
+
+In other words, it's possible to keep two parallel branches, and repeatedly but selectively merge between them, without seeing any spurious conflicts or unexpected removals. Illustrated by \figref{backport}, you can use the Backport facility to do this as follows:
+
+\begin{enumerate}
+\item load the version you want to merge some of the changes from (Step 1)
+\item backport those changes (\ct{X} on the figure) to the common ancestor with the version you want to merge into (Step 1)
+\item save this backported version (Step 2)
+\item load your version, and merge in the backport (Step 3)
+\item then you may save the package into a new version (Step 4)
+\end{enumerate}
+
+
+%\begin{enumerate}
+%\item[Step 1:] load the version you want to merge some of the changes from
+%\item[Step 2:] backport those changes to the common ancestor with the version you want to merge into
+%\item[Step 3:] save this backported version
+%\item[Step 4:] load your version, and merge in the backport
+%\end{enumerate}
+
+%:{what does ``change the version'' mean.  I thought that versions were immutable?} 
+%The left pane of the history viewer displays the list of ancestor versions. \button{Backport} allows you to change the version  of a package without erasing non-commited changes. For example, let's assume you are working on the version 6 of \pkg{SBE-Quinto}. This current package can be turned into the version 3 while keeping your changes. \ab{I don't understand this.  Isn't there already a version 3?  Can't you use the same running example (\ct{Perseus}), so we can see what versions exist by looking at the figures? } 
+
+%Backporting a package is useful when you want to revert your package to a previous while keeping your modifications. You may then create a new branch.
+
+%\on{not entirely clear to me. in the example, what happens to the old version 3? what happens to newer versions? when would you use this? is this the topic of the next section? if so, we should say so, otherwise it stops abruptly.}
 
 %=================================================================
 \section{Advanced operations}
@@ -229,26 +332,35 @@ Backporting a package is useful when you want to revert your package to a previo
 %-----------------------------------------------------------------
 \subsection{Branching}
 
-You may create new version branch when saving your package. This is useful when you want to have a new parallel development. 
-\ab{Give me an example of why I might want to do  this.  The discussion is too abstract}.  A new branch is easily created by giving a new name to the version in the upper text pane of the \button{Edit Version} window. For example, \figref{saving} shows the package \pkg{SBE-Quinto} being saved. You may assign a new name such as \emph{SBE-Quinto-MyBranch-ab.1} to create the branch \emph{MyBranch}. Giving a totally new name is not a good idea since it will make it hard to see the relationships between branches when browsing the repository. \ab{Eh?  Why tell us to do it, and then tell us that it's not a good idea?}
+You may create new version branch when saving your package. Branching is useful when you want to have a new parallel development. 
+For example, suppose your job is to maintain a software in your company. One day a different division asks you for the same software, but with a few parts tweaked for them, since they do things slightly differently. The way to deal with this situation is to create a second branch of your program that incorporate the tweaks, while leaving the first branch unmodified. 
+
+
+%:\ab{Give me an example of why I might want to do  this.  The discussion is too abstract}.  
+
+A new branch is easily created by giving a new name to the version in the upper text pane of the \button{Edit Version} window. For example, \figref{saving} shows the package \pkg{SBE-Quinto} being saved. You may assign a new name such as \emph{SBE-Quinto-MyBranch-ab.1} to create the branch \emph{MyBranch}. Giving a totally new name is not a good idea since it will make it hard to see the relationships between branches when browsing the repository. \ab{Eh?  Why tell us to do it, and then tell us that it's not a good idea?}
 
 \ab{Is there some relation between parents and branches?  Please tell us about it!}  
 
 %-----------------------------------------------------------------
 \subsection{Package extensions}
-\ab{This is out of place.   First, this definition already appears in the ``Environment'' chapter.  Second, it needs to come before the section on the snapshot browser, which shows us an extension.}
 \seclabel{packageextension} 
+
+\ab{This is out of place.   First, this definition already appears in the ``Environment'' chapter.  Second, it needs to come before the section on the snapshot browser, which shows us an extension.} \alex{Why is it out of place? The mechanism below belongs to Monticello}
+
 Monticello packages follow a number of important naming conventions for class and method categories.
 A package named \pkg{Foo} contains:
 
 \begin{itemize}
 \item All classes in the system category \scat{Foo}, or in system categories whose names start with \scat{Foo-}.
 \item All methods\,---\,on any class in any system category\,---\,that are defined in protocols named \prot{*foo} or \prot{*Foo} or in protocols whose names start with \prot{*foo-} or \prot{*Foo-}.
-	\on{I rephrased this ; please check}
+%:\on{I rephrased this ; please check} \alex{ok}
+
 \item All methods in classes in the system category \scat{Foo}, or in system categories whose names begin with \scat{Foo-}, \emph{except} those in protocols whose names start with \prot{*} (\ie which belong to \emph{other} packages).
 \end{itemize}
-\ab{We have consistently used ``protocol'' rather than ``method category'', so I made that change here.}
-\ab{The subsection heading promises that we will learn about ``Package Extensions''.  Well?}
+%:\ab{We have consistently used ``protocol'' rather than ``method category'', so I made that change here.}
+
+\ab{The subsection heading promises that we will learn about ``Package Extensions''.  Well?} \alex{What is missing? What is described in this section is all one should know about package extension. Am I missing something obvious?}
 
 %-----------------------------------------------------------------
 \subsection{Dependencies}
@@ -320,7 +432,10 @@ Note that right-clicking the right-hand side of the inspector opens a menu with 
 %-----------------------------------------------------------------
 \subsection{Adding new variables}
 
+Unfortunately Monticello does not support package extension that are not about method. For example, a package may not directly had some instance variables on a class defined in another package. Your may circumvent this restriction by using reflection to add new variables. 
+
 \ab{Tell us what the problem is, before telling us the solution.  With an Example!}
+
 Monticello supports method extension only. One way to circumvent this limitation is to define an initialize method on the class side, and manually add this variable. For example, let us image \on{imagine?} a package that extends the class \ct{OBUCommand} with a variable \ct{parent}.
 
 \begin{code}{}
