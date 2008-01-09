@@ -309,12 +309,12 @@ If the state of an application is backtracked to a particular snapshot, the stat
 In the case of \ct{WACounter}, you might think that the state to be tracked is a number\,---\,the value of the \ct{count} instance variable.
 However, having the \ct{states} method answer \ct{Array with: count} won't work.  
 At any time, the object named by \ct{count} is an integer, and integers are immutable.
-The \ct{increase} and \ct{decrease} methods don't change \ct{0} into \ct{1} or \ct{3} into \ct{2}.
-\ab{Can someone tell me WHY the macros add that extra space after a code word?  Why should I have to put an $\backslash$mbox around every one justin case it comes at the end of a line?}
+The \ct{increase} and \ct{decrease} methods don't change the state of the object \ct{0} into \ct{1} or the object \ct{3} into \ct{2}.
+\ab{Can someone tell me WHY the macros add that extra space after a code word?  Why should I have to put an $\backslash$mbox around every one just in case it comes at the end of a line?}
 Instead, they make \ct{count} name a different integer: 
 every time the count is incremented or decremented, the object named by \ct{count} is \emph{replaced} by another.
 This is why \ct{WACounter>>>states} must return \ct{Array with: self}.
-When the state of a \mbox{\ct{WACounter}} object is replaced by a previous state, the \emph{value} of the whole object is replaced by a previous value, which correctly replaces the current value of \ct{count} by a prior value. 
+When the state of a \mbox{\ct{WACounter}} object is replaced by a previous state, the \emph{value} of each of the instance variable in the object is replaced by a previous value; this correctly replaces the current value of \ct{count} by a prior value. 
 \index{Seaside!backtracking state}
 \index{WAPresenter!states@\ct{states}}
 
@@ -323,7 +323,7 @@ When the state of a \mbox{\ct{WACounter}} object is replaced by a previous state
 \subsection{Rendering XHTML}
 
 The rendering of the counter is relatively straightforward.
-The current value of the counter is displayed as an XHTML heading, and the increment and decrement operations are implemented as html anchors (that is, links) with callbacks to blocks that will send the counter object \ct{increase} and \ct{decrease}.
+The current value of the counter is displayed as an XHTML heading, and the increment and decrement operations are implemented as html anchors (that is, links) with callbacks to blocks that will send \ct{increase} and \ct{decrease} to the counter object.
 % (not shown).
 %\ab{We \emph{should} show this}
 
@@ -332,20 +332,21 @@ But before we do, let's have a quick look at the \subind{Seaside}{multi-counter}
 
 \subsection{From Counter to MultiCounter}
 
-%:FIG WAMultiCounter
-\begin{figure}[ht]
-\begin{center}
-\includegraphics[width=\textwidth]{WAMultiCounter}
-\caption{WAMultiCounter \ab{In all of these figures the method patterns have been omitted to save space.  Unfortunately, this doesn't work for methods that take parameters, like renderContentOn: html.  One possible fix is to put the parameters in the UML box.  Whatever we do, it has to be done uniformly for all the UML figures.}}
-\label{fig:WAMultiCounter}
-\end{center}
-\end{figure}
-
-\noindent
-\ct{WAMultiCounter} is also a standalone application, so it overrides \mthind{WAComponent class}{canBeRoot} to answer \ct{true}.
+\ct{WAMultiCounter}, shown in \figref{WAMultiCounter} is also a standalone application, so it overrides \mthind{WAComponent class}{canBeRoot} to answer \ct{true}.
 In addition, it is a \emph{composite} component, so Seaside requires it to declare its children by implementing a method \ct{children} that answers an array of all the components it contains.
 It renders itself by rendering each of its subcomponents, separated by a horizontal rule.
 Aside from instance and class-side initialization methods, there is nothing else to the multi-counter!
+
+%:FIG WAMultiCounter
+\begin{figure}[bht]
+\begin{center}
+\includegraphics[width=\textwidth]{WAMultiCounter}
+\caption{WAMultiCounter \ab{In all of these figures the method patterns have been omitted to save space.  Unfortunately, this doesn't work for methods that take parameters, like renderContentOn: html.  One possible fix is to put the parameters in the UML box.  Whatever we do, it has to be done uniformly for all the UML figures.}
+\ab{Bottom placement of figures seems to be broken}
+}
+\label{fig:WAMultiCounter}
+\end{center}
+\end{figure}
 
 %-----------------------------------------------------------------
 \subsection{More about Rendering XHTML}
@@ -354,7 +355,9 @@ Seaside does not use templates to generate web pages.
 Instead it generates XTHML programmatically.
 We have already seen a couple of examples of how this is done.
 The basic idea is that a Seaside component should override the method \mthind{WAPresenter}{renderContentOn:}, which will be called by the framework whenever the component needs to be rendered.
-This method will be passed an argument, by convention called \ct{html}, which is a \emphind{canvas} for rendering the component.
+This method will be passed an argument that is an \seeindex{canvas}{html canvas} \emphind{html canvas} for rendering the component.  By convention, the html canvas parameter is called \ct{html}.
+An html canvas is analogous to the graphics canvas used by Morphic and most other drawing frameworks to abstract away from the device-dependent details of drawing.
+ 
 
 Here are some of the most basic rendering methods:
 \begin{code}{}
@@ -363,10 +366,11 @@ html html: '&ndash;'.     "render an XHTML incantation"
 html render: 1.              "render any object"
 \end{code}
 
-The message \ct{render: anyObject} can be sent to a canvas to render \ct{anyObject}, though it is normally used to render subcomponents.  \ct{anyObject} will itself be sent the message \ct{renderContentOn:}
-This is what happens in our multi-counter (see \figref{WAMultiCounter}).
+The message \ct{render: anyObject} can be sent to an html canvas to render \ct{anyObject}, though it is normally used to render subcomponents.  \ct{anyObject} will itself be sent the message \ct{renderContentOn:}
+this is what happens in multi-counter (see \figref{WAMultiCounter}).
 
 A canvas provides a number of \emphind{brushes} that can be used to render content on the canvas.
+\ab{The intuition behind the name \emph{brush} escapes me entirely.  Can you help?}
 There are brushes for every kind of XHTML element\,---\,paragraphs, tables, lists, and so on.
 To see the full protocol of brushes and convenience methods available, you should browse the class \clsind{WACanvas} and its subclasses.
 The argument to \ct{renderContentOn:} is actually an instance of the subclass \clsind{WARenderCanvas}.
@@ -386,10 +390,10 @@ html horizontalRule.
 \end{center}
 \end{figure}
 
-In \figref{RenderingDemo} we can see a demo of many of the basic brushes offered by Seaside.\footnote{See package \ct{SBE-SeasideDemo} in the project \url{http://www.squeaksource.com/SqueakByExample}.}
+In \figref{RenderingDemo} we can see the output of many of the basic brushes offered by Seaside.\footnote{The source code is in the package \ct{SBE-SeasideDemo} in the project \url{http://www.squeaksource.com/SqueakByExample}.}
 The root component \ct{SeasideDemo} simply renders its subcomponents, which are instances of \ct{SeasideHtmlDemo}, \ct{SeasideFormDemo}, \ct{SeasideEditCallDemo} and \ct{SeasideDialogDemo}.
 
-\begin{code}{}
+\begin{method}[renderdemo]{\lct{SeasideDemo>>renderContentOn:}}
 SeasideDemo>>>renderContentOn: html
 	html heading: 'Rendering Demo'.
 	html heading
@@ -399,9 +403,11 @@ SeasideDemo>>>renderContentOn: html
 		class: 'subcomponent';
 		with: htmlDemo.
 	"render the remaining components ..."
-\end{code}
+\end{method}
 
+\noindent
 Recall that a root component must always declare its children, or Seaside will refuse to render them.
+\ab{Why not use a brace array, it's more readable}.
 \begin{code}{}
 SeasideDemo>>>children
 	^ Array with: htmlDemo with: formDemo with: editDemo with: dialogDemo
@@ -412,11 +418,11 @@ In the first case we set the text directly by sending the message \ct{heading:}.
 In the second case, we instantiate the brush by sending \ct{heading}, and then we send a cascade of messages to the brush to set its properties and render it.
 This is typical for many of the available brushes.
 
-\important{If you send a \ind{cascade} of messages to a brush including the message \mthind{WABrush}{with:}, then this should be the \emph{last} message sent.
-This sets the content and renders the result.}
+\important{If you send a \ind{cascade} of messages to a brush including the message \mthind{WABrush}{with:}, then \ct{with:} should be the \emph{final} message.
+\ct{with:}  both sets the content and renders the result.}
 
 
-The default heading is at level 1.
+In \mthref{renderdemo}, the first heading is at level 1, since this is the default.
 We explicitly set the level of the second heading to 2.
 The subcomponent is rendered as an XHTML \emph{DIV} \ab{why capitals?} with the \ind{CSS} class ``subcomponent''.
 (More on CSS in \secref{css}.)
@@ -443,7 +449,7 @@ Don't send \ct{renderContentOn:} from your own code, use \ct{render:} instead.}
 Look at the following code.  
 The first helper method shows you how to generate XHTML paragraphs, plain and emphasized text, and images.
 Note that simple elements are rendered by directly specifying the text they contain, whereas as complex elements are specified using blocks.
-\ab{I don't understand this point.  Why?}
+\ab{I don't understand this point.  Why?  What objects are valid as the argument to a brush?}
 
 \begin{code}{}
 SeasideHtmlDemo>>>renderParagraphsOn: html 
