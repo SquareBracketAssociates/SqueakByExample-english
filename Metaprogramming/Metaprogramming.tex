@@ -323,7 +323,93 @@ Via \ct!thisContext!, the Seaside web framework also accesses the execution stac
 
 % section practical_uses_for_introspection (end)
 
+%:======================================
+\section{Methods as first class entities}
+%-------------------------------------------------------------------------
+\subsection{Methods as Objects} %\seclabel{compiledmethods}
+Reification of Methods
+Classes encode the structure of instances: variables, superclass, subclass relationships and methods. In Squeak, both classes and methods are represented by first class objects that can be accessed and even changed at runtime. 
 
+\emph{Compiled methods} are objects in Squeak that describe the executable part of methods. These contain a pointer
+to the sourcecode and the code executed by the virtual machine, the bytecode.
+These methods are stored in a dictionary (a \emph{method dictionary}), keyed by their names. We can access the method dictionary of a class by sending the message \ct{methodDict} to this class. For instance, executing \ct{ExampleClass methodDict} return the methods dictionary of the class \ct{ExampleClass}.
+
+This dictionary then provides an interface for adding or replacing methods. When a new method is added from a programming tool (\eg a Smalltalk code browser) in essence the environment performs the following:
+
+\begin{code}{}
+ExampleClass methodDict at: #myMethod 
+                                  put: aCompiledMethod
+\end{code}
+
+A compiled method (\ct{aCompiledMethod}) is added to the method dictionary of the class \ct{ExampleClass} under the name \ct{myMethod}. The effect is the addition of a new method.
+
+%-------------------------------------------------------------------------
+\subsection{Objects as Methods}% \seclabel{reificationexecution}
+Reification of Method Execution
+When a message named \emph{m} is sent to an object, the corresponding method is searched along the single inheritance link of the class of the object. Once the method named \emph{m} is found in one of the superclass (\ie its method dictionary contains an entry for \emph{m}), then the corresponding value associated with \emph{m} is fetched from the method dictionary by the VM. 
+
+Now the method gets invoked by the VM. One of two cases happens: either this method is a \emph{compiled method} (\ie list of bytecode), or it is an \emph{object method} (a plain object). If this value is a compiled method (an instance of the class \ct{CompiledMethod}), then the VM directly interprets the bytecode. If this value is \emph{not} a compiled method, then the VM performs a \emph{reification of the method execution}.
+
+This method execution reification is performed by the VM when sending the message \ct{run: methodName with: listOfArguments in: receiver} to this object method. In such a case, \ct{methodName} contains the name of the method currently invoked, \ct{listOfArguments} contains the list of arguments provided, and \ct{receiver} a reference to the receiver to the message.
+
+For instance, let assume two classes, \ct{C} and \ct{Wrapper}:
+
+\begin{code}{}
+Object subclass: #C
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Example'.
+ 
+Object subclass: #Wrapper
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Example'.
+\end{code}
+
+The class \ct{Wrapper} contains a method named \ct{run:with:in:} that takes three arguments, a name (\ct{methodName}), an array of objects (\ct{listOfArguments}), and an object reference (\ct{receiver}):
+
+\begin{code}{}
+Wrapper \stSelector run: methodName with: listOfArguments in: receiver
+	"We first display some info on the standard output stream"
+	Transcript show: 'Method ', methodName,
+		' arguments: ', listOfArguments printString,
+		' receiver: ', receiver printString.
+
+	"Then we return the first element of the provided list"
+	^ listOfArguments first
+\end{code}
+
+Prior to returning the first elements of \ct{listOfArguments}, some information is written to the standard output stream.
+
+%The set of methods defined by a class is contained in a method dictionary, which can be accessed by sending the message \ct{methodDict} to a class. 
+For instance, a method \ct{foo:} can be added to the class \ct{C} by evaluating:
+
+\begin{code}{}
+"We create an instance of Wrapper"
+w := Wrapper new.
+
+"We create an instance of C"
+c := C new.
+
+"We add a new method named foo: to C"
+C methodDict at: #foo: put: w.
+\end{code}
+
+As similarly shown in \secref{compiledmethods}, the last line above adds an entry named \ct{foo:} to the method dictionary of \ct{C}. Instance of \ct{C} therefore understand messages named \ct{foo:}. Because of the method execution reification mechanism, evaluating \ct{c foo: 10} is in fact evaluated by the VM as:
+
+\begin{code}{}
+w run: #foo: with: #(10) in: c
+\end{code}
+
+The result is \ct{10}, and displays the following on the standard output stream:
+
+\begin{code}{}
+Method foo: arguments: #(10) receiver: a C
+\end{code}
+
+%:======================================
 \section{Chapter summary}
 
 It is natural to use the reflective features in Smalltalk.
