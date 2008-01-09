@@ -29,12 +29,14 @@
 %=================================================================
 \chapter{Introspecting and metaprogramming}\label{cha:metaprog}
 
+\alex{I am working on this chapter}
+
 Like all Smalltalk dialects, \sq is a reflective programming language.
 For a programming language, being reflective means that it allows both \emph{introspection} and \emph{intercession}.
 Introspection is the ability to \emph{look} at the data structures that define the language itself, like objects, classes, the execution stack.
 Intercession is the ability to \emph{modify} these structures, in other words to change the language semantics and the behavior of a program from within the program itself.
-For instance, this allows to add spy methods, or to manipulate the execution stack from a debugger.
-Note that while the Java language defines a ``reflective'' interface, it's not fully reflective, because it only provides a limited introspection.
+For instance, this allows to \alex{allow to?} add spy methods, or to manipulate the execution stack from a debugger.
+Note that while the Java language defines a ``reflective'' interface, it's not fully reflective, because it only provides a limited introspection\alex{Is this sentence relevant here?}. 
 
 In this chapter, you will read about uses of introspection that are useful for day-to-day programming.
 
@@ -97,9 +99,9 @@ The method \ct!someInstance! returns the first instance of a class it finds in t
 In the same spirit, it is possible to gather instances that have specific properties.
 For instance, to get all instances of class \ct!Browser! whose instance variable \ct!systemOrganizer! is not \ct!nil!, try this expression: \ct!Browser allInstances select: [:c | (c instVarNamed: 'systemOrganizer') notNil]!.
 
-Now let's look at how the method \ct!instanceVariableValues! of \ct!Object! is defined \mthref{instanceVariableValues}. This method returns an array of all values of instance variables defined by this class, excluding the inherited instance variables.
+Now let's look \alex{let us have a look?} at how the method \ct!instanceVariableValues! of \ct!Object! is defined \mthref{instanceVariableValues}. This method returns an array of all values of instance variables defined by this class, excluding the inherited instance variables.
 For instance, \ct!(1@2) instanceVariableValues! returns an \ct!OrderedCollection! containing \ct!1! and \ct!2!.
-This example shows how useful it is to be able to access instance variables via their position.
+This example shows how useful it is to be able to access instance variables via their position \alex{maybe?: this example shows how index-based variable access is useful}
 The method \ct!instSize! returns the number of instance variables that a class defines.
 
 \begin{method}[instanceVariableValues]{Getting the values of all instance variables}
@@ -136,7 +138,7 @@ Indeed, using the type of an object to drive execution of a method or another of
 \section{Browsing the code} % (fold)
 
 In \st, classes are normal objects, and they provide interesting features to navigate live objects.
-As we saw previously, you can obtain an instance of a given class by sending it the \ct!#someInstance! message.
+As we saw previously, you can obtain an instance of a given class by sending it the \ct!#someInstance! message \alex{by sending \ct!#someInstance! to this class?}.
 You can also gather all the instances with \ct!#allInstances!, or the number of alive instances in memory with \ct!#instanceCount!.
 These features are really useful when debugging an application, because you can ask a class to enumerate its methods that have specific properties:
 \begin{itemize}
@@ -325,30 +327,35 @@ Via \ct!thisContext!, the Seaside web framework also accesses the execution stac
 
 %:======================================
 \section{Methods as first class entities}
+
+Compared to other reflective programming languages, \sq is a Smalltalk implementation that brings reflection a step further. Whereas it handles \emph{methods as first class entities} that can be modified and replaced on the fly, it also allows for \emph{method execution reification}, exposing dynamic information related to method execution as objects.
+
+
 %-------------------------------------------------------------------------
-\subsection{Methods as Objects} %\seclabel{compiledmethods}
-Reification of Methods
-Classes encode the structure of instances: variables, superclass, subclass relationships and methods. In Squeak, both classes and methods are represented by first class objects that can be accessed and even changed at runtime. 
+\subsection{Reification of Methods} 
 
-\emph{Compiled methods} are objects in Squeak that describe the executable part of methods. These contain a pointer
-to the sourcecode and the code executed by the virtual machine, the bytecode.
-These methods are stored in a dictionary (a \emph{method dictionary}), keyed by their names. We can access the method dictionary of a class by sending the message \ct{methodDict} to this class. For instance, executing \ct{ExampleClass methodDict} return the methods dictionary of the class \ct{ExampleClass}.
+In Squeak, both classes and methods are represented by first class objects that can be accessed and even changed at runtime. 
 
-This dictionary then provides an interface for adding or replacing methods. When a new method is added from a programming tool (\eg a Smalltalk code browser) in essence the environment performs the following:
+\emph{Compiled methods} are objects in Squeak that describe the executable part of methods. A compiled method contains a pointer to the source code and the code executed by the virtual machine, the bytecode.
+
+Compiled methods are stored in a method dictionary, in which keys are method names and values corresponding compiled methods. A method dictionary may be accessed from a given class by sending the message \ct{methodDict} to this class. For instance, the expression \ct{ExampleClass methodDict} returns the dictionary of methods for the class \ct{ExampleClass}.
+
+Method dictionaries provide an interface for adding or replacing methods. When a new method is added from a development tool, such as the system browser, in essence, the system adds a new entry in the method dictionary of the class in which the method has been compiled for:
 
 \begin{code}{}
-ExampleClass methodDict at: #myMethod 
-                                  put: aCompiledMethod
+ExampleClass methodDict at: #myMethod put: aCompiledMethod
 \end{code}
 
 A compiled method (\ct{aCompiledMethod}) is added to the method dictionary of the class \ct{ExampleClass} under the name \ct{myMethod}. The effect is the addition of a new method.
 
-%-------------------------------------------------------------------------
-\subsection{Objects as Methods}% \seclabel{reificationexecution}
-Reification of Method Execution
-When a message named \emph{m} is sent to an object, the corresponding method is searched along the single inheritance link of the class of the object. Once the method named \emph{m} is found in one of the superclass (\ie its method dictionary contains an entry for \emph{m}), then the corresponding value associated with \emph{m} is fetched from the method dictionary by the VM. 
+Having compiled methods as plain objects is a characteristic shared by most Smalltalk implementations. As we shall see in the coming section, one particularity of Squeak is to not restrict values contained in a method dictionary to be instances of \ct{CompiledMethod}.
 
-Now the method gets invoked by the VM. One of two cases happens: either this method is a \emph{compiled method} (\ie list of bytecode), or it is an \emph{object method} (a plain object). If this value is a compiled method (an instance of the class \ct{CompiledMethod}), then the VM directly interprets the bytecode. If this value is \emph{not} a compiled method, then the VM performs a \emph{reification of the method execution}.
+%-------------------------------------------------------------------------
+\subsection{Reification of method execution}
+
+When a message named \emph{meth} is sent to an object, the class of receiver looks up the method to use to handle the message. If this class does have a method, it asks its superclass, and so on, up the inheritance chain. Once the method named \emph{meth} found in one of the superclass (\ie its method dictionary contains an entry for \emph{meth}), then the corresponding value associated with \emph{meth} is fetched from the method dictionary by the virtual machine (VM).
+
+Once fetch, this method gets interpreted by the VM. At that stage, one of two cases happens: either this method is a \emph{compiled method} as we have seen previously, or it is a plain object that is not a compiled method. If this value is a compiled method (an instance of the class \ct{CompiledMethod}), then the VM directly interprets the bytecode. If this value is \emph{not} a compiled method, then the VM performs a \emph{reification of the method execution}.
 
 This method execution reification is performed by the VM when sending the message \ct{run: methodName with: listOfArguments in: receiver} to this object method. In such a case, \ct{methodName} contains the name of the method currently invoked, \ct{listOfArguments} contains the list of arguments provided, and \ct{receiver} a reference to the receiver to the message.
 
@@ -371,7 +378,7 @@ Object subclass: #Wrapper
 The class \ct{Wrapper} contains a method named \ct{run:with:in:} that takes three arguments, a name (\ct{methodName}), an array of objects (\ct{listOfArguments}), and an object reference (\ct{receiver}):
 
 \begin{code}{}
-Wrapper \stSelector run: methodName with: listOfArguments in: receiver
+Wrapper>>>run: methodName with: listOfArguments in: receiver
 	"We first display some info on the standard output stream"
 	Transcript show: 'Method ', methodName,
 		' arguments: ', listOfArguments printString,
@@ -384,7 +391,7 @@ Wrapper \stSelector run: methodName with: listOfArguments in: receiver
 Prior to returning the first elements of \ct{listOfArguments}, some information is written to the standard output stream.
 
 %The set of methods defined by a class is contained in a method dictionary, which can be accessed by sending the message \ct{methodDict} to a class. 
-For instance, a method \ct{foo:} can be added to the class \ct{C} by evaluating:
+As we have seen in the previous section, a method \ct{foo:} is added to the class \ct{C} by altering its method dictionary:
 
 \begin{code}{}
 "We create an instance of Wrapper"
@@ -397,7 +404,7 @@ c := C new.
 C methodDict at: #foo: put: w.
 \end{code}
 
-As similarly shown in \secref{compiledmethods}, the last line above adds an entry named \ct{foo:} to the method dictionary of \ct{C}. Instance of \ct{C} therefore understand messages named \ct{foo:}. Because of the method execution reification mechanism, evaluating \ct{c foo: 10} is in fact evaluated by the VM as:
+The last line above adds an entry named \ct{foo:} to the method dictionary of \ct{C}. Instances of \ct{C} therefore understand messages named \ct{foo:}. Because of the method execution reification mechanism, evaluating \ct{c foo: 10} is in fact evaluated by the VM as:
 
 \begin{code}{}
 w run: #foo: with: #(10) in: c
@@ -408,6 +415,10 @@ The result is \ct{10}, and displays the following on the standard output stream:
 \begin{code}{}
 Method foo: arguments: #(10) receiver: a C
 \end{code}
+
+Reification of method execution is an expressive mechanism that enables a whole range of dynamic meta operations. As an example, 
+
+@@TO BE CONTINUED
 
 %:======================================
 \section{Chapter summary}
