@@ -207,7 +207,8 @@ Sending \ct{self label: ''}, for example, sets the label of this object to the e
 
 The expression \ct{0@0 corner: 16@16} probably needs some explanation. 
 \lct{0@0} represents a \clsind{Point} object with $x$ and $y$ coordinates both set to 0.
-In fact, \ct{0@0} sends the message \ct{@}% Yuck... the following should be \mthind{Number}{@} 
+In fact, \ct{0@0} sends the message \ct{@}
+% Yuck... the following should be \mthind{Number}{@} 
 %%% THIS IS BROKEN -- don't do it! (on)
 %\def\atsign{\textsf{@}}%
 %{\makeatletter
@@ -429,7 +430,7 @@ SBEGame>>>newCellAt: i at: j
    origin := self innerBounds origin.
    self addMorph: c.
    c position: ((i - 1) * c width) @ ((j - 1) * c height) + origin.
-   c mouseAction: [self toggleNeighboursOfCellAt: i at: j ].
+   c mouseAction: [self toggleNeighboursOfCellAt: i at: j].
 \end{method}
 \cmindex{SBEGame}{newCellAt:at:}
 %   ^ c      "omit this final line to create a bug"
