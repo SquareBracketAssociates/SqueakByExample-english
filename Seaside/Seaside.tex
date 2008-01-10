@@ -551,22 +551,24 @@ SeasideFormDemo>>>renderContentOn: html
 			text: 'done' ]
 \end{code}{}
 
-Since a form is a complex entity, it is rendered using a block. \alex{I would love to see a better justification for using blocks. It is not that clear}
+Since a form is a complex entity, it is rendered using a block. \alex{I would love to see a better justification for using blocks. It is not that clear} \ab{I have to agree with Alex on this!}
 Note that state changes are all specified as callbacks.
 
-There is one Seaside trick here that is worth special mention, namely the message \mthind{WAAnchorTag}{on:of:}, which is used to bind the text input field to accessors for the variable \ct{heading}.
-Anchors and buttons also support this protocol.
-The first argument is the name of an instance variable for which accessors have been defined \alex{Which accessors ? Shall I define heading and heading:, accessor and mutator of the variable heading? Does these accessors have to follow a naming convention ?}, and the second argument is the object to which this instance variable belongs.
-In the case here of a text input field, this saves us the trouble if having to define a callback which updates the field as well as having to bind the default contents of the field to the current value.
-The \ct{heading} variable is automatically updated whenever we update the text field.
+There is one Seaside feature used here that is worth special mention, namely the message \mthind{WAAnchorTag}{on:of:}.
+In the example, this message is used to bind a text input field to the variable \ct{heading}.
+Anchors and buttons also support this message.
+The first argument is the name of an instance variable for which accessors have been defined;  the second argument is the object to which this instance variable belongs.
+Both observer (\ct{heading}) and mutator (\ct{heading:}) accessor messages must be understood by the object, with the usual naming convention.
+In the case here of a text input field, this saves us the trouble if having to define a callback that updates the field as well as having to bind the default contents of the html input field to the current value of the instance variable.
+Using \ct{on: #heading of: self}, the \ct{heading} variable is updated automatically whenever the user updates the text input field.
 
-The same trick is used twice more in this example, to cause the selection of a color to automatically update the \ct{color} variable, and to bind the result of checking the checkbox to value of the \ct{checked} variable.
+The same message is used twice more in this example, to cause the selection of a color to automatically update the \ct{color} variable, and to bind the result of checking the checkbox to value of the \ct{checked} variable.
 
-Many further examples are available directly in the functional tests for Seaside.
+Many other examples can be found in the functional tests for Seaside.
 Have a look at the system category \scat{Seaside-Tests-Functional}, or just point your browser to \url{http://localhost:8080/seaside/tests/alltests}.
 The \link{Form Elements} example illustrates most of the features of forms.
 
-Don't forget, if you \link{Toggle Halos}, you can directly browse all the source code of the examples on line using the Seaside class browser.
+Don't forget, if you \link{Toggle Halos}, you can browse the source code of the examples directly using the Seaside class browser.
 
 %-----------------------------------------------------------------
 \subsection{CSS: Cascading style sheets}
