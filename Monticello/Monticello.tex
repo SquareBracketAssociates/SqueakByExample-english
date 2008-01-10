@@ -288,12 +288,12 @@ Backporting is a way of selectively moving changes from a version to its ancesto
 
 To use \button{Backport}, you must have just saved your package - if your package is marked with the modified *, \button{Backport} will be disabled.  When you press \button{Backport}, you will first be asked to pick the ancestor version you want to backport to.  You will then be presented with a multi-select list of all the changes between that ancestor and the current version.   Choose only the changes you want to backport, and then press \button{Select}.
 
-Any changes you didn't select will then be reverted; that is, your image will now contain only the code from the ancestor version, plus the changes that you chose. You can now save this backported version, merge it into something else, or whatever you like.
-
 \begin{figure}[b]\centering
-	\includegraphics[width=\linewidth]{{backport}}
+	\includegraphics[width=0.8\linewidth]{{backport}}
 	\caption{Backporting a change X from an experimental branch into the main branch.\figlabel{backport}}
 \end{figure}
+
+Any changes you didn't select will then be reverted; that is, your image will now contain only the code from the ancestor version, plus the changes that you chose. You can now save this backported version, merge it into something else, or whatever you like.
 
 The system records the fact that this new version was backported from a later version, and will make use of that information when merging.  For example, if you backport some changes in version C to its ancestor A, making a backported version B, and you then make some new changes to B and save that as B', then when merging B' into C, only the difference between B and B' will be considered.  One possible scenario this enables is the following:
 
@@ -335,12 +335,16 @@ In other words, it's possible to keep two parallel branches, and repeatedly but 
 You may create new version branch when saving your package. Branching is useful when you want to have a new parallel development. 
 For example, suppose your job is to maintain a software in your company. One day a different division asks you for the same software, but with a few parts tweaked for them, since they do things slightly differently. The way to deal with this situation is to create a second branch of your program that incorporate the tweaks, while leaving the first branch unmodified. 
 
+As we mentioned in the section on backporting, each version knows from which version it was created from. A \emph{branch} is a line of development that exists independently of another line, yet still shares a common history if you look far enough back in time. A branch is defined in Monticello as a set of parents starting from a version leaf up to a common version.
+%:\ab{Is there some relation between parents and branches?  Please tell us about it!}  
 
-%:\ab{Give me an example of why I might want to do  this.  The discussion is too abstract}.  
 
-A new branch is easily created by giving a new name to the version in the upper text pane of the \button{Edit Version} window. For example, \figref{saving} shows the package \pkg{SBE-Quinto} being saved. You may assign a new name such as \emph{SBE-Quinto-MyBranch-ab.1} to create the branch \emph{MyBranch}. Giving a totally new name is not a good idea since it will make it hard to see the relationships between branches when browsing the repository. \ab{Eh?  Why tell us to do it, and then tell us that it's not a good idea?}
+\ab{Give me an example of why I might want to do  this.  The discussion is too abstract}.  
 
-\ab{Is there some relation between parents and branches?  Please tell us about it!}  
+%A new branch is easily created by giving a new name to the version in the upper text pane of the \button{Edit Version} window. For example, \figref{saving} shows the package \pkg{SBE-Quinto} being saved. You may assign a new name such as \emph{SBE-Quinto-MyBranch-ab.1} to create the branch \emph{MyBranch}. Giving a totally new name is not a good idea since it will make it hard to see the relationships between branches when browsing the repository. \ab{Eh?  Why tell us to do it, and then tell us that it's not a good idea?}
+
+
+
 
 %-----------------------------------------------------------------
 \subsection{Package extensions}
@@ -365,19 +369,27 @@ A package named \pkg{Foo} contains:
 %-----------------------------------------------------------------
 \subsection{Dependencies}
 
-To function properly, a package may require the presence of some other package. \ab{Example?}
-Monticello supports a dependency mechanism that lets you declare such requirements, which are called \emph{dependencies}. To declare a dependency, simply yellow-click on a package in a Monticello browser and select \emph{add required package}.  \ab{If they are called dependencies, then why doesn't the menu say ``declare dependency''?}
+Most of application cannot live on their own and often require the presence of other packages in order to work properly. For example, let us have a look at Pier\footnote{\url{http://source.lukas-renggli.ch/pier}}, a meta-described content management system. Pier is a large piece of software with many ``facets'' (tools, documentations, blog, catch strategies, security, ...). Each of those facets is implemented by a package. In isolation, a Pier package cannot properly be used since it may refer to methods and classes defined in other packages. A dependency mechanism ensures a proper package installation. Essentially, dependencies make sure that some packages are installed before a particular one that needs functionalities not offered by itself. In Pier, a package \ct{Pier-All} is an empty package which acts as a kind of umbrella. Because of its dependencies, installing \ct{Pier-All} actually installs all different packages that compose Pier. When developing, the only package to be saved is \ct{Pier-All}; all dependent dirty package are saved automatically.
+%:\ab{Example?}
 
-Let us assume a package \pkg{A} version 1 requires another package \pkg{B} version 1.
+@@TODO: ADD A PICTURE HERE
+
+Monticello supports a dependency mechanism that lets you, for a given package version $PV$, to declare a set of package version $P_{i}V_{k}$ as requirement. Prior to install $PV$, requirements of that version are examined and all $P_{i}V_{k}$ are installed first. Note that \emph{dependencies cannot be expressed across different repositories}. All requiring and required packages have to live in the same repository.
+
+%:\ab{If they are called dependencies, then why doesn't the menu say ``declare dependency''?} \alex{no idea}
+
+To declare a dependency, simply yellow-click on a package $A$ in a Monticello browser and select \emph{add required package}. A second package $B$ has to be chosen. The current version of $B$ is required by the current version of $A$. Let us assume a package \pkg{A} version $i$ requires another package \pkg{B} version $j$.
 
 \begin{itemize}
-\item Saving \pkg{A} implies that \pkg{B} should also be saved, if \pkg{B} is dirty.
-\item Saving a new version of \pkg{B} does \emph{not} imply that \pkg{A} must be saved.
-\item Loading \pkg{A} in a fresh image implies that the \ab{appropriate?} version of \pkg{B} must be loaded from the same repository that \pkg{A} is loaded from.  \ab{Why does it matter what repository I load it from?  A version is a version is a version, no matter how many repositories it may be copied to!}
-\item To make \pkg{A} require a new version of \pkg{B}, use the \menu{Add required package} menu item. \ab{What happens to the dependency on the old version?  Does it go away.}
+\item Saving a new version of \pkg{A} implies that \pkg{B} is also be saved, if \pkg{B} is dirty. Note that a comment will have to be entered for \pkg{B} as well.
+\item Saving a new version of \pkg{B} does \emph{not} imply that \pkg{A} is saved.
+\item Loading version $i$ of \pkg{A} in a fresh image implies that Version $j$ of \pkg{B} is loaded from the same repository that \pkg{A} is loaded from.  
+%:\ab{Why does it matter what repository I load it from?  A version is a version is a version, no matter how many repositories it may be copied to!} \alex{see note below}
 \end{itemize}
 
-\ab{I'm left feeling uncomfortable here.  Is the dependency on a package or on a version?  We start off by saying one thing, and then go on to imply the other.}
+Note that to make \pkg{A} require a new version of \pkg{B}, a new version of \pkg{A} has to be saved. If you save \pkg{B} instead, \pkg{A} will remain with the previous dependency.
+
+%:\ab{I'm left feeling uncomfortable here.  Is the dependency on a package or on a version?  We start off by saying one thing, and then go on to imply the other.} \alex{between version. I hope the new version of this subsection is clearer}
 
 %-----------------------------------------------------------------
 \subsection{Version loading}
