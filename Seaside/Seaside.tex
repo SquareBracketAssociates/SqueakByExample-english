@@ -515,7 +515,9 @@ SeasideHtmlDemo>>>renderLinkWithCallbackOn: html
 			with: toggleValue ]
 \end{code}
 
-\alex{I would stress that toggleValue has to be a class attribute  \ab{You mean instance variable?}. It cannot be a temporary variable (method or block)}
+\alex{I would stress that toggleValue has to be a class attribute  \ab{Do you mean instance variable?}. It cannot be a temporary variable (method or block)}
+
+\ab{I have to say that \ct{toggleValue} is a pretty poor name for an instance variable.}
 
 \important{Note that actions should appear only in callbacks.
 The code executed while rendering should not change the state of the application!}
@@ -552,18 +554,17 @@ SeasideFormDemo>>>renderContentOn: html
 \end{code}{}
 
 Since a form is a complex entity, it is rendered using a block. \alex{I would love to see a better justification for using blocks. It is not that clear} \ab{I have to agree with Alex on this!}
-Note that state changes are all specified as callbacks.
+Note that all the state changes happen in the callbacks, not as part of the rendering.
 
 There is one Seaside feature used here that is worth special mention, namely the message \mthind{WAAnchorTag}{on:of:}.
 In the example, this message is used to bind a text input field to the variable \ct{heading}.
 Anchors and buttons also support this message.
 The first argument is the name of an instance variable for which accessors have been defined;  the second argument is the object to which this instance variable belongs.
 Both observer (\ct{heading}) and mutator (\ct{heading:}) accessor messages must be understood by the object, with the usual naming convention.
-In the case here of a text input field, this saves us the trouble if having to define a callback that updates the field as well as having to bind the default contents of the html input field to the current value of the instance variable.
+In the case here of a text input field, this saves us the trouble of having to define a callback that updates the field as well as having to bind the default contents of the html input field to the current value of the instance variable.
 Using \ct{on: #heading of: self}, the \ct{heading} variable is updated automatically whenever the user updates the text input field.
 
-The same message is used twice more in this example, to cause the selection of a color to automatically update the \ct{color} variable, and to bind the result of checking the checkbox to value of the \ct{checked} variable.
-
+The same message is used twice more in this example, to cause the selection of a colour on the html form to update the \ct{color} variable, and to bind the result of the checkbox to the \ct{checked} variable.
 Many other examples can be found in the functional tests for Seaside.
 Have a look at the system category \scat{Seaside-Tests-Functional}, or just point your browser to \url{http://localhost:8080/seaside/tests/alltests}.
 The \link{Form Elements} example illustrates most of the features of forms.
