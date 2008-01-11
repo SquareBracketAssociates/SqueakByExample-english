@@ -369,10 +369,13 @@ A package named \pkg{Foo} contains:
 %-----------------------------------------------------------------
 \subsection{Dependencies}
 
-Most of application cannot live on their own and often require the presence of other packages in order to work properly. For example, let us have a look at Pier\footnote{\url{http://source.lukas-renggli.ch/pier}}, a meta-described content management system. Pier is a large piece of software with many ``facets'' (tools, documentations, blog, catch strategies, security, ...). Each of those facets is implemented by a package. In isolation, a Pier package cannot properly be used since it may refer to methods and classes defined in other packages. A dependency mechanism ensures a proper package installation. Essentially, dependencies make sure that some packages are installed before a particular one that needs functionalities not offered by itself. In Pier, a package \ct{Pier-All} is an empty package which acts as a kind of umbrella. Because of its dependencies, installing \ct{Pier-All} actually installs all different packages that compose Pier. When developing, the only package to be saved is \ct{Pier-All}; all dependent dirty package are saved automatically.
+Most of application cannot live on their own and often require the presence of other packages in order to work properly. For example, let us have a look at Pier\footnote{\url{http://source.lukas-renggli.ch/pier}}, a meta-described content management system. Pier is a large piece of software with many ``facets'' (tools, documentations, blog, catch strategies, security, ...). Each of those facets is implemented by a package. In isolation, a Pier package cannot properly be used since it may refer to methods and classes defined in other packages. A dependency mechanism ensures a proper package installation. Essentially, dependencies make sure that some packages are installed before a particular one that needs functionalities not offered by itself. As illustrated in \figref{dependencies}, in Pier, a package \ct{Pier-All} is an empty package which acts as a kind of umbrella. Because of its dependencies, installing \ct{Pier-All} actually installs all different packages that compose Pier. When developing, the only package to be saved is \ct{Pier-All}; all dependent dirty package are saved automatically.
 %:\ab{Example?}
 
-@@TODO: ADD A PICTURE HERE
+\begin{figure}[b]\centering
+	\includegraphics[width=0.8\linewidth]{{dependencies}}
+	\caption{Dependencies in Pier.\figlabel{dependencies}}
+\end{figure}
 
 Monticello supports a dependency mechanism that lets you, for a given package version $PV$, to declare a set of package version $P_{i}V_{k}$ as requirement. Prior to install $PV$, requirements of that version are examined and all $P_{i}V_{k}$ are installed first. Note that \emph{dependencies cannot be expressed across different repositories}. All requiring and required packages have to live in the same repository.
 
@@ -392,30 +395,43 @@ Note that to make \pkg{A} require a new version of \pkg{B}, a new version of \pk
 %:\ab{I'm left feeling uncomfortable here.  Is the dependency on a package or on a version?  We start off by saying one thing, and then go on to imply the other.} \alex{between version. I hope the new version of this subsection is clearer}
 
 %-----------------------------------------------------------------
-\subsection{Version loading}
+%\subsection{Version loading}
 
-Loading a package with another version \ab{What doe sthis mean?} fully erases changes for that package that are committed \on{? what does ``that are committed'' refer to?}. For example, let's assume that you are working on a package that contains a method \ct{m} for a class \ct{C}. Loading a new version of this package will either remove or replace \ab{which?  Remove, or replace?  If \ct{C>>>m} is in the package, how could it \emph{not} replace the \ct{C>>>m} in the image?  And why does this happen only ``if I am working on a package that contains \ct{C>>>m}''?  I would have thought that this replacement would occur regardless of what I'm working on\ldots} your definition of \ct{C} and \ct{m}. You will lose it, even if \ct{C} is not defined in a new version. \ab{a new version of what?}
-\on{so the point of ``that are committed'' is still unclear to me.}
+%%%
+% alex: I remove this section since it was very weak and does not add that much. I prefered 
+%%%
 
-You probably want to use the \button{Merge} or the \button{Backport} buttons if you want to update the version of your package while keeping your code change.
-\on{But when we looked at \button{Merge} before it also seemed to stomp on your changes. the explanation needs work, I think.}
-\ab{I think that a real example (not \pkg{A} and \pkg{B}, please) would help a lot.  I think that you may have just introduced the problem for which \button{Backport} is the solution!} 
 
-\begin{figure}[ht]\centering
-	\includegraphics[width=.75\linewidth]{{filerepositoryinspector}}
-	\caption{A file repository inspector.\figlabel{filerepositoryinspector}\ab{The figure seems to show an http repository, not a file repository.}}
-\end{figure}
+%Loading a package with another version \ab{What doe sthis mean?} fully erases changes for that package that are committed \on{? what does ``that are committed'' refer to?}. For example, let's assume that you are working on a package that contains a method \ct{m} for a class \ct{C}. Loading a new version of this package will either remove or replace \ab{which?  Remove, or replace?  If \ct{C>>>m} is in the package, how could it \emph{not} replace the \ct{C>>>m} in the image?  And why does this happen only ``if I am working on a package that contains \ct{C>>>m}''?  I would have thought that this replacement would occur regardless of what I'm working on\ldots} your definition of \ct{C} and \ct{m}. You will lose it, even if \ct{C} is not defined in a new version. \ab{a new version of what?}
+%\on{so the point of ``that are committed'' is still unclear to me.}
+
+%You probably want to use the \button{Merge} or the \button{Backport} buttons if you want to update the version of your package while keeping your code change.
+%\on{But when we looked at \button{Merge} before it also seemed to stomp on your changes. the explanation needs work, I think.}
+%\ab{I think that a real example (not \pkg{A} and \pkg{B}, please) would help a lot.  I think that you may have just introduced the problem for which \button{Backport} is the solution!} 
+
+%\begin{figure}[ht]\centering
+%	\includegraphics[width=.75\linewidth]{{filerepositoryinspector}}
+%	\caption{A file repository inspector.\figlabel{filerepositoryinspector}\ab{The figure seems to show an http repository, not a file repository.}}
+%\end{figure}
 
 %-----------------------------------------------------------------
 \subsection{File repository inspector} 
 
-\ab{Isn't this true for all kinds of repositories, not just file repositories?}
+%:\ab{Isn't this true for all kinds of repositories, not just file repositories?} \alex{yes, of course. I updated what I wrote}
 
-Information about the content of a repository is displayed using the File Repository Inspector, which can be launched with the \button{Open} button. The packages in the repository are listed on the left-hand side of the inspector:
+Information about the content of a repository is displayed using a repository inspector, which can be launched with the \button{Open} button (cf \figref{repositoryinspector}).
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{{filerepositoryinspector}}
+	\caption{A repository inspector.\figlabel{repositoryinspector}}
+\end{figure}
+
+The packages in the repository are listed on the left-hand side of the inspector:
 
 \begin{itemize}
 \item an \underline{underlined} package name means that this package is installed in the image;
-\item a \underline{\bf bold underlined} name means that the package is installed, but that there is a more recent version in the repository.
+\item a \underline{\bf bold underlined} name means that the package is installed, but that there is a more recent version in the repository;
+\item a name in a normal font means that the package is not installed in the image.
 \end{itemize}
 
 \noindent
@@ -423,9 +439,11 @@ Once a package is selected, the right-hand pane lists the versions of the select
 
 \begin{itemize}
 \item an \underline{underlined} version name means that this version is installed in the image;
-\item a {\bf bold} version name means that this version is not an ancestor of the installed version. This means that the bold version belongs to a different branch from the installed version.
+\item a {\bf bold} version name means that this version is not an ancestor of the installed version. This means that the bold version belongs to a different branch from the installed version;
+\item a version name displayed with a normal font shows an older version that the installed current one.
 \end{itemize}
-\ab{I reworded these bullets; please check that I have not corrupted the meaning.}
+
+%:\ab{I reworded these bullets; please check that I have not corrupted the meaning.}
 \noindent
 Note that right-clicking the right-hand side of the inspector opens a menu with different sorting options.
 \ab{What does \menu{unchanged} do?}
