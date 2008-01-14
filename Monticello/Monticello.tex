@@ -34,27 +34,31 @@
 \chapter{Versioning your Code with Monticello}
 %\chapter{Monticello and SqueakSource}
 
-\ab{I've finished reviewing this chapter.  I changed the title back to the other one, since it is more descriptive.  I fixed some things, and left lots of comments; I think that it still needs a lot of work before it can be joined with the existing section on Monticello}
+%:\ab{I've finished reviewing this chapter.  I changed the title back to the other one, since it is more descriptive.  I fixed some things, and left lots of comments; I think that it still needs a lot of work before it can be joined with the existing section on Monticello}
+
+%:\on{I massaged some text and added comments for things that still need to be fixed}
+
+%:\on{I tried to be consistent in the use of the \button{button} and \menu{menu} macros, but maybe this is confusing.}
+%:\alex{make sense to me}
+
 
 \noindent
-\on{I massaged some text and added comments for things that still need to be fixed}
-
-\on{I tried to be consistent in the use of the \button{button} and \menu{menu} macros, but maybe this is confusing.}
 
 A versioning system is a tool that helps you to manage concurrent access to a common source code repository. It helps you by keeping track of all work and all changes to a set of classes and allows several developers to collaborate. As soon as the size of your software goes beyond a few classes, you probably need a versioning system.
 
 Many versioning tools are available. CVS\footnote{\url{http://www.nongnu.org/cvs}} and Subversion\footnote{\url{http://subversion.tigris.org}} are probably the most popular.
-In principle you could use them to manage the development of Squeak software projects, but this would reduce Squeak Smalltalk to a soulless file-based language. 
-\ab{It woudl be better to say concretely why this would be a bad idea, rather than resorting to name-calling.  Many people think that files are good.  Let's tell the reader about the disadvantages!}
+In principle you could use them to manage the development of Squeak software projects, but using files as a storage unit will depreciate Squeak by using a storage model different from the Smalltalk object model.
+
+%:\ab{It woudl be better to say concretely why this would be a bad idea, rather than resorting to name-calling.  Many people think that files are good.  Let's tell the reader about the disadvantages!}
 
 \emph{Monticello} supports a versioning system for Squeak in which methods, rather than lines of text,
 are the unit of change. \emph{SqueakSource} is an online central repository in which you can store your applications.
 
-In this chapter, you will read about using Monticello and SqueakSource to manage your software program for day-to-day programming.
+In this chapter, you will read about using Monticello and SqueakSource to manage your software program for day-to-day programming. We have already seen Monticello in ``A First Application'' (Chapter \ref{cha:firstApp} and in ``The Squeak Programming Environment'' (Chapter \ref{cha:env}). This chapter gives an exhaustive description of Monticello by explaining how it can be used for versioning a large application.
 
-\on{Should state explicitly what is new in this chapter.
-We have already seen Monticello in ``A First Application'' (section 2.9) and in ``The Squeak Programming Environment'' (section 6.3), so we should be told what is new.
-}
+%:\on{Should state explicitly what is new in this chapter.
+%We have already seen Monticello in ``A First Application'' (section 2.9) and in ``The Squeak Programming Environment'' (section 6.3), so we should be told what is new.
+%}
 
 %=================================================================
 \section{Basic usage}
@@ -102,7 +106,9 @@ Your package will be saved in \ct{package-cache} contained in the same directory
 
 \dothis{Use your favorite file browser (\eg Windows Explorer, Finder or XTerm) to ensure that a file \ct{SBE-Quinto-XX.1.mcz} was created in your package cache. \ct{XX} corresponds to your initials}
 
-You may change the version name and add a comment. \ab{Experience with my students is that changing the version name is a really bad idea, since it can easily break Monticello.}
+%You may change the version name and add a comment.
+%:\ab{Experience with my students is that changing the version name is a really bad idea, since it can easily break Monticello.}
+%:\alex{I was not able to find a satisfying explanation, So I prefer to leave this point out}
 
 \begin{figure}[ht]\centering
 	\includegraphics[width=.55\linewidth]{saving.png}
@@ -144,10 +150,6 @@ Add this repository to Monticello by clicking \button{+Repository}, and then sel
 \button{Open} the repository and choose one version. 
 Unless you are running an old image, you are most likely to want the most recent version. Select a version and click \button{Load}.
 
-Note If you want to save your code in a SqueakSource Monticello repository, the project security policy should allow you to do so.
-\on{huh? what is this?}
-\ab{We need a sub-section on read and write permissions}
-
 %\begin{figure}[ht]\centering
 %	\includegraphics[width=.75\linewidth]{squeaksource1}
 %	\caption{SqueakSource is an online central repository.\figlabel{squeaksource1}}
@@ -160,6 +162,19 @@ Note If you want to save your code in a SqueakSource Monticello repository, the 
 
 Pressing the \menu{Register Member} link on the SqueakSource home page will probably be your first step If you do not have a SqueakSource account. 
 Once you are a member, \menu{Register Project} allows you to create a new project. 
+
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=.55\linewidth]{squeaksourcesetting}
+	\caption{Repositories under SqueakSource are configurable.\figlabel{squeaksourcesetting}}
+\end{figure}
+
+The configuration of a Monticello repository offers a large range of options (cf. \figref{squeaksourcesetting}): tags may be assigned, a license may be chosen, access for people that are not part of the project may be restricted (read/write, read, no access), emails may be sent upon commits, mailing list, and users may be part of the project (as administrator, developer, or guest).
+
+%Note If you want to save your code in a SqueakSource Monticello repository, the project security policy should allow you to do so.
+%:\on{huh? what is this?}
+%:\ab{We need a sub-section on read and write permissions}
+
 
 %-----------------------------------------------------------------
 \subsection{Merging}
@@ -218,9 +233,7 @@ Remember that conflicts happen when you have modified your package without havin
 Modifying the code in a package with any of the development tools makes that package \emph{dirty}.
 This means that the version package in the image is different from the version that has been saved or loaded. 
 
-In Monticello, the name of a dirty package is preceded by an asterisk (\ct{*}). This indicates which packages have uncommitted changes, and therefore need to be saved into a repository if those changes are not to be lost. Saving a dirty package cleans it.
-
-Note that only dirty package may lead to conflicts when being merged.
+In Monticello, the name of a dirty package is preceded by an asterisk (\ct{*}). This indicates which packages have uncommitted changes, and therefore need to be saved into a repository if those changes are not to be lost. Saving a dirty package cleans it. Note that only dirty package may lead to conflicts when being merged.
 
 %=================================================================
 \section{Useful features}
@@ -338,8 +351,7 @@ For example, suppose your job is to maintain a software in your company. One day
 As we mentioned in the section on backporting, each version knows from which version it was created from. A \emph{branch} is a line of development that exists independently of another line, yet still shares a common history if you look far enough back in time. A branch is defined in Monticello as a set of parents starting from a version leaf up to a common version.
 %:\ab{Is there some relation between parents and branches?  Please tell us about it!}  
 
-
-\ab{Give me an example of why I might want to do  this.  The discussion is too abstract}.  
+%:\ab{Give me an example of why I might want to do  this.  The discussion is too abstract}.  
 
 %A new branch is easily created by giving a new name to the version in the upper text pane of the \button{Edit Version} window. For example, \figref{saving} shows the package \pkg{SBE-Quinto} being saved. You may assign a new name such as \emph{SBE-Quinto-MyBranch-ab.1} to create the branch \emph{MyBranch}. Giving a totally new name is not a good idea since it will make it hard to see the relationships between branches when browsing the repository. \ab{Eh?  Why tell us to do it, and then tell us that it's not a good idea?}
 
@@ -350,7 +362,7 @@ As we mentioned in the section on backporting, each version knows from which ver
 \subsection{Package extensions}
 \seclabel{packageextension} 
 
-\ab{This is out of place.   First, this definition already appears in the ``Environment'' chapter.  Second, it needs to come before the section on the snapshot browser, which shows us an extension.} \alex{Why is it out of place? The mechanism below belongs to Monticello}
+\ab{This is out of place.   First, this definition already appears in the ``Environment'' chapter.  Second, it needs to come before the section on the snapshot browser, which shows us an extension.} \alex{Why is it out of place? The mechanism belongs to Monticello}
 
 Monticello packages follow a number of important naming conventions for class and method categories.
 A package named \pkg{Foo} contains:
@@ -369,7 +381,7 @@ A package named \pkg{Foo} contains:
 %-----------------------------------------------------------------
 \subsection{Dependencies}
 
-Most of application cannot live on their own and often require the presence of other packages in order to work properly. For example, let us have a look at Pier\footnote{\url{http://source.lukas-renggli.ch/pier}}, a meta-described content management system. Pier is a large piece of software with many ``facets'' (tools, documentations, blog, catch strategies, security, ...). Each of those facets is implemented by a package. In isolation, a Pier package cannot properly be used since it may refer to methods and classes defined in other packages. A dependency mechanism ensures a proper package installation. Essentially, dependencies make sure that some packages are installed before a particular one that needs functionalities not offered by itself. As illustrated in \figref{dependencies}, in Pier, a package \ct{Pier-All} is an empty package which acts as a kind of umbrella. Because of its dependencies, installing \ct{Pier-All} actually installs all different packages that compose Pier. When developing, the only package to be saved is \ct{Pier-All}; all dependent dirty package are saved automatically.
+Most of application cannot live on their own and often require the presence of other packages in order to work properly. For example, let us have a look at Pier\footnote{\url{http://source.lukas-renggli.ch/pier}}, a meta-described content management system. Pier is a large piece of software with many ``facets'' (tools, documentations, blog, catch strategies, security, ...). Each of those facets is implemented by a package. In isolation, a Pier package cannot properly be used since it may refer to methods and classes defined in other packages. A dependency mechanism ensures a proper package installation. Essentially, dependencies make sure that some packages are installed before a particular one,  which may needs functionalities not offered by itself. As illustrated in \figref{dependencies}, in Pier, a package \ct{Pier-All} is an empty package which acts as a kind of umbrella. Because of its dependencies, installing \ct{Pier-All} actually installs all different packages that compose Pier. When developing, the only package to be saved is \ct{Pier-All}; all dependent dirty package are saved automatically. \ct{Pier-All} is the only package to load to install Pier.
 %:\ab{Example?}
 
 \begin{figure}[b]\centering
@@ -445,8 +457,8 @@ Once a package is selected, the right-hand pane lists the versions of the select
 
 %:\ab{I reworded these bullets; please check that I have not corrupted the meaning.}
 \noindent
-Note that right-clicking the right-hand side of the inspector opens a menu with different sorting options.
-\ab{What does \menu{unchanged} do?}
+Note that right-clicking the right-hand side of the inspector opens a menu with different sorting options. The \menu{unchanged} entry in the menu discards any particular sorting. It uses the order given by the repository.
+%:\ab{What does \menu{unchanged} do?}
 
 %\subsection{Branching}
 %\subsection{Ancestor}
@@ -454,81 +466,112 @@ Note that right-clicking the right-hand side of the inspector opens a menu with 
 %-----------------------------------------------------------------
 \subsection{Class initialization}
 
-\ab{When Monticello loads a package into the image, any class that defines an \ct{initialize} method \ldots} classes are initialized by Monticello by invoking the \ct{initialize} class method on classes for which this method is defined only. Note that inherited \ct{initialize} methods are not invoked.
-\on{Ugh!  You do not ``invoke methods'' in Smalltalk!  You ``send messages''!!!}
-\on{Why are inherited initialize method not invoked? shouldn't you always send \ct{super initialize}?}
-\ab{I think that this might be a bug in Monticello}.
+When Monticello loads a package into the image, any class that defines an \ct{initialize} method on its class side will be the receiver of a message send toward this method. The message \ct{initialize} is sent to classes that defines this class method only. A class that does not define this method will not be initialized, even if defined on one of its superclass.
+
+%:\on{Ugh!  You do not ``invoke methods'' in Smalltalk!  You ``send messages''!!!}
+%:\on{Why are inherited initialize method not invoked? shouldn't you always send \ct{super initialize}?}
+%:\ab{I think that this might be a bug in Monticello}.
+%:\alex{Maybe this is to avoid double initialization}
 
 %-----------------------------------------------------------------
 \subsection{Adding new variables}
 
-Unfortunately Monticello does not support package extension that are not about method. For example, a package may not directly had some instance variables on a class defined in another package. Your may circumvent this restriction by using reflection to add new variables. 
+Unfortunately Monticello does not support package extension that are not about method. For example, a package may not directly had some instance variables on a class defined in another package. 
 
-\ab{Tell us what the problem is, before telling us the solution.  With an Example!}
+As an illustration, let us suppose an extension of the Quinto game to support unchangeable cells. Those cells are located randomly on the board. Generate numbers need to be generated. This can be done by adding a variable \ct{randomNumber} to the class \ct{SBEGame}. This kind of extension is not well supported by Monticello. A package cannot define the variable \ct{randomNumber} as an extension of \ct{SBEGame}. Monticello supports method extension only.
+%:\ab{Tell us what the problem is, before telling us the solution.  With an Example!}
 
-Monticello supports method extension only. One way to circumvent this limitation is to define an initialize method on the class side, and manually add this variable. For example, let us image \on{imagine?} a package that extends the class \ct{OBUCommand} with a variable \ct{parent}.
+
+One way to circumvent this limitation is to define an initialize method on the class side, and manually add this variable. We could then define the following \ct{initialize} method on a class \ct{GameExtension} contained in the extending package:
 
 \begin{code}{}
-OBUCommand class>>initialize
-	(OBUCommand instVarNames includes: 'parent') 
-		ifFalse: [OBUCommand addInstVarName: 'parent']
+GameExtension class>>initialize
+	(SBEGame instVarNames includes: 'randomNumber') 
+		ifFalse: [SBEGame addInstVarName: 'randomNumber']
 \end{code}
 
-In the case that \ct{initialize} is already defined in \ct{OBUCommand}, then you may define this \ct{initialize} method on a class in your package.
-\on{huh? otherwise?}
+In the case that \ct{randomNumber} is not defined in \ct{SBEGame}, this variable is added to this class.
 
-\ab{Isn't this more appropriate for a post-load \emph{do-it} than an \ct{initialize} method?  Do such things not exist (they did with change sets \ldots}
+%:\ab{Isn't this more appropriate for a post-load \emph{do-it} than an \ct{initialize} method?  Do such things not exist (they did with change sets \ldots}
+%:\alex{Probably, but this seems to be broken with Monticello}
 
 %=================================================================
 \section{Repositories}
 \seclabel{monti:repositories}
 
-Several kinds of repositories are supported by Monticello, each with different characteristics and uses. Repositories can be read-only, write-only or read-write.  \ab{eh?  Do you mean that \emph{a particular user} may have restricted access rights?}
+Several kinds of repositories are supported by Monticello, each with different characteristics and uses. Repositories can be read-only, write-only or read-write. Those restricted access rights may be global or tied to a particular user (when used with SqueakSource for example) and are related to the way of storing data used.
 
-\paragraph{HTTP} HTTP Repositories are often general-purpose read-write repositories for day-to-day \on{? as opposed to what?} development using a shared server. (Such servers can also be configured for read-only access. Saving versions via HTTP uses the PUT method \ab{Is ``put'' the right word}, which must be enabled on the server.)
+%:\ab{eh?  Do you mean that \emph{a particular user} may have restricted access rights?}
 
-The nice thing about HTTP repositories is that it's easy to link directly to specific versions from web sites or SqueakMap. With a little configuration work on the HTTP server, HTTP repositories can be made browsable by ordinary web browsers, WebDAV clients, \etc
-\ab{where can I find out how to support an HTTP repository?}
+\paragraph{HTTP} HTTP repositories are probably the kind of repository the most used since it is favored by SqueakSource. % (Such servers can also be configured for read-only access. Saving versions via HTTP uses the PUT method \ab{Is ``put'' the right word}, which must be enabled on the server.)
 
-\paragraph{FTP} This is similar to an HTTP repository, except that it uses an FTP server instead.  \ab{And which of the nice properties listed above apply?}
+The nice thing about HTTP repositories is that it's easy to link directly to specific versions from web sites or SqueakMap. With a little configuration work on the HTTP server, HTTP repositories can be made browsable by ordinary web browsers, WebDAV clients, \etc 
 
-\paragraph{GOODS} This repository type stores versions in a GOODS object database. It's a read-write repository, so it makes a good ``working'' repository where versions can be saved and retreived. Because of the transaction support, journaling and replication capabilities of GOODS, it is suitable for large repositories used by many clients.  \ab{I would like a couple of sentences about GOODS, which I've never heard of.}
+HTTP repositories may be used with an HTTP server other than SqueakSource. For example, a simple configuration\footnote{\url{http://www.visoracle.com/squeak/faq/monticello-1.html}} turns Apache into a Monticello repository with restricted access rights.
 
-\paragraph{Directory} A directory repository stores versions in a directory in the local file system. Since it requires very little work to set up, it's handy for private projects; since it requires no network connection, it's the only option for disconnected development. Versions in a directory repository may be uploaded \ab{copied?} to a public or shared repository at a later time. \ab{say how}
 
-\paragraph{SMTP} SMTP repositories are useful for sending versions by mail. When creating an SMTP repository, you specify a destination email address. This could be the address of another developer\,---\,the package's maintainer, for example\,---\,or a mailing list such as squeak-dev. Any versions saved in such a repository will be emailed to this address.  \ab{Is this an example of a write-only repository?} 
+%:\ab{where can I find out how to support an HTTP repository?}
 
-\paragraph{SqueakMap Release} This is a write-only repository used for publishing releases of a package to SqueakMap. To configure the repository enter the name of the package on SqueakMap, your SqueakMap initials and your SqueakMap password. Now any versions saved to the repository will be uploaded to your SqueakMap account, and registered as a new release with SqueakMap.  \ab{We havn't talked bout how to put stuff on SqueakMap, only about how to load it.  So, we should add that material, either here, or in a subsequent subsection.}
+\paragraph{FTP} This is similar to an HTTP repository, except that it uses an FTP server instead. Similarly to HTTP repositories, a FTP server may offer restricted access right and different FTP clients may be used to browse such Monticello repository.
+%:\ab{And which of the nice properties listed above apply?}
 
-\paragraph{SqueakMap Cache} When packages are installed via SqueakMap, downloaded files are stored in particular location \ab{subdirectory?} in your working directory called a cache. In order to make these files available to Monticello for loading, merging, \etc, a SqueakMap Cache repository is created when these files are loaded for the first time.
+\paragraph{GOODS} GOODS is an object oriented fully distributed database management system using an active client model\footnote{\url{http://www.garret.ru/~knizhnik/goods.html}}.
 
-\on{why don't you first talk about the package cache?  I see you commented it out.}
+This repository type stores versions in a GOODS object database. It's a read-write repository, so it makes a good ``working'' repository where versions can be saved and retreived. Because of the transaction support, journaling and replication capabilities of GOODS, it is suitable for large repositories used by many clients.  
+%:\ab{I would like a couple of sentences about GOODS, which I've never heard of.}
+
+\paragraph{Directory} A directory repository stores versions in a directory in the local file system. Since it requires very little work to set up, it's handy for private projects; since it requires no network connection, it's the only option for disconnected development. Versions in a directory repository may be copied to a public or shared repository at a later time. SqueakSource support this feature by allowing package version (.mcz files) to be updated for a given project. 
+%:\ab{say how}
+
+\paragraph{Directory with Subdirectories}  A ``directory with subdirectories'' is very similar to ``directory'' expect that it looks in subdirectories to retrieve list of available packages. Instead of having a flat directory that contains all package versions, such as repository may be be structured with  subdirectories.
+
+\paragraph{SMTP} SMTP repositories are useful for sending versions by mail. When creating an SMTP repository, you specify a destination email address. This could be the address of another developer\,---\,the package's maintainer, for example\,---\,or a mailing list such as squeak-dev. Any versions saved in such a repository will be emailed to this address.  SMTP repositories are write-only.
+%:\ab{Is this an example of a write-only repository?} 
+
+\paragraph{SqueakMap Release} This is a write-only repository used for publishing releases of a package to SqueakMap. To configure the repository enter the name of the package on SqueakMap, your SqueakMap initials and your SqueakMap password. Now any versions saved to the repository will be uploaded to your SqueakMap account, and registered as a new release with SqueakMap.  
+
+An account is necessary to add SqueakMap packages. New account may be created online\footnote{\url{http://map.squeak.org}}. The list of packages you added will appear on the SqueakMap package list displayed when SqueakMap is open.
+
+%:\alex{I added few sentences about adding package on squeakmap. But not many people are using it now. It is progressively being replaced by universe.}
+%:\ab{We havn't talked bout how to put stuff on SqueakMap, only about how to load it.  So, we should add that material, either here, or in a subsequent subsection.}
+
+\paragraph{SqueakMap Cache} When packages are installed via SqueakMap, downloaded files are stored in particular subdirectory in your working directory called a cache. In order to make these files available to Monticello for loading, merging, \etc, a SqueakMap Cache repository is created when these files are loaded for the first time.
+
+%:\on{why don't you first talk about the package cache?  I see you commented it out.}
+%:\alex{Because it does not appear in Squeak anymore. Maybe it was buggy or simply obsolete}
+
+
+
 \ab{One thing to say is how to get to versions in some \emph{other} package cache}
+\alex{I am not sure about what you mean.}. 
 
 %\paragraph{package-cache}
 
 %The package cache is a special repository that Monticello creates automatically. Like a directory repository, the package cache stores files in a directory on your local filesystem. See Elements of Monticello for more information.
 
-\ab{what about ``Directory with Subdirectories''?}
+%:\ab{what about ``Directory with Subdirectories''?} 
+%\alex{I added a new paragraph on it above}
 
 %=================================================================
 \section{The .mcz file format}
 
-Versions are often \ab{not always?} saved in binary files for storage in repositories, distribution to users \etc
-These files are commonly call ``mcz files'' as they carry the extension .mcz.
-\ab{Say here that it's just a zipped file, but you shouldn't unzip it yourself?}
+Versions are saved in binary files for storage in repositories, distribution to users \etc
+These files are commonly call ``mcz files'' as they carry the extension .mcz. A mcz file is simply a zipped file. You may try to unzip one to study the content of it, but as a end user, such files should not be unzipped.
 
-\paragraph{Archive contents}
+%:\ab{Say here that it's just a zipped file, but you shouldn't unzip it yourself?}
 
-\ab{What's an ``Archive''?}
+\paragraph{File contents}
 Mcz files are actually ZIP archives that follow certain conventions. Conceptually a version contains four things:
 
 \begin{itemize}
-\item Package. A version is related to a particular package. Each mcz file contains a member \ab{member?}called ``package'' which contains information about the version's package.
+\item \emph{Package}. A version is related to a particular package. Each mcz file contains a file called ``package'' that contains information about the package's name.
 
-\item VersionInfo. This is the meta-data about the snapshot. It contains the author initials, date and time the snapshot was taken, and the ancestry of the snapshot. Each mcz file contains a member called ``version'' which contains this information.
-\item Snapshot. A Snapshot is a record of the state of the package at a particular time. Each mcz file contains a directory named ``snapshot/''. All the members in this directory contain definitions of program elements, which when combined form the Snapshot. Current versions of Monticello only create one member in this directory, called ``source.st''.
-\item Dependencies. A version may depend on specific version of other packages. An mcz file may contain a ``dependencies/'' directory with a member for each dependency. These members will be named after each package they \ab{what does this ``they'' refer to?} depend upon.
+\item \emph{VersionInfo}. This is the meta-data about the snapshot. It contains the author initials, date and time the snapshot was taken, and the ancestry of the snapshot. Each mcz file contains a member called ``version'' which contains this information.
+
+A version doesn't contain a full history of the source code. It's a snapshot of the code at a single point in time, with a UUID identifying that snapshot, and a record of the UUIDs of all the previous snapshots it's descended from.
+
+\item \emph{Snapshot}. A Snapshot is a record of the state of the package at a particular time. Each mcz file contains a directory named ``snapshot/''. All the members in this directory contain definitions of program elements, which when combined form the Snapshot. Current versions of Monticello only create one member in this directory, called ``source.st''.
+\item \emph{Dependencies}. A version may depend on specific version of other packages. An mcz file may contain a ``dependencies/'' directory with a member for each dependency. These members will be named after each package the Monticello package depends upon. For example, a \ct{Pier-All} mcz file will contains files named \ct{Pier-Blog} and \ct{Pier-Caching} in its dependencies directory.
 \end{itemize}
 
 \paragraph{Source code encoding}
@@ -537,15 +580,19 @@ The member named ``snapshot/source.st'' contains a standard fileout of the code 
 
 \paragraph{Metadata encoding}
 
-The other members of the zip archive are encoded using S-expressions. Conceptually, the expressions represent nestable dictionaries. Each pair of elements in a list represent a key and value. The following example should need no explanation: \ab{butif it does?}
+The other members of the zip archive are encoded using S-expressions. Conceptually, the expressions represent nestable dictionaries. Each pair of elements in a list represent a key and value. For example, the following is an excerpt of a ``version'' file of a package named \ct{AA}:
 
-\ct{(key1 'value1' key2 (sub1 'sub value 1'))}
+\ct{(name 'AA-ab.3' message 'empty log message' date '10 January 2008' time '10:31:06 am' author 'ab' ancestors ((name 'AA-ab.2' message...)))}
 
-\paragraph{Distributing mcz files}
+It basically says that the version \ct{AA-ab.3} has an empty log message, was created on \ct{January 10, 2008}, by \ct{ab}, and has an ancestor named \ct{AA-ab.2}, ...
 
-The metadata for a version ends up being fairly compact, so it's not unreasonable to distribute it with a release. \ab{What's a release?} It's also important that it be present if somebody decides to start hacking on your package \on{?}. Then they can create a mcz with their version of your package and it will have the correct ancestry information, enabling you to easily and correctly merge it back into your work.
+%: \ab{butif it does?}
 
-Stated another way, a version doesn't contain a full history of the source code. It's a snapshot of the code at a single point in time, with a UUID identifying that snapshot, and a record of the UUIDs of all the previous snapshots it's descended from. So it's a perfect thing to distribute. \ab{This paragraph I understand.  Maybe just delete the previous one?  What is the connection with the paragraph title?}
+%\paragraph{Distributing mcz files}
+
+%The metadata for a version ends up being fairly compact, so it's not unreasonable to distribute it with a release. \ab{What's a release?} It's also important that it be present if somebody decides to start hacking on your package \on{?}. Then they can create a mcz with their version of your package and it will have the correct ancestry information, enabling you to easily and correctly merge it back into your work.
+
+%Stated another way,  So it's a perfect thing to distribute. \ab{This paragraph I understand.  Maybe just delete the previous one?  What is the connection with the paragraph title?}
 
 %=================================================================
 \section{Chapter Summary}
@@ -561,9 +608,11 @@ This chapter explained how to use Monticello and SqueakSource to manage the sour
 
 \item After having created a package in Monticello, you may store it in a remote repository such as that offered by SqueakSource.
 
-\item Monticello allows a package version different from the local version to be merged, creating a new branch and changing the local version of your package.
-\on{confusing sentence --- not sure what you want to say}
-\ab{ditto}
+\item Merging and backporting are feature provided by Monticello that allow changes to cross different version line and to move along a same package version line.
+
+%\item Monticello allows a package version different from the local version to be merged, creating a new branch and changing the local version of your package.
+%\on{confusing sentence --- not sure what you want to say}
+%\ab{ditto}
 \end{itemize}
 
 %=================================================================
