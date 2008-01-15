@@ -29,8 +29,6 @@
 %=================================================================
 \chapter{Introspecting and metaprogramming}\label{cha:metaprog}
 
-\alex{I am working on this chapter}
-
 Like all Smalltalk dialects, \sq is a reflective programming language.
 For a programming language, being reflective means that it allows both \emph{introspection} and \emph{intercession}.
 Introspection is the ability to \emph{look} at the data structures that define the language itself, like objects, classes, the execution stack.
@@ -418,8 +416,124 @@ Method foo: arguments: #(10) receiver: a C
 
 Reification of method execution is an expressive mechanism that enables a whole range of dynamic meta operations. As an example, 
 
-@@TO BE CONTINUED
+\subsection{Example with Spy}
 
+As an illustration of section given above, this section presents \emph{Spy}, a small application that infers relationship between classes at runtime. Spy is available on SqueakSource\footnote{\url{http://www.squeaksource.com/Spy}}. 
+
+A spy is installed on any class, with an \ct{installOn:} method and is removed by sending \ct{removeSpy} to a spied class. Spy is used as follows: 
+\begin{itemize}
+\item \ct{Spy installOn: aClass} -- installs a spy on a class \ct{aClass};
+\item \ct{aClass stat} -- returns a textual description of the interaction of \ct{aClass};
+\item \ct{aClass removeSpy} -- removes the spy from the class.
+\end{itemize}
+
+The idea is the following: installing spy will replace all compiled method of the class with instance of the class \ct{Spy}. Each instance of these instance knows the compiled method it has replaced. At runtime, each spy evaluates its compiled methods and uses introspection to extract dynamic information.
+
+\ct{Spy} is a subclass of \ct{Object}
+\begin{code}{}
+Object subclass: #Spy
+	instanceVariableNames: 'originalMethod nbOfcalls callingClasses selector'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Spy'
+\end{code}
+
+Few accessors and an initialization are necessary:
+\begin{code}{}
+Spy>>>callingClasses
+	^ callingClasses ifNil: [callingClasses := OrderedCollection new]
+
+Spy>>>originalMethod
+	^ originalMethod
+
+Spy>>>originalMethod: aCompiledMethod
+	originalMethod := aCompiledMethod 
+
+Spy>>>initialize
+	super initialize.
+	nbOfcalls := 0.
+\end{code}
+
+The variable \ct{callingClasses} will contains the classes that the spied class interact with. The compiled method the spy will replace is referenced by \ct{originalMethod}.
+
+The main method is \ct{run:with:in:}:
+\begin{code}{}
+Spy>>>run: methodName with: listOfArguments in: receiver
+	| callingClass |
+	callingClass := thisContext sender receiver class.
+	(self callingClasses includes: callingClass)
+		ifFalse: [self callingClasses add: callingClass].
+	nbOfcalls := nbOfcalls + 1.
+		
+	^ originalMethod valueWithReceiver: receiver arguments: listOfArguments 
+\end{code}
+
+The pseudo variable \ct{topContext} represents the top frame of the run-time stack. The frame below the top one is the result of \ct{thisContext sender}. The class of the receiver of this frame is obtained by sending the message \ct{receiver} and \ct{class}. This class is then inserted into \ct{callingClasses}. The compiled method is then evaluated on the receiver of the original message (and not the spy!) with the same arguments.
+
+The Squeak interpreter may have to remove all references to this method form its method look cache. The following has to be defined as well:
+
+\begin{code}{}
+Spy>>>flushCache
+	<primitive: 116>
+\end{code}
+
+Note that each object intended to replace a compiled method in a method dictionary has to understand this method.
+
+Each spy is able to generate a little summary:
+
+\begin{code}{}
+Spy>>>summary
+	^ selector printString, ' has been called: ', nbOfcalls asString, ' by ', self callingClasses asString
+\end{code}
+
+The \ct{installOn:} method will replace each compiled method with an instance of \ct{Spy}. Note that this method has to be defined on the class side:
+
+\begin{code}{}
+Spy class>>>installOn: aClass
+	| dict cm |
+	dict := aClass methodDictionary.
+	dict keys do:
+		[:k|
+			cm := dict at: k.
+			cm isCompiledMethod 
+			 	ifTrue: [dict at: k put: (self new originalMethod: cm; selector: k; yourself)]]
+			
+\end{code}
+
+The \ct{Spy} class is fully defined. The \ct{Behavior} class needs to be extended with few methods:
+
+\begin{code}{}
+Behavior>>>removeSpy
+	| v |
+	self methodDictionary keys do:
+		[:k|
+			v := self methodDict at: k. 
+			(v class == Spy)
+					ifTrue: [self methodDict at: k put: v originalMethod]]
+
+Behavior>>>stat
+	| ans |
+	ans := ''.
+	self methodDict values do: 
+		[:spy|
+				(spy isKindOf: Spy)
+					ifTrue: [ans := ans, spy summary, String cr]].
+	^ ans
+\end{code}
+
+The Spy application is now fully defined. As an example of usage, a spy may be installed on the class \ct{Stream} with \ct{Spy installOn: Stream}. Then print the result of \ct{Spy stat}. You should have something that looks like:
+
+\begin{code}{}
+ '#next:put: has been called: 0 by an OrderedCollection()
+...
+#basicNextPut: has been called: 71 by an OrderedCollection(Latin1TextConverter)
+...
+#nextPutAll: has been called: 27 by an OrderedCollection(WriteStream LimitedWriteStream)
+...
+'
+\end{code}
+
+\ct{Stream} may be freed from its spy with \ct{Stream removeSpy}.
 %:======================================
 \section{Chapter summary}
 
