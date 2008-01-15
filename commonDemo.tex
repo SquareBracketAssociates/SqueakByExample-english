@@ -139,6 +139,16 @@ In-line code with \verb|\ct| is typed like this \verb|\ct{1 + 2 --> 3}| and look
 \verb$\ct{Class>>>method}$ prints as \ct{Class>>>method}.\\
 \verb$\ct{3 + 4 - 5 --> 2}$ prints as \ct{3 + 4 - 5 --> 2}.
 
+Use \verb$@TEST$ to include the code in the automatic tests and use \verb$-->$ to represent the expected result
+\begin{verbatim}
+\begin{code}{@TEST}
+true       --> true
+3@4     --> 3@4
+$a         --> $a
+#(1 2 3) --> #(1 2 3)
+\end{code}
+\end{verbatim}
+
 %=============================================================
 %\paragraph{New code environment}
 
