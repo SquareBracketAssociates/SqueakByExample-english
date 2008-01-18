@@ -115,9 +115,9 @@ Package jurabib Info: *** jurabib set up for babel ***
 (./SBE.out) (./SBE.out)
 (/usr/local/texlive/2007/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/local/texlive/2007/texmf-dist/tex/latex/microtype/mt-msa.cfg)
-(/usr/local/texlive/2007/texmf-dist/tex/latex/microtype/mt-msb.cfg) [1{/Volumes
-/Suberi/Users/damien/.texlive2007/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-] (/usr/local/texlive/2007/texmf-dist/tex/latex/psnfss/t1phv.fd)
+(/usr/local/texlive/2007/texmf-dist/tex/latex/microtype/mt-msb.cfg) [1{/usr/loc
+al/texlive/2007/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(/usr/local/texlive/2007/texmf-dist/tex/latex/psnfss/t1phv.fd)
 Underfull \hbox (badness 10000) in paragraph at lines 75--78
 (/usr/local/texlive/2007/texmf-dist/tex/latex/psnfss/ts1ppl.fd)
 Underfull \hbox (badness 10000) in paragraph at lines 79--80
@@ -290,7 +290,7 @@ y)>] <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf>
 <use figures/squeak-logo.pdf>
 <FirstApp/figures/FileIn.png, id=1345, 719.68875pt x 380.42125pt>
 <use FirstApp/figures/FileIn.png> [45] <use figures/squeak-logo.pdf>
-Underfull \hbox (badness 10000) in paragraph at lines 648--648
+Underfull \hbox (badness 10000) in paragraph at lines 649--649
 [] \T1/ppl/m/it/10 (+20) Open the Mon-ti-cello browser by se-lect-ing
 [46 <./FirstApp/figures/FileIn.png>]
 <FirstApp/figures/MonticelloBrowser.png, id=1366, 590.205pt x 274.02374pt>
@@ -735,5 +735,5 @@ pe1/urw/palatino/uplb8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw
 /palatino/uplbi8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palat
 ino/uplr8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palatino/upl
 ri8a.pfb>
-Output written on SBE.pdf (304 pages, 3652223 bytes).
+Output written on SBE.pdf (304 pages, 3650927 bytes).
 Transcript written on SBE.log.
