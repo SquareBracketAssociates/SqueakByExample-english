@@ -61,25 +61,5 @@ Classes and Metaclasses -- DONE
 	  Behavior and Metaclass
 FAQ -- First rough draft
 -----------------------------------------------------------------------------
-*** NB: All the chapters above are planned for the first release.
-This is needed for the Smalltalk course starting Sept 2007.
-Chapters below are planned for later releases.
-
-[FUTURE CHAPTERS]
-Seaside -- DRAFT by Oscar; reviewed by Lukas
-Metaprogramming -- Translated from French columns being translated; to be reviewed -> Oscar
-Idioms and Style -- Oscar
-	- explain why getters and setters violate encapsulation
-Profiling -- Short draft. To be rewritten. -> Andrew
-Inheritance/Idioms -- To do. -> Andrew
-Exceptions -- To do. -> Stef
-Concurrency -- To do. -> Oscar
-Dependency Mechanisms -- To do. -> Stef?
-Common Errors -- To do. -> ???
-RegEx and SmaCC -- To Do
-Monticello -- To do. -> Alexandre Bergel
-
-[ETC]
-Leftover Stuff -- ... -> ???
-OmniBrowser (have a look at Alex Bergel et al's article)
+For further chapters see SBE2-TO-DO.txt
 -----------------------------------------------------------------------------
