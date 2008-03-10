@@ -414,6 +414,7 @@ CrossMorph>>>handlesMouseDown: anEvent
 Suppose that when the red mouse button is clicked, we want to change the color of the cross to red, and when the yellow button is clicked we want to change the color to yellow.
 This can be accomplished by \mthref{mouseDown}.
 
+\needlines{7}
 \begin{method}[mouseDown]{Reacting to mouse clicks by changing the morph's color.}
 CrossMorph>>>mouseDown: anEvent
 	anEvent redButtonPressed
@@ -626,6 +627,7 @@ Morph subclass: #DroppedMorph
 	category: 'SBE-Morphic'
 \end{classdef}
 
+\needlines{5}
 \begin{method}{Initializing \ct{DroppedMorph}.}
 DroppedMorph>>>initialize
 	super initialize.
@@ -784,6 +786,7 @@ DieMorph>>>dieValue: aNumber
 \end{method}
 
 Now we will use the animation system to show quickly all the faces:
+\needlines{3}
 \index{Morphic!animation}
 \begin{methods}{Animating the die.}
 DieMorph>>>stepTime
@@ -827,6 +830,7 @@ But how can you obtain such a canvas in a \ct{drawOn:} method, when \ct{drawOn:}
 Fortunately, you can transform one kind of canvas into another.
 
 \dothis{To use a canvas with a 0.5 alpha-transparency in \ct{DieMorph}, redefine \ct{drawOn:} like this:}
+\needlines{7}
 \begin{method}{Drawing a translucent die.}
 DieMorph>>>drawOn: aCanvas
 	| theCanvas |
