@@ -1,11 +1,21 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2008-03-10
 ---------------------------------------------------------------------------
-p 272: "How to I search for a class?" -> "How do I ..."
+p 31: "This template shows us Smalltalk expression" -> 'This template shows us a Smalltalk expression'
+            [2008-03-31 Chris Kassopulo; fixed -- dc]
+p 31: "we passed as argument the" -> "we passed as an argument the"
+            [2008-03-31 Chris Kassopulo; fixed -- dc]
+p 54: second line from the bottom: "super also refers" on a new paragraph
+            [2008-03-31 Chris Kassopulo; fixed -- dc]
+p 58: "which are surround by vertical" -> "which are surrounded by vertical"
+            [2008-03-31 Chris Kassopulo; fixed -- dc]
+p 58:  "The following block refers the variable x" -> "The following block refers to the variable x"
+            [2008-03-31 Chris Kassopulo; fixed -- dc]
 p 184:  standard the behaviour =>  the standard behaviour
             [2008-03-28 Victor Rodriguez; fixed -- dc]
 p 197: "method provide by" -> "method provided by"
             [2008-03-28 Victor Rodriguez; fixed -- dc]
+p 272: "How to I search for a class?" -> "How do I ..."
 ---------------------------------------------------------------------------
 ERRATA to version 2007-09-13
 ---------------------------------------------------------------------------

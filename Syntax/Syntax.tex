@@ -221,6 +221,7 @@ They are called \subind{variable}{pseudo}-variables because they are predefined 
 See \charef{basic} for more details.
 
 \pvind{self} always refers to the receiver of the currently executing method.
+
 \ct{super} also refers to the receiver of the current method, but when you send a message to \super, the method-lookup changes so that it starts from the superclass of the class containing the method that uses \ct{super}.
 For further details see \charef{model}.
 
@@ -375,7 +376,7 @@ Locals are declared after any arguments:
 \end{code}
 
 Blocks are actually lexical \emph{closures}, since they can refer to variables of the surrounding environment.
-The following block refers the variable \ct{x} of its enclosing environment:
+The following block refers to the variable \ct{x} of its enclosing environment:
 
 \begin{code}{@TEST}
 | x |

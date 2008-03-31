@@ -96,7 +96,7 @@ If you selected an existing category first, then the new category will be positi
 
 As yet there are  of course no classes in the new category. However, the main editing pane displays a template to make it easy to create a new class (see \figref{classTemplate}).
 
-This template shows us \st expression that sends a message to a class called \ct{Object}, asking it to create a subclass called \ct{NameOfSubClass}.  The new class has no variables, and should belong to the category \scat{SBE-Quinto}.
+This template shows us a \st expression that sends a message to a class called \ct{Object}, asking it to create a subclass called \ct{NameOfSubClass}.  The new class has no variables, and should belong to the category \scat{SBE-Quinto}.
 
 We simply modify the template to create the class that we really want.
 
@@ -120,7 +120,7 @@ SimpleSwitchMorph subclass: #SBECell
 \index{Morphic}
 
 This new definition consists of a \st expression that sends a message to the existing class \ct{SimpleSwitchMorph}, asking it to create a subclass called \ct{SBECell}.
-(Actually, since \ct{SBECell} does not exist yet, we passed as argument the \emphind{symbol} \ct{#SBECell} which stands for the name of the class to create.)
+(Actually, since \ct{SBECell} does not exist yet, we passed as an argument the \emphind{symbol} \ct{#SBECell} which stands for the name of the class to create.)
 We also tell it that instances of the new class should have a \ct{mouseAction} instance variable, which we will use to define what action the cell should take if the mouse should click over it.
 
 \emph{At this point you still have not created anything.}
