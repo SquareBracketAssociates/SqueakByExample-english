@@ -32,7 +32,7 @@
 
 Although \st's message syntax is extremely simple, it is unconventional and can take some time getting used to.
 This chapter offers some guidance to help you get acclimatized to this special syntax for sending messages.
-If you already feel comfortable with the syntax, you may choose the skip this chapter, or come back to it later.
+If you already feel comfortable with the syntax, you may choose to skip this chapter, or come back to it later.
 
 \on{I still feel this chapter contains too much repetition.
 I would like to get feedback from students.}
@@ -42,7 +42,7 @@ I would like to get feedback from students.}
 
 In \st, except for the syntactic elements listed in \charef{syntax} (\ct+:= ^ . ; # () {} [ : | ]+), everything is a message send. 
 As in \ind{C++}, you can define operators like \ct{+} for your own classes, but all operators have the same precedence.
-Moreover, you cannot change the arity of a method: \ct{-} is always a binary message, and there is no way to have a unary form with a different overloading.
+Moreover, you cannot change the arity of a method. ``\ct{-}'' is always a binary message; there is no way to have a unary ``\ct{-}'' with a different overloading.
 
 In \st the order in which messages are sent is determined by the kind of message. There are just three kinds of messages: \emphsubind{message}{unary}, \emphsubind{message}{binary}, and \emphsubind{message}{keyword} messages. Unary messages are always sent first, then binary messages and finally keyword ones. As in most languages, \ind{parentheses} can be used to change the order of evaluation. These rules make \st code as easy to read as possible. And most of the time you do not have to think about the rules.
 
@@ -90,7 +90,7 @@ We will also surround each expression with an ellipse and number expressions sta
 %\caption{\ct{aMorph color: Color yellow} is composed of two expressions: \ct{Color yellow} and \ct{aMorph color: Color yellow}.\label{fig:ellipse}}
 %\end{figure}
 
-\figref{ellipse} represents two message sends, \ct{Color yellow} and \ct{aMorph color: Color yellow}, hence there are two ellipses. The expression \ct{Color yellow} is sent first so its ellipse is numbered \ct{1}.  There are two receivers: \ct{aMorph} which receives the message \ct{color: ...} and \ct{Color} which receives the message \ct{yellow}. Both receivers are underlined.
+\figref{ellipse} represents two message sends, \ct{Color yellow} and \ct{aMorph color: Color yellow}, hence there are two ellipses. The expression \ct{Color yellow} is evaluated first so its ellipse is numbered \ct{1}.  There are two receivers: \ct{aMorph} which receives the message \ct{color: ...} and \ct{Color} which receives the message \ct{yellow}. Both receivers are underlined.
 
 A receiver can be the first element of a message, such as \ct{100} in the expression \ct{100 + 200} or \ct{Color} in the expression \ct{Color yellow}. However, a receiver can also be the result of other messages. For example in the message \ct{Pen new go: 100}, the receiver of the message \ct{go: 100} is the object returned by the expression \ct{Pen new}. In all the cases, a message is sent to an object called the \emph{receiver} which may be the result of another message send.
 

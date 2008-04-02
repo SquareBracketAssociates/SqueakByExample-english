@@ -1,6 +1,13 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2008-03-10
 ---------------------------------------------------------------------------
+p 63: "you already feel comfortable with the syntax, you may choose [the -> to] skip this"
+	[2008-04-01 Chris Kassopulo; fixed -- on]
+p 63: "-- is always a binary message ..."
+	[2008-04-01 Chris Kassopulo; rephrased -- on]
+p 64: "The expression Color yellow is [sent -- evaluated] first"
+	[2008-04-01 Chris Kassopulo; fixed -- on]
+---------------------------------------------------------------------------
 p 31: "This template shows us Smalltalk expression" -> 'This template shows us a Smalltalk expression'
             [2008-03-31 Chris Kassopulo; fixed -- dc]
 p 31: "we passed as argument the" -> "we passed as an argument the"
