@@ -1,6 +1,7 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2008-03-10
 ---------------------------------------------------------------------------
+p 144: "where the second argument is a block that simply returns the empty string." -> "... returns the string size."
 - Added FAQ explaining how to change the default browser, with cross references
   from chapters discussing the browser. -- on
 ---------------------------------------------------------------------------
