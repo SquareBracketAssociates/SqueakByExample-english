@@ -1,4 +1,4 @@
-
+# --------------------------------------------------------------------------------
 # $Id$
 # --------------------------------------------------------------------------------
 # NB: There is no separate rule for running bibtex, though perhaps there should be.
@@ -37,7 +37,7 @@ book : clean examples
 		-e 's/Package wrapfig Warning: wrapfigure used inside a conflicting environment[\n\r]*//g;' \
 		warnings.txt
 
-# We need a makefile rule to generated the index as well ...
+# We need a makefile rule to generate the index as well ...
 index :
 	makeindex ${BOOK}
 

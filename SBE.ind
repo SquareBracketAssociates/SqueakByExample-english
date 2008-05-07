@@ -15,7 +15,7 @@
   \item \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{=}, 
 		\see{Object, equality}{178}
   \item \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{>>}, 
-		\see{Behavior, \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{>>}}{24}
+		\see{Behavior, \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{>>}}{25}
   \item {\textsf  {\{ \}}}, \see{Array, dynamic}{201}
   \item {$\uparrow$}, \see{return}{45}
 
@@ -71,7 +71,7 @@
   \item Beck, Kent, \hyperpage{97}, \hyperpage{155}
   \item Behavior
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{>>}, 
-		\hyperpage{24}, \hyperpage{40}
+		\hyperpage{25}, \hyperpage{40}
     \subitem (class), \hyperpage{93}, \hyperpage{256}, \hyperpage{261}, 
 		\hyperpage{263}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{addSubclass:}, 
@@ -278,7 +278,7 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{collect:}, 
 		\hyperpage{59}, \hyperpage{196}, \hyperpage{199}, 
 		\hyperpage{211}
-    \subitem comma operator, \hyperpage{25}, \hyperpage{207}, 
+    \subitem comma operator, \hyperpage{26}, \hyperpage{207}, 
 		\hyperpage{223}
     \subitem common errors, \hyperpage{213}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{count:}, 
@@ -354,7 +354,7 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{showColorCube}, 
 		\hyperpage{86}
   \item \textsf  {ColorNames} (class variable), \hyperpage{104}
-  \item comma, \see{Collection, comma operator}{25}
+  \item comma, \see{Collection, comma operator}{26}
   \item comment, \hyperpage{53}
   \item \textsf  {comparing} (protocol), \hyperpage{190}
   \item CompiledMethod
@@ -379,7 +379,7 @@
   \indexspace
 
   \item \textsf  {debug} (protocol), \hyperpage{182}
-  \item debugger, \hyperpage{24}, \hyperpage{43}, \hyperpage{111}, 
+  \item debugger, \hyperpage{25}, \hyperpage{43}, \hyperpage{111}, 
 		\hyperpage{136}, \hyperpage{182}
   \item declaration, \see{variable declaration}{53}
   \item deep copy, 
@@ -528,7 +528,7 @@
   \item HandMorph
     \subitem (class), \hyperpage{102}
   \item Haskell, \hyperpage{195}
-  \item hierarchy browser, \hyperpage{18}, \hyperpage{120}
+  \item hierarchy browser, \hyperpage{19}, \hyperpage{120}
   \item hook method, \hyperpage{184}
 
   \indexspace
@@ -642,7 +642,7 @@
 
   \indexspace
 
-  \item Mac OS X Finder, \hyperpage{112}
+  \item Mac OS X Finder, \hyperpage{113}
   \item Magnitude
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{<}, 
 		\hyperpage{91}, \hyperpage{185}, \hyperpage{205}
@@ -672,7 +672,7 @@
     \subitem keyword, \hyperpage{54, 55}, \hyperpage{63}
     \subitem not understood, \hyperpage{100}
     \subitem receiver, \hyperpage{64}
-    \subitem selector, \hyperpage{64}
+    \subitem selector, \hyperpage{63}
     \subitem send, \hyperpage{64}, \hyperpage{93}
     \subitem unary, \hyperpage{54, 55}, \hyperpage{63}
   \item message name finder, \hyperpage{110}
@@ -873,9 +873,9 @@
 		\hyperpage{203}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{=}, 
 		\hyperpage{178}
-    \subitem (class), \hyperpage{15}, \hyperpage{17}, \hyperpage{31}, 
-		\hyperpage{90}, \hyperpage{100}, \hyperpage{175}, 
-		\hyperpage{257}
+    \subitem (class), \hyperpage{15}, \hyperpage{17, 18}, 
+		\hyperpage{31}, \hyperpage{90}, \hyperpage{100}, 
+		\hyperpage{175}, \hyperpage{257}
     \subitem \ct{~=}, \hyperpage{179}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{asMorph}, 
 		\hyperpage{232}
@@ -951,7 +951,7 @@
 		\hyperpage{213}
   \item Object class
     \subitem (class), \hyperpage{258}
-  \item OmniBrowser, \hyperpage{119}, \hyperpage{123}
+  \item OmniBrowser, \hyperpage{119}, \hyperpage{123}, \hyperpage{272}
   \item on the fly variable definition, \hyperpage{37}
   \item Oracle, \hyperpage{155}
   \item OrderedCollection
@@ -1099,9 +1099,9 @@
     \subitem (class), \hyperpage{120}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{defaultColor}, 
 		\hyperpage{119}
-  \item red button, \hyperpage{6, 7}, \hyperpage{26}, \hyperpage{135}
+  \item red button, \hyperpage{6, 7}, \hyperpage{27}, \hyperpage{135}
   \item refactoring, \hyperpage{32}, \hyperpage{126}
-  \item Refactoring Browser, \hyperpage{274}
+  \item Refactoring Browser, \hyperpage{275}
   \item reflection, \hyperpage{83}, \hyperpage{156}, \hyperpage{176}, 
 		\hyperpage{248}
   \item regular expression package, \hyperpage{190}, \hyperpage{208}, 
@@ -1232,7 +1232,7 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{print:}, 
 		\hyperpage{223}
   \item String
-    \subitem (class), \hyperpage{21, 22}, \hyperpage{25}, 
+    \subitem (class), \hyperpage{21}, \hyperpage{23}, \hyperpage{25}, 
 		\hyperpage{56}, \hyperpage{176}, \hyperpage{189}, 
 		\hyperpage{197}, \hyperpage{206}, \hyperpage{209}, 
 		\hyperpage{271}
@@ -1277,12 +1277,12 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{translateToLowercase}, 
 		\hyperpage{190}
   \item StringTest
-    \subitem (class), \hyperpage{22}, \hyperpage{143}
+    \subitem (class), \hyperpage{23}, \hyperpage{143}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{testShout}, 
-		\hyperpage{24}
+		\hyperpage{25}
   \item Subversion, \hyperpage{46}
   \item SUnit, \hyperpage{22, 23}, \hyperpage{110}, \hyperpage{142}, 
-		\hyperpage{155}, \hyperpage{274}
+		\hyperpage{155}, \hyperpage{275}
     \subitem fixture, \hyperpage{159}
     \subitem set up method, \hyperpage{159}
   \item super
@@ -1382,7 +1382,7 @@
   \item TestResult class
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{error}, 
 		\hyperpage{163}
-  \item TestRunner, \hyperpage{23}, \hyperpage{274}
+  \item TestRunner, \hyperpage{23}, \hyperpage{275}
   \item TestSuite
     \subitem (class), \hyperpage{164, 165}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{run}, 
@@ -1399,7 +1399,7 @@
   \item TimeStamp
     \subitem (class), \hyperpage{133}
   \item Tools flap, \hyperpage{11}, \hyperpage{17}, \hyperpage{20}, 
-		\hyperpage{23}, \hyperpage{26}, \hyperpage{110, 111}, 
+		\hyperpage{24}, \hyperpage{27}, \hyperpage{110, 111}, 
 		\hyperpage{145, 146}, \hyperpage{149}, \hyperpage{163}
   \item Trait
     \subitem (class), \hyperpage{92}

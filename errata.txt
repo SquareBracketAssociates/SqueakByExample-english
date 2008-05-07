@@ -1,6 +1,9 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2008-03-10
 ---------------------------------------------------------------------------
+- Added FAQ explaining how to change the default browser, with cross references
+  from chapters discussing the browser. -- on
+---------------------------------------------------------------------------
 p 63: "you already feel comfortable with the syntax, you may choose [the -> to] skip this"
 	[2008-04-01 Chris Kassopulo; fixed -- on]
 p 63: "-- is always a binary message ..."

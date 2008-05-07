@@ -108,7 +108,7 @@ The \menu{Debugger} has an obvious role, but you will discover that it has a mor
 
 There are actually several browsers in \sq: the standard system browser, the package browser, the Omnibrowser, and the Refactoring Browser. 
 We will take a look at the standard \ind{system browser} first, since the others are variations on it.
-\figref{SystemBrowser0} shows the browser as it appears when you first drag it out of the \toolsflapind.
+\figref{SystemBrowser0} shows the browser as it appears when you first drag it out of the \toolsflapind.\footnote{If the browser you see looks different from the one we describe, then you might be using an image with a different default browser installed. See \faqref{omnibrowser}.}
 
 \begin{figure}[htbp]
    \centering
@@ -286,15 +286,23 @@ The \button{inheritance} button opens a specialized browser that displays all th
 To see how it works, display the \cmind{ScaleMorph}{defaultColor} method and click \button{inheritance}. This method definition overrides \mbox{\cmind{RectangleMorph}{defaultColor},} which itself overrides \cmind{Morph}{defaultColor}, as shown in \figref{inheritanceOverriding}. The colour of the \button{inheritance} button depends on how the \subind{method}{overriding} occurs.  The colours are explained in a help balloon:
 \index{system browser!inheritance button}
 
-\newcommand{\colourTag}[1]{\item[{\mdseries \itshape #1}]}
+%\newcommand{\colourTag}[1]{\item[{\mdseries \itshape #1}]}
 
-\begin{description}[noitemsep, leftmargin=*, labelindent=6em, labelwidth=4em, labelsep=*]
-	\colourTag{pink:} the displayed method overrides another method but doesn't use it;
-	\colourTag{green:} the displayed method overrides another method and uses it via \super;
-	\colourTag{gold:} the displayed method is itself overridden in a subclass;
-	\colourTag{salmon:} the displayed method overrides another method, and it itself overridden;
-	\colourTag{violet:} the displayed method overrides, is overridden, and makes a \ct{super}-send.
-\end{description}
+%\begin{description}[noitemsep, leftmargin=*, labelindent=6em, labelwidth=4em, labelsep=*]
+%	\colourTag{pink:} the displayed method overrides another method but doesn't use it;
+%	\colourTag{green:} the displayed method overrides another method and uses it via \super;
+%	\colourTag{gold:} the displayed method is itself overridden in a subclass;
+%	\colourTag{salmon:} the displayed method overrides another method, and it itself overridden;
+%	\colourTag{violet:} the displayed method overrides, is overridden, and makes a \ct{super}-send.
+%\end{description}
+
+\begin{tabular}{lp{9cm}}
+	\emph{pink:} & the displayed method overrides another method but doesn't use it;\\
+	\emph{green:} & the displayed method overrides another method and uses it via \super;\\
+	\emph{gold:} & the displayed method is itself overridden in a subclass;\\
+	\emph{salmon:} & the displayed method overrides another method, and it itself overridden;\\
+	\emph{violet:} & the displayed method overrides, is overridden, and makes a \ct!super!-send.
+\end{tabular}
 
 \begin{figure}[tbp]
 	\begin{center}
@@ -1050,7 +1058,7 @@ testSuffixNotFound
 \needlines{2}
 \dothis{Add \mthref{testNoSuffix} to the test suite in class \clsind{StringTest}, and watch the test raise an error.
 Enter the debugger by selecting the erroneous test in \sunit, and edit the code so that the test passes.
-The easiest and clearest way to do this is to replace the \ct{detect:} message by \ct{detect: ifNone:}, where  the second argument is a block that simply returns the empty string.}
+The easiest and clearest way to do this is to replace the \ct{detect:} message by \ct{detect: ifNone:}, where  the second argument is a block that simply returns the string size.}
 
 \ab{When I wrote this I assumed that this chapter came after the one on Sunit; if we don't switch the order to make that true, this text needs to be adjusted or removed.}
 
