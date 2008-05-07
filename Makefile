@@ -119,6 +119,8 @@ clean :
 	-rm -f test.*
 
 bare : clean
+	mv figures/squeak-logo.pdf figures/squeak-logo.pdfSAVE
 	-rm -f ${BOOK}.pdf */*.pdf
+	mv figures/squeak-logo.pdfSAVE figures/squeak-logo.pdf
 
 # --------------------------------------------------------------------------------
