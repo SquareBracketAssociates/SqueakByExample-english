@@ -875,7 +875,7 @@ factorial value: 10 --> 3628800
 \paragraph{\mthind{Collection}{count:}} The message \ct{count:} returns the number of elements satisfying a condition.  The condition is represented as a boolean block.
 
 \begin{code}{@TEST}
-Smalltalk allClasses count: [:each | '*Collection*' match: each asString ] --> 14
+Smalltalk allClasses count: [:each | 'Collection*' match: each asString ] --> 2
 \end{code}
 
 \paragraph{\mthind{Collection}{includes:}} The message \ct{includes:} checks whether the argument is contained in the collection. 
