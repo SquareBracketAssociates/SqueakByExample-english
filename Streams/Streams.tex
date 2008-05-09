@@ -457,7 +457,8 @@ We need methods to go backward and forward:
 \begin{code}{}
 History>>goBackward
   self canGoBackward ifFalse: [self error: 'Already on the first element'].
-  ^ stream back
+  self skip: -2.
+  ^ self next.
 
 History>>goForward
   self canGoForward ifFalse: [self error: 'Already on the last element'].
