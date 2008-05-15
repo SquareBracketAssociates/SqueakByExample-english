@@ -5,6 +5,8 @@ ERRATA to version 2008-03-10
   Squeak by Example image
 - Added FAQ pointer to SBE image
 - Replace all instances of "red-click" by "click".
+- Fixed figures in Environment chapter and removed reference to squeak-dev
+- Removed references to Supplies Flap in Morphic chapter
 	[2008-05-15 -- on]
 ---------------------------------------------------------------------------
 p 226: fix History>>goBackward to avoid using PositionableStream>>back

@@ -525,11 +525,10 @@ Chapter 7.
 Underfull \vbox (badness 10000) has occurred while \output is active [155]
 [156] [157] <use figures/squeak-logo.pdf> [158] <use figures/squeak-logo.pdf>
 <use figures/squeak-logo.pdf> [159]
-<SUnit/figures/test-runner.png, id=2869, 668.4975pt x 396.48125pt>
+<SUnit/figures/test-runner.png, id=2869, 700.6175pt x 533.995pt>
 <use SUnit/figures/test-runner.png> <use figures/squeak-logo.pdf> [160]
-<use figures/squeak-logo.pdf>
-Underfull \vbox (badness 2368) has occurred while \output is active [161 <./SUn
-it/figures/test-runner.png (PNG copy)>] <use figures/squeak-logo.pdf>
+<use figures/squeak-logo.pdf> [161 <./SUnit/figures/test-runner.png (PNG copy)>
+] <use figures/squeak-logo.pdf>
 Underfull \hbox (badness 2293) in paragraph at lines 397--402
 []\T1/ppl/m/n/10 (+20) Next, SUnit pro-vides two ad-di-tional meth-ods, [][][][
 ][] and
@@ -636,7 +635,7 @@ ures/detachingMenu.png (PNG copy)>] <use figures/squeak-logo.pdf>
 <use Morphic/figures/overdrawBug.png>
 <Morphic/figures/hairlineBug.png, id=4636, 160.6pt x 160.6pt>
 <use Morphic/figures/hairlineBug.png>
-Underfull \hbox (badness 5431) in paragraph at lines 303--303
+Underfull \hbox (badness 5431) in paragraph at lines 307--307
 []\T1/ppl/m/n/10 (+20) Figure 11.5: []The cross-shaped
 <use figures/squeak-logo.pdf> [237] [238 <./Morphic/figures/overdrawBug.png> <.
 /Morphic/figures/hairlineBug.png>] <use figures/squeak-logo.pdf> [239]
@@ -647,13 +646,13 @@ Underfull \hbox (badness 5431) in paragraph at lines 303--303
 <use figures/debugHandle.png> <use figures/squeak-logo.pdf>
 <Morphic/figures/dialog.png, id=4744, 263.98625pt x 136.51pt>
 <use Morphic/figures/dialog.png>
-Underfull \hbox (badness 10000) in paragraph at lines 534--534
+Underfull \hbox (badness 10000) in paragraph at lines 538--538
 []\T1/ppl/m/n/10 (+20) Figure 11.6: []Dialog dis-played by
-Underfull \hbox (badness 10000) in paragraph at lines 534--534
+Underfull \hbox (badness 10000) in paragraph at lines 538--538
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 <Morphic/figures/popup.png, id=4745, 98.3675pt x 87.32625pt>
 <use Morphic/figures/popup.png>
-Underfull \hbox (badness 6792) in paragraph at lines 544--544
+Underfull \hbox (badness 6792) in paragraph at lines 548--548
 \T1/ppl/m/n/10 (+20) dis-played by [][][]
 [242] <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf> [243 <./Morph
 ic/figures/dialog.png (PNG copy)> <./Morphic/figures/popup.png (PNG copy)>]
@@ -731,5 +730,5 @@ pe1/urw/palatino/uplb8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw
 /palatino/uplbi8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palat
 ino/uplr8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palatino/upl
 ri8a.pfb>
-Output written on SBE.pdf (304 pages, 3806248 bytes).
+Output written on SBE.pdf (304 pages, 3813619 bytes).
 Transcript written on SBE.log.
