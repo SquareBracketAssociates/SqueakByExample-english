@@ -60,11 +60,13 @@ There are three parts that you will need to download, consisting of four files (
 
   \item The current \emph{system \ind{image}} is a snapshot of a running \sq system, frozen in time.  It consists of two files: an \emph{.}\emphind{image} file, which contains the state of all of the objects in the system (including classes and methods, since they are objects too), and a \emph{.}\emphind{changes} file, which contains a log of all of the changes to the source code of the system.
 In \figref{download}, we see that we have grabbed the \textit{Squeak3.9-final-7067} image and changes files.
+Actually, we will use a slightly different image in this book.
 \end{enumerate}
 
 \dothis{Download and install \sq on your computer.
 We recommend that you use the image provided on the Squeak by Example web page.\footnote{Visit \url{http://SqueakByExample.org} and look for ``Download Squeak'' in the sidebar.}}
 \index{download}
+\label{sec:sbeImage}
 
 %The version of \sq that we have used for developing the examples in this book is derived from \emphind{Squeak-dev}.\footnote{\url{http://damien.cassou.free.fr/squeak-dev.html}}
 %\label{sec:squeakDev}
@@ -539,7 +541,7 @@ The method finder will display a list of all the method names that contain the s
 To scroll to \ct{now} itself, type ``\ct{n}''; this trick works in all scrolling windows.  Select ``now'' and the right-hand pane shows you the three classes that define a method with this name, as shown in \figref{MethodFinder}.  Selecting any one of them will open a browser on it.
 
 \begin{figure}[hbt]
-\centerline {\includegraphics[scale=0.7]{methodFinder-now}}
+\centerline {\includegraphics[scale=0.6]{methodFinder-now}}
 \caption{The method finder showing three classes that define a method named \ct{now}.
 \label{fig:MethodFinder}}
 \end{figure}
@@ -677,7 +679,7 @@ Does this method work?  Let's run the tests and see.
 \dothis{Click on \menu{Run Selected} again in the test runner, and this time you should see a green bar and text indicating that all of the tests ran with no failures and no errors.}
 When you get to a green bar\footnotemark, it's a good idea to save your work and take a break.  
 So do that right now!
-\footnotetext{Actually, you might not get a green bar since some images contains tests for bugs that need to be fixed.
+\footnotetext{Actually, you might not get a green bar since some images contains tests for bugs that still need to be fixed.
 Don't worry about this.
 \Squeak is constantly evolving.
 %:PROBLEM --- StringTest has a broken test!

@@ -165,11 +165,15 @@ If you now try to grab the star with the mouse, you will find that you actually 
 It is possible to embed more morphs inside joe.  
 In addition to doing this programatically, you can also embed morphs by direct manipulation.
 
-\dothis{If you don't have a \menu{Supplies} flap at the bottom of your screen, execute \ct{Flaps enableGlobalFlaps} to create one.  Drag a yellow ellipse and a white star from the \menu{Supplies} flap.  Place the star over the ellipse, and yellow-click the star to bring up a menu\footnote{You can also blue-click the star to bring up the morphic halo, and then click the red menu handle.}.   Select \menu{embed into \go Ellipse}.  Now the star and the ellipse move together.}
+\dothis{From the world menu select ``objects'' and click on the button labeled ``Graphics''.
+% If you don't have a \menu{Supplies} flap at the bottom of your screen, execute \ct{Flaps enableGlobalFlaps} to create one.  
+Drag an ellipse and a star from the \menu{Supplies} flap.  Place the star over the ellipse, and yellow-click the star to bring up a menu\footnote{You can also blue-click the star to bring up the morphic halo, and then click the red menu handle.}.   Select \menu{embed into \go Ellipse}.  Now the star and the ellipse move together.}
+
+%\dothis{If you don't have a \menu{Supplies} flap at the bottom of your screen, execute \ct{Flaps enableGlobalFlaps} to create one.  Drag a yellow ellipse and a white star from the \menu{Supplies} flap.  Place the star over the ellipse, and yellow-click the star to bring up a menu\footnote{You can also blue-click the star to bring up the morphic halo, and then click the red menu handle.}.   Select \menu{embed into \go Ellipse}.  Now the star and the ellipse move together.}
 
 To remove a sub-morph, do \ct{joe} \mthind{Morph}{removeMorph:} \ct{star} or \ct{star} \mthind{Morph}{delete}.  This can also be done by direct manipulation:
 
-\dothis{Blue click twice on the white star.  Drag the star away from the ellipse using the grab handle \grabHandle{}.}
+\dothis{Blue click twice on the star.  Drag the star away from the ellipse using the grab handle \grabHandle{}.}
 
 \noindent
 The first click brings up the morphic halo on the ellipse; the second click the halo on the star.   Each click moves the focus down one level of embedding.
