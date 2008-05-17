@@ -170,7 +170,7 @@ In contrast, to create a new class or a new method, you will actually have to wr
 If you deselect the currently selected class, so that no class is selected at all, the main browser pane will display a class creation template (\figref{SystemBrowserClassCreation}).
 You create a new class by editing this template: replace \ct{Object} by the name of the existing class of which you wish to create a subclass, replace \ct{NameOfSubclass} by the name that you would like to give to your new subclass, and fill in the instance variable names if you know them. 
 The category for the new class is by default the currently selected category, but you can change this too if you like.  
-If you already have the browser focussed on the class that you wish to subclass, you can get the same template with slighlty different initialization by using the yellow button menu in the class pane, and selecting \menu{more \ldots \go subclass template}.
+If you already have the browser focussed on the class that you wish to subclass, you can get the same template with slightly different initialization by using the yellow button menu in the class pane, and selecting \menu{more \ldots \go subclass template}.
 You can also just edit the definition of an existing class, changing the class name to something new.
 In all cases, when you accept the new definition, the new class (the one whose name follows the \ct{#}) is created (as is the corresponding metaclass).  
 Creating a class also creates a global variable that references the class, which is why you can refer to all of the existing classes by using their names.
@@ -228,7 +228,7 @@ The \button{senders} button will give you a list of all methods that may use the
 
 \index{system browser!implementors button}
 The \button{implementors} button works in a similar way, but instead of listing the senders of a message, it lists all of the classes that implement a method with the same selector. To see this, select \lct{drawOn:} in the message pane and then bring up the ``implementors of drawOn:'' browser, either using the \button{implementors} button, or the \ind{yellow button} menu on the method pane, or just by typing \short{m} (for {i\textbf{m}ple\textbf{m}entors}) in the method pane with \menu{drawOn:} selected.  You should get a method list window showing a scrolling list of 96 classes that implement a \ct{drawOn:} method.
-It shouldn't be all that surprising that so many classes implement this method: \ct{drawOn:} is the message that is understood by every object that is capable of drawing itself on the screen.  While viewing any one of these method, try browsing the senders of the \ct{drawOn:} message:  we found 63 methods that send this message.  You can also bring up an implementors browser at any time by selecting a message (including the arguments if it is a keyword message) and typing \short{m}.
+It shouldn't be all that surprising that so many classes implement this method: \ct{drawOn:} is the message that is understood by every object that is capable of drawing itself on the screen.  While viewing any one of these methods, try browsing the senders of the \ct{drawOn:} message:  we found 63 methods that send this message.  You can also bring up an implementors browser at any time by selecting a message (including the arguments if it is a keyword message) and typing \short{m}.
 
 %The \menu{senders} button lists \emph{all} the methods that send the chosen message: not all of these message sends will necessarily be able to cause the execution of any particular method with the same selector.
 %Indeed, much of the power of object-oriented programming comes from the fact that every message send is potentially \emph{polymorphic}, that is, it can work equally well on objects of any class.  Sometimes it is easy to figure out which method will be executed as result of a particular message send, and sometimes it is impossible; the senders and implementors tools don't try.
@@ -247,7 +247,7 @@ If you look at the send of \ct{drawOn:} in \ct{AtomMorph>>>drawOn:}, you will se
 \end{figure}
 
 Now look at the fifth sender in the list, \ct{Canvas>>>draw}, shown in \figref{CanvasDraw}.
-You can see that this method sends \ct{drawOn:} to whatever object is passed to it as argument, which could potentially be an instance of any class at all.  
+You can see that this method sends \ct{drawOn:} to whatever object is passed to it as an argument, which could potentially be an instance of any class at all.  
 Dataflow analysis can help figure out the class of the receiver of some messages, but in general, there is no simple way for the browser to know which message-sends might cause which methods to be executed.
 For this reason,  the ``senders'' browser shows exactly what its name suggests: all of the senders of the message with the chosen selector.  
 The \button{senders} button is nevertheless extremely useful when you need to understand how you can \emph{use} a method: it lets you navigate quickly through example uses.  
@@ -440,7 +440,7 @@ By this definition, the two things are different.  I happen to think that the de
 \on{So, what should we say? As it stands, without comment it is confusing. Everyone will ask: uh ... is this different from an abstract method?}
 
 %---------------------------------------------------------
-\subsection{Browsing programatically}
+\subsection{Browsing programmatically}
 
 The class \glbind{SystemNavigation} provides a number of utility method that are useful for navigating around the system.
 Many of the functions offered by the classic browser are implemented by \ct{SystemNavigation}.
@@ -455,7 +455,7 @@ To restrict the search for senders to the methods of a specific class:
 \begin{code}{}
 SystemNavigation default browseAllCallsOn: #drawOn: from: ScaleMorph .
 \end{code}
-Because the development tools are objects, they are completely accesible from programs and you can develop your own tools or adapt the existing tools to your needs.
+Because the development tools are objects, they are completely accessible from programs and you can develop your own tools or adapt the existing tools to your needs.
 
 The programmatic equivalent to the \button{implementors} button is:
 \begin{code}{}
@@ -1006,7 +1006,7 @@ testSuffixFound
 The effort required to do that was little more than to run the same test in the workspace, but using \sunit saves the test as executable documentation, and makes it easy for others to run.
 Moreover, if you add \mthref{testSuffix} to the class \ct{StringTest} and run that test suite with \sunit, you can very quickly get back to debugging the error.
 \sunit opens the debugger on the failing assertion, but you need only go back down the stack one frame, \button{Restart} the test and go \button{Into} the \ct{suffix} method, and you can correct the error, as we are doing in \figref{fixOffByOne}.
-It is then only the work of a second to click on the \button{Run Failures} button in the \sunit Test Runner, and confirm that the test now passes.
+It is then only  a second of work to click on the \button{Run Failures} button in the \sunit Test Runner, and confirm that the test now passes.
 
 Here is a better test:
 
@@ -1249,7 +1249,7 @@ you can easily work around this problem.
 The \button{code} button is perhaps the most useful for working with change sets; it opens a browser on the contents of the change set file; an example is shown in \figref{fileContentsBrowser}.
 The file contents browser is similar to the system browser except that it does not show categories, just classes, protocols and methods.
 For each class, the browser will tell you whether the class already exists in the system and whether it is defined in the file (but \emph{not} whether the definitions are identical).  
-It will show the the methods in each class, and (as shown in \figref{fileContentsBrowser}) will show you the differences between the current version and the version in the file.
+It will show the methods in each class, and (as shown in \figref{fileContentsBrowser}) will show you the differences between the current version and the version in the file.
 Yellow-button menu items in each of the top four panes will also let you file in the whole of the change set, or the corresponding class, protocol or method. 
 
 %=========================================================

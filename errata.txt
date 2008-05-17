@@ -1,7 +1,15 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2008-05-15
 ---------------------------------------------------------------------------
-... none yet :-)
+Page 114 slighlty > slightly
+Page 116 While viewing any one of these method, > methods
+Page 117 to it as argument, > to it as an argument,
+Page 103, 123 and 234 Programatically > Programmatically
+Page 124 accesible > accessible
+Page 142 the work of a second > a second of work
+Pages 38 and 150 the the > the
+Page 157 you or some else > you or someone else
+      [2008-05-17 Damien Cassou; fixed -- dc]
 ---------------------------------------------------------------------------
 ERRATA to version 2008-03-10
 ---------------------------------------------------------------------------
