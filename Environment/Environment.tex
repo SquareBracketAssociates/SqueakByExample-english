@@ -634,8 +634,9 @@ To create a package with Monticello, you have to do two things: write some code,
 
 To tell Monticello about your package, click on \button{+Package}, and type the name of the package, in this case ``SBE''.  Monticello will add \ct{SBE} to its list of packages; the package entry will be marked with an asterisk to show that the version in the image has not yet been written to any repository.
 
-Initially, the only repository associated with this package will be your package cache, as shown in \figref{MC+SBE}.  That's OK, you can still save the code, which will write it to the cache.  
-Just click \button{Save} and you will be invited to provide a log message for the version of the package that you are about to save, as shown in \figref{SBE-apb}; when you accept the message, Monticello will save your package, and the asterisk decorating the name in Monticello's package pane will be replaced by the version name.
+Initially, the only repository associated with this package will be your package cache, as shown in \figref{MC+SBE}.  That's OK: you can still save the code, which will cause it to be written to the package cache.  
+Just click \button{Save} and you will be invited to provide a log message for the version of the package that you are about to save, as shown in \figref{SBE-apb}; when you accept the message, Monticello will save your package.
+To indicate this, the asterisk decorating the name in Monticello's package pane will be removed, and the version number added.
 
 If you then make a change to the package\,---\,say by adding a method to one of the classes\,---\,the asterisk will re-appear, showing that you have unsaved changes.  If you open a repository browser on the package cache, you can select the saved version, and use \button{Changes} and the other buttons.  
 You can of course save the new version to the repository too; once you \button{Refresh} the repository view, it should look like \figref{package-cache-browser}.
@@ -671,7 +672,7 @@ You can of course save the new version to the repository too; once you \button{R
 	\label{fig:package-cache-browser}
 \end{figure}
 
-To save our new package to another repository (other than the package cache), you need to first make sure that Monticello knows about the repository, adding it if necessary.  
+To save the new package to a repository other than the package cache, you need to first make sure that Monticello knows about the repository, adding it if necessary.  
 Then you can use the \button{Copy} in the package-cache repository browser, and select the repository to which the package should be copied.  
 You can also associate the desired repository with the package by using the \ind{yellow button} menu item \menu{add to package...} on the repository, as shown in \figref{associateRepository}.  
 Once the package knows about a repository, you can save a new version by selecting the repository and the package in the Monticello Browser, and clicking \button{Save}.  
@@ -1028,7 +1029,7 @@ Why is this test better?  Because it tells the reader what the method should do 
 \end{figure}
 
 There are a few other ways to get into the debugger in addition to catching errors and assertion failures.
-If you execute code that goes into an infinite loop, you can interrupt it and open a debugger on the computation by typing \short{.} (that's a full stop or a period, depending  on where you learned English).\footnote{It is also useful to know that you can bring up an emergency debugger at any time by typing \short{{\sc shift}.}}
+If you execute code that goes into an infinite loop, you can interrupt it and open a debugger on the computation by typing \short{.} (that's a full stop or a period, depending  on where you learned English).\footnote{It is also useful to know that you can bring up an emergency debugger at any time by typing \short{{\sc shift--}.}}
 You can also just edit the suspect code to insert \ct{self halt}.
 So, for example, we might edit the \ct{suffix} method to read as follows:
 \index{process!interrupting}
