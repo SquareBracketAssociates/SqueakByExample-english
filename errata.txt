@@ -1,6 +1,87 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2008-05-15
 ---------------------------------------------------------------------------
+Latest batch to fix:
+
+[2008-06-05 Chris Kassopulo -- to do]
+
+Page 162
+two kinds of thing > two kinds of things
+
+Page 164
+then then > then
+
+Page 165
+for it to be practical to do it once > 
+for it to be practical to do once -or-
+to be practical to do once
+
+Page 170
+all the resource > all the resources
+
+Page 176
+simply write > simply writes
+
+Page 177
+and this especially true for brace arrays >
+and this is especially true for brace arrays -or-
+and especially for brace arrays
+
+examples shows > examples show
+
+Page 178
+Method 8.4: > Method 8.4: Object equality
+
+Page 182
+in you program > in your program
+
+Page 194
+Figure 9.1: The collection classes in Squeak. Indentation indicates
+subclass-
+ing; Italicized classes are abstract. >
+-add- Classes in bold made up the collection and stream classes of
+Smalltalk-80
+as described by the "Blue Book".
+
+Page 197
+method provide by > method provided by
+
+Page 199
+relize > realize
+they do interpret > they do, interpret
+suggest you to browse > suggest you browse
+
+Page 209
+integers or block > integers or blocks
+
+Page 210
+gives also access > also gives access
+on Number > in class Number
+
+Page 214
+is to using xor: > is to use xor:
+
+Page 217
+Stream Streams > Streams
+
+Page 221
+If you want to go to the beginning or at the end is what you want,
+you can use reset or setToEnd. >
+To position to the beginning of a stream you can use reset.
+setToEnd positions
+
+Page 236
+through mouse or the keyboard > through the mouse or the keyboard
+mouse events, it you cannot > mouse events, you cannot
+
+Page 247
+and redefining > and redefine
+
+Page 255
+Figure 12.3: The metaclasses of Translucent its superclasses >
+Figure 12.3: The metaclasses of Translucent and its superclasses
+
+---------------------------------------------------------------------------
 Page 114 slighlty > slightly
 Page 116 While viewing any one of these method, > methods
 Page 117 to it as argument, > to it as an argument,
