@@ -48,8 +48,9 @@ These 49 classes respond to 794 messages and define a total of 1236 methods!
 \ifluluelse
 	{\fbox{\includegraphics[height=0.9\textheight]{CollectionHierarchyList}}}
 	{\fbox{\includegraphics[width=3in]{CollectionHierarchyList}}}
-\caption{The collection classes in \squeak. Indentation indicates subclassing;
-\textit{\textsf{Italicized}} classes are abstract.}
+\caption{The collection classes in \squeak. Indentation indicates subclassing.
+\textit{\textsf{Italicized}} classes are abstract.
+{\textbf{Bold}} classes are described in the ``Blue Book".}
 \label{fig:CollClassesList}
 \end{center}
 \end{figure}
@@ -222,7 +223,7 @@ Readers interested in learning more about the \st collections are referred to La
 \section{Examples of key classes}
 We present now the most common or important collection classes using simple code examples. 
 The main protocols of collections are: \mthind{Collection}{at:}, \mthind{Collection}{at:put:} --- to access an element, \mthind{Collection}{add:}, \mthind{Collection}{remove:} --- to add or remove an element, \mthind{Collection}{size}, \mthind{Collection}{isEmpty}, \mthind{Collection}{include:} --- to get some information about the collection, \mthind{Collection}{do:}, \mthind{Collection}{collect:}, \mthind{Collection}{select:} --- to iterate over the collection. 
-Each collection may implement or not such protocols and when they do interpret them to fit with their semantics. We suggest you to browse the classes themselves to identify specific and more advanced protocols.
+Each collection may implement or not such protocols, and when they do, they interpret them to fit with their semantics. We suggest you browse the classes themselves to identify specific and more advanced protocols.
 \seeindex{do:@\ct{do:}}{Collection, \ct{do:}}
 \seeindex{at:@\ct{at:}}{Collection, \ct{at:}}
 \seeindex{at:put:@\ct{at:put:}}{Collection, \ct{at:put:}}
@@ -709,7 +710,7 @@ See also \charef{basic} for more about \clsind{String} and \clsind{Symbol}.
 \section{Collection iterators}
 \label{sec:iterators}
 
-In \st loops and conditionals are simply messages sent to collections or other objects such as integers or block (see also \charef{syntax}). In addition to low-level messages such as \ct{to:do:} which evaluates a block with an argument ranging from an initial to a final number, the \st collection hierarchy offers various high-level iterators. Using such iterators will make your code more robust and compact. 
+In \st loops and conditionals are simply messages sent to collections or other objects such as integers or blocks (see also \charef{syntax}). In addition to low-level messages such as \ct{to:do:} which evaluates a block with an argument ranging from an initial to a final number, the \st collection hierarchy offers various high-level iterators. Using such iterators will make your code more robust and compact. 
 \index{Collection!iteration}
 
 %---------------------------------------------------------
@@ -722,7 +723,7 @@ The following example prints all the strings contained in the receiver to the tr
 \end{code}
 
 \paragraph{Variants.} There are a lot of variants of \ct{do:}, such as \mbox{\mthind{Collection}{do:without:},} \mbox{\mthind{SequenceableCollection}{doWithIndex:}} and \mthind{OrderedCollection}{reverseDo:}:
-For the indexed collections (\ct{Array}, \ct{OrderedCollection}, \ct{SortedCollection}) the method \mthind{SequenceableCollection}{doWithIndex:} gives also access to the current index. This method is related to \ct{to:do:} which is defined on \ct{Number}.
+For the indexed collections (\ct{Array}, \ct{OrderedCollection}, \ct{SortedCollection}) the method \mthind{SequenceableCollection}{doWithIndex:} also gives access to the current index. This method is related to \ct{to:do:} which is defined in class \ct{Number}.
 
 \begin{code}{@TEST}
 #('bob' 'joe' 'toto') doWithIndex: [:each :i | (each = 'joe') ifTrue: [ ^ i ] ] --> 2
@@ -935,7 +936,7 @@ range --> an OrderedCollection(2 3 5 7 11 13 17 19)
 \end{code}
 
 \paragraph{Redefining both \ct{=} and \ct{hash}.}
-A difficult error to spot is when you redefine \ct{=} but not \ct{hash}. The symptoms are that you will lose elements that you put in sets or other strange behaviour. One solution proposed by Kent Beck is to using \ct{xor:} to redefine \ct{hash}.
+A difficult error to spot is when you redefine \ct{=} but not \ct{hash}. The symptoms are that you will lose elements that you put in sets or other strange behaviour. One solution proposed by Kent Beck is to use \ct{xor:} to redefine \ct{hash}.
 Suppose that we want two books to be considered equal if their titles and authors are the same.
 Then we would redefine not only \ct{=} but also \ct{hash} as follows:
 \index{Dictionary!overriding \ct{=} and \ct{hash}}

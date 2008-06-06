@@ -66,7 +66,7 @@ If we begin to browse the method categories on the instance side of \ct{Object} 
 \subsection{Printing}
 Every object in Smalltalk can return a printed form of itself. You can select any expression in a workspace and select the \menu{print it} menu: this executes the expression and asks the returned object to print itself. In fact this sends the message \ct{printString} to the returned object. The method \mthind{Object}{printString}, which is a \ind{template method}, at its core sends the message \mthind{Object}{printOn:} to its receiver. The message \ct{printOn:} is a hook that can be specialized. 
 
-\ct{Object>>>printOn:} is very likely one of the methods that you will most frequently override. This method takes as its argument a \clsind{Stream} on which a \clsind{String} representation of the object will be written. The default implementation simply write the class name preceded by ``\ct{a}'' or ``\ct{an}''. \ct{Object>>>printString} returns the \ct{String} that is written:
+\ct{Object>>>printOn:} is very likely one of the methods that you will most frequently override. This method takes as its argument a \clsind{Stream} on which a \clsind{String} representation of the object will be written. The default implementation simply writes the class name preceded by ``\ct{a}'' or ``\ct{an}''. \ct{Object>>>printString} returns the \ct{String} that is written:
 
 For example, the class \clsind{Browser} does not redefine the method \ct{printOn:} and sending the message printString to an instance executes the methods defined in \ct{Object}. 
 \begin{code}{@TEST}
@@ -104,7 +104,7 @@ $a         --> $a
 #(1 2 3) --> #(1 2 3)
 \end{code}
 
-Note that some objects such as arrays are self-evaluating or not depending on the objects they contain. For example, an array of booleans is self-evaluating whereas an array of persons is not. In Squeak 3.9, a mechanism was introduced (via the message \mthind{Object}{isSelfEvaluating}) to print collections in their self-evaluating forms as much as possible and this especially true for brace arrays. The following examples shows that a \subind{Array}{dynamic} array is self-evaluating only if its elements are:
+Note that some objects such as arrays are self-evaluating or not depending on the objects they contain. For example, an array of booleans is self-evaluating whereas an array of persons is not. In Squeak 3.9, a mechanism was introduced (via the message \mthind{Object}{isSelfEvaluating}) to print collections in their self-evaluating forms as much as possible and this is especially true for brace arrays. The following example shows that a \subind{Array}{dynamic} array is self-evaluating only if its elements are:
 \begin{code}{@TEST}
 {10@10 . 100@100}          --> {10@10 . 100@100}
 {Browser new . 100@100} --> an Array(a Browser 100@100)
@@ -149,7 +149,7 @@ In Smalltalk, the message \ct{=} tests object \emphsubindmain{Object}{equality} 
 \seeindex{identity}{Object, identity}
 
 The default implementation of object equality is to test for object identity:
-\begin{method}{}
+\begin{method}{Object equality}
 Object>>>= anObject
     "Answer whether the receiver and the argument represent the same object.
     If = is redefined in any subclass, consider also redefining the message hash."
@@ -314,7 +314,7 @@ You should override \mthind{Object}{postCopy} to copy any instance variables tha
 %-----------------------------------------------------------------
 \subsection{Debugging}
 
-The most important method here is \mthind{Object}{halt}. In order to set a breakpoint in a method, simply insert the message send \ct{self halt} at some point in the body of the method.  When this message is sent, execution will be interrupted and a \ind{debugger} will open to this point in you program.
+The most important method here is \mthind{Object}{halt}. In order to set a breakpoint in a method, simply insert the message send \ct{self halt} at some point in the body of the method.  When this message is sent, execution will be interrupted and a \ind{debugger} will open to this point in your program.
 (See \charef{env} for more details about the debugger.)
 
 \sd{in another chapter haltIf:, haltOnce, inspectOnce, flagging: isThisEverCalled, }

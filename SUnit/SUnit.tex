@@ -519,7 +519,7 @@ the number of tests failed, and the number of errors raised.
 One of the important  features of a suite of tests is that they should be independent of each other: the failure of one test should not cause an avalanche of failures of other tests that depend upon it, nor should the order in which the tests are run matter.
 Performing \ct{setUp} before each test and \ct{tearDown} afterwards helps to reinforce this independence. 
 
-However, there are occasions where setting up the necessary context is just too time-consuming for it to be practical to do it once before the execution of each test.
+However, there are occasions where setting up the necessary context is just too time-consuming for it to be practical to do once before the execution of each test.
 Moreover, if it is known that the test cases do not disrupt the resources used by the tests, then it is wasteful to set them up afresh for each test; it is sufficient to set them up once for each suite of tests.
 Suppose, for example, that a suite of tests need to query a database, or do some analysis on some compiled code.
 In such cases, it may make sense to set up the database and open a connection to it, or to compile some source code, before any of the tests start to run.
@@ -746,7 +746,7 @@ TestCase class>>>testSelectors
 \cmindex{MyTestCase class}{buildSuiteFromSelectors}
 
 The method \cmind{TestSuite}{run} creates an instance of
-\ct{TestResult}, verifies that all the resource are available, and then sends itself
+\ct{TestResult}, verifies that all the resources are available, and then sends itself
 the message \mthind{TestSuite}{run:}, which runs all
 the tests in the suite.  All the resources are then
 released.
