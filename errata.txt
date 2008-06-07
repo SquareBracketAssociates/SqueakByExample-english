@@ -4,36 +4,47 @@ ERRATA to version 2008-05-15
 p 162: two kinds of thing -> two kinds of things [ok as is -- on]
 p 165: for it to be practical to do it once -> 
 	for it to be practical to do once
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 170: all the resource -> all the resources
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 176: simply write -> simply writes
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 177: and this especially true for brace arrays ->
 	and this is especially true for brace arrays
 	examples shows -> examples show
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 178: Method 8.4: -> Method 8.4: Object equality
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 182: in you program -> in your program
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 194: Figure 9.1: The collection classes in Squeak. Indentation indicates
 	subclassing; Italicized classes are abstract. ->
 	-add- Bold classes are described in the "Blue Book".
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 199: they do interpret -> they do, they interpret
 	suggest you to browse -> suggest you browse
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 209: integers or block -> integers or blocks
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 210: gives also access -> also gives access
 	on Number -> in class Number
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 214: is to using xor: -> is to use xor:
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 217: Stream Streams -> Streams
-	[2008-06-05 Chris Kassopulo; all fixed -- on]
-
-TO DO:
-
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 221: If you want to go to the beginning or at the end is what you want,
 	you can use reset or setToEnd. ->
 	To position to the beginning of a stream you can use reset.
 	setToEnd positions
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 p 236: through mouse or the keyboard -> through the mouse or the keyboard
-	mouse events, it you cannot -> mouse events, you cannot
+	[Fixed previously by apb]
 p 247: and redefining -> and redefine
+	[Fixed previously by apb]
 p 255: Figure 12.3: The metaclasses of Translucent its superclasses ->
 	Figure 12.3: The metaclasses of Translucent and its superclasses
+	[2008-06-05 Chris Kassopulo; fixed -- on]
 ---------------------------------------------------------------------------
 Page 114 slighlty -> slightly
 Page 116 While viewing any one of these method, -> methods
