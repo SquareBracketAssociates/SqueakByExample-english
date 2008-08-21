@@ -1,6 +1,8 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2008-05-15
 ---------------------------------------------------------------------------
+p 176: End of second paragraph, there is a colon $: instead of a point
+        [2008-08-21; fixed -- dc]
 p 162: two kinds of thing -> two kinds of things [ok as is -- on]
 p 165: for it to be practical to do it once -> 
 	for it to be practical to do once
