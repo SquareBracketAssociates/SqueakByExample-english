@@ -1,6 +1,10 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2008-05-15
 ---------------------------------------------------------------------------
+p x: Wrong capitalization: "An Open Book" instead of "An open book"
+        [2008-08-25; fixed -- dc]
+p 178: Replace "This a method that" by "This is a method that"
+        [2008-08-25; fixed -- dc]
 p 176: End of second paragraph, there is a colon $: instead of a point
         [2008-08-21; fixed -- dc]
 p 162: two kinds of thing -> two kinds of things [ok as is -- on]
