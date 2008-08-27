@@ -1,6 +1,9 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2008-05-15
 ---------------------------------------------------------------------------
+p 226: Wrong code in the book for the stream chapter; the code in the
+        Monticello is correct
+        [2008-08-27 Ian J Cottee; fixed -- dc]
 p x: Wrong capitalization: "An Open Book" instead of "An open book"
         [2008-08-25; fixed -- dc]
 p 178: Replace "This a method that" by "This is a method that"

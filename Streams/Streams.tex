@@ -459,7 +459,7 @@ We need methods to go backward and forward:
 \begin{code}{}
 History>>goBackward
   self canGoBackward ifFalse: [self error: 'Already on the first element'].
-  self skip: -2.
+  stream skip: -2.
   ^ self next.
 
 History>>goForward
