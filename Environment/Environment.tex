@@ -166,15 +166,27 @@ Enter the name of the new thing in the dialog, and you are done: there is nothin
    \label{fig:SystemBrowserClassCreation}}
 \end{figure}
 
-In contrast, to create a new class or a new method, you will actually have to write some Smalltalk code.  
-If you deselect the currently selected class, so that no class is selected at all, the main browser pane will display a class creation template (\figref{SystemBrowserClassCreation}).
-You create a new class by editing this template: replace \ct{Object} by the name of the existing class of which you wish to create a subclass, replace \ct{NameOfSubclass} by the name that you would like to give to your new subclass, and fill in the instance variable names if you know them. 
-The category for the new class is by default the currently selected category, but you can change this too if you like.  
-If you already have the browser focussed on the class that you wish to subclass, you can get the same template with slightly different initialization by using the yellow button menu in the class pane, and selecting \menu{more \ldots \go subclass template}.
-You can also just edit the definition of an existing class, changing the class name to something new.
-In all cases, when you accept the new definition, the new class (the one whose name follows the \ct{#}) is created (as is the corresponding metaclass).  
-Creating a class also creates a global variable that references the class, which is why you can refer to all of the existing classes by using their names.
-\index{class!creation}
+In contrast, to create a new class or a new method, you will actually
+have to write some Smalltalk code.  If you deselect the currently
+selected category (most left pane) and the reselect it again, the main
+browser pane will display a class creation template
+(\figref{SystemBrowserClassCreation}).  You create a new class by
+editing this template: replace \ct{Object} by the name of the existing
+class of which you wish to create a subclass, replace
+\ct{NameOfSubclass} by the name that you would like to give to your
+new subclass, and fill in the instance variable names if you know
+them.  The category for the new class is by default the currently
+selected category, but you can change this too if you like.  If you
+already have the browser focussed on the class that you wish to
+subclass, you can get the same template with slightly different
+initialization by using the yellow button menu in the class pane, and
+selecting \menu{more \ldots \go subclass template}.  You can also just
+edit the definition of an existing class, changing the class name to
+something new.  In all cases, when you accept the new definition, the
+new class (the one whose name follows the \ct{#}) is created (as is
+the corresponding metaclass).  Creating a class also creates a global
+variable that references the class, which is why you can refer to all
+of the existing classes by using their names.  \index{class!creation}
 \index{system browser!defining a class}
 
 Can you see why the name of the new class has to appear as a \clsind{Symbol} (\ie prefixed with \ct{#}) in the class creation template, but after the class is created, code can refer to the class by using the name as an identifier (\ie without the \ct{#})?

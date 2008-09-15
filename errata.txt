@@ -1,6 +1,23 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2008-05-15
 ---------------------------------------------------------------------------
+
+p 20: Add 'move the cursor to the list and' after 'To scroll to now itself,' 
+        [2008-09-15 Hübner, Uwe; fixed -- dc]
+p 20: Replace 'into the method finder,' by 'into the method finder,
+        and press the RETURN key.'
+	[2008-09-15 Hübner, Uwe; fixed -- dc]
+p 113: The sentence 'If you deselect the currently selected class, so
+         that no class is selected at all, the main browser pane will
+         display a class creation template (Figure 6.4).' should be
+         replaced by 'If you deselect the currently selected category
+         (most left pane) and then re-select it again, the main
+         browser pane will display a class creation template (Figure
+         6.4).'
+	[2008-09-15 Hübner, Uwe; fixed -- dc]
+p 129: The System Browser shown in Figure 6.14 looks different as the
+        default System Browser in the 'Squeak3.9-final-7067.image'
+	[2008-09-15 Hübner, Uwe; fixed -- dc]
 p 226: Wrong code in the book for the stream chapter; the code in the
         Monticello is correct
         [2008-08-27 Ian J Cottee; fixed -- dc]
