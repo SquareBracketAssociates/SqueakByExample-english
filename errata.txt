@@ -1,7 +1,22 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2008-05-15
 ---------------------------------------------------------------------------
+section 1.11 (page 27) - "The most important of these are ..."
+	I suggest adding "browse it (CMD-b)".
+	[2008-11-06, Mark Volkmann; fixed -- on]
 
+page 123 on "Browsing programmatically" - "a number of utility method"
+	should be "a number of utility methods".
+	[2008-11-06, Mark Volkmann; fixed -- on]
+
+section 6.5 (page 138) - "Incidentally, if you want to open an full inspector ..."
+	Change "an" to "a".
+	[2008-11-06, Mark Volkmann; fixed -- on]
+
+section 6.9 (page 148) - "general-purpose tool from browsing ..."
+	Change "from" to "for".
+	[2008-11-06, Mark Volkmann; fixed -- on]
+---------------------------------------------------------------------------
 p 20: Add 'move the cursor to the list and' after 'To scroll to now itself,' 
         [2008-09-15 Hübner, Uwe; fixed -- dc]
 p 20: Replace 'into the method finder,' by 'into the method finder,
