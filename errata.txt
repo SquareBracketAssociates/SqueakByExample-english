@@ -1,6 +1,15 @@
 ---------------------------------------------------------------------------
 ERRATA to version 2008-05-15
 ---------------------------------------------------------------------------
+PENDING:
+section 10.4 (page 228) - What's the difference between fileNamed: and oldFileNamed:?
+	The description of oldFileNamed: says "If the file already exists ..."
+	implying that it doesn't have to exist.
+	[on: Good question.  I do not immediately see the answer from the source code.
+	Damien, can you help? The descriptions of the two methods do not really make
+	the difference clear.]
+
+---------------------------------------------------------------------------
 section 1.11 (page 27) - "The most important of these are ..."
 	I suggest adding "browse it (CMD-b)".
 	[2008-11-06, Mark Volkmann; fixed -- on]
@@ -16,6 +25,38 @@ section 6.5 (page 138) - "Incidentally, if you want to open an full inspector ..
 section 6.9 (page 148) - "general-purpose tool from browsing ..."
 	Change "from" to "for".
 	[2008-11-06, Mark Volkmann; fixed -- on]
+
+section 8.1 (page 182) - In the section on "Debugging", consider adding a
+	footnote reference to the first sentence of the second paragraph.
+	This same paragraph says "Otherwise an exception will be raised."
+	I suggestion specifying which kind is raised.
+	[2008-11-06, Mark Volkmann; added AssertionFailure -- on]
+
+section 9.5 (page 210) - "When the method do: is sent ..."
+	should be "When the message do: is sent ..."
+	[2008-11-06, Mark Volkmann; fixed -- on]
+
+section 10.3 (page 221) - "until it finds an element equals to its parameter"
+	should be "until it finds an element equal to its parameter"
+	[2008-11-06, Mark Volkmann; fixed -- on]
+
+section 10.3 (page 224) - In the code example in the "About Concatenation"
+	section "(ms)" is used in one place and "(milliseconds)" is used in
+	another. Make it consistent.
+	[2008-11-06, Mark Volkmann; fixed -- on]
+
+section 10.4 (page 229) - Explain what kind of file is represented by
+	a file with a .pgm extension.
+	[2008-11-06, Mark Volkmann; fixed -- on]
+
+section 11.5 (page 239) - Change "mouseUp" to "mouseUp:".
+	[2008-11-06, Mark Volkmann; fixed -- on]
+
+FAQ 9 - Clarify that "new methods" means methods that are not only defined
+	by a superclass (can be methods only defined in the current class or
+	methods that the current class overrides).
+	[2008-11-06, Mark Volkmann; fixed -- on]
+
 ---------------------------------------------------------------------------
 p 20: Add 'move the cursor to the list and' after 'To scroll to now itself,' 
         [2008-09-15 Hübner, Uwe; fixed -- dc]

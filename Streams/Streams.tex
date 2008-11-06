@@ -232,7 +232,7 @@ you can use
 go forward to a location relative to the current position: \ct{skip:}
 accepts a number as argument and skips that number of elements whereas
 \ct{skipTo:} skips all elements in the stream until it finds an
-element equals to its parameter. Note that it positions the stream
+element equal to its parameter. Note that it positions the stream
 after the matched element.
 
 \begin{code}{@TEST |stream|}
@@ -352,7 +352,7 @@ less efficient:
 [| temp |
   temp := String new.
   (1 to: 100000)
-    do: [:i | temp := temp, i asString, ' ']] timeToRun --> 115176 "(ms)"
+    do: [:i | temp := temp, i asString, ' ']] timeToRun --> 115176 "(milliseconds)"
 
 [| temp |
   temp := WriteStream on: String new.
@@ -655,7 +655,7 @@ FileStream
 \end{code}
 
 Here is another example which creates a picture in a file named
-``test.pgm''. You can open this file with your favorite drawing program.
+``test.pgm'' (portable graymap file format). You can open this file with your favorite drawing program.
 
 % The following does not assert anything, but @TEST is used to ensure
 % that no error is thrown.

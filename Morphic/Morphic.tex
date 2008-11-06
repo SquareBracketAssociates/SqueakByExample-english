@@ -404,7 +404,7 @@ Moreover, the morphs need to be able respond to user input by changing their app
 
 When a mouse button is pressed, Morphic sends each morph under the mouse pointer the message \ct{handlesMouseDown:}. If a morph answers \ct{true}, then Morphic immediately sends it the \mthind{Morph}{mouseDown:} message; it also sends the \mthind{Morph}{mouseUp:} message when the user releases the mouse button.
 If all morphs answer \ct{false}, then Morphic initiates a drag-and-drop operation.
-As we will discuss below, the \ct{mouseDown:} and \ct{mouseUp} messages are sent with an argument\,---\,a \clsind{MouseEvent} object\,---\,that encodes the details of the mouse action.
+As we will discuss below, the \ct{mouseDown:} and \ct{mouseUp:} messages are sent with an argument\,---\,a \clsind{MouseEvent} object\,---\,that encodes the details of the mouse action.
 
 Let's extend \ct{CrossMorph} to handle mouse events.  
 We start by ensuring that all crossMorphs answer \ct{true} to the \mthind{Morph}{handlesMouseDown:} message. 
