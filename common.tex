@@ -94,9 +94,19 @@
 \newcommand{\sbe}{\url{SqueakByExample.org}\xspace}
 \newcommand{\sba}{\url{SquareBracketAssociates.org}\xspace}
 %=============================================================
+%:Markup macros for proof-reading
+\usepackage[normalem]{ulem} % for \sout
+\usepackage{xcolor}
+\newcommand{\ra}{$\rightarrow$}
+\newcommand{\ugh}[1]{\textcolor{red}{\uwave{#1}}} % please rephrase
+\newcommand{\ins}[1]{\textcolor{blue}{\uline{#1}}} % please insert
+\newcommand{\del}[1]{\textcolor{red}{\sout{#1}}} % please delete
+\newcommand{\chg}[2]{\textcolor{red}{\sout{#1}}{\ra}\textcolor{blue}{\uline{#2}}} % please change
+%=============================================================
 %:Editorial comment macros
 \newcommand{\nnbb}[2]{
-    \fbox{\bfseries\sffamily\scriptsize#1}
+    % \fbox{\bfseries\sffamily\scriptsize#1}
+    \fcolorbox{gray}{yellow}{\bfseries\sffamily\scriptsize#1}
     {\sf\small$\blacktriangleright$\textit{#2}$\blacktriangleleft$}
    }
 \newcommand{\ab}[1]{\nnbb{Andrew}{#1}}
