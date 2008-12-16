@@ -119,6 +119,8 @@
 \newcommand{\orla}[1]{\nnbb{Orla}{#1}}
 \newcommand{\alex}[1]{\nnbb{Alex}{#1}}
 \newcommand{\alx}[1]{\nnbb{Alex}{#1}}
+\newcommand{\dr}[1]{\nnbb{David}{#1}}
+\newcommand{\ja}[1]{\nnbb{Jannik}{#1}}
 \newcommand{\here}{\nnbb{CONTINUE}{HERE}}
 %=============================================================
 %:Abbreviation macros
@@ -158,6 +160,9 @@
 \newcommand{\clsref}[1]{class~\ref{cls:#1}\xspace}
 \newcommand{\tclsref}[1]{the class~\ref{cls:#1}\xspace}
 \newcommand{\Tclsref}[1]{The class~\ref{cls:#1}\xspace}
+
+\newcommand{\figlabel}[1]{\label{fig:#1}}
+\newcommand{\seclabel}[1]{\label{sec:#1}}
 %=============================================================
 %:Menu item macro
 % for menu items, so we can change our minds on how to print them! (apb)
@@ -294,8 +299,9 @@ Damien Pollet},
 \newcommand{\answer}{\paragraph{Answer}\ }
 %=============================================================
 %:Listings package configuration
-\newcommand{\caret}{\makebox{\raisebox{0.4ex}{\footnotesize{$\wedge$}}}}
-\usepackage{listings}
+% \newcommand{\caret}{\makebox{\raisebox{0.4ex}{\footnotesize{$\wedge$}}}}
+\newcommand{\caret}{\^\,}
+\newcommand{\escape}{{\sf \textbackslash}}\usepackage{listings}
 \lstdefinelanguage{Smalltalk}{
 %  morekeywords={self,super,true,false,nil,thisContext}, % This is overkill
   morestring=[d]',
