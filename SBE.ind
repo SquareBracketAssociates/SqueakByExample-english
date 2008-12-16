@@ -380,7 +380,7 @@
 
   \item \textsf  {debug} (protocol), \hyperpage{182}
   \item debugger, \hyperpage{25}, \hyperpage{43}, \hyperpage{111}, 
-		\hyperpage{135}, \hyperpage{182}
+		\hyperpage{136}, \hyperpage{182}
   \item declaration, \see{variable declaration}{53}
   \item deep copy, 
 		\see{Object, \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{deepCopy}}{180}
@@ -457,12 +457,12 @@
   \item Feathers, Michael, \hyperpage{171}
   \item field, \see{instance variable}{83}
   \item file
-    \subitem browsing, \see{file list browser}{148}
+    \subitem browsing, \see{file list browser}{149}
     \subitem change set, \hyperpage{146}
     \subitem filing in, \hyperpage{45}, \hyperpage{122}
     \subitem filing out, \hyperpage{45}, \hyperpage{109}, 
 		\hyperpage{122}, \hyperpage{126}, \hyperpage{148}
-  \item file list browser, \hyperpage{148}
+  \item file list browser, \hyperpage{149}
   \item FileStream
     \subitem (class), \hyperpage{193}, \hyperpage{227}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{binary}, 
@@ -1005,7 +1005,7 @@
   \item Perl, \hyperpage{155}
   \item Pluggable collections, \hyperpage{197}
   \item PluggableListMorph
-    \subitem (class), \hyperpage{134}
+    \subitem (class), \hyperpage{135}
   \item Point
     \subitem (class), \hyperpage{34}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{dist:}, 
@@ -1042,7 +1042,7 @@
   \item PositionableStream class
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{on:}, 
 		\hyperpage{220}
-  \item pre-debugger, \hyperpage{142}
+  \item pre-debugger, \hyperpage{143}
   \item PreDebugWindow
     \subitem (class), \hyperpage{43}, \hyperpage{136}
   \item preference browser, \hyperpage{7}, \hyperpage{182}
@@ -1213,7 +1213,7 @@
   \item SourceForge, \hyperpage{48}
   \item sources, \hyperpage{4}
   \item SqueakMap, \hyperpage{15}
-  \item SqueakSource, \hyperpage{48}, \hyperpage{130}
+  \item SqueakSource, \hyperpage{48}, \hyperpage{131}
   \item Squeaksource, \hyperpage{273}
   \item Stack
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{pop}, 
@@ -1280,7 +1280,7 @@
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{testShout}, 
 		\hyperpage{24}
   \item Subversion, \hyperpage{46}
-  \item SUnit, \hyperpage{22, 23}, \hyperpage{110}, \hyperpage{141}, 
+  \item SUnit, \hyperpage{22, 23}, \hyperpage{110}, \hyperpage{142}, 
 		\hyperpage{155}, \hyperpage{275}
     \subitem fixture, \hyperpage{159}
     \subitem set up method, \hyperpage{159}
@@ -1399,7 +1399,7 @@
     \subitem (class), \hyperpage{132}
   \item Tools flap, \hyperpage{11}, \hyperpage{17}, \hyperpage{20}, 
 		\hyperpage{23}, \hyperpage{27}, \hyperpage{110, 111}, 
-		\hyperpage{145, 146}, \hyperpage{148}, \hyperpage{163}
+		\hyperpage{145, 146}, \hyperpage{149}, \hyperpage{163}
   \item Trait
     \subitem (class), \hyperpage{92}
   \item trait, \hyperpage{90, 91}
@@ -1481,8 +1481,8 @@
 
   \item yellow button, \hyperpage{6, 7}, \hyperpage{32}, \hyperpage{39}, 
 		\hyperpage{112}, \hyperpage{115}, \hyperpage{118}, 
-		\hyperpage{120}, \hyperpage{122}, \hyperpage{130--132}, 
-		\hyperpage{134}, \hyperpage{144}, \hyperpage{146, 147}, 
-		\hyperpage{150, 151}
+		\hyperpage{120}, \hyperpage{122}, \hyperpage{130}, 
+		\hyperpage{132}, \hyperpage{134}, \hyperpage{144}, 
+		\hyperpage{147}, \hyperpage{150}, \hyperpage{152}
 
 \end{theindex}
