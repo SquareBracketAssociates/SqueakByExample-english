@@ -96,7 +96,7 @@
 %=============================================================
 %:Markup macros for proof-reading
 \usepackage[normalem]{ulem} % for \sout
-\usepackage{xcolor}
+% \usepackage{xcolor} %%% BREAKS Environment chapter! :-(
 \newcommand{\ra}{$\rightarrow$}
 \newcommand{\ugh}[1]{\textcolor{red}{\uwave{#1}}} % please rephrase
 \newcommand{\ins}[1]{\textcolor{blue}{\uline{#1}}} % please insert
@@ -105,8 +105,9 @@
 %=============================================================
 %:Editorial comment macros
 \newcommand{\nnbb}[2]{
-    % \fbox{\bfseries\sffamily\scriptsize#1}
-    \fcolorbox{gray}{yellow}{\bfseries\sffamily\scriptsize#1}
+    \fbox{\bfseries\sffamily\scriptsize#1}
+    % \fcolorbox{gray}{yellow}{\bfseries\sffamily\scriptsize#1}
+     %%% xcolor BREAKS Environment chapter! :-(
     {\sf\small$\blacktriangleright$\textit{#2}$\blacktriangleleft$}
    }
 \newcommand{\ab}[1]{\nnbb{Andrew}{#1}}
