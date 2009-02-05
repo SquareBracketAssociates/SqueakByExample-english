@@ -725,5 +725,5 @@ pe1/urw/palatino/uplb8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw
 /palatino/uplbi8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palat
 ino/uplr8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palatino/upl
 ri8a.pfb>
-Output written on SBE.pdf (304 pages, 3814063 bytes).
+Output written on SBE.pdf (304 pages, 3813878 bytes).
 Transcript written on SBE.log.
