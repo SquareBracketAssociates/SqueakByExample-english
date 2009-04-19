@@ -85,18 +85,21 @@
 \newcommand{\xUnit}{$x$Unit\xspace}
 \newcommand{\JUnit}{JUnit\xspace}
 \newcommand{\st}{Smalltalk\xspace}
-\newcommand{\Squeak}{Squeak\xspace}
-\newcommand{\sq}{Squeak\xspace}
+\newcommand{\Pharo}{Pharo\xspace}
+\newcommand{\pharo}{Pharo\xspace}
+\newcommand{\Squeak}{Pharo\xspace}
+\newcommand{\sq}{Squeak\xspace} % Please don't change this to "Pharo"! (ON)
 \newcommand{\sqmap}{SqueakMap\xspace}
 \newcommand{\squeak}{Squeak\xspace}
 %\newcommand{\sbe}{\url{scg.unibe.ch/SBE}\xspace}
 %\newcommand{\sbe}{\url{squeakbyexample.org}\xspace}
 \newcommand{\sbe}{\url{SqueakByExample.org}\xspace}
+\newcommand{\pbe}{\url{PharoByExample.org}\xspace}
 \newcommand{\sba}{\url{SquareBracketAssociates.org}\xspace}
 %=============================================================
 %:Markup macros for proof-reading
 \usepackage[normalem]{ulem} % for \sout
-% \usepackage{xcolor} %%% BREAKS Environment chapter! :-(
+\usepackage{xcolor}
 \newcommand{\ra}{$\rightarrow$}
 \newcommand{\ugh}[1]{\textcolor{red}{\uwave{#1}}} % please rephrase
 \newcommand{\ins}[1]{\textcolor{blue}{\uline{#1}}} % please insert
@@ -105,9 +108,8 @@
 %=============================================================
 %:Editorial comment macros
 \newcommand{\nnbb}[2]{
-    \fbox{\bfseries\sffamily\scriptsize#1}
-    % \fcolorbox{gray}{yellow}{\bfseries\sffamily\scriptsize#1}
-     %%% xcolor BREAKS Environment chapter! :-(
+    % \fbox{\bfseries\sffamily\scriptsize#1}
+    \fcolorbox{gray}{yellow}{\bfseries\sffamily\scriptsize#1}
     {\sf\small$\blacktriangleright$\textit{#2}$\blacktriangleleft$}
    }
 \newcommand{\ab}[1]{\nnbb{Andrew}{#1}}
@@ -121,6 +123,8 @@
 \newcommand{\alx}[1]{\nnbb{Alex}{#1}}
 \newcommand{\dr}[1]{\nnbb{David}{#1}}
 \newcommand{\ja}[1]{\nnbb{Jannik}{#1}}
+\newcommand{\jr}[1]{\nnbb{Jorge}{#1}}
+\newcommand{\fp}[1]{\nnbb{Fabrizio}{#1}}
 \newcommand{\here}{\nnbb{CONTINUE}{HERE}}
 %=============================================================
 %:Abbreviation macros
@@ -183,6 +187,7 @@
 \newcommand{\button}[1]{{%
 	\setlength{\fboxsep}{0pt}%
 	\fbox{{\upshape\sffamily\strut \,#1\,}}}}
+% NB: The button macro does not work within captions -- incompatible with xcolor package :-(
 \newcommand{\toolsflap}{\textit{Tools} flap\xspace}
 %=============================================================
 %:Reader cues (do this)
@@ -301,7 +306,8 @@ Damien Pollet},
 %:Listings package configuration
 % \newcommand{\caret}{\makebox{\raisebox{0.4ex}{\footnotesize{$\wedge$}}}}
 \newcommand{\caret}{\^\,}
-\newcommand{\escape}{{\sf \textbackslash}}\usepackage{listings}
+\newcommand{\escape}{{\sf \textbackslash}}
+\usepackage{listings}
 \lstdefinelanguage{Smalltalk}{
 %  morekeywords={self,super,true,false,nil,thisContext}, % This is overkill
   morestring=[d]',

@@ -91,6 +91,8 @@ Implicit mode ON; LaTeX internals redefined
 *hyperref using default driver hpdftex*
 (/usr/local/texlive/2007/texmf-dist/tex/latex/hyperref/hpdftex.def)
 (/usr/local/texlive/2007/texmf-dist/tex/latex/ltxmisc/ulem.sty)
+(/usr/local/texlive/2007/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2007/texmf/tex/latex/config/color.cfg))
 (/usr/local/texlive/2007/texmf-dist/tex/latex/titlesec/ttlps.def
 Package titlesec Warning: You are using an old interface for page styles
 (titlesec)                You could proceed but don't complain if you run
@@ -126,9 +128,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 77--78
 <use figures/CreativeCommons-BY-SA.pdf> [2 <./figures/CreativeCommons-BY-SA.pdf
 >] (./SBE.toc [3] [4] [5] [6]) (./Preface/Preface.tex [7] [8]
 (/usr/local/texlive/2007/texmf-dist/tex/latex/psnfss/ts1phv.fd) [9] [10]
-Underfull \hbox (badness 2343) in paragraph at lines 102--103
-[]\T1/ppl/m/n/10 (+20) You can find the com-plete list of Squeak mailing-lists 
-at [][]$\T1/phv/m/n/10 (+20) lists .
+Underfull \hbox (badness 3525) in paragraph at lines 102--103
+[]\T1/ppl/m/n/10 (+20) You can find the com-plete list of Pharo mailing-lists a
+t [][]$\T1/phv/m/n/10 (+20) lists .
 [11] <figures/squeak-logo.pdf, id=861, 237.88875pt x 157.58875pt>
 <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf>) [12 <./figures/squ
 eak-logo.pdf>] [1] [2] (./QuickTour/QuickTour.tex
@@ -507,11 +509,12 @@ rter.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active [148]
 [149 <./Environment/figures/fileList.png (PNG copy)>]
 <Environment/figures/fileContentsBrowser.png, id=2793, 604.2575pt x 403.5075pt>
-<use Environment/figures/fileContentsBrowser.png> [150 <./Environment/figures/f
-ileContentsBrowser.png (PNG copy)>] <use figures/squeak-logo.pdf>
+<use Environment/figures/fileContentsBrowser.png>
+Underfull \vbox (badness 10000) has occurred while \output is active [150 <./En
+vironment/figures/fileContentsBrowser.png (PNG copy)>]
+<use figures/squeak-logo.pdf>
 Underfull \hbox (badness 10000) in paragraph at lines 1291--1293
-\T1/ppl/m/n/10 (+20) Restart Squeak from the most re-cent snap-shot, and se-lec
-t
+\T1/ppl/m/n/10 (+20) Restart Pharo from the most re-cent snap-shot, and se-lect
 Underfull \hbox (badness 2617) in paragraph at lines 1291--1293
 [][][][][][]\T1/ppl/m/n/10 (+20) . This will open a workspace full of
 [151] <use figures/debugHandle.png> [152]) (./SUnit/SUnit.tex [153] [154]
@@ -697,7 +700,7 @@ Appendix A.
 Underfull \hbox (badness 1796) in paragraph at lines 269--275
 [] []\T1/ppl/b/n/10 An-swer[]  \T1/ppl/m/n/10 (+20) Use []SmaCC ---the Smalltal
 k Com-piler Com-piler. You
-) (./SBE.bbl [275] [276]) (./SBE.ind [277] [278] [279] [280] [281] [282]
+[275]) (./SBE.bbl [276]) (./SBE.ind [277] [278] [279] [280] [281] [282]
 [283] [284] [285] [286] [287] [288]) [289] [290] [291] [292] (./SBE.aux)
 LaTeX Warning: There were multiply-defined labels.
  )
@@ -725,5 +728,5 @@ pe1/urw/palatino/uplb8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw
 /palatino/uplbi8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palat
 ino/uplr8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palatino/upl
 ri8a.pfb>
-Output written on SBE.pdf (304 pages, 3813878 bytes).
+Output written on SBE.pdf (304 pages, 3813855 bytes).
 Transcript written on SBE.log.

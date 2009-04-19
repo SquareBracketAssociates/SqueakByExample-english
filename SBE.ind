@@ -718,7 +718,7 @@
 		\hyperpage{112}
   \item Monticello, \hyperpage{29}, \hyperpage{46}, 
 		\hyperpage{109, 110}, \hyperpage{123, 124}, 
-		\hyperpage{126}, \hyperpage{148}, \hyperpage{273}
+		\hyperpage{126}, \hyperpage{148}, \hyperpage{274}
   \item Morph
     \subitem (class), \hyperpage{36}
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{addMorph:}, 
@@ -1190,7 +1190,7 @@
     \subitem (class), \hyperpage{197}
   \item slot, \see{instance variable}{83}
   \item SmaCC, \hyperpage{275}
-  \item SmaCCDev, \hyperpage{275}
+  \item SmaCCDev, \hyperpage{276}
   \item SmallInteger
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{+}, 
 		\hyperpage{60}
@@ -1214,7 +1214,7 @@
   \item sources, \hyperpage{4}
   \item SqueakMap, \hyperpage{15}
   \item SqueakSource, \hyperpage{48}, \hyperpage{131}
-  \item Squeaksource, \hyperpage{273}
+  \item Squeaksource, \hyperpage{274}
   \item Stack
     \subitem \lstinline [mathescape=false,basicstyle={\sffamily  \upshape  }]{pop}, 
 		\hyperpage{182}
