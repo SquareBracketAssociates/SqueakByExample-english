@@ -2,12 +2,12 @@
 ERRATA to version 2008-05-15
 ---------------------------------------------------------------------------
 PENDING:
-section 10.4 (page 228) - What's the difference between fileNamed: and oldFileNamed:?
-	The description of oldFileNamed: says "If the file already exists ..."
-	implying that it doesn't have to exist.
-	[on: Good question.  I do not immediately see the answer from the source code.
-	Damien, can you help? The descriptions of the two methods do not really make
-	the difference clear.]
+section 10.4 (page 228) - What's the difference between fileNamed: and
+ 	oldFileNamed:? The description of oldFileNamed: says "If the file already
+    exists ..." implying that it doesn't have to exist.
+	[on: Good question. I do not immediately see the answer from the source
+	code. Damien, can you help? The descriptions of the two methods do not
+	really make the difference clear.]
 
 ---------------------------------------------------------------------------
 section 1.11 (page 27) - "The most important of these are ..."

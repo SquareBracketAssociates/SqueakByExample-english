@@ -128,9 +128,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 77--78
 <use figures/CreativeCommons-BY-SA.pdf> [2 <./figures/CreativeCommons-BY-SA.pdf
 >] (./SBE.toc [3] [4] [5] [6]) (./Preface/Preface.tex [7] [8]
 (/usr/local/texlive/2007/texmf-dist/tex/latex/psnfss/ts1phv.fd) [9] [10]
-Underfull \hbox (badness 3525) in paragraph at lines 102--103
-[]\T1/ppl/m/n/10 (+20) You can find the com-plete list of Pharo mailing-lists a
-t [][]$\T1/phv/m/n/10 (+20) lists .
+Underfull \hbox (badness 2343) in paragraph at lines 102--103
+[]\T1/ppl/m/n/10 (+20) You can find the com-plete list of Squeak mailing-lists 
+at [][]$\T1/phv/m/n/10 (+20) lists .
 [11] <figures/squeak-logo.pdf, id=861, 237.88875pt x 157.58875pt>
 <use figures/squeak-logo.pdf> <use figures/squeak-logo.pdf>) [12 <./figures/squ
 eak-logo.pdf>] [1] [2] (./QuickTour/QuickTour.tex
@@ -509,12 +509,11 @@ rter.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active [148]
 [149 <./Environment/figures/fileList.png (PNG copy)>]
 <Environment/figures/fileContentsBrowser.png, id=2793, 604.2575pt x 403.5075pt>
-<use Environment/figures/fileContentsBrowser.png>
-Underfull \vbox (badness 10000) has occurred while \output is active [150 <./En
-vironment/figures/fileContentsBrowser.png (PNG copy)>]
-<use figures/squeak-logo.pdf>
+<use Environment/figures/fileContentsBrowser.png> [150 <./Environment/figures/f
+ileContentsBrowser.png (PNG copy)>] <use figures/squeak-logo.pdf>
 Underfull \hbox (badness 10000) in paragraph at lines 1291--1293
-\T1/ppl/m/n/10 (+20) Restart Pharo from the most re-cent snap-shot, and se-lect
+\T1/ppl/m/n/10 (+20) Restart Squeak from the most re-cent snap-shot, and se-lec
+t
 Underfull \hbox (badness 2617) in paragraph at lines 1291--1293
 [][][][][][]\T1/ppl/m/n/10 (+20) . This will open a workspace full of
 [151] <use figures/debugHandle.png> [152]) (./SUnit/SUnit.tex [153] [154]
@@ -728,5 +727,5 @@ pe1/urw/palatino/uplb8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw
 /palatino/uplbi8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palat
 ino/uplr8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palatino/upl
 ri8a.pfb>
-Output written on SBE.pdf (304 pages, 3813855 bytes).
+Output written on SBE.pdf (304 pages, 3825954 bytes).
 Transcript written on SBE.log.
