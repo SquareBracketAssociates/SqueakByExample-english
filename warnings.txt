@@ -409,7 +409,7 @@ Overfull \hbox (1.24931pt too wide) in paragraph at lines 311--318
 [][] 
 <Environment/figures/inheritanceOverriding.png, id=2490, 601.24625pt x 263.9862
 5pt> <use Environment/figures/inheritanceOverriding.png>
-Underfull \vbox (badness 5667) has occurred while \output is active [118 <./Env
+Underfull \vbox (badness 5681) has occurred while \output is active [118 <./Env
 ironment/figures/VersionsOfMouseUp.png (PNG copy)>]
 <Environment/figures/OBInheritanceOverriding.png, id=2498, 602.25pt x 335.2525p
 t> <use Environment/figures/OBInheritanceOverriding.png> [119 <./Environment/fi
@@ -558,7 +558,7 @@ res/BooleanHierarchy.pdf>] <use figures/squeak-logo.pdf>)
 Chapter 9.
 <Collections/figures/CollectionHierarchyList.pdf, id=3515, 271.30157pt x 608.51
 34pt> <use Collections/figures/CollectionHierarchyList.pdf>
-LaTeX Warning: Float too large for page by 7.216pt on input line 56.
+LaTeX Warning: Float too large for page by 7.2159pt on input line 56.
 <Collections/figures/CollectionHierarchy.pdf, id=3518, 720.6925pt x 424.58624pt
 > <use Collections/figures/CollectionHierarchy.pdf>
 Underfull \vbox (badness 10000) has occurred while \output is active [193]
@@ -730,5 +730,5 @@ pe1/urw/palatino/uplb8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw
 /palatino/uplbi8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palat
 ino/uplr8a.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/palatino/upl
 ri8a.pfb>
-Output written on SBE.pdf (304 pages, 3861955 bytes).
+Output written on SBE.pdf (304 pages, 3862537 bytes).
 Transcript written on SBE.log.
