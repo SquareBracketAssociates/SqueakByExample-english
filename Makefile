@@ -52,7 +52,7 @@ etc :
 	open ${ETC}.pdf
 
 examples :
-	./examples.rb $C > ../$@.txt
+	./examples.rb $C > $@.txt
 
 fun :
 	time ./examples.rb $C > $@1.txt
