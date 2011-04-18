@@ -1,4 +1,7 @@
------------------------------------------------------------------------------
-Please see the README file in the parent directory!
-https://www.iam.unibe.ch/scg/svn_repos/SqueakByExample/README.txt
------------------------------------------------------------------------------
+
+This repo lives here:
+
+https://github.com/SquareBracketAssociates/
+
+https://github.com/SquareBracketAssociates/SqueakByExample-english
+
