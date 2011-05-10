@@ -6,3 +6,5 @@ SBE.out
 SBE.pdf
 SBE.toc
 SBE.url
+*.changes
+*.image
