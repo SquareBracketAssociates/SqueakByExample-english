@@ -2,7 +2,7 @@
 
 This is the LaTeX source repository of the _Squeak by Example_ book.
 
-The public web site of the books is: <http://squeakbyexample.org/>
+The public web site of the books was: <http://squeakbyexample.org/> (now defunct and temporarily redirects to this github repo)
 
 All the source repos live here: <http://github.com/SquareBracketAssociates/>
 
@@ -10,9 +10,11 @@ See SBE-TO-DO.txt for status of tasks for SBE.
 
 ## Contributing
 
+NB: There has been no activity on this project for several years. If you are interested in updating the book, please make contact on the distribution list.
+
 To contribute to the book or to a translation project, please:
 
-- subscribe to <https://www.iam.unibe.ch/mailman/listinfo/sbe-discussion>;
+- subscribe to <https://www.list.inf.unibe.ch/listinfo/sbe-discussion>;
 - clone the relevant repository and contact the lead person responsible;
 - if you are unsure who is in charge, ask on the list;
 - publish changes to your copy of the the repo and inform the lead to pull changes.
